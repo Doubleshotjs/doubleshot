@@ -1,0 +1,31 @@
+{
+  "name": "create-doubleshot",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "ArcherGu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/archergu/doubleshot.git",
+    "directory": "packages/create-doubleshot"
+  },
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "template-*"
+  ],
+  "bin": {
+    "create-doubleshot": "index.js"
+  },
+  "engines": {
+    "node": ">=14.6.0"
+  },
+  "bugs": {
+    "url": "https://github.com/archergu/doubleshot/issues"
+  },
+  "homepage": "https://github.com/archergu/doubleshot/tree/main/packages/create-doubleshot#readme",
+  "dependencies": {
+    "kolorist": "^1.5.1",
+    "minimist": "^1.2.6",
+    "prompts": "^2.4.2"
+  }
+}

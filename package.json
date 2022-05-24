@@ -1,23 +1,25 @@
 {
   "name": "doubleshot",
   "private": true,
+  "packageManager": "pnpm@7.0.1",
   "description": "A solution to save effort",
   "keywords": [
     "electron",
     "vite",
     "nestjs"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
-  "packageManager": "pnpm@7.0.1",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.23.1",
     "esbuild": "^0.14.39",
     "eslint": "^8.16.0",
     "lint-staged": "^12.4.1",
-    "simple-git-hooks": "^2.7.0"
+    "simple-git-hooks": "^2.7.0",
+    "typescript": "^4.6.4"
   },
   "lint-staged": {
     "*.{js,ts,tsx,vue,md}": [
