@@ -1,0 +1,35 @@
+{
+  "name": "@doubleshot/nest-electron-ipc-transport",
+  "version": "0.0.1",
+  "description": "Electron IPC transport for nestjs microservices",
+  "keywords": [
+    "electron",
+    "nestjs"
+  ],
+  "license": "MIT",
+  "author": "ArcherGu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/archergu/doubleshot.git",
+    "directory": "packages/nest-electron-ipc-transport"
+  },
+  "bugs": {
+    "url": "https://github.com/archergu/doubleshot/issues"
+  },
+  "homepage": "https://github.com/archergu/doubleshot/tree/main/packages/nest-electron-ipc-transport#readme",
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^6.0.0 || ^7.0.0 || ^8.0.0",
+    "@nestjs/microservices": "^6.0.0 || ^7.0.0 || ^8.0.0",
+    "electron": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^8.4.5",
+    "@nestjs/core": "^8.4.5",
+    "@nestjs/microservices": "^8.4.5",
+    "electron": "^19.0.0",
+    "reflect-metadata": "^0.1.13"
+  }
+}
