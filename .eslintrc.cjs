@@ -9,7 +9,7 @@ const config = {
   },
   overrides: [
     {
-      files: ['packages/create-doubleshot/index.js'],
+      files: ['packages/create-doubleshot/index.js', 'packages/runner/**/*.ts'],
       rules: {
         'no-console': 'off'
       }
