@@ -1,6 +1,8 @@
 import path from 'path'
 import JoyCon from 'joycon'
 import { bundleRequire } from 'bundle-require'
+import type { Configuration as ElectronBuilderConfiguration } from 'electron-builder'
+import type { ConcurrentlyCommandInput } from 'concurrently'
 import { normalizePath } from './utils'
 import { createLogger } from './log'
 
@@ -10,7 +12,26 @@ export interface RunConfig {
   cwd?: string
   name?: string
   prefixColor?: string
-  commands?: Record<string, string>
+  commands?: Record<string, string | (ConcurrentlyCommandInput & {
+    command: string
+    killOthersWhenExit?: boolean
+  })>
+}
+
+export interface ElectronBuildConfig {
+  /**
+   * @default false
+   */
+  disabled?: boolean
+  /**
+   * @default 'build'
+   */
+  commandName?: string
+  /**
+  * @default process.cwd()
+  */
+  projectDir?: string
+  config?: string | ElectronBuilderConfiguration
 }
 
 export interface DoubleShotConfig {
@@ -21,6 +42,7 @@ export interface DoubleShotConfig {
    */
   root?: string
   run?: RunConfig[]
+  electronBuild?: ElectronBuildConfig
 }
 
 export type ResolvedConfig = Readonly<{
@@ -56,15 +78,31 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
     const config: DoubleShotConfig = mod.default || mod
 
     const resolvedRunConfig = resolveRunConfig(config.run, cwd)
+    const resolvedElectronBuildConfig = resoleElectronBuilderConfig(config.electronBuild, cwd)
 
     return {
+      root: config.root || cwd,
       configFile: configPath,
       run: resolvedRunConfig,
-      root: config.root || cwd,
+      electronBuild: resolvedElectronBuildConfig,
     }
   }
   else {
     throw new Error('doubleshot runner needs a config file')
+  }
+}
+
+function resoleElectronBuilderConfig(buildConfig: ElectronBuildConfig | undefined, cwd: string): ElectronBuildConfig {
+  if (!buildConfig)
+    return { disabled: true }
+
+  const resolvedProjectDir = normalizePath(path.resolve(cwd, buildConfig.projectDir || ''))
+  const resolvedConfig = typeof buildConfig.config === 'string' ? normalizePath(path.resolve(cwd, buildConfig.config)) : buildConfig.config
+  return {
+    disabled: buildConfig.disabled === true,
+    commandName: buildConfig.commandName || 'build',
+    projectDir: resolvedProjectDir,
+    config: resolvedConfig,
   }
 }
 
