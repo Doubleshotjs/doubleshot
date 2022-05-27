@@ -6,7 +6,7 @@ import type { ConcurrentlyCommandInput } from 'concurrently'
 import { normalizePath } from './utils'
 import { createLogger } from './log'
 
-export type DoubleShotConfigExport = DoubleShotConfig | Promise<DoubleShotConfig>
+export type DoubleShotRunnerConfigExport = DoubleShotRunnerConfig | Promise<DoubleShotRunnerConfig>
 
 export interface RunConfig {
   cwd?: string
@@ -34,7 +34,7 @@ export interface ElectronBuildConfig {
   config?: string | ElectronBuilderConfiguration
 }
 
-export interface DoubleShotConfig {
+export interface DoubleShotRunnerConfig {
   /**
    * Project root directory. Can be an absolute path, or a path relative from
    * the location of the config file itself.
@@ -47,9 +47,9 @@ export interface DoubleShotConfig {
 
 export type ResolvedConfig = Readonly<{
   configFile: string | undefined
-} & DoubleShotConfig>
+} & DoubleShotRunnerConfig>
 
-export function defineConfig(config: DoubleShotConfigExport): DoubleShotConfigExport {
+export function defineConfig(config: DoubleShotRunnerConfigExport): DoubleShotRunnerConfigExport {
   return config
 }
 
@@ -75,7 +75,7 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
       filepath: configPath,
     })
 
-    const config: DoubleShotConfig = mod.default || mod
+    const config: DoubleShotRunnerConfig = mod.default || mod
 
     const resolvedRunConfig = resolveRunConfig(config.run, cwd)
     const resolvedElectronBuildConfig = resoleElectronBuilderConfig(config.electronBuild, cwd)
