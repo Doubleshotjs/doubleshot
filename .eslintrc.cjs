@@ -9,11 +9,17 @@ const config = {
   },
   overrides: [
     {
-      files: ['packages/create-doubleshot/index.js', 'packages/runner/**/*.ts'],
+      files: ['packages/create-doubleshot/index.js', 'packages/runner/**/*.ts', 'packages/builder/**/*.ts'],
       rules: {
         'no-console': 'off'
       }
     },
+    {
+      files: ['packages/builder/**/*.ts'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off'
+      }
+    }
   ],
 }
 

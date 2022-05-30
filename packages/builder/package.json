@@ -1,5 +1,5 @@
 {
-  "name": "@doubleshot/runner",
+  "name": "@doubleshot/builder",
   "version": "0.0.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -9,35 +9,37 @@
     "dist"
   ],
   "bin": {
-    "doubleshot-run": "bin/dsr.js",
-    "dsr": "bin/dsr.js"
+    "doubleshot-build": "bin/dsb.js",
+    "dsb": "bin/dsb.js"
   },
   "scripts": {
     "build": "rimraf dist && tsup node/index.ts node/cli.ts --dts --format cjs,esm --splitting"
   },
   "peerDependencies": {
+    "electron": "^19.0.1",
     "electron-builder": "^23.0.3"
   },
   "peerDependenciesMeta": {
+    "electron": {
+      "optional": true
+    },
     "electron-builder": {
       "optional": true
     }
   },
   "dependencies": {
+    "@swc/core": "^1.2.194",
     "bundle-require": "^3.0.4",
     "cac": "^6.7.12",
     "colorette": "^2.0.16",
-    "concurrently": "^7.2.1",
-    "esbuild": "^0.14.39",
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "tsup": "^6.0.1"
   },
   "devDependencies": {
+    "electron": "^19.0.1",
     "electron-builder": "^23.0.3",
     "typescript": "^4.7.2"
-  },
-  "engines": {
-    "node": ">=14.0.0"
   }
 }
