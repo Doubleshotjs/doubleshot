@@ -69,7 +69,7 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
   })
 
   if (configPath) {
-    logger.info('dsr', `Using doubleshot runner config: ${configPath}\n`)
+    logger.info('DSR', `Using doubleshot runner config: ${configPath}\n`)
 
     const { mod } = await bundleRequire({
       filepath: configPath,

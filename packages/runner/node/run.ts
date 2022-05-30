@@ -50,7 +50,7 @@ export async function run(command: string) {
     const id = `[${cmd.index}]${cmd.name}:${cmd.command}`
     if (commandsWhoCanKillOthers.includes(id)) {
       cmd.close.subscribe(() => {
-        logger.info('dsr', `Command ${id} exited, killing others`)
+        logger.info('DSR', `Command ${id} exited, killing others`)
         commands.forEach((c) => {
           if (`[${c.index}]${c.name}:${c.command}` !== id)
             c.kill('0')
@@ -67,11 +67,11 @@ export async function run(command: string) {
     )
       await doElectronBuild(config.electronBuild)
 
-    logger.success('dsr', 'All commands finished successfully')
+    logger.success('DSR', 'All commands finished successfully')
   }, () => {
-    logger.warn('dsr', 'Some commands exit')
+    logger.warn('DSR', 'Some commands exit')
   }).finally(() => {
-    logger.info('dsr', 'Exiting')
+    logger.info('DSR', 'Exiting')
     process.exit(0)
   })
 }

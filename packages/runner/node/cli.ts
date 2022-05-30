@@ -21,7 +21,7 @@ cli
       await run(command)
     }
     catch (e) {
-      logger.error(e)
+      logger.error('DSR', e)
       process.exit(1)
     }
   })
