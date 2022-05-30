@@ -2,6 +2,7 @@ import path from 'path'
 import type { ConcurrentlyCommandInput } from 'concurrently'
 import concurrently from 'concurrently'
 import { build as electronBuilder } from 'electron-builder'
+import { yellow } from 'colorette'
 import type { ElectronBuildConfig } from './config'
 import { resolveConfig } from './config'
 import { createLogger } from './log'
@@ -37,7 +38,7 @@ export async function run(command: string) {
         })
 
         if (cmd.killOthersWhenExit)
-          commandsWhoCanKillOthers.push(`[${len - 1}]${cmd.name || base.name}:${cmd.command}`)
+          commandsWhoCanKillOthers.push(`[${len - 1}][${cmd.name || base.name}]: ${cmd.command}`)
       }
     }
   }
@@ -47,10 +48,10 @@ export async function run(command: string) {
   })
 
   for (const cmd of commands) {
-    const id = `[${cmd.index}]${cmd.name}:${cmd.command}`
+    const id = `[${cmd.index}][${cmd.name}]: ${cmd.command}`
     if (commandsWhoCanKillOthers.includes(id)) {
       cmd.close.subscribe(() => {
-        logger.info('DSR', `Command ${id} exited, killing others`)
+        logger.info('DSR', `Command "${yellow(id)}" exited, killing others`)
         commands.forEach((c) => {
           if (`[${c.index}]${c.name}:${c.command}` !== id)
             c.kill('0')
