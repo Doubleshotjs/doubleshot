@@ -6,6 +6,8 @@ import type { Options as TsupOptions } from 'tsup'
 import { merge, normalizePath } from './utils'
 import { createLogger } from './log'
 
+export type AppType = 'node' | 'electron'
+
 export type DoubleShotBuilderConfigExport = DoubleShotBuilderConfig | Promise<DoubleShotBuilderConfig>
 
 export interface ElectronBuildConfig {
@@ -60,7 +62,7 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
   })
 
   if (configPath) {
-    logger.info('dsr', `Using doubleshot builder config: ${configPath}\n`)
+    logger.info('DSB', `Using doubleshot builder config: ${configPath}\n`)
 
     const { mod } = await bundleRequire({
       filepath: configPath,
