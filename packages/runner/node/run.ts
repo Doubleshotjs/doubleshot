@@ -6,6 +6,7 @@ import { yellow } from 'colorette'
 import type { ElectronBuildConfig } from './config'
 import { resolveConfig } from './config'
 import { createLogger } from './log'
+import { TAG } from './constants'
 
 export async function run(command: string) {
   const logger = createLogger()
@@ -51,7 +52,7 @@ export async function run(command: string) {
     const id = `[${cmd.index}][${cmd.name}]: ${cmd.command}`
     if (commandsWhoCanKillOthers.includes(id)) {
       cmd.close.subscribe(() => {
-        logger.info('DSR', `Command "${yellow(id)}" exited, killing others`)
+        logger.info(TAG, `Command "${yellow(id)}" exited, killing others`)
         commands.forEach((c) => {
           if (`[${c.index}]${c.name}:${c.command}` !== id)
             c.kill('0')
@@ -68,11 +69,11 @@ export async function run(command: string) {
     )
       await doElectronBuild(config.electronBuild)
 
-    logger.success('DSR', 'All commands finished successfully')
+    logger.success(TAG, 'All commands finished successfully')
   }, () => {
-    logger.warn('DSR', 'Some commands exit')
+    logger.warn(TAG, 'Some commands exit')
   }).finally(() => {
-    logger.info('DSR', 'Exiting')
+    logger.info(TAG, 'Exiting')
     process.exit(0)
   })
 }

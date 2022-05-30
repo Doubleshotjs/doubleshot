@@ -1,6 +1,7 @@
 import { cac } from 'cac'
 import { version } from '../package.json'
 import { createLogger } from './log'
+import { TAG } from './constants'
 
 const cli = cac('doubleshot-run')
 // run
@@ -13,7 +14,7 @@ cli
       process.exit(1)
     }
 
-    logger.success('DSR', `v${version}`)
+    logger.success(TAG, `v${version}`)
 
     const { run } = await import('./run')
 
@@ -21,7 +22,7 @@ cli
       await run(command)
     }
     catch (e) {
-      logger.error('DSR', e)
+      logger.error(TAG, e)
       process.exit(1)
     }
   })

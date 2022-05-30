@@ -5,6 +5,7 @@ import type { Configuration as ElectronBuilderConfiguration } from 'electron-bui
 import type { ConcurrentlyCommandInput } from 'concurrently'
 import { normalizePath } from './utils'
 import { createLogger } from './log'
+import { CONFIG_FILE, TAG } from './constants'
 
 export type DoubleShotRunnerConfigExport = DoubleShotRunnerConfig | Promise<DoubleShotRunnerConfig>
 
@@ -59,17 +60,17 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
   const configJoycon = new JoyCon()
   const configPath = await configJoycon.resolve({
     files: [
-      'dsr.config.ts',
-      'dsr.config.js',
-      'dsr.config.cjs',
-      'dsr.config.mjs',
+      `${CONFIG_FILE}.ts`,
+      `${CONFIG_FILE}.js`,
+      `${CONFIG_FILE}.cjs`,
+      `${CONFIG_FILE}.mjs`,
     ],
     cwd,
     stopDir: path.parse(cwd).root,
   })
 
   if (configPath) {
-    logger.info('DSR', `Using doubleshot runner config: ${configPath}\n`)
+    logger.info(TAG, `Using doubleshot runner config: ${configPath}\n`)
 
     const { mod } = await bundleRequire({
       filepath: configPath,
