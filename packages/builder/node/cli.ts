@@ -1,6 +1,7 @@
 import { cac } from 'cac'
 import { version } from '../package.json'
 import type { AppType } from './config'
+import { TAG } from './constants'
 import { createLogger } from './log'
 
 const cli = cac('doubleshot-build')
@@ -26,8 +27,27 @@ cli
       await dev(options.type ?? options.t ?? 'node')
     }
     catch (e) {
-      logger.error('DSB', e)
+      logger.error(TAG, e)
       process.exit(1)
+    }
+  })
+
+// build
+cli
+  .command('build', 'build for production')
+  .action(async (options: GlobalCLIOptions) => {
+    const logger = createLogger()
+    const { build } = await import('./build')
+
+    try {
+      await build(options.type ?? options.t ?? 'node')
+    }
+    catch (e) {
+      logger.error(TAG, e)
+      process.exit(1)
+    }
+    finally {
+      process.exit(0)
     }
   })
 

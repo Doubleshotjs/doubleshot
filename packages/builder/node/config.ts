@@ -5,6 +5,7 @@ import type { Configuration as ElectronBuilderConfiguration } from 'electron-bui
 import type { Options as TsupOptions } from 'tsup'
 import { merge, normalizePath } from './utils'
 import { createLogger } from './log'
+import { CONFIG_FILE, TAG } from './constants'
 
 export type AppType = 'node' | 'electron'
 
@@ -52,17 +53,17 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
   const configJoycon = new JoyCon()
   const configPath = await configJoycon.resolve({
     files: [
-      'dsb.config.ts',
-      'dsb.config.js',
-      'dsb.config.cjs',
-      'dsb.config.mjs',
+      `${CONFIG_FILE}.ts`,
+      `${CONFIG_FILE}.js`,
+      `${CONFIG_FILE}.cjs`,
+      `${CONFIG_FILE}.mjs`,
     ],
     cwd,
     stopDir: path.parse(cwd).root,
   })
 
   if (configPath) {
-    logger.info('DSB', `Using doubleshot builder config: ${configPath}\n`)
+    logger.info(TAG, `Using doubleshot builder config: ${configPath}\n`)
 
     const { mod } = await bundleRequire({
       filepath: configPath,
@@ -80,7 +81,7 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
             stopDir: path.parse(cwd).root,
           })
           if (!tsupConfigPath) {
-            logger.warn('DSB', `tsup config file: ${config.tsupConfig} not found, ignored.\n`)
+            logger.warn(TAG, `tsup config file: ${config.tsupConfig} not found, ignored.\n`)
           }
           else {
             const { mod } = await bundleRequire({

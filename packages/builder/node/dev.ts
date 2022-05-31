@@ -5,25 +5,30 @@ import fs from 'fs'
 import type { Options as TsupOptions } from 'tsup'
 import { build as tsupBuild } from 'tsup'
 import electron from 'electron'
-import { bgCyan, bgGreen } from 'colorette'
+import { bgCyan, bgCyanBright, bgGreen } from 'colorette'
 import { resolveConfig } from './config'
 import type { AppType } from './config'
 import { createLogger } from './log'
+import { TAG } from './constants'
 
 const logger = createLogger()
 
 function exitMainProcess() {
-  logger.warn('DSB', 'Main Process Exit')
+  logger.warn(TAG, 'Main Process Exit')
   process.exit(0)
 }
 
 function runMainProcess(mainFile: string, type: AppType = 'node') {
-  logger.success('DSB', `⚡ Run Main File: ${path.basename(mainFile)}`)
+  if (!fs.existsSync(mainFile))
+    throw new Error(`Main File Not Found: ${mainFile}`)
+
+  logger.success(TAG, `⚡ Run Main File: ${path.basename(mainFile)}`)
   return spawn(type === 'electron' ? electron as any : 'node', [mainFile], { stdio: 'inherit' }).on('exit', exitMainProcess)
 }
 
 export async function dev(type: AppType) {
-  logger.info('DSB', `Application Type: ${type === 'electron' ? bgCyan(' electron ') : bgGreen(' node ')}`)
+  logger.info(TAG, `Mode: ${bgCyanBright('Development')}`)
+  logger.info(TAG, `Application Type: ${type === 'electron' ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   const config = await resolveConfig()
   let child: ChildProcess
@@ -41,9 +46,6 @@ export async function dev(type: AppType) {
       throw new Error('package.json missing main field')
   }
 
-  if (!fs.existsSync(mainFile))
-    throw new Error(`Main File Not Found: ${mainFile}`)
-
   for (const _tsupConfig of config.tsupConfigs) {
     const { esbuildOptions: _esbuildOptions, ...tsupOptions } = _tsupConfig
     const esbuildOptions: TsupOptions['esbuildOptions'] = (options, context) => {
@@ -58,10 +60,10 @@ export async function dev(type: AppType) {
             userOnRebuild?.(error, result)
 
             if (error) {
-              logger.error('DSB', 'Rebuild Failed:', error)
+              logger.error(TAG, 'Rebuild Failed:', error)
             }
             else {
-              logger.success('DSB', 'Rebuild Succeeded!')
+              logger.success(TAG, 'Rebuild Succeeded!')
               if (child) {
                 child.off('exit', exitMainProcess)
                 child.kill()
