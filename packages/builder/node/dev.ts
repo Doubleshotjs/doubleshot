@@ -14,21 +14,21 @@ import { TAG } from './constants'
 const logger = createLogger()
 
 function exitMainProcess() {
-  logger.warn(TAG, 'Main Process Exit')
+  logger.warn(TAG, 'Main process exit')
   process.exit(0)
 }
 
 function runMainProcess(mainFile: string, type: AppType = 'node') {
   if (!fs.existsSync(mainFile))
-    throw new Error(`Main File Not Found: ${mainFile}`)
+    throw new Error(`Main file not found: ${mainFile}`)
 
-  logger.success(TAG, `⚡ Run Main File: ${path.basename(mainFile)}`)
+  logger.success(TAG, `⚡ Run main file: ${path.basename(mainFile)}`)
   return spawn(type === 'electron' ? electron as any : 'node', [mainFile], { stdio: 'inherit' }).on('exit', exitMainProcess)
 }
 
 export async function dev(type: AppType) {
   logger.info(TAG, `Mode: ${bgCyanBright('Development')}`)
-  logger.info(TAG, `Application Type: ${type === 'electron' ? bgCyan(' electron ') : bgGreen(' node ')}`)
+  logger.info(TAG, `Application type: ${type === 'electron' ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   const config = await resolveConfig()
   let child: ChildProcess
@@ -60,10 +60,10 @@ export async function dev(type: AppType) {
             userOnRebuild?.(error, result)
 
             if (error) {
-              logger.error(TAG, 'Rebuild Failed:', error)
+              logger.error(TAG, 'Rebuild failed:', error)
             }
             else {
-              logger.success(TAG, 'Rebuild Succeeded!')
+              logger.success(TAG, 'Rebuild succeeded!')
               if (child) {
                 child.off('exit', exitMainProcess)
                 child.kill()

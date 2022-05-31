@@ -83,7 +83,7 @@ async function doElectronBuild(buildConfig: ElectronBuildConfig | undefined) {
   const logger = createLogger()
   const startTime = performance.now()
   try {
-    logger.info(`\n[${TAG}] electron-builder`, 'Start Electron build...\n')
+    logger.info(`\n[${TAG}] electron-builder`, 'Start electron build...\n')
     await electronBuilder({
       projectDir: buildConfig?.projectDir || process.cwd(),
       config: buildConfig?.config,
