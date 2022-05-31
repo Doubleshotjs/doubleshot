@@ -1,4 +1,5 @@
 import path from 'path'
+import { performance } from 'perf_hooks'
 import type { ConcurrentlyCommandInput } from 'concurrently'
 import concurrently from 'concurrently'
 import { build as electronBuilder } from 'electron-builder'
@@ -73,23 +74,26 @@ export async function run(command: string) {
   }, () => {
     logger.warn(TAG, 'Some commands exit')
   }).finally(() => {
-    logger.info(TAG, 'Exiting')
+    logger.info(TAG, 'Exiting...')
     process.exit(0)
   })
 }
 
 async function doElectronBuild(buildConfig: ElectronBuildConfig | undefined) {
   const logger = createLogger()
+  const startTime = performance.now()
   try {
+    logger.info(`\n[${TAG}] electron-builder`, 'Start Electron build...\n')
     await electronBuilder({
       projectDir: buildConfig?.projectDir || process.cwd(),
       config: buildConfig?.config,
     })
-    logger.success('electron-builder', 'Electron build finished successfully')
+
+    const endTime = performance.now() - startTime
+    logger.success(`\n[${TAG}] electron-builder`, `Electron build finished in ${endTime.toFixed(2)}ms\n`)
   }
   catch (error) {
-    console.error(error)
-    logger.error('electron-builder', 'Electron build failed')
+    logger.error(`\n[${TAG}] electron-builder`, 'Electron build failed\n')
     process.exit(1)
   }
 }
