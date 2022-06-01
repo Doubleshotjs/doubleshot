@@ -11,9 +11,11 @@ import { TAG } from './constants'
 const logger = createLogger()
 
 export async function build(type: AppType) {
+  const isElectron = type === 'electron'
   const startTime = performance.now()
+
   logger.info(TAG, `Mode: ${bgCyanBright('Production')}`)
-  logger.info(TAG, `Application type: ${type === 'electron' ? bgCyan(' electron ') : bgGreen(' node ')}`)
+  logger.info(TAG, `Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   const config = await resolveConfig()
 
@@ -39,14 +41,16 @@ export async function build(type: AppType) {
 
   await config.afterBuild?.()
 
-  if (type === 'electron' && config.electronBuild && config.electronBuild.disabled !== true) {
+  const { electron: electronConfig } = config
+
+  if (isElectron && electronConfig.build && electronConfig.build.disabled !== true) {
     logger.info(TAG, 'Start electron build...\n')
 
     await electronBuilder({
-      config: config.electronBuild.config,
+      config: electronConfig.build.config,
     })
 
-    await config.electronBuild.afterBuild?.()
+    await electronConfig.build.afterBuild?.()
   }
 
   const endTime = performance.now() - startTime

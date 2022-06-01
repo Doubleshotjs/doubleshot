@@ -2,6 +2,7 @@ import path from 'path'
 import JoyCon from 'joycon'
 import { bundleRequire } from 'bundle-require'
 import type { Configuration as ElectronBuilderConfiguration } from 'electron-builder'
+import { greenBright } from 'colorette'
 import type { Options as TsupOptions } from 'tsup'
 import { merge, normalizePath } from './utils'
 import { createLogger } from './log'
@@ -24,15 +25,20 @@ export type TsupBuildConfig = Pick<TsupOptions, 'entry' | 'outDir' | 'tsconfig' 
   tsupConfig?: string | TsupOptions
 }
 
+export interface ElectronConfig {
+  preload?: TsupBuildConfig
+  build?: ElectronBuildConfig
+  rendererUrl?: string
+  waitForRenderer?: boolean
+  waitTimeout?: number
+}
+
 export interface DoubleShotBuilderConfig extends TsupBuildConfig {
   /**
    * @default 'package.json'.main
    */
   main?: string
-  electron?: {
-    preload?: TsupBuildConfig
-    build?: ElectronBuildConfig
-  }
+  electron?: ElectronConfig
   afterBuild?: () => Promise<void>
 }
 
@@ -40,7 +46,7 @@ export type ResolvedConfig = Readonly<{
   cwd: string
   configFile: string | undefined
   tsupConfigs: TsupOptions[]
-  electronBuild?: ElectronBuildConfig
+  electron: Omit<ElectronConfig, 'preload'>
 } & Pick<DoubleShotBuilderConfig, 'main' | 'afterBuild'>>
 
 export function defineConfig(config: DoubleShotBuilderConfigExport): DoubleShotBuilderConfigExport {
@@ -63,7 +69,7 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
   })
 
   if (configPath) {
-    logger.info(TAG, `Using doubleshot builder config: ${configPath}\n`)
+    logger.info(TAG, `Using config: ${greenBright(configPath)}\n`)
 
     const { mod } = await bundleRequire({
       filepath: configPath,
@@ -115,7 +121,12 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
       main: config.main ? normalizePath(path.resolve(cwd, config.main)) : undefined,
       configFile: normalizePath(configPath),
       tsupConfigs: tsupConfigArr,
-      electronBuild: resoleElectronBuilderConfig(config.electron?.build, cwd),
+      electron: {
+        build: resoleElectronBuilderConfig(config.electron?.build, cwd),
+        rendererUrl: config.electron?.rendererUrl,
+        waitForRenderer: config.electron?.waitForRenderer,
+        waitTimeout: config.electron?.waitTimeout,
+      },
       afterBuild: config.afterBuild,
     }
   }

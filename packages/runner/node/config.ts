@@ -3,6 +3,7 @@ import JoyCon from 'joycon'
 import { bundleRequire } from 'bundle-require'
 import type { Configuration as ElectronBuilderConfiguration } from 'electron-builder'
 import type { ConcurrentlyCommandInput } from 'concurrently'
+import { greenBright } from 'colorette'
 import { normalizePath } from './utils'
 import { createLogger } from './log'
 import { CONFIG_FILE, TAG } from './constants'
@@ -70,7 +71,7 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
   })
 
   if (configPath) {
-    logger.info(TAG, `Using doubleshot runner config: ${configPath}\n`)
+    logger.info(TAG, `Using config: ${greenBright(configPath)}\n`)
 
     const { mod } = await bundleRequire({
       filepath: configPath,

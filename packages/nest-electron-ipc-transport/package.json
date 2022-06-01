@@ -28,7 +28,7 @@
   "devDependencies": {
     "@nestjs/common": "^8.4.5",
     "@nestjs/core": "^8.4.5",
-    "@nestjs/microservices": "^8.4.5",
+    "@nestjs/microservices": "8.4.5",
     "electron": "^19.0.0",
     "reflect-metadata": "^0.1.13"
   }

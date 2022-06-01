@@ -5,11 +5,12 @@ import fs from 'fs'
 import type { Options as TsupOptions } from 'tsup'
 import { build as tsupBuild } from 'tsup'
 import electron from 'electron'
-import { bgCyan, bgCyanBright, bgGreen } from 'colorette'
+import { bgCyan, bgCyanBright, bgGreen, cyan, greenBright } from 'colorette'
+import waitOn from 'wait-on'
+import { TAG } from './constants'
 import { resolveConfig } from './config'
 import type { AppType } from './config'
 import { createLogger } from './log'
-import { TAG } from './constants'
 
 const logger = createLogger()
 
@@ -18,17 +19,19 @@ function exitMainProcess() {
   process.exit(0)
 }
 
-function runMainProcess(mainFile: string, type: AppType = 'node') {
+function runMainProcess(mainFile: string, isElectron: boolean) {
   if (!fs.existsSync(mainFile))
     throw new Error(`Main file not found: ${mainFile}`)
 
-  logger.success(TAG, `⚡ Run main file: ${path.basename(mainFile)}`)
-  return spawn(type === 'electron' ? electron as any : 'node', [mainFile], { stdio: 'inherit' }).on('exit', exitMainProcess)
+  logger.success(TAG, `⚡ Run main file: ${greenBright(mainFile)}`)
+  return spawn(isElectron ? electron as any : 'node', [mainFile], { stdio: 'inherit' }).on('exit', exitMainProcess)
 }
 
 export async function dev(type: AppType) {
+  const isElectron = type === 'electron'
+
   logger.info(TAG, `Mode: ${bgCyanBright('Development')}`)
-  logger.info(TAG, `Application type: ${type === 'electron' ? bgCyan(' electron ') : bgGreen(' node ')}`)
+  logger.info(TAG, `Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   const config = await resolveConfig()
   let child: ChildProcess
@@ -69,7 +72,7 @@ export async function dev(type: AppType) {
                 child.kill()
               }
 
-              child = runMainProcess(mainFile!, type)
+              child = runMainProcess(mainFile!, isElectron)
             }
           },
         }
@@ -83,5 +86,38 @@ export async function dev(type: AppType) {
     })
   }
 
-  child = runMainProcess(mainFile, type)
+  const { electron: electronConfig } = config
+
+  if (isElectron && electronConfig.rendererUrl && electronConfig.waitForRenderer !== false) {
+    const url = electronConfig.rendererUrl
+    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('file://')) {
+      logger.info(TAG, `🚦 Wait for renderer: ${cyan(url)}`)
+      await waitOn(createWaitOnOpts(url, electronConfig.waitTimeout))
+    }
+    else {
+      logger.warn(TAG, `Invalid renderer url: ${url}, ignored.\n`)
+    }
+  }
+
+  child = runMainProcess(mainFile, isElectron)
+}
+
+/**
+ * See: https://github.com/jeffbski/wait-on/issues/78
+ *
+ * @param {string} url
+ * @param {(number | undefined)} timeout
+ * @returns
+ */
+function createWaitOnOpts(url: string, timeout: number | undefined) {
+  if (url.startsWith('http://') || url.startsWith('https://'))
+    url = url.startsWith('http://') ? url.replace('http://', 'http-get://') : url.replace('https://', 'https-get://')
+
+  return {
+    resources: [url],
+    timeout: timeout || 5000,
+    headers: {
+      accept: '*/*',
+    },
+  }
 }
