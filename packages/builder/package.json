@@ -32,6 +32,7 @@
     "bundle-require": "^3.0.4",
     "cac": "^6.7.12",
     "colorette": "^2.0.16",
+    "esbuild": "^0.14.42",
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0",
     "tsup": "^6.0.1",

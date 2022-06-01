@@ -28,6 +28,7 @@
     "cac": "^6.7.12",
     "colorette": "^2.0.16",
     "concurrently": "^7.2.1",
+    "esbuild": "^0.14.42",
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0"
   },

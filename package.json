@@ -1,5 +1,5 @@
 {
-  "name": "doubleshot",
+  "name": "doubleshot-monorepo",
   "private": true,
   "packageManager": "pnpm@7.0.1",
   "description": "A solution to save effort",

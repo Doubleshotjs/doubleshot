@@ -31,15 +31,17 @@ importers:
       colorette: ^2.0.16
       electron: ^19.0.1
       electron-builder: ^23.0.3
+      esbuild: ^0.14.42
       joycon: ^3.1.1
       resolve-from: ^5.0.0
       tsup: ^6.0.1
       wait-on: ^6.0.1
     dependencies:
       '@swc/core': 1.2.196
-      bundle-require: 3.0.4
+      bundle-require: 3.0.4_esbuild@0.14.42
       cac: 6.7.12
       colorette: 2.0.16
+      esbuild: 0.14.42
       joycon: 3.1.1
       resolve-from: 5.0.0
       tsup: 6.0.1_@swc+core@1.2.196
@@ -92,13 +94,15 @@ importers:
       colorette: ^2.0.16
       concurrently: ^7.2.1
       electron-builder: ^23.0.3
+      esbuild: ^0.14.42
       joycon: ^3.1.1
       resolve-from: ^5.0.0
     dependencies:
-      bundle-require: 3.0.4
+      bundle-require: 3.0.4_esbuild@0.14.42
       cac: 6.7.12
       colorette: 2.0.16
       concurrently: 7.2.1
+      esbuild: 0.14.42
       joycon: 3.1.1
       resolve-from: 5.0.0
     devDependencies:
@@ -1275,15 +1279,6 @@ packages:
     dependencies:
       semver: 7.3.7
     dev: true
-
-  /bundle-require/3.0.4:
-    resolution: {integrity: sha512-VXG6epB1yrLAvWVQpl92qF347/UXmncQj7J3U8kZEbdVZ1ZkQyr4hYeL/9RvcE8vVVdp53dY78Fd/3pqfRqI1A==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    peerDependencies:
-      esbuild: '>=0.13'
-    dependencies:
-      load-tsconfig: 0.2.3
-    dev: false
 
   /bundle-require/3.0.4_esbuild@0.14.42:
     resolution: {integrity: sha512-VXG6epB1yrLAvWVQpl92qF347/UXmncQj7J3U8kZEbdVZ1ZkQyr4hYeL/9RvcE8vVVdp53dY78Fd/3pqfRqI1A==}
