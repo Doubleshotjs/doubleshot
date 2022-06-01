@@ -21,7 +21,7 @@ cli
   .alias('dev')
   .action(async (options: GlobalCLIOptions) => {
     const logger = createLogger()
-    const { dev } = await import('./dev')
+    const { dev } = await import('./main')
 
     try {
       await dev(options.type ?? options.t ?? 'node')
@@ -37,7 +37,7 @@ cli
   .command('build', 'build for production')
   .action(async (options: GlobalCLIOptions) => {
     const logger = createLogger()
-    const { build } = await import('./build')
+    const { build } = await import('./main')
 
     try {
       await build(options.type ?? options.t ?? 'node')
