@@ -32,9 +32,6 @@ function getMainFileAndCheck(cwd: string, defaultMainFile?: string): string {
   if (!/\.cjs$|\.js$/.test(mainFile))
     throw new Error(`Main file must be .cjs or .js: ${mainFile}`)
 
-  else if (!fs.existsSync(mainFile))
-    throw new Error(`Main file not found: ${mainFile}`)
-
   return mainFile
 }
 
@@ -71,10 +68,14 @@ function createWaitOnOpts(url: string, timeout: number | undefined) {
   }
 }
 
-function doTsupBuild(opts: TsupOptions) {
+function doTsupBuild(opts: TsupOptions, dsEnv: TsupOptions['env'] = {}) {
+  const { env: optsEnv, ...restOpts } = opts
+  const env = { ...(optsEnv ?? {}), ...dsEnv }
+
   return tsupBuild({
     silent: true,
-    ...opts,
+    env,
+    ...restOpts,
   })
 }
 
@@ -98,8 +99,15 @@ export async function build(type: AppType) {
 
   getMainFileAndCheck(config.cwd, config.main)
 
+  // doubleshot env
+  const dsEnv: TsupOptions['env'] = {
+    DS_APP_TYPE: type,
+    DS_RENDERER_URL: config.electron.rendererUrl || 'http://localhost:3000',
+  }
+
+  // tsup build
   for (const tsupConfig of config.tsupConfigs)
-    await doTsupBuild(tsupConfig)
+    await doTsupBuild(tsupConfig, dsEnv)
 
   await config.afterBuild?.()
 
@@ -139,6 +147,13 @@ export async function dev(type: AppType) {
 
   const mainFile = getMainFileAndCheck(config.cwd, config.main)
 
+  // doubleshot env
+  const dsEnv: TsupOptions['env'] = {
+    DS_APP_TYPE: type,
+    DS_RENDERER_URL: config.electron.rendererUrl || 'http://localhost:3000',
+  }
+
+  // tsup build
   for (const _tsupConfig of config.tsupConfigs) {
     const { esbuildOptions: _esbuildOptions, ...tsupOptions } = _tsupConfig
     const esbuildOptions: TsupOptions['esbuildOptions'] = (options, context) => {
@@ -168,7 +183,7 @@ export async function dev(type: AppType) {
         }
       }
     }
-    await doTsupBuild({ esbuildOptions, ...tsupOptions })
+    await doTsupBuild({ esbuildOptions, ...tsupOptions }, dsEnv)
   }
 
   const { electron: electronConfig } = config
