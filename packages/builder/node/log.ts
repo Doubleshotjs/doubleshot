@@ -1,3 +1,4 @@
+// Borrowed from https://github.com/egoist/tsup/blob/main/src/log.ts
 import * as colors from 'colorette'
 
 type LOG_TYPE = 'info' | 'success' | 'error' | 'warn'

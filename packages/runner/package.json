@@ -26,6 +26,7 @@
   "dependencies": {
     "bundle-require": "^3.0.4",
     "cac": "^6.7.12",
+    "check-package-exists": "^1.0.0",
     "colorette": "^2.0.16",
     "concurrently": "^7.2.1",
     "esbuild": "^0.14.42",

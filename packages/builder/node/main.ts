@@ -4,11 +4,10 @@ import type { ChildProcess } from 'child_process'
 import { spawn } from 'child_process'
 import fs from 'fs'
 import { bgCyan, bgCyanBright, bgGreen, cyan, greenBright } from 'colorette'
-import { build as electronBuilder } from 'electron-builder'
 import { build as tsupBuild } from 'tsup'
-import electron from 'electron'
 import type { Options as TsupOptions } from 'tsup'
 import waitOn from 'wait-on'
+import { checkPackageExists } from 'check-package-exists'
 import { TAG } from './constants'
 import { resolveConfig } from './config'
 import type { AppType } from './config'
@@ -44,12 +43,12 @@ function exitMainProcess() {
   process.exit(0)
 }
 
-function runMainProcess(mainFile: string, isElectron: boolean) {
+function runMainProcess(mainFile: string, electron: any) {
   if (!fs.existsSync(mainFile))
     throw new Error(`Main file not found: ${mainFile}`)
 
   logger.success(TAG, `⚡ Run main file: ${greenBright(mainFile)}`)
-  return spawn(isElectron ? electron as any : 'node', [mainFile], { stdio: 'inherit' }).on('exit', exitMainProcess)
+  return spawn(electron ?? 'node', [mainFile], { stdio: 'inherit' }).on('exit', exitMainProcess)
 }
 
 /**
@@ -79,12 +78,21 @@ function doTsupBuild(opts: TsupOptions) {
   })
 }
 
+function electronEnvCheck() {
+  if (!checkPackageExists('electron'))
+    throw new Error('"Application type: electron" is powered by "electron", please installed it via `npm i electron -D`')
+
+  return true
+}
+
 export async function build(type: AppType) {
   const isElectron = type === 'electron'
   const startTime = performance.now()
 
   logger.info(TAG, `Mode: ${bgCyanBright('Production')}`)
   logger.info(TAG, `Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
+
+  isElectron && electronEnvCheck()
 
   const config = await resolveConfig()
 
@@ -98,6 +106,11 @@ export async function build(type: AppType) {
   const { electron: electronConfig } = config
 
   if (isElectron && electronConfig.build && electronConfig.build.disabled !== true) {
+    if (!checkPackageExists('electron-builder'))
+      throw new Error('"electronConfig.build" is powered by "electron-builder", please installed it via `npm i electron-builder -D`')
+
+    const { build: electronBuilder } = await import('electron-builder')
+
     logger.info(TAG, 'Start electron build...\n')
 
     await electronBuilder({
@@ -117,6 +130,10 @@ export async function dev(type: AppType) {
   logger.info(TAG, `Mode: ${bgCyanBright('Development')}`)
   logger.info(TAG, `Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
+  let electron: any | undefined
+  if (isElectron && electronEnvCheck())
+    electron = await import('electron')
+
   const config = await resolveConfig()
   let child: ChildProcess
 
@@ -132,7 +149,7 @@ export async function dev(type: AppType) {
           userOnRebuild = options.watch.onRebuild
 
         options.watch = {
-          onRebuild(error, result) {
+          onRebuild: async (error, result) => {
             userOnRebuild?.(error, result)
 
             if (error) {
@@ -145,7 +162,7 @@ export async function dev(type: AppType) {
                 child.kill()
               }
 
-              child = runMainProcess(mainFile!, isElectron)
+              child = runMainProcess(mainFile!, electron)
             }
           },
         }
@@ -167,6 +184,5 @@ export async function dev(type: AppType) {
     }
   }
 
-  child = runMainProcess(mainFile, isElectron)
+  child = runMainProcess(mainFile, electron)
 }
-

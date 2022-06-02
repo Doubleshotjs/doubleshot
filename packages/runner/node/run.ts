@@ -2,8 +2,8 @@ import path from 'path'
 import { performance } from 'perf_hooks'
 import type { ConcurrentlyCommandInput } from 'concurrently'
 import concurrently from 'concurrently'
-import { build as electronBuilder } from 'electron-builder'
 import { yellow } from 'colorette'
+import { checkPackageExists } from 'check-package-exists'
 import type { ElectronBuildConfig } from './config'
 import { resolveConfig } from './config'
 import { createLogger } from './log'
@@ -73,6 +73,8 @@ export async function run(command: string) {
     logger.success(TAG, 'All commands finished successfully')
   }, () => {
     logger.warn(TAG, 'Some commands exit')
+  }).catch((e) => {
+    logger.error(TAG, e)
   }).finally(() => {
     logger.info(TAG, 'Exiting...')
     process.exit(0)
@@ -80,11 +82,16 @@ export async function run(command: string) {
 }
 
 async function doElectronBuild(buildConfig: ElectronBuildConfig | undefined) {
+  if (!checkPackageExists('electron-builder'))
+    throw new Error('"electronBuild" config is powered by "electron-builder", please installed it via `npm i electron-builder -D`')
+
+  const { build } = await import('electron-builder')
+
   const logger = createLogger()
   const startTime = performance.now()
   try {
     logger.info(`\n[${TAG}] electron-builder`, 'Start electron build...\n')
-    await electronBuilder({
+    await build({
       projectDir: buildConfig?.projectDir || process.cwd(),
       config: buildConfig?.config,
     })
