@@ -100,6 +100,7 @@ async function doElectronBuild(buildConfig: ElectronBuildConfig | undefined) {
     logger.success(`\n[${TAG}] electron-builder`, `Electron build finished in ${endTime.toFixed(2)}ms\n`)
   }
   catch (error) {
+    logger.error(`\n[${TAG}] electron-builder`, error)
     logger.error(`\n[${TAG}] electron-builder`, 'Electron build failed\n')
     process.exit(1)
   }
