@@ -10,7 +10,7 @@ importers:
       lint-staged: ^12.4.1
       rimraf: ^3.0.2
       simple-git-hooks: ^2.7.0
-      tsup: ^6.0.1
+      tsup: ^6.1.0
       typescript: ^4.6.4
     devDependencies:
       '@antfu/eslint-config': 0.23.1_xztl6dhthcahlo6akmb2bmjmle
@@ -19,7 +19,7 @@ importers:
       lint-staged: 12.5.0
       rimraf: 3.0.2
       simple-git-hooks: 2.8.0
-      tsup: 6.0.1_typescript@4.7.2
+      tsup: 6.1.0_typescript@4.7.2
       typescript: 4.7.2
 
   packages/builder:
@@ -34,7 +34,7 @@ importers:
       esbuild: ^0.14.42
       joycon: ^3.1.1
       resolve-from: ^5.0.0
-      tsup: ^6.0.1
+      tsup: ^6.1.0
       wait-on: ^6.0.1
     dependencies:
       '@swc/core': 1.2.196
@@ -44,7 +44,7 @@ importers:
       esbuild: 0.14.42
       joycon: 3.1.1
       resolve-from: 5.0.0
-      tsup: 6.0.1_@swc+core@1.2.196
+      tsup: 6.1.0_@swc+core@1.2.196
       wait-on: 6.0.1
     devDependencies:
       '@types/wait-on': 5.3.1
@@ -732,6 +732,11 @@ packages:
     resolution: {integrity: sha512-vu1SrqBjbbZ3J6vwY17jBs8Sr/BKA+/a/WtjRG+whKg1iuLFOosq872EXS0eXWILdO36DHQQeku/ZcL6hz2fpg==}
     dev: true
 
+  /@types/node/17.0.40:
+    resolution: {integrity: sha512-UXdBxNGqTMtm7hCwh9HtncFVLrXoqA3oJW30j6XWp5BH/wu3mVeaxo7cq5benFdBw34HB3XDT2TRPI7rXZ+mDg==}
+    dev: true
+    optional: true
+
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
@@ -740,7 +745,7 @@ packages:
     resolution: {integrity: sha512-ULqvZNGMv0zRFvqn8/4LSPtnmN4MfhlPNtJCTpKuIIxGVGZ2rYWzFXrvEBoh9CVyqSE7D6YFRJ1hydLHI6kbWw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 17.0.35
+      '@types/node': 17.0.40
       xmlbuilder: 15.1.1
     dev: true
     optional: true
@@ -4624,8 +4629,8 @@ packages:
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
 
-  /tsup/6.0.1_@swc+core@1.2.196:
-    resolution: {integrity: sha512-2Pl1YkEEvzfg4aYgwUILaHV0wwZQKO7mNHMQChyzdCNlQqf11eug7gWk86XCb3CvRofCXBX87x73BTGjyS3cOQ==}
+  /tsup/6.1.0_@swc+core@1.2.196:
+    resolution: {integrity: sha512-kKSzFbX996OXkbQif23LV0xDDvxnhH95Hw39ku7Kx1NEfJxcxvqexGGEDgRyd5dlzIJI4U8mySfPeq5iExYwnw==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -4660,8 +4665,8 @@ packages:
       - ts-node
     dev: false
 
-  /tsup/6.0.1_typescript@4.7.2:
-    resolution: {integrity: sha512-2Pl1YkEEvzfg4aYgwUILaHV0wwZQKO7mNHMQChyzdCNlQqf11eug7gWk86XCb3CvRofCXBX87x73BTGjyS3cOQ==}
+  /tsup/6.1.0_typescript@4.7.2:
+    resolution: {integrity: sha512-kKSzFbX996OXkbQif23LV0xDDvxnhH95Hw39ku7Kx1NEfJxcxvqexGGEDgRyd5dlzIJI4U8mySfPeq5iExYwnw==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
