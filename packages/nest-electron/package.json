@@ -2,12 +2,9 @@
   "name": "@doubleshot/nest-electron",
   "version": "0.0.1",
   "description": "Electron module for nestjs",
-  "keywords": [
-    "electron",
-    "nestjs"
-  ],
+  "author": "ArcherGu (https://github.com/ArcherGu/)",
   "license": "MIT",
-  "author": "ArcherGu",
+  "homepage": "https://github.com/archergu/doubleshot/tree/main/packages/nest-electron#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/archergu/doubleshot.git",
@@ -16,7 +13,10 @@
   "bugs": {
     "url": "https://github.com/archergu/doubleshot/issues"
   },
-  "homepage": "https://github.com/archergu/doubleshot/tree/main/packages/nest-electron#readme",
+  "keywords": [
+    "electron",
+    "nestjs"
+  ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.json"
   },

@@ -1,16 +1,20 @@
 {
   "name": "@doubleshot/runner",
   "version": "0.0.1",
+  "author": "ArcherGu (https://github.com/ArcherGu/)",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "bin": {
+    "doubleshot-run": "bin/dsr.js",
+    "dsr": "bin/dsr.js"
+  },
   "files": [
     "bin",
     "dist"
   ],
-  "bin": {
-    "doubleshot-run": "bin/dsr.js",
-    "dsr": "bin/dsr.js"
+  "engines": {
+    "node": ">=14.0.0"
   },
   "scripts": {
     "build": "rimraf dist && tsup node/index.ts node/cli.ts --dts --format cjs,esm --splitting"
@@ -35,8 +39,5 @@
   },
   "devDependencies": {
     "electron-builder": "^23.0.3"
-  },
-  "engines": {
-    "node": ">=14.0.0"
   }
 }

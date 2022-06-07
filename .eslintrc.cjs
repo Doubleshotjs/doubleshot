@@ -3,10 +3,7 @@
  * @see https://eslint.org/docs/user-guide/configuring/
  */
 const config = {
-  extends: '@antfu',
-  rules: {
-    "@typescript-eslint/ban-ts-comment": "off"
-  },
+  extends: '@lightwing',
   overrides: [
     {
       files: ['packages/create-doubleshot/index.js', 'packages/runner/**/*.ts', 'packages/builder/**/*.ts'],

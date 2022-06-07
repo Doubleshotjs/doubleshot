@@ -1,16 +1,20 @@
 {
   "name": "@doubleshot/builder",
   "version": "0.0.1",
+  "author": "ArcherGu (https://github.com/ArcherGu/)",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "bin": {
+    "doubleshot-build": "bin/dsb.js",
+    "dsb": "bin/dsb.js"
+  },
   "files": [
     "bin",
     "dist"
   ],
-  "bin": {
-    "doubleshot-build": "bin/dsb.js",
-    "dsb": "bin/dsb.js"
+  "engines": {
+    "node": ">=14.0.0"
   },
   "scripts": {
     "build": "rimraf dist && tsup node/index.ts node/cli.ts --dts --format cjs,esm --splitting"
@@ -42,8 +46,5 @@
     "@types/wait-on": "^5.3.1",
     "electron": "^19.0.1",
     "electron-builder": "^23.0.3"
-  },
-  "engines": {
-    "node": ">=14.0.0"
   }
 }
