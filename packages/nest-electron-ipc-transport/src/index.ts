@@ -3,13 +3,21 @@ import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservi
 import { Server } from '@nestjs/microservices'
 import { ipcMessageDispatcher } from './dispatcher'
 
+export interface IpcResponse<T> {
+  data: T
+  error?: any
+}
+
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
   protected readonly logger = new Logger(ElectronIpcTransport.name)
 
-  async onMessage(messageChannel: string, ...args: any[]): Promise<any> {
+  async onMessage(messageChannel: string, ...args: any[]): Promise<IpcResponse<any>> {
     const handler: MessageHandler | undefined = this.messageHandlers.get(messageChannel)
-    if (!handler)
-      return this.logger.warn(`No handlers for message ${messageChannel}`)
+    if (!handler) {
+      const errMsg = `No handler for message channel "${messageChannel}"`
+      this.logger.warn(errMsg)
+      throw new Error(errMsg)
+    }
 
     try {
       this.logger.debug(`Process message ${messageChannel}`)
@@ -23,6 +31,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
     catch (error) {
       this.logger.error(error)
       return {
+        data: undefined,
         error,
       }
     }
