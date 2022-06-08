@@ -183,7 +183,7 @@ export async function dev(type: AppType) {
         }
       }
     }
-    await doTsupBuild({ esbuildOptions, ...tsupOptions }, dsEnv)
+    await doTsupBuild({ esbuildOptions, ...tsupOptions, watch: true }, dsEnv)
   }
 
   const { electron: electronConfig } = config
