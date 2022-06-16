@@ -18,6 +18,9 @@ export interface ElectronBuildConfig {
    */
   disabled?: boolean
   config?: string | ElectronBuilderConfiguration
+  /**
+   * Will be executed when electron-builder build is complete
+   */
   afterBuild?: () => Promise<void>
 }
 
@@ -26,19 +29,41 @@ export type TsupBuildConfig = Pick<TsupOptions, 'entry' | 'outDir' | 'tsconfig' 
 }
 
 export interface ElectronConfig {
+  /**
+   * The build configuration of the preload file
+   */
   preload?: TsupBuildConfig
+  /**
+   * electron-builder configuration
+   */
   build?: ElectronBuildConfig
+  /**
+   * Renderer process url on development mode
+   */
   rendererUrl?: string
+  /**
+   * whether to wait for the renderer process ready
+   */
   waitForRenderer?: boolean
+  /**
+   * wait for the renderer process ready timeout
+   */
   waitTimeout?: number
 }
 
 export interface DoubleShotBuilderConfig extends TsupBuildConfig {
   /**
+   * The entry of the application
    * @default 'package.json'.main
    */
   main?: string
+  /**
+   * Some configuration for electron
+   */
   electron?: ElectronConfig
+  /**
+   * Will be executed when tsup build is complete
+   */
   afterBuild?: () => Promise<void>
 }
 
@@ -49,10 +74,16 @@ export type ResolvedConfig = Readonly<{
   electron: Omit<ElectronConfig, 'preload'>
 } & Pick<DoubleShotBuilderConfig, 'main' | 'afterBuild'>>
 
+/**
+ * Type helper to make it easier to use dsb.config.ts
+ */
 export function defineConfig(config: DoubleShotBuilderConfigExport): DoubleShotBuilderConfigExport {
   return config
 }
 
+/**
+ * Resolve doubleshot builder config
+ */
 export async function resolveConfig(): Promise<ResolvedConfig> {
   const logger = createLogger()
   const cwd = process.cwd()
@@ -122,7 +153,7 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
       configFile: normalizePath(configPath),
       tsupConfigs: tsupConfigArr,
       electron: {
-        build: resoleElectronBuilderConfig(config.electron?.build, cwd),
+        build: resolveElectronBuilderConfig(config.electron?.build, cwd),
         rendererUrl: config.electron?.rendererUrl,
         waitForRenderer: config.electron?.waitForRenderer,
         waitTimeout: config.electron?.waitTimeout,
@@ -135,7 +166,10 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
   }
 }
 
-function resoleElectronBuilderConfig(buildConfig: ElectronBuildConfig | undefined, cwd: string): ElectronBuildConfig {
+/**
+ * Resolve electron-builder config
+ */
+function resolveElectronBuilderConfig(buildConfig: ElectronBuildConfig | undefined, cwd: string): ElectronBuildConfig {
   if (!buildConfig)
     return { disabled: true }
 

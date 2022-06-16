@@ -50,10 +50,6 @@ function runMainProcess(mainFile: string, electron: any) {
 
 /**
  * See: https://github.com/jeffbski/wait-on/issues/78
- *
- * @param {string} url
- * @param {(number | undefined)} timeout
- * @returns
  */
 function createWaitOnOpts(url: string, timeout: number | undefined) {
   if (url.startsWith('http://') || url.startsWith('https://'))
