@@ -20,7 +20,7 @@
     "build": "rimraf dist && tsup node/index.ts node/cli.ts --dts --format cjs,esm --splitting"
   },
   "peerDependencies": {
-    "electron": "^19.0.1",
+    "electron": "^19.0.4",
     "electron-builder": "^23.0.3"
   },
   "peerDependenciesMeta": {
@@ -32,19 +32,19 @@
     }
   },
   "dependencies": {
-    "@swc/core": "^1.2.194",
+    "@swc/core": "^1.2.203",
     "bundle-require": "^3.0.4",
     "cac": "^6.7.12",
-    "colorette": "^2.0.16",
-    "esbuild": "^0.14.42",
+    "colorette": "^2.0.19",
+    "esbuild": "^0.14.44",
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0",
-    "tsup": "^6.1.0",
+    "tsup": "^6.1.2",
     "wait-on": "^6.0.1"
   },
   "devDependencies": {
     "@types/wait-on": "^5.3.1",
-    "electron": "^19.0.1",
+    "electron": "^19.0.4",
     "electron-builder": "^23.0.3"
   }
 }
