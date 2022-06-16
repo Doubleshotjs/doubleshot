@@ -11,11 +11,24 @@ import { CONFIG_FILE, TAG } from './constants'
 export type DoubleShotRunnerConfigExport = DoubleShotRunnerConfig | Promise<DoubleShotRunnerConfig>
 
 export interface RunConfig {
+  /**
+   * @default process.cwd()
+   */
   cwd?: string
+  /**
+   * Command name
+   */
   name?: string
+  /**
+   * Terminal color
+   */
   prefixColor?: string
   commands?: Record<string, string | (ConcurrentlyCommandInput & {
     command: string
+    /**
+     * when this command is exited, the other commands will be killed
+     * @default false
+     */
     killOthersWhenExit?: boolean
   })>
 }
@@ -33,6 +46,9 @@ export interface ElectronBuildConfig {
   * @default process.cwd()
   */
   projectDir?: string
+  /**
+   * electron-builder config or electron-builder config file path
+   */
   config?: string | ElectronBuilderConfiguration
 }
 
@@ -51,10 +67,16 @@ export type ResolvedConfig = Readonly<{
   configFile: string | undefined
 } & DoubleShotRunnerConfig>
 
+/**
+ * Type helper to make it easier to use dsr.config.ts
+ */
 export function defineConfig(config: DoubleShotRunnerConfigExport): DoubleShotRunnerConfigExport {
   return config
 }
 
+/**
+ * Resolve doubleshot runner config
+ */
 export async function resolveConfig(): Promise<ResolvedConfig> {
   const logger = createLogger()
   const cwd = process.cwd()

@@ -17,6 +17,9 @@ export interface ElectronBuildConfig {
    * @default false
    */
   disabled?: boolean
+  /**
+   * electron-builder config or electron-builder config file path
+   */
   config?: string | ElectronBuilderConfiguration
   /**
    * Will be executed when electron-builder build is complete
@@ -166,9 +169,6 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
   }
 }
 
-/**
- * Resolve electron-builder config
- */
 function resolveElectronBuilderConfig(buildConfig: ElectronBuildConfig | undefined, cwd: string): ElectronBuildConfig {
   if (!buildConfig)
     return { disabled: true }
