@@ -7,6 +7,8 @@ importers:
       '@lightwing/eslint-config': ^0.0.1
       '@types/node': ^18.0.0
       eslint: ^8.17.0
+      execa: ^6.1.0
+      fs-extra: ^10.1.0
       lint-staged: ^13.0.1
       rimraf: ^3.0.2
       simple-git-hooks: ^2.8.0
@@ -17,6 +19,8 @@ importers:
       '@lightwing/eslint-config': 0.0.1_ud6rd4xtew5bv4yhvkvu24pzm4
       '@types/node': 18.0.0
       eslint: 8.17.0
+      execa: 6.1.0
+      fs-extra: 10.1.0
       lint-staged: 13.0.1
       rimraf: 3.0.2
       simple-git-hooks: 2.8.0
