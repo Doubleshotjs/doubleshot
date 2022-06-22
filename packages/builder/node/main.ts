@@ -19,6 +19,7 @@ function getMainFileAndCheck(cwd: string, defaultMainFile?: string): string {
   let mainFile = defaultMainFile
   if (!mainFile) {
     const file = path.resolve(cwd, 'package.json')
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const data = require(file)
     delete require.cache[file]
 

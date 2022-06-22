@@ -1,0 +1,15 @@
+{
+  "extends": "@lightwing",
+  "overrides": [
+    {
+      "files": [
+        "packages/create-doubleshot/index.js",
+        "packages/**/log.ts",
+        "packages/**/log.ts"
+      ],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}
