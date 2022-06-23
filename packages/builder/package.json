@@ -3,21 +3,19 @@
   "version": "0.0.1",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "bin": {
-    "doubleshot-build": "bin/dsb.js",
-    "dsb": "bin/dsb.js"
+    "doubleshot-build": "dist/cli.js",
+    "dsb": "dist/cli.js"
   },
   "files": [
-    "bin",
     "dist"
   ],
   "engines": {
     "node": ">=14.0.0"
   },
   "scripts": {
-    "build": "rimraf dist && tsup node/index.ts node/cli.ts --dts --format cjs,esm --splitting"
+    "build": "tsup"
   },
   "peerDependencies": {
     "electron": "^19.0.4",

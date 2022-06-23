@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { cac } from 'cac'
 import { version } from '../package.json'
 import { createLogger } from './log'

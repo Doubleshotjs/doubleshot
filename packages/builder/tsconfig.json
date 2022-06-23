@@ -1,6 +1,6 @@
 {
   "include": [
-    "./node"
+    "src"
   ],
   "compilerOptions": {
     "target": "ES2020",

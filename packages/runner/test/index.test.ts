@@ -2,15 +2,15 @@ import path from 'path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { execa } from 'execa'
 import fs from 'fs-extra'
-import type { DoubleShotRunnerConfigExport } from '../node'
+import type { DoubleShotRunnerConfigExport } from '../src'
 
-const bin = path.resolve(__dirname, '../bin/dsr.js')
+const bin = path.resolve(__dirname, '../dist/cli.js')
 const mockDir = path.resolve(__dirname, './mock')
 const configFile = path.resolve(mockDir, 'dsr.config.ts')
 
 const writeConfigFile = (config: DoubleShotRunnerConfigExport) => {
   const configContent = `
-    import { defineConfig } from "../../node"
+    import { defineConfig } from "../../src"
     export default defineConfig(${JSON.stringify(config)})
   `
   fs.writeFileSync(configFile, configContent)
