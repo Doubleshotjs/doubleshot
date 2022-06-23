@@ -34,6 +34,7 @@ importers:
       '@types/wait-on': ^5.3.1
       bundle-require: ^3.0.4
       cac: ^6.7.12
+      check-package-exists: ^1.1.0
       colorette: ^2.0.19
       electron: ^19.0.4
       electron-builder: ^23.0.3
@@ -46,6 +47,7 @@ importers:
       '@swc/core': 1.2.203
       bundle-require: 3.0.4_esbuild@0.14.44
       cac: 6.7.12
+      check-package-exists: 1.1.0
       colorette: 2.0.19
       esbuild: 0.14.44
       joycon: 3.1.1
