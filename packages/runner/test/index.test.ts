@@ -145,5 +145,5 @@ describe('Doubleshot Runner', () => {
 
     expect(logs).toContain('Electron build finished')
     expect(fs.existsSync(path.resolve(mockDir, 'dist'))).toBe(true)
-  })
+  }, 10 * 60 * 1000)
 })
