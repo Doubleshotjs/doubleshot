@@ -1,5 +1,5 @@
 import path from 'path'
-import { afterAll, expect, it } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { execa } from 'execa'
 import fs from 'fs-extra'
 import type { DoubleShotRunnerConfigExport } from '../node'
@@ -16,7 +16,23 @@ const writeConfigFile = (config: DoubleShotRunnerConfigExport) => {
   fs.writeFileSync(configFile, configContent)
 }
 
-const removeConfigFile = () => fs.removeSync(configFile)
+const installDeps = async (cwd: string) => {
+  const { stdout, stderr } = await execa(
+    'npm',
+    ['install', '--package-lock=false'],
+    {
+      cwd,
+    },
+  )
+
+  const logs = stdout + stderr
+  return logs
+}
+
+const remove = () => {
+  fs.removeSync(configFile)
+  fs.removeSync(path.resolve(mockDir, 'dist'))
+}
 
 const run = async () => {
   const { stdout, stderr } = await execa(
@@ -31,66 +47,103 @@ const run = async () => {
   return logs
 }
 
+beforeAll(() => {
+  remove()
+})
+
 afterAll(() => {
-  removeConfigFile()
+  remove()
 })
 
-it('should run all commands', async () => {
-  writeConfigFile({
-    run: [
-      {
-        cwd: 'pkg1',
-        commands: {
-          build: 'npm run build',
-        },
-      },
-      {
-        cwd: 'pkg2',
-        commands: {
-          build: 'npm run build',
-        },
-      },
-    ],
-  })
-
-  const logs = await run()
-
-  expect(logs).toContain('build pkg1')
-  expect(logs).toContain('build pkg2')
-})
-
-it('should throw error if no config file', async () => {
-  try {
-    removeConfigFile()
-    await run()
-  }
-  catch (e) {
-    expect(e.message).toContain('doubleshot runner needs a config file')
-  }
-})
-
-it('should kill others if some one is set "killOthersWhenExit: true"', async () => {
-  writeConfigFile({
-    run: [
-      {
-        cwd: 'pkg1',
-        commands: {
-          build: {
-            command: 'npm run not-exist',
-            killOthersWhenExit: true,
+describe('Doubleshot Runner', () => {
+  it('should run all commands', async () => {
+    writeConfigFile({
+      run: [
+        {
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
           },
         },
-      },
-      {
-        cwd: 'pkg2',
-        commands: {
-          build: 'npm run build',
+        {
+          cwd: 'backend',
+          commands: {
+            build: 'npm run build',
+          },
         },
-      },
-    ],
+      ],
+    })
+
+    const logs = await run()
+
+    expect(logs).toContain('build frontend')
+    expect(logs).toContain('build backend')
   })
 
-  const logs = await run()
+  it('should throw error if no config file', async () => {
+    try {
+      fs.removeSync(configFile)
+      await run()
+    }
+    catch (e) {
+      expect(e.message).toContain('doubleshot runner needs a config file')
+    }
+  })
 
-  expect(logs).toContain('killing others')
+  it('should kill others if some one is set "killOthersWhenExit: true" and run failed', async () => {
+    writeConfigFile({
+      run: [
+        {
+          cwd: 'frontend',
+          commands: {
+            build: {
+              command: 'npm run not-exist',
+              killOthersWhenExit: true,
+            },
+          },
+        },
+        {
+          cwd: 'backend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+      ],
+    })
+
+    const logs = await run()
+
+    expect(logs).toContain('killing others')
+  })
+
+  it('should run electron build if "electronBuild" config is set', async () => {
+    writeConfigFile({
+      run: [
+        {
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+        {
+          cwd: 'backend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+      ],
+      electronBuild: {
+        projectDir: 'backend',
+        commandName: 'build',
+        config: 'electron-builder.config.js',
+      },
+    })
+
+    await installDeps(path.resolve(mockDir, 'backend'))
+
+    const logs = await run()
+
+    expect(logs).toContain('Electron build finished')
+    expect(fs.existsSync(path.resolve(mockDir, 'dist'))).toBe(true)
+  })
 })

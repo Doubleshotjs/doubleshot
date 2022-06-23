@@ -1,6 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "build": "echo 'build pkg1'"
+    "build": "echo 'build frontend'"
   }
 }
