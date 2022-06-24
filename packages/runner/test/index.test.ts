@@ -47,9 +47,10 @@ const run = async () => {
   return logs
 }
 
-beforeAll(() => {
+beforeAll(async () => {
   remove()
-})
+  await installDeps(path.resolve(mockDir, 'backend'))
+}, Infinity)
 
 afterAll(() => {
   remove()
@@ -138,8 +139,6 @@ describe('Doubleshot Runner', () => {
         config: 'electron-builder.config.js',
       },
     })
-
-    await installDeps(path.resolve(mockDir, 'backend'))
 
     const logs = await run()
 
