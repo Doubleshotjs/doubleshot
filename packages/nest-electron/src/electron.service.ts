@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common'
-import type { BrowserWindow } from 'electron'
+import { BrowserWindow } from 'electron'
 import { ELECTRON_MODULE_OPTIONS } from './electron.constants'
-import type { ElectronModuleOptions } from './interfaces/electron-module-options.interface'
+import { ElectronModuleOptions } from './interfaces/electron-module-options.interface'
 
 @Injectable()
 export class ElectronService {

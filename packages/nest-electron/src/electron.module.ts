@@ -1,6 +1,5 @@
-import type { DynamicModule, Provider } from '@nestjs/common'
-import { Module } from '@nestjs/common'
-import type { ElectronModuleAsyncOptions, ElectronModuleOptions, ElectronWindowOptionsFactory } from './interfaces/electron-module-options.interface'
+import { DynamicModule, Module, Provider } from '@nestjs/common'
+import { ElectronModuleAsyncOptions, ElectronModuleOptions, ElectronWindowOptionsFactory } from './interfaces/electron-module-options.interface'
 import { ElectronService } from './electron.service'
 import { ELECTRON_MODULE_OPTIONS } from './electron.constants'
 
