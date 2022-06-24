@@ -103,8 +103,14 @@ export async function build(type: AppType) {
   }
 
   // tsup build
-  for (const tsupConfig of config.tsupConfigs)
-    await doTsupBuild(tsupConfig, dsEnv)
+  for (let i = 0; i < config.tsupConfigs.length; i++) {
+    const tsupConfig = config.tsupConfigs[i]
+    if (i === 0)
+      await doTsupBuild({ clean: true, ...tsupConfig }, dsEnv)
+
+    else
+      await doTsupBuild({ ...tsupConfig }, dsEnv)
+  }
 
   await config.afterBuild?.()
 
@@ -151,7 +157,8 @@ export async function dev(type: AppType) {
   }
 
   // tsup build
-  for (const _tsupConfig of config.tsupConfigs) {
+  for (let i = 0; i < config.tsupConfigs.length; i++) {
+    const _tsupConfig = config.tsupConfigs[i]
     const { esbuildOptions: _esbuildOptions, ...tsupOptions } = _tsupConfig
     const esbuildOptions: TsupOptions['esbuildOptions'] = (options, context) => {
       _esbuildOptions?.(options, context)
@@ -180,7 +187,11 @@ export async function dev(type: AppType) {
         }
       }
     }
-    await doTsupBuild({ esbuildOptions, ...tsupOptions, watch: true }, dsEnv)
+    if (i === 0)
+      await doTsupBuild({ clean: true, esbuildOptions, ...tsupOptions }, dsEnv)
+
+    else
+      await doTsupBuild({ esbuildOptions, ...tsupOptions, watch: true }, dsEnv)
   }
 
   const { electron: electronConfig } = config
