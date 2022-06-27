@@ -1,0 +1,9 @@
+{
+  "name": "builder-test",
+  "version": "0.0.0",
+  "private": true,
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^19.0.6"
+  }
+}
