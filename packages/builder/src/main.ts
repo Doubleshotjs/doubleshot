@@ -55,6 +55,8 @@ function runMainProcess(mainFile: string, electron: any) {
 function createWaitOnOpts(url: string, timeout: number | undefined) {
   if (url.startsWith('http://') || url.startsWith('https://'))
     url = url.startsWith('http://') ? url.replace('http://', 'http-get://') : url.replace('https://', 'https-get://')
+  else if (url.startsWith('file://'))
+    url = url.replace('file://', '')
 
   return {
     resources: [url],
