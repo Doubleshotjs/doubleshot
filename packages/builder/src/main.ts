@@ -10,7 +10,7 @@ import waitOn from 'wait-on'
 import { checkPackageExists } from 'check-package-exists'
 import { TAG } from './constants'
 import { resolveConfig } from './config'
-import type { AppType } from './config'
+import type { AppType, ResolvedConfig } from './config'
 import { createLogger } from './log'
 
 const logger = createLogger()
@@ -85,6 +85,19 @@ function electronEnvCheck() {
   return true
 }
 
+function createDoubleShotEnv(type: AppType, config: ResolvedConfig): TsupOptions['env'] {
+  const dsEnv: TsupOptions['env'] = {
+    DS_APP_TYPE: type,
+  }
+
+  if (type === 'electron') {
+    if (config.electron.rendererUrl)
+      dsEnv.DS_RENDERER_URL = config.electron.rendererUrl
+  }
+
+  return dsEnv
+}
+
 export async function build(type: AppType) {
   const isElectron = type === 'electron'
   const startTime = performance.now()
@@ -99,10 +112,7 @@ export async function build(type: AppType) {
   getMainFileAndCheck(config.cwd, config.main)
 
   // doubleshot env
-  const dsEnv: TsupOptions['env'] = {
-    DS_APP_TYPE: type,
-    DS_RENDERER_URL: config.electron.rendererUrl || 'http://localhost:3000',
-  }
+  const dsEnv = createDoubleShotEnv(type, config)
 
   // tsup build
   for (let i = 0; i < config.tsupConfigs.length; i++) {
@@ -153,10 +163,7 @@ export async function dev(type: AppType) {
   const mainFile = getMainFileAndCheck(config.cwd, config.main)
 
   // doubleshot env
-  const dsEnv: TsupOptions['env'] = {
-    DS_APP_TYPE: type,
-    DS_RENDERER_URL: config.electron.rendererUrl || 'http://localhost:3000',
-  }
+  const dsEnv = createDoubleShotEnv(type, config)
 
   // tsup build
   for (let i = 0; i < config.tsupConfigs.length; i++) {
