@@ -176,3 +176,49 @@ describe('Doubleshot Builder: Dev Mode', () => {
     }
   })
 })
+
+describe('Doubleshot Builder: Build Mode', () => {
+  it('should build source files', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+    })
+
+    const logs = await run('build', 'electron')
+
+    expect(logs).toContain('Build succeeded')
+    expect(fs.existsSync(path.resolve(mockDir, 'dist/main.js'))).toBe(true)
+  })
+
+  it('should build preload source file', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      electron: {
+        preload: {
+          entry: ['./src/preload.ts'],
+        },
+      },
+    })
+
+    const logs = await run('build', 'electron')
+
+    expect(logs).toContain('Build succeeded')
+    expect(fs.existsSync(path.resolve(mockDir, 'dist/preload.js'))).toBe(true)
+  })
+
+  it('should build electron app if "electron.build" is set', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      electron: {
+        build: {
+          config: 'electron-builder.config.js',
+        },
+      },
+    })
+
+    const logs = await run('build', 'electron')
+
+    expect(logs).toContain('Start electron build')
+    expect(logs).toContain('Build succeeded')
+    expect(fs.existsSync(path.resolve(mockDir, 'dist/electron'))).toBe(true)
+  }, 10 * 60 * 1000)
+})
