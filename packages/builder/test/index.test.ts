@@ -1,5 +1,5 @@
 import path from 'path'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import type { Options as ExecaOptions } from 'execa'
 import { execa } from 'execa'
 import fs from 'fs-extra'
@@ -8,6 +8,12 @@ import type { AppType, DoubleShotBuilderConfigExport } from '../src'
 const bin = path.resolve(__dirname, '../dist/cli.js')
 const mockDir = path.resolve(__dirname, './mock')
 const configFile = path.resolve(mockDir, 'dsb.config.ts')
+const DEFAULT_CONFIG: DoubleShotBuilderConfigExport = {
+  main: 'dist/main.js',
+  entry: ['./src/main.ts'],
+  outDir: './dist',
+  external: ['electron'],
+}
 
 const writeConfigFile = (_config: DoubleShotBuilderConfigExport) => {
   // must close tsup config, or it will find parent directory
@@ -25,7 +31,10 @@ const writeConfigFile = (_config: DoubleShotBuilderConfigExport) => {
   fs.writeFileSync(configFile, configContent)
 }
 
-const createHtmlFile = () => {
+const checkOrCreateHtmlFile = () => {
+  if (fs.existsSync(path.resolve(mockDir, 'index.html')))
+    return
+
   const htmlContent = `
     <!DOCTYPE html>
     <html lang="en">
@@ -80,29 +89,90 @@ const run = async (command: 'dev' | 'build', appType: AppType, options: ExecaOpt
   return logs
 }
 
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
 beforeAll(async () => {
   remove()
   await installDeps(mockDir)
 }, Infinity)
 
+beforeEach(() => {
+  checkOrCreateHtmlFile()
+})
+
 afterAll(() => {
   remove()
 })
 
-describe('Doubleshot Builder', () => {
-  it('should run electron process when app type is electron under dev mode', async () => {
+describe('Doubleshot Builder: Dev Mode', () => {
+  it('should run electron process when app type is electron', async () => {
     writeConfigFile({
-      main: 'dist/main.js',
-      entry: ['./src/main.ts'],
-      outDir: './dist',
-      external: ['electron'],
+      ...DEFAULT_CONFIG,
     })
-
-    createHtmlFile()
 
     const logs = await run('dev', 'electron')
 
     expect(logs).toContain('Run main file')
+    expect(logs).toContain('This is electron app')
     expect(logs).toContain('Main process exit')
+  })
+
+  it('should run node process when app type is node', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+    })
+
+    const logs = await run('dev', 'node')
+
+    expect(logs).toContain('Run main file')
+    expect(logs).toContain('This is node app')
+    expect(logs).toContain('Main process exit')
+  })
+
+  it('should wait for renderer process before main process', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      electron: {
+        waitForRenderer: true,
+        rendererUrl: `file://${path.resolve(mockDir, 'index.html')}`,
+      },
+    })
+
+    fs.removeSync(path.resolve(mockDir, 'index.html'))
+
+    let logs = ''
+    await Promise.all([
+      (async () => {
+        await sleep(2000)
+        checkOrCreateHtmlFile()
+      })(),
+      (async () => {
+        logs = await run('dev', 'electron')
+      })(),
+    ])
+
+    expect(logs).toContain('Run main file')
+    expect(logs).toContain('Wait for renderer')
+    expect(logs).toContain('Main process exit')
+  })
+
+  it('should exit and throw error when renderer process not start in time', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      electron: {
+        waitTimeout: 2000,
+        waitForRenderer: true,
+        rendererUrl: `file://${path.resolve(mockDir, 'index.html')}`,
+      },
+    })
+
+    fs.removeSync(path.resolve(mockDir, 'index.html'))
+
+    try {
+      await run('dev', 'electron')
+    }
+    catch (error) {
+      expect(error.message).toContain('Timed out waiting for')
+    }
   })
 })

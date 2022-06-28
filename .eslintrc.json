@@ -6,7 +6,7 @@
         "packages/create-doubleshot/index.js",
         "packages/**/log.ts",
         "packages/**/log.ts",
-        "packages/**/test/*.ts"
+        "packages/**/test/**/*.ts"
       ],
       "rules": {
         "no-console": "off"
