@@ -1,0 +1,9 @@
+{
+  "name": "test-backend",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsup"
+  }
+}

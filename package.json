@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@lightwing/eslint-config": "^0.0.1",
+    "@nestjs/testing": "^8.4.7",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.0.0",
     "eslint": "^8.17.0",
