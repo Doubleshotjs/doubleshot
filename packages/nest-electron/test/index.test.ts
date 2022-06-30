@@ -7,8 +7,7 @@ const mockDist = path.resolve(mockDir, 'dist')
 
 const buildMock = async () => {
   const { stdout, stderr } = await execa(
-    'npm',
-    ['run', 'build'],
+    'tsup',
     {
       cwd: mockDir,
     },

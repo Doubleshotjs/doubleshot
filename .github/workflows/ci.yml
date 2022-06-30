@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    if: '!contains(github.event.head_commit.message, ''skip-ci'')'
+    if: "!contains(github.event.head_commit.message, 'skip-ci')"
 
     strategy:
       matrix:
@@ -46,4 +46,6 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Test
-        run: pnpm test
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: pnpm test
