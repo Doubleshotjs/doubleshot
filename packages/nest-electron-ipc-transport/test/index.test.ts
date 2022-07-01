@@ -1,5 +1,5 @@
 import path from 'path'
-import { beforeAll, describe, expect, it, test } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import { execa } from 'execa'
 
 const mockDir = path.resolve(__dirname, './mock')
@@ -30,7 +30,7 @@ const runElectron = async () => {
   return logs
 }
 
-describe('Doubleshot Nest Electron Module', () => {
+describe('Doubleshot Nest Electron Ipc Transport', () => {
   let logs = ''
   beforeAll(async () => {
     await buildMock()
@@ -41,15 +41,15 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('Electron is running')
   })
 
-  it('should inject ElectronService', async () => {
-    expect(logs).toContain('ElectronService injected successfully')
+  it('should receive message from frontend', async () => {
+    expect(logs).toContain('Get message from frontend: This is a message to backend')
   })
 
-  test('ElectronService.getWindow()', async () => {
-    expect(logs).toContain('"ElectronService.getWindow()" should return a BrowserWindow: true')
+  it('should print log from frontend if frontend got reply', async () => {
+    expect(logs).toContain('Get log: This is a message to frontend')
   })
 
-  test('ElectronService.getWebContents()', async () => {
-    expect(logs).toContain('"ElectronService.getWebContents()" should return a WebContents: true')
+  it('should exit electron invoked by frontend', async () => {
+    expect(logs).toContain('Electron exiting...')
   })
 })

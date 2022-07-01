@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doubleshot Nest Electron Module Test</title>
+</head>
+
+<body>
+  <h1>Doubleshot Nest Electron Ipc Transport Test</h1>
+  <script type="text/javascript">
+    const {
+      chat,
+      printLog,
+      exit
+    } = window.electron
+
+    const test = async () => {
+      const {
+        data: msgFromBackend
+      } = await chat('This is a message to backend')
+
+      await printLog(msgFromBackend)
+
+      exit()
+    }
+
+    test()
+
+  </script>
+</body>
+
+</html>
