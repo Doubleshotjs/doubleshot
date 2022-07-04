@@ -3,19 +3,19 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import type { Options as ExecaOptions } from 'execa'
 import { execa } from 'execa'
 import fs from 'fs-extra'
-import type { AppType, DoubleShotBuilderConfigExport } from '../src'
+import type { AppType, UserConfigExport } from '../src'
 
 const bin = path.resolve(__dirname, '../dist/cli.js')
 const mockDir = path.resolve(__dirname, './mock')
 const configFile = path.resolve(mockDir, 'dsb.config.ts')
-const DEFAULT_CONFIG: DoubleShotBuilderConfigExport = {
+const DEFAULT_CONFIG: UserConfigExport = {
   main: 'dist/main.js',
-  entry: ['./src/main.ts'],
+  entry: './src/main.ts',
   outDir: './dist',
   external: ['electron'],
 }
 
-const writeConfigFile = (_config: DoubleShotBuilderConfigExport) => {
+const writeConfigFile = (_config: UserConfigExport) => {
   // must close tsup config, or it will find parent directory
   const config = {
     ..._config,
@@ -194,7 +194,7 @@ describe('Doubleshot Builder: Build Mode', () => {
       ...DEFAULT_CONFIG,
       electron: {
         preload: {
-          entry: ['./src/preload.ts'],
+          entry: './src/preload.ts',
         },
       },
     })

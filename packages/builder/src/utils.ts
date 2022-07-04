@@ -11,6 +11,13 @@ export function normalizePath(id: string): string {
   return path.posix.normalize(isWindows ? slash(id) : id)
 }
 
+export function resolvePath(_path: string, cwd: string = process.cwd()): string {
+  if (path.isAbsolute(_path))
+    return _path
+
+  return path.resolve(cwd, _path)
+}
+
 export function arraify<T>(target: T | T[]): T[] {
   return Array.isArray(target) ? target : [target]
 }

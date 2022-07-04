@@ -1,5 +1,4 @@
 import { performance } from 'perf_hooks'
-import path from 'path'
 import type { ChildProcess } from 'child_process'
 import { spawn } from 'child_process'
 import fs from 'fs'
@@ -10,31 +9,10 @@ import waitOn from 'wait-on'
 import { checkPackageExists } from 'check-package-exists'
 import { TAG } from './constants'
 import { resolveConfig } from './config'
-import type { AppType, ResolvedConfig } from './config'
+import type { AppType, InlineConfig, ResolvedConfig } from './config'
 import { createLogger } from './log'
 
 const logger = createLogger()
-
-function getMainFileAndCheck(cwd: string, defaultMainFile?: string): string {
-  let mainFile = defaultMainFile
-  if (!mainFile) {
-    const file = path.resolve(cwd, 'package.json')
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const data = require(file)
-    delete require.cache[file]
-
-    if (Object.prototype.hasOwnProperty.call(data, 'main'))
-      mainFile = path.resolve(cwd, data.main)
-
-    else
-      throw new Error('package.json missing main field')
-  }
-
-  if (!/\.cjs$|\.js$/.test(mainFile))
-    throw new Error(`Main file must be .cjs or .js: ${mainFile}`)
-
-  return mainFile
-}
 
 function exitMainProcess() {
   logger.warn(TAG, 'Main process exit')
@@ -52,7 +30,7 @@ function runMainProcess(mainFile: string, electron: any) {
 /**
  * See: https://github.com/jeffbski/wait-on/issues/78
  */
-function createWaitOnOpts(url: string, timeout: number | undefined) {
+function createWaitOnOpts(url: string, timeout?: number) {
   if (url.startsWith('http://') || url.startsWith('https://'))
     url = url.startsWith('http://') ? url.replace('http://', 'http-get://') : url.replace('https://', 'https-get://')
   else if (url.startsWith('file://'))
@@ -98,8 +76,16 @@ function createDoubleShotEnv(type: AppType, config: ResolvedConfig): TsupOptions
   return dsEnv
 }
 
-export async function build(type: AppType) {
-  const isElectron = type === 'electron'
+export async function build(inlineConfig: InlineConfig = {}) {
+  const config = await resolveConfig(inlineConfig)
+  const {
+    type: appType = 'node',
+    tsupConfigs = [],
+    afterBuild,
+    electron: electronConfig = {},
+  } = config
+
+  const isElectron = appType === 'electron'
   const startTime = performance.now()
 
   logger.info(TAG, `Mode: ${bgCyanBright('Production')}`)
@@ -107,16 +93,12 @@ export async function build(type: AppType) {
 
   isElectron && electronEnvCheck()
 
-  const config = await resolveConfig()
-
-  getMainFileAndCheck(config.cwd, config.main)
-
   // doubleshot env
-  const dsEnv = createDoubleShotEnv(type, config)
+  const dsEnv = createDoubleShotEnv(appType, config)
 
   // tsup build
-  for (let i = 0; i < config.tsupConfigs.length; i++) {
-    const tsupConfig = config.tsupConfigs[i]
+  for (let i = 0; i < tsupConfigs.length; i++) {
+    const tsupConfig = tsupConfigs[i]
     if (i === 0)
       await doTsupBuild({ clean: true, ...tsupConfig }, dsEnv)
 
@@ -124,9 +106,7 @@ export async function build(type: AppType) {
       await doTsupBuild({ ...tsupConfig }, dsEnv)
   }
 
-  await config.afterBuild?.()
-
-  const { electron: electronConfig } = config
+  await afterBuild?.()
 
   if (isElectron && electronConfig.build && electronConfig.build.disabled !== true) {
     if (!checkPackageExists('electron-builder'))
@@ -147,27 +127,31 @@ export async function build(type: AppType) {
   logger.success(`\n${TAG}`, `Build succeeded! (${endTime.toFixed(2)}ms)`)
 }
 
-export async function dev(type: AppType) {
-  const isElectron = type === 'electron'
+export async function dev(inlineConfig: InlineConfig = {}) {
+  const config = await resolveConfig(inlineConfig)
+  const {
+    main: mainFile,
+    type: appType = 'node',
+    tsupConfigs = [],
+    electron: electronConfig = {},
+  } = config
+
+  const isElectron = appType === 'electron'
 
   logger.info(TAG, `Mode: ${bgCyanBright('Development')}`)
   logger.info(TAG, `Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
+  // doubleshot env
+  const dsEnv = createDoubleShotEnv(appType, config)
+
+  // tsup build
   let electron: any | undefined
   if (isElectron && electronEnvCheck())
     electron = await import('electron')
 
-  const config = await resolveConfig()
   let child: ChildProcess
-
-  const mainFile = getMainFileAndCheck(config.cwd, config.main)
-
-  // doubleshot env
-  const dsEnv = createDoubleShotEnv(type, config)
-
-  // tsup build
-  for (let i = 0; i < config.tsupConfigs.length; i++) {
-    const _tsupConfig = config.tsupConfigs[i]
+  for (let i = 0; i < tsupConfigs.length; i++) {
+    const _tsupConfig = tsupConfigs[i]
     const { esbuildOptions: _esbuildOptions, ...tsupOptions } = _tsupConfig
     const esbuildOptions: TsupOptions['esbuildOptions'] = (options, context) => {
       _esbuildOptions?.(options, context)
@@ -202,8 +186,6 @@ export async function dev(type: AppType) {
     else
       await doTsupBuild({ esbuildOptions, ...tsupOptions, watch: true }, dsEnv)
   }
-
-  const { electron: electronConfig } = config
 
   if (isElectron && electronConfig.rendererUrl && electronConfig.waitForRenderer !== false) {
     const url = electronConfig.rendererUrl
