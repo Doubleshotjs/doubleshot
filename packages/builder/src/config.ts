@@ -285,6 +285,7 @@ async function mergeTsupConfig(inputConfig: UserTsupConfig, cwd: string, default
     outDir: inputConfig.outDir,
     tsconfig: inputConfig.tsconfig,
     external: inputConfig.external,
+    config: false,
   })
 
   return extraCfg ? { ...tsupConfig, ...extraCfg } : tsupConfig
