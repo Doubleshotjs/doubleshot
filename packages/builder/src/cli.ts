@@ -26,6 +26,12 @@ interface GlobalCLIOptions {
 interface DevOptions {
   m?: string
   main?: string
+  w?: boolean
+  waitForRenderer?: boolean
+  t?: number
+  waitTimeout?: number
+  u?: string
+  rendererUrl?: string
 }
 
 interface BuildOptions {
@@ -47,6 +53,9 @@ cli
   .command('', 'run in development mode')
   .alias('dev')
   .option('-m, --main <file>', 'The main file of the application')
+  .option('-w, --wait-for-renderer', 'Wait for renderer process to be ready')
+  .option('-t, --wait-timeout', 'Wait for renderer process ready timeout')
+  .option('-u, --renderer-url', 'Renderer process url')
   .action(async (options: DevOptions & GlobalCLIOptions) => {
     const logger = createLogger()
     const { dev } = await import('./main')
@@ -62,6 +71,9 @@ cli
         tsupConfig: options.tsupConfig,
         preload: options.preload,
         noConfigFile: options.noConfigFile,
+        waitForRenderer: options.waitForRenderer,
+        waitTimeout: options.waitTimeout,
+        rendererUrl: options.rendererUrl,
       })
     }
     catch (e) {

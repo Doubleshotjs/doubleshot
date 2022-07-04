@@ -102,6 +102,18 @@ export interface InlineConfig extends UserConfig {
    */
   electronBuilderConfig?: string
   /**
+   * Renderer process url on development mode
+   */
+  rendererUrl?: string
+  /**
+   * whether to wait for the renderer process ready
+   */
+  waitForRenderer?: boolean
+  /**
+   * wait for the renderer process ready timeout
+   */
+  waitTimeout?: number
+  /**
    * Do not load config file, this will ignore all config file and `configFile` field
    */
   noConfigFile?: true
@@ -205,9 +217,9 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
     tsupConfigs: tsupConfigArr,
     electron: {
       build: electronBuilderConfig,
-      rendererUrl: config.electron?.rendererUrl,
-      waitForRenderer: config.electron?.waitForRenderer,
-      waitTimeout: config.electron?.waitTimeout,
+      rendererUrl: inlineConfig.rendererUrl || config.electron?.rendererUrl,
+      waitForRenderer: inlineConfig.waitForRenderer || config.electron?.waitForRenderer,
+      waitTimeout: inlineConfig.waitTimeout || config.electron?.waitTimeout,
     },
     afterBuild: config.afterBuild,
   }
