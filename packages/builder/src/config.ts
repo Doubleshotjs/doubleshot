@@ -90,7 +90,8 @@ export interface UserConfig extends UserTsupConfig {
 
 export interface InlineConfig extends UserConfig {
   /**
-   * doubleshot builder config file
+   * Specify doubleshot builder config file
+   * if set to false, will not load config file
    */
   configFile?: string | false
   /**
@@ -113,10 +114,6 @@ export interface InlineConfig extends UserConfig {
    * wait for the renderer process ready timeout
    */
   waitTimeout?: number
-  /**
-   * Do not load config file, this will ignore all config file and `configFile` field
-   */
-  noConfigFile?: true
 }
 
 export type ResolvedConfig = Readonly<{
@@ -138,33 +135,31 @@ export function defineConfig(config: UserConfigExport): UserConfigExport {
  * Resolve config
  */
 export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = process.cwd()): Promise<ResolvedConfig> {
-  const { configFile, noConfigFile } = inlineConfig
+  const { configFile } = inlineConfig
 
   // get config file path
   let configFilePath: string | null = null
-  if (noConfigFile !== true) {
-    if (configFile) {
-      configFilePath = resolvePath(configFile, cwd)
-    }
-    else {
-      const configJoycon = new JoyCon()
-      configFilePath = await configJoycon.resolve({
-        files: [
-          `${CONFIG_FILE}.ts`,
-          `${CONFIG_FILE}.js`,
-          `${CONFIG_FILE}.cjs`,
-          `${CONFIG_FILE}.mjs`,
-        ],
-        cwd,
-        stopDir: path.parse(cwd).root,
-      })
-    }
+  if (typeof configFile === 'string') {
+    configFilePath = resolvePath(configFile, cwd)
+  }
+  else if (configFile !== false) {
+    const configJoycon = new JoyCon()
+    configFilePath = await configJoycon.resolve({
+      files: [
+        `${CONFIG_FILE}.ts`,
+        `${CONFIG_FILE}.js`,
+        `${CONFIG_FILE}.cjs`,
+        `${CONFIG_FILE}.mjs`,
+      ],
+      cwd,
+      stopDir: path.parse(cwd).root,
+    })
   }
 
   let config: UserConfig = {}
 
   // load config if config file path is found
-  if (configFilePath && noConfigFile !== true) {
+  if (configFilePath) {
     logger.info(TAG, `Using config: ${greenBright(configFilePath)}\n`)
 
     const { mod: cfgMod } = await bundleRequire({
@@ -172,6 +167,9 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
     })
 
     config = cfgMod.default || cfgMod
+  }
+  else {
+    logger.warn(TAG, 'No config file loaded, using inline config\n')
   }
 
   // resolve app type
@@ -228,19 +226,18 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
 async function getMainFileAndCheck(cwd: string, defaultMainFile?: string) {
   let mainFile = defaultMainFile
   if (!mainFile) {
-    const packageJson = await joycon.resolve({
+    const packageJson = await joycon.load({
       files: ['package.json'],
       cwd,
       stopDir: path.parse(cwd).root,
     })
 
-    if (!packageJson)
+    const { path: filePath, data } = packageJson
+
+    if (!filePath)
       throw new Error('Main file is not specified, and no package.json found')
 
-    const { mod } = await bundleRequire({
-      filepath: packageJson,
-    })
-    const { main } = mod.default || mod
+    const { main } = data
     if (main)
       mainFile = resolvePath(main, cwd)
     else

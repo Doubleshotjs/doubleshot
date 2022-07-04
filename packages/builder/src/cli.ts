@@ -12,6 +12,9 @@ interface GlobalCLIOptions {
   '--'?: string[]
   t?: AppType
   type?: AppType
+  c?: string
+  config?: string
+  disableConfig?: true
   e?: string
   entry?: string
   o?: string
@@ -20,7 +23,6 @@ interface GlobalCLIOptions {
   external?: string // string,string,string...
   tsupConfig?: string
   preload?: string
-  noConfigFile?: true
 }
 
 interface DevOptions {
@@ -37,13 +39,14 @@ interface BuildOptions {
 
 cli
   .option('-t, --type <type>', 'Application type, \'node\' or \'electron\'', { default: 'node' })
+  .option('-c, --config <config>', 'Specify config file')
+  .option('--disable-config', 'Do not load config file')
   .option('-e, --entry <file>', 'Entry file for bundleing')
   .option('-o, --out <dir>', 'Output directory')
   .option('--tsconfig <file>', 'TS config file')
   .option('--external <names>', 'External packages')
   .option('--tsup-config <file>', 'tsup config file')
   .option('--preload <file>', 'Electron preload file')
-  .option('--no-config-file', 'Do not load config file')
 
 // dev
 cli
@@ -61,13 +64,13 @@ cli
       await dev({
         main: options.main,
         type: options.type,
+        configFile: options.disableConfig === true ? false : options.config,
         entry: options.entry,
         outDir: options.out,
         tsconfig: options.tsconfig,
         external: options.external?.split(','),
         tsupConfig: options.tsupConfig,
         preload: options.preload,
-        noConfigFile: options.noConfigFile,
         waitForRenderer: options.waitForRenderer,
         waitTimeout: options.waitTimeout,
         rendererUrl: options.rendererUrl,
@@ -91,13 +94,13 @@ cli
       await build({
         electronBuilderConfig: options.electronBuilderConfig,
         type: options.type,
+        configFile: options.disableConfig === true ? false : options.config,
         entry: options.entry,
         outDir: options.out,
         tsconfig: options.tsconfig,
         external: options.external?.split(','),
         tsupConfig: options.tsupConfig,
         preload: options.preload,
-        noConfigFile: options.noConfigFile,
       })
     }
     catch (e) {
