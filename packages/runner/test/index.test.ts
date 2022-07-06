@@ -112,7 +112,13 @@ describe('Doubleshot Runner', () => {
       ],
     })
 
-    const logs = await run()
+    let logs = ''
+    try {
+      logs = await run()
+    }
+    catch (e) {
+      logs = e.message
+    }
 
     expect(logs).toContain('killing others')
   })
