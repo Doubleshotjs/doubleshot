@@ -14,7 +14,8 @@
     "test": "npm run build && npm run test-only",
     "test-only": "vitest run",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "release": "mor"
   },
   "devDependencies": {
     "@lightwing/eslint-config": "^0.0.1",
@@ -25,6 +26,7 @@
     "execa": "^6.1.0",
     "fs-extra": "^10.1.0",
     "lint-staged": "^13.0.1",
+    "mono-release": "^2.1.0",
     "rimraf": "^3.0.2",
     "simple-git-hooks": "^2.8.0",
     "tsup": "^6.1.2",
