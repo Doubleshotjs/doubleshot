@@ -1,2 +1,2 @@
-# Doubleshot Builder
-> builder to build backend for doubleshot
+# Doubleshot Runner
+> runner to run doubleshot app
