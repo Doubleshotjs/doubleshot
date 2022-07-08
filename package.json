@@ -15,7 +15,8 @@
     "test-only": "vitest run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "release": "mor"
+    "release": "mor",
+    "ci-publish": "mor publish"
   },
   "devDependencies": {
     "@lightwing/eslint-config": "0.0.3",
