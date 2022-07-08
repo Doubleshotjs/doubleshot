@@ -4,7 +4,7 @@ import type { ConcurrentlyCommandInput } from 'concurrently'
 import concurrently from 'concurrently'
 import { yellow } from 'colorette'
 import { checkPackageExists } from 'check-package-exists'
-import type { ElectronBuildConfig } from './config'
+import type { ElectronBuildConfig, RunCommandInfo } from './config'
 import { resolveConfig } from './config'
 import { createLogger } from './log'
 import { TAG } from './constants'
@@ -18,30 +18,44 @@ export async function run(command: string) {
   for (const runConfig of config.run || []) {
     const { cwd, name, commands, prefixColor } = runConfig
 
-    if (commands && commands[command]) {
-      const cmd = commands[command]
+    if (!commands)
+      continue
 
-      const base = {
-        cwd: cwd || config.root,
-        name: name || (cwd ? path.basename(cwd) : undefined),
-        prefixColor,
-      }
+    let cmd: RunCommandInfo = commands[command]
 
-      if (typeof cmd === 'string') {
-        commandsList.push({
-          ...base,
-          command: cmd,
-        })
+    // if not found, try to find the command by alias
+    if (!cmd) {
+      for (const key in commands) {
+        const _cmd = commands[key]
+        if (typeof _cmd !== 'string' && _cmd.alias && _cmd.alias.includes(command)) {
+          cmd = commands[key]
+          break
+        }
       }
-      else if (typeof cmd === 'object') {
-        const len = commandsList.push({
-          ...base,
-          ...cmd,
-        })
+    }
+    if (!cmd)
+      continue
 
-        if (cmd.killOthersWhenExit)
-          commandsWhoCanKillOthers.push(`[${len - 1}][${cmd.name || base.name}]: ${cmd.command}`)
-      }
+    const base = {
+      cwd: cwd || config.root,
+      name: name || (cwd ? path.basename(cwd) : undefined),
+      prefixColor,
+    }
+
+    if (typeof cmd === 'string') {
+      commandsList.push({
+        ...base,
+        command: cmd,
+      })
+    }
+    else if (typeof cmd === 'object') {
+      const len = commandsList.push({
+        ...base,
+        ...cmd,
+      })
+
+      if (cmd.killOthersWhenExit)
+        commandsWhoCanKillOthers.push(`[${len - 1}][${cmd.name || base.name}]: ${cmd.command}`)
     }
   }
 

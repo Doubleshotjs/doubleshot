@@ -10,6 +10,18 @@ import { CONFIG_FILE, TAG } from './constants'
 
 export type DoubleShotRunnerConfigExport = DoubleShotRunnerConfig | Promise<DoubleShotRunnerConfig>
 
+export type RunCommandInfo = string | (Exclude<ConcurrentlyCommandInput, string> & {
+  /**
+   * alias name
+   */
+  alias?: string | string[]
+  /**
+   * when this command is exited, the other commands will be killed
+   * @default false
+   */
+  killOthersWhenExit?: boolean
+})
+
 export interface RunConfig {
   /**
    * @default process.cwd()
@@ -23,13 +35,7 @@ export interface RunConfig {
    * Terminal color
    */
   prefixColor?: string
-  commands?: Record<string, string | (Exclude<ConcurrentlyCommandInput, string> & {
-    /**
-     * when this command is exited, the other commands will be killed
-     * @default false
-     */
-    killOthersWhenExit?: boolean
-  })>
+  commands?: Record<string, RunCommandInfo>
 }
 
 export interface ElectronBuildConfig {

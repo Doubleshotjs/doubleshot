@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "dev": "echo 'run frontend in dev mode'",
     "build": "echo 'build frontend'"
   }
 }

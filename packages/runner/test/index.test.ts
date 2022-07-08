@@ -34,10 +34,10 @@ const remove = () => {
   fs.removeSync(path.resolve(mockDir, 'dist'))
 }
 
-const run = async () => {
+const run = async (command: string) => {
   const { stdout, stderr } = await execa(
     bin,
-    ['build'],
+    [command],
     {
       cwd: mockDir,
     },
@@ -75,16 +75,43 @@ describe('Doubleshot Runner', () => {
       ],
     })
 
-    const logs = await run()
+    const logs = await run('build')
 
     expect(logs).toContain('build frontend')
+    expect(logs).toContain('build backend')
+  })
+
+  it('should run commands by alias', async () => {
+    writeConfigFile({
+      run: [
+        {
+          cwd: 'frontend',
+          commands: {
+            dev: 'npm run dev',
+          },
+        },
+        {
+          cwd: 'backend',
+          commands: {
+            build: {
+              alias: 'dev',
+              command: 'npm run build',
+            },
+          },
+        },
+      ],
+    })
+
+    const logs = await run('dev')
+
+    expect(logs).toContain('run frontend in dev mode')
     expect(logs).toContain('build backend')
   })
 
   it('should throw error if no config file', async () => {
     try {
       fs.removeSync(configFile)
-      await run()
+      await run('build')
     }
     catch (e) {
       expect(e.message).toContain('doubleshot runner needs a config file')
@@ -114,7 +141,7 @@ describe('Doubleshot Runner', () => {
 
     let logs = ''
     try {
-      logs = await run()
+      logs = await run('build')
     }
     catch (e) {
       logs = e.message
@@ -146,7 +173,7 @@ describe('Doubleshot Runner', () => {
       },
     })
 
-    const logs = await run()
+    const logs = await run('build')
 
     expect(logs).toContain('Electron build finished')
     expect(fs.existsSync(path.resolve(mockDir, 'dist'))).toBe(true)
