@@ -1,49 +1,24 @@
 #!/usr/bin/env node
-
-// @ts-check
-const fs = require('fs')
-const path = require('path')
-const argv = require('minimist')(process.argv.slice(2), { string: ['_'] })
-const prompts = require('prompts')
-const {
-  green,
-  cyan,
-  lightRed,
+import fs from 'fs'
+import path from 'path'
+import minimist from 'minimist'
+import prompts from 'prompts'
+import {
   red,
   reset,
-} = require('kolorist')
+} from 'colorette'
+import {
+  BACKEND_FRAMEWORKS,
+  BACKEND_FRAMEWORKS_ARR,
+  FRONTEND_FRAMEWORKS,
+  FRONTEND_FRAMEWORKS_ARR,
+  RENAME_FILES,
+} from './constants'
+import type { PromptsResult } from './types'
+
+const argv = minimist(process.argv.slice(2), { string: ['_'] })
 
 const cwd = process.cwd()
-
-const FRONTEND_FRAMEWORKS = [
-  {
-    name: 'vue',
-    color: green,
-  },
-  {
-    name: 'react',
-    color: cyan,
-  },
-]
-
-const FRONTEND_FRAMEWORKS_ARR = FRONTEND_FRAMEWORKS.map(e => e.name)
-
-const BACKEND_FRAMEWORKS = [
-  {
-    name: 'nest',
-    color: lightRed,
-  },
-  {
-    name: 'egg',
-    color: green,
-  },
-]
-
-const BACKEND_FRAMEWORKS_ARR = BACKEND_FRAMEWORKS.map(e => e.name)
-
-const renameFiles = {
-  _gitignore: '.gitignore',
-}
 
 async function init() {
   let targetDir = argv._[0]
@@ -54,7 +29,7 @@ async function init() {
     ? 'doubleshot-project'
     : targetDir.trim().replace(/\/+$/g, '')
 
-  let result = {}
+  let result: Partial<PromptsResult> = {}
 
   try {
     result = await prompts(
@@ -79,7 +54,8 @@ async function init() {
             } is not empty. Remove existing files and continue?`,
         },
         {
-          type: (_, { overwrite } = {}) => {
+          type: (_, answers) => {
+            const { overwrite } = answers
             if (overwrite === false)
               throw new Error(`${red('✖')} Operation cancelled`)
 
@@ -150,11 +126,11 @@ async function init() {
 
   console.log(`\nScaffolding project in ${root}...`)
 
-  const templateDir = path.join(__dirname, `template-${frontendFramework}-${backendFramework}`)
+  const templateDir = path.join(__dirname, `../template-${frontendFramework}-${backendFramework}`)
 
-  const write = (file, content) => {
-    const targetPath = renameFiles[file]
-      ? path.join(root, renameFiles[file])
+  const write = (file: string, content?: string) => {
+    const targetPath = RENAME_FILES[file]
+      ? path.join(root, RENAME_FILES[file])
       : path.join(root, file)
     if (content)
       fs.writeFileSync(targetPath, content)
@@ -166,6 +142,7 @@ async function init() {
   for (const file of files.filter(f => f !== 'package.json'))
     write(file)
 
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const pkg = require(path.join(templateDir, 'package.json'))
 
   pkg.name = packageName || targetDir
@@ -192,7 +169,7 @@ async function init() {
   console.log()
 }
 
-function copy(src, dest) {
+function copy(src: string, dest: string) {
   const stat = fs.statSync(src)
   if (stat.isDirectory())
     copyDir(src, dest)
@@ -200,13 +177,13 @@ function copy(src, dest) {
     fs.copyFileSync(src, dest)
 }
 
-function isValidPackageName(projectName) {
+function isValidPackageName(projectName: string) {
   return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(
     projectName,
   )
 }
 
-function toValidPackageName(projectName) {
+function toValidPackageName(projectName: string) {
   return projectName
     .trim()
     .toLowerCase()
@@ -215,7 +192,7 @@ function toValidPackageName(projectName) {
     .replace(/[^a-z0-9-~]+/g, '-')
 }
 
-function copyDir(srcDir, destDir) {
+function copyDir(srcDir: string, destDir: string) {
   fs.mkdirSync(destDir, { recursive: true })
   for (const file of fs.readdirSync(srcDir)) {
     const srcFile = path.resolve(srcDir, file)
@@ -224,12 +201,12 @@ function copyDir(srcDir, destDir) {
   }
 }
 
-function isEmpty(path) {
+function isEmpty(path: string) {
   const files = fs.readdirSync(path)
   return files.length === 0 || (files.length === 1 && files[0] === '.git')
 }
 
-function emptyDir(dir) {
+function emptyDir(dir: string) {
   if (!fs.existsSync(dir))
     return
 
@@ -250,7 +227,7 @@ function emptyDir(dir) {
  * @param {string | undefined} userAgent process.env.npm_config_user_agent
  * @returns object | undefined
  */
-function pkgFromUserAgent(userAgent) {
+function pkgFromUserAgent(userAgent?: string) {
   if (!userAgent)
     return undefined
   const pkgSpec = userAgent.split(' ')[0]

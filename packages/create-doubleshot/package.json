@@ -12,20 +12,27 @@
   "bugs": {
     "url": "https://github.com/archergu/doubleshot/issues"
   },
-  "main": "index.js",
+  "main": "dist/cli.js",
   "bin": {
-    "create-doubleshot": "index.js"
+    "create-doubleshot": "dist/cli.js"
   },
   "files": [
-    "index.js",
+    "dist",
     "template-*"
   ],
   "engines": {
     "node": ">=14.6.0"
   },
+  "scripts": {
+    "build": "tsup"
+  },
   "dependencies": {
-    "kolorist": "^1.5.1",
+    "colorette": "^2.0.19",
     "minimist": "^1.2.6",
     "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.2",
+    "@types/prompts": "^2.0.14"
   }
 }
