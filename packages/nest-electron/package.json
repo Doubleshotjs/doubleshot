@@ -25,8 +25,8 @@
     "electron": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@nestjs/common": "9.0.0",
-    "@nestjs/core": "9.0.0",
+    "@nestjs/common": "9.0.1",
+    "@nestjs/core": "9.0.1",
     "electron": "19.0.8",
     "reflect-metadata": "0.1.13"
   }
