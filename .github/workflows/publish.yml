@@ -1,10 +1,6 @@
 name: Publish Package
 
 on:
-  workflow_run:
-    workflows: ['Add GitHub Release Tag']
-    types:
-      - completed
   push:
     tags:
       - "*@*" # Push events to matching *@*, i.e. eslint-config@1.0.0
