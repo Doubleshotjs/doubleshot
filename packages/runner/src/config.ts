@@ -23,8 +23,7 @@ export interface RunConfig {
    * Terminal color
    */
   prefixColor?: string
-  commands?: Record<string, string | (ConcurrentlyCommandInput & {
-    command: string
+  commands?: Record<string, string | (Exclude<ConcurrentlyCommandInput, string> & {
     /**
      * when this command is exited, the other commands will be killed
      * @default false
