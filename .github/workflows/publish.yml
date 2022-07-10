@@ -3,7 +3,7 @@ name: Publish Package
 on:
   push:
     tags:
-      - "*@*" # Push events to matching *@*, i.e. eslint-config@1.0.0
+      - '*@*' # Push events to matching *@*, i.e. eslint-config@1.0.0
 
 jobs:
   publish:

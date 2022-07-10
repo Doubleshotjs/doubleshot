@@ -3,7 +3,7 @@ name: Add GitHub Release Tag
 on:
   push:
     tags:
-      - "*@*" # Push events to matching *@*, i.e. eslint-config@1.0.0
+      - '*@*' # Push events to matching *@*, i.e. eslint-config@1.0.0
 
 # $GITHUB_REF_NAME - https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
 
