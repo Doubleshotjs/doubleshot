@@ -3,8 +3,14 @@ name: CI
 on:
   push:
     branches: [main, dev]
+    tags-ignore:
+      - '*@*'
   pull_request:
     branches: [main, dev]
+    tags-ignore:
+      - '*@*'
+  workflow_call:
+    secrets: inherit
 
 jobs:
   test:

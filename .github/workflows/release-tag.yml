@@ -8,7 +8,12 @@ on:
 # $GITHUB_REF_NAME - https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables
 
 jobs:
+  ci:
+    uses: ./.github/ci.yml
+    secrets: inherit
+
   release:
+    needs: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -31,3 +36,8 @@ jobs:
           tag_name: ${{ github.ref }}
           body: |
             Please refer to [CHANGELOG.md](https://github.com/Doubleshotjs/doubleshot/blob/${{ github.ref_name }}/packages/${{ steps.tag.outputs.pkgName }}/CHANGELOG.md) for details.
+
+  publish:
+    needs: release
+    uses: ./.github/publish.yml
+    secrets: inherit

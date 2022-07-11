@@ -1,9 +1,8 @@
 name: Publish Package
 
 on:
-  push:
-    tags:
-      - '*@*' # Push events to matching *@*, i.e. eslint-config@1.0.0
+  workflow_call:
+    secrets: inherit
 
 jobs:
   publish:
