@@ -11,6 +11,12 @@
       "rules": {
         "no-console": "off"
       }
+    },
+    {
+      "files": ".github/workflows/**/*.{yml,yaml}",
+      "rules": {
+        "yml/no-empty-mapping-value": "off"
+      }
     }
   ]
 }

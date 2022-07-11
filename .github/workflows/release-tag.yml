@@ -9,8 +9,9 @@ on:
 
 jobs:
   ci:
-    uses: ./.github/ci.yml
-    secrets: inherit
+    uses: ./.github/workflows/ci.yml
+    with:
+      force: true
 
   release:
     needs: ci
@@ -39,5 +40,6 @@ jobs:
 
   publish:
     needs: release
-    uses: ./.github/publish.yml
-    secrets: inherit
+    uses: ./.github/workflows/publish.yml
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

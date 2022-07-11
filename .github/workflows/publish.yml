@@ -2,7 +2,10 @@ name: Publish Package
 
 on:
   workflow_call:
-    secrets: inherit
+    secrets:
+      NPM_TOKEN:
+        required: true
+        description: The NPM token to use for publishing the package
 
 jobs:
   publish:

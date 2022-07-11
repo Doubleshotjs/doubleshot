@@ -10,11 +10,16 @@ on:
     tags-ignore:
       - '*@*'
   workflow_call:
-    secrets: inherit
+    inputs:
+      force:
+        default: false
+        type: boolean
+        description: Force the workflow to run
+        required: false
 
 jobs:
   test:
-    if: '!contains(github.event.head_commit.message, ''skip-ci'')'
+    if: ${{ (!contains(github.event.head_commit.message, 'skip-ci') && !startsWith(github.event.head_commit.message, 'release:')) || inputs.force }}
 
     strategy:
       matrix:
