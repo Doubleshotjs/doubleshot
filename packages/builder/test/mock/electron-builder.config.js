@@ -14,12 +14,20 @@ const config = {
   electronDownload: {
     mirror: 'https://npm.taobao.org/mirrors/electron/',
   },
-  asar: false,
   files: [
     'dist/main.js',
     'package.json',
     'index.html',
   ],
+  win: {
+    target: 'dir',
+  },
+  mac: {
+    target: 'dir',
+  },
+  linux: {
+    target: 'dir',
+  },
 }
 
 module.exports = config
