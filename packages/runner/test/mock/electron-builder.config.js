@@ -25,6 +25,15 @@ const config = {
       filter: ['!*.json'],
     },
   ],
+  win: {
+    target: 'dir',
+  },
+  mac: {
+    target: 'dir',
+  },
+  linux: {
+    target: 'dir',
+  },
 }
 
 module.exports = config
