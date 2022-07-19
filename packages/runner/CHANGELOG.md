@@ -1,3 +1,7 @@
+# [0.1.0-alpha.2](https://github.com/Doubleshotjs/doubleshot/compare/runner@0.1.0-alpha.1...runner@0.1.0-alpha.2) (2022-07-19)
+
+
+
 # [0.1.0-alpha.1](https://github.com/Doubleshotjs/doubleshot/compare/runner@0.1.0-alpha.0...runner@0.1.0-alpha.1) (2022-07-19)
 
 
