@@ -1,6 +1,6 @@
 {
   "name": "@doubleshot/builder",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
