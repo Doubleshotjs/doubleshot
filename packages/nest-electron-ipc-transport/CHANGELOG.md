@@ -1,3 +1,7 @@
+# [0.1.0-alpha.1](https://github.com/archergu/doubleshot/compare/nest-electron-ipc-transport@0.1.0-alpha.0...nest-electron-ipc-transport@0.1.0-alpha.1) (2022-07-19)
+
+
+
 # 0.1.0-alpha.0 (2022-07-11)
 
 
