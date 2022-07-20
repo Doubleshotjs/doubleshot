@@ -28,7 +28,7 @@
     "execa": "6.1.0",
     "fs-extra": "10.1.0",
     "lint-staged": "13.0.3",
-    "mono-release": "2.2.0",
+    "mono-release": "2.3.0",
     "rimraf": "3.0.2",
     "simple-git-hooks": "2.8.0",
     "tsup": "6.1.3",

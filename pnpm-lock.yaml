@@ -13,7 +13,7 @@ importers:
       execa: 6.1.0
       fs-extra: 10.1.0
       lint-staged: 13.0.3
-      mono-release: 2.2.0
+      mono-release: 2.3.0
       rimraf: 3.0.2
       simple-git-hooks: 2.8.0
       tsup: 6.1.3
@@ -29,7 +29,7 @@ importers:
       execa: 6.1.0
       fs-extra: 10.1.0
       lint-staged: 13.0.3
-      mono-release: 2.2.0_3u3bztnv34xpapk67lcdq6fnmm
+      mono-release: 2.3.0_3u3bztnv34xpapk67lcdq6fnmm
       rimraf: 3.0.2
       simple-git-hooks: 2.8.0
       tsup: 6.1.3_typescript@4.7.4
@@ -4134,8 +4134,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /mono-release/2.2.0_3u3bztnv34xpapk67lcdq6fnmm:
-    resolution: {integrity: sha512-RPRZ5tJubfezFPzgBtGj6osne1/+3n9SoxeaQXMecCkr5W8nu8nH4pGkd7PK72px4vDa5bvHDrZHswcm48clIw==}
+  /mono-release/2.3.0_3u3bztnv34xpapk67lcdq6fnmm:
+    resolution: {integrity: sha512-jJwIYRlYTYPj6/qWz/in9fycVfiqHWJ5VUqVvAEP/pSoYRLriYzA1FScpIHQaAEYR8L5+t+Us/K1PC8Fc+SbsA==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
