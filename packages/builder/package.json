@@ -2,6 +2,23 @@
   "name": "@doubleshot/builder",
   "version": "0.1.0-alpha.2",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
+  "license": "MIT",
+  "homepage": "https://github.com/archergu/doubleshot/tree/main/packages/builder#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/archergu/doubleshot.git",
+    "directory": "packages/builder"
+  },
+  "bugs": {
+    "url": "https://github.com/archergu/doubleshot/issues"
+  },
+  "keywords": [
+    "bundle",
+    "builder",
+    "electron",
+    "nestjs",
+    "esbuild"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
