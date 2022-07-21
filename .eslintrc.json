@@ -3,7 +3,6 @@
   "overrides": [
     {
       "files": [
-        "packages/create-doubleshot/index.js",
         "packages/**/log.ts",
         "packages/**/log.ts",
         "packages/**/test/**/*.ts"
