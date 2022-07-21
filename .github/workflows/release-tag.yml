@@ -9,11 +9,13 @@ on:
 
 jobs:
   ci:
+    if: ${{ !contains(github.event.head_commit.message, 'skip-ci') }}
     uses: ./.github/workflows/ci.yml
     with:
       force: true
 
   release:
+    if: ${{ (contains(github.event.head_commit.message, 'skip-ci') && always()) || success() }}
     needs: ci
     runs-on: ubuntu-latest
     steps:
