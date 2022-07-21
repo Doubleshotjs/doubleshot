@@ -41,6 +41,7 @@ jobs:
             Please refer to [CHANGELOG.md](https://github.com/Doubleshotjs/doubleshot/blob/${{ github.ref_name }}/packages/${{ steps.tag.outputs.pkgName }}/CHANGELOG.md) for details.
 
   publish:
+    if: ${{ (contains(github.event.head_commit.message, 'skip-ci') && needs.release.result == 'success' && always()) || success() }}
     needs: release
     uses: ./.github/workflows/publish.yml
     secrets:
