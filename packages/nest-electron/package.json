@@ -17,6 +17,11 @@
     "electron",
     "nestjs"
   ],
+  "files": [
+    "dist",
+    "index.js",
+    "index.d.ts"
+  ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.json"
   },
