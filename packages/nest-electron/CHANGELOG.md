@@ -1,3 +1,7 @@
+# [0.1.0-alpha.3](https://github.com/archergu/doubleshot/compare/nest-electron@0.1.0-alpha.2...nest-electron@0.1.0-alpha.3) (2022-07-24)
+
+
+
 # [0.1.0-alpha.2](https://github.com/archergu/doubleshot/compare/nest-electron@0.1.0-alpha.1...nest-electron@0.1.0-alpha.2) (2022-07-21)
 
 
