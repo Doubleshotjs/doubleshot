@@ -1,3 +1,12 @@
+## 0.1.0-alpha.4 (2022-07-25)
+
+* feat(builder): add autoPack for build ([0bdc9e6](https://github.com/archergu/doubleshot/commit/0bdc9e6))
+* fix(builder): config resolve ([8d68b47](https://github.com/archergu/doubleshot/commit/8d68b47))
+* chore(builder): update peerDependencies version ([b3ca1d8](https://github.com/archergu/doubleshot/commit/b3ca1d8))
+* chore(deps): update dependency electron to v19.0.9 ([97b1a8f](https://github.com/archergu/doubleshot/commit/97b1a8f))
+
+
+
 # [0.1.0-alpha.3](https://github.com/archergu/doubleshot/compare/builder@0.1.0-alpha.2...builder@0.1.0-alpha.3) (2022-07-21)
 
 
