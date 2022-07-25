@@ -8,6 +8,8 @@ function printTestLogs(appController: AppController) {
   const webContents = appController.getWebContents()
   console.log(`"ElectronService.getWindow()" should return a BrowserWindow: ${win instanceof BrowserWindow}`)
   console.log(`"ElectronService.getWebContents()" should return a WebContents: ${webContents === win.webContents}`)
+
+  appController.exit()
 }
 
 async function bootstrap() {
@@ -31,9 +33,6 @@ async function bootstrap() {
   const appController = moduleRef.get<AppController>(AppController)
 
   printTestLogs(appController)
-
-  // exit for testing purposes
-  app.exit()
 }
 
 bootstrap()

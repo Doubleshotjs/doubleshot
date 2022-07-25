@@ -18,6 +18,8 @@ export class AppController {
   @IpcInvoke('exit')
   exit() {
     console.log('Electron exiting...')
-    app.exit()
+    setTimeout(() => {
+      app.quit()
+    }, 500)
   }
 }

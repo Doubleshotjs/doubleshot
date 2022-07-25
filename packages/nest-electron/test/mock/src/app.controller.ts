@@ -1,4 +1,5 @@
 import { Controller } from '@nestjs/common'
+import { app } from 'electron'
 import { ElectronService } from '../../../dist'
 
 @Controller()
@@ -16,5 +17,9 @@ export class AppController {
 
   getWebContents() {
     return this.electronService.getWebContents()
+  }
+
+  exit() {
+    app.quit()
   }
 }

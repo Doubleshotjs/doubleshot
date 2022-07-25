@@ -35,7 +35,7 @@ describe('Doubleshot Nest Electron Module', () => {
   beforeAll(async () => {
     await buildMock()
     logs = await runElectron()
-  })
+  }, Infinity)
 
   it('should run electron', async () => {
     expect(logs).toContain('Electron is running')

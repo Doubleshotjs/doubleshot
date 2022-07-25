@@ -16,7 +16,7 @@ const createWindow = () => {
   ipcMain.handle('msg', (_, msg) => {
     console.log(msg)
 
-    app.exit()
+    app.quit()
   })
 
   const URL = isDev

@@ -21,7 +21,7 @@ if (isElectron) {
 
     // exit after 3 seconds, for testing purposes
     setTimeout(() => {
-      app.exit()
+      app.quit()
     }, 3000)
   })
 
