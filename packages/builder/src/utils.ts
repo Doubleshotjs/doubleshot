@@ -22,11 +22,43 @@ export function arraify<T>(target: T | T[]): T[] {
   return Array.isArray(target) ? target : [target]
 }
 
-export function merge<T>(obj1: T, obj2: T): T {
-  const result = Object.assign({}, obj1)
-  for (const key in obj2) {
-    if (obj2[key] !== undefined)
-      result[key] = obj2[key]
+export function isObject(value: unknown): value is Record<string, any> {
+  return Object.prototype.toString.call(value) === '[object Object]'
+}
+
+export function merge(defaults: Record<string, any>,
+  overrides: Record<string, any>) {
+  const merged: Record<string, any> = { ...defaults }
+  for (const key in overrides) {
+    const value = overrides[key]
+    if (value == null)
+      continue
+
+    const existing = merged[key]
+
+    if (existing == null) {
+      merged[key] = value
+      continue
+    }
+    // fields that require special handling
+    if (key === 'entry') {
+      merged[key] = value || existing
+      continue
+    }
+
+    if (Array.isArray(existing) || Array.isArray(value)) {
+      merged[key] = [...arraify(existing ?? []), ...arraify(value ?? [])]
+      continue
+    }
+    if (isObject(existing) && isObject(value)) {
+      merged[key] = merge(
+        existing,
+        value,
+      )
+      continue
+    }
+
+    merged[key] = value
   }
-  return result
+  return merged
 }

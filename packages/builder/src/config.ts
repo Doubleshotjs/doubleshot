@@ -168,22 +168,14 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
 
     config = cfgMod.default || cfgMod
   }
-  else {
-    logger.warn(TAG, 'No config file loaded, using inline config\n')
-  }
+
+  config = merge(config, inlineConfig)
 
   // resolve app type
-  const appType = inlineConfig.type || config.type || 'node'
+  const appType = config.type || 'node'
 
   // resolve main file
-  const mainFile = await getMainFileAndCheck(cwd, inlineConfig.main || config.main)
-
-  // resolve user tsup options
-  config.entry = inlineConfig.entry || config.entry
-  config.outDir = inlineConfig.outDir || config.outDir
-  config.tsconfig = inlineConfig.tsconfig || config.tsconfig
-  config.external = inlineConfig.external || config.external
-  config.tsupConfig = inlineConfig.tsupConfig || config.tsupConfig
+  const mainFile = await getMainFileAndCheck(cwd, config.main)
 
   // resolve entry file tsup config
   if (!config.entry)
@@ -193,7 +185,9 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
 
   // resolve electron preload file tsup config, entry must be specified
   if (config.electron?.preload || inlineConfig.preload) {
-    const preloadConfig = config.electron?.preload || { entry: inlineConfig.preload }
+    let preloadConfig = { ...(config.electron?.preload || {}) }
+    if (inlineConfig.preload)
+      preloadConfig = { ...preloadConfig, entry: inlineConfig.preload }
 
     if (preloadConfig.entry)
       tsupConfigArr.push(await mergeTsupConfig(preloadConfig, cwd, tsupConfigArr[0]))
