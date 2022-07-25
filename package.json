@@ -16,7 +16,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "mor",
-    "ci-publish": "mor publish"
+    "ci-publish": "mor publish -u pnpm"
   },
   "devDependencies": {
     "@lightwing/eslint-config": "0.0.3",
