@@ -76,7 +76,7 @@ function createDoubleShotEnv(type: AppType, config: ResolvedConfig): TsupOptions
   return dsEnv
 }
 
-export async function build(inlineConfig: InlineConfig = {}) {
+export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
   const config = await resolveConfig(inlineConfig)
   const {
     type: appType = 'node',
@@ -88,8 +88,8 @@ export async function build(inlineConfig: InlineConfig = {}) {
   const isElectron = appType === 'electron'
   const startTime = performance.now()
 
-  logger.info(TAG, `Mode: ${bgCyanBright('Production')}`)
-  logger.info(TAG, `Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
+  logger.info(TAG, `📦 Mode: ${bgCyanBright('Production')}`)
+  logger.info(TAG, `✅ Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   isElectron && electronEnvCheck()
 
@@ -108,23 +108,31 @@ export async function build(inlineConfig: InlineConfig = {}) {
 
   await afterBuild?.()
 
-  if (isElectron && electronConfig.build && electronConfig.build.disabled !== true) {
-    if (!checkPackageExists('electron-builder'))
-      throw new Error('"electronConfig.build" is powered by "electron-builder", please installed it via `npm i electron-builder -D`')
+  const pack = async () => {
+    if (isElectron && electronConfig.build && electronConfig.build.disabled !== true) {
+      if (!checkPackageExists('electron-builder'))
+        throw new Error('"electronConfig.build" is powered by "electron-builder", please installed it via `npm i electron-builder -D`')
 
-    const { build: electronBuilder } = await import('electron-builder')
+      const { build: electronBuilder } = await import('electron-builder')
 
-    logger.info(TAG, 'Start electron build...\n')
+      logger.info(TAG, 'Start electron build...\n')
 
-    await electronBuilder({
-      config: electronConfig.build.config,
-    })
+      await electronBuilder({
+        config: electronConfig.build.config,
+      })
 
-    await electronConfig.build.afterBuild?.()
+      await electronConfig.build.afterBuild?.()
+    }
+
+    const endTime = performance.now() - startTime
+    logger.success(`\n${TAG}`, `Build succeeded! (${endTime.toFixed(2)}ms)`)
   }
 
-  const endTime = performance.now() - startTime
-  logger.success(`\n${TAG}`, `Build succeeded! (${endTime.toFixed(2)}ms)`)
+  if (autoPack)
+    await pack()
+
+  else
+    return pack
 }
 
 export async function dev(inlineConfig: InlineConfig = {}) {
@@ -138,8 +146,8 @@ export async function dev(inlineConfig: InlineConfig = {}) {
 
   const isElectron = appType === 'electron'
 
-  logger.info(TAG, `Mode: ${bgCyanBright('Development')}`)
-  logger.info(TAG, `Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
+  logger.info(TAG, `💻 Mode: ${bgCyanBright('Development')}`)
+  logger.info(TAG, `✅ Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   // doubleshot env
   const dsEnv = createDoubleShotEnv(appType, config)
@@ -160,6 +168,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
         if (typeof options.watch === 'object')
           userOnRebuild = options.watch.onRebuild
 
+        options.incremental = false
         options.watch = {
           onRebuild: async (error, result) => {
             userOnRebuild?.(error, result)
@@ -174,17 +183,21 @@ export async function dev(inlineConfig: InlineConfig = {}) {
                 child.kill()
               }
 
+              // await result?.rebuild?.()
+
+              // await sleep(500)
               child = runMainProcess(mainFile!, electron)
             }
           },
         }
       }
     }
-    if (i === 0)
-      await doTsupBuild({ clean: true, esbuildOptions, ...tsupOptions }, dsEnv)
 
+    // use esbuild watcher
+    if (i === 0)
+      await doTsupBuild({ clean: true, esbuildOptions, ...tsupOptions, watch: false }, dsEnv)
     else
-      await doTsupBuild({ esbuildOptions, ...tsupOptions, watch: true }, dsEnv)
+      await doTsupBuild({ esbuildOptions, ...tsupOptions, watch: false }, dsEnv)
   }
 
   if (isElectron && electronConfig.rendererUrl && electronConfig.waitForRenderer !== false) {
