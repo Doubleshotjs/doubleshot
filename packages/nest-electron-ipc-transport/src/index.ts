@@ -21,8 +21,15 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
 
     try {
       this.logger.debug(`Process message ${messageChannel}`)
+      const [ipcMainEventObject, ...payload] = args
+      const newArgs = [
+        ...payload,
+        {
+          evt: ipcMainEventObject,
+        },
+      ]
 
-      const result = await handler(args)
+      const result = await handler.apply(this, newArgs)
 
       return {
         data: result,
