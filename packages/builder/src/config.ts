@@ -30,7 +30,9 @@ export interface ElectronBuildConfig {
   afterBuild?: () => Promise<void>
 }
 
-export type TsupConfig = Omit<_TsupOptions, 'entry' | 'outDir' | 'tsconfig' | 'external'>
+export type TsupConfig = Omit<_TsupOptions, 'entry' | 'outDir' | 'tsconfig' | 'external' | 'onSuccess'> & {
+  onSuccess?: () => Promise<any>
+}
 
 export type UserTsupConfig = Pick<_TsupOptions, 'outDir' | 'tsconfig' | 'external'> & {
   /**

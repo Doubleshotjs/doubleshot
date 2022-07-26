@@ -160,44 +160,34 @@ export async function dev(inlineConfig: InlineConfig = {}) {
   let child: ChildProcess
   for (let i = 0; i < tsupConfigs.length; i++) {
     const _tsupConfig = tsupConfigs[i]
-    const { esbuildOptions: _esbuildOptions, ...tsupOptions } = _tsupConfig
-    const esbuildOptions: TsupOptions['esbuildOptions'] = (options, context) => {
-      _esbuildOptions?.(options, context)
-      if (options.watch !== false) {
-        let userOnRebuild: Function | undefined
-        if (typeof options.watch === 'object')
-          userOnRebuild = options.watch.onRebuild
+    const { onSuccess: _onSuccess, watch: _watch, ...tsupOptions } = _tsupConfig
+    const watch = _watch !== false
+    if (!watch)
+      logger.info(TAG, '⚠️  Watch mode is disabled')
 
-        options.incremental = false
-        options.watch = {
-          onRebuild: async (error, result) => {
-            userOnRebuild?.(error, result)
+    if (typeof _onSuccess === 'string')
+      logger.warn(TAG, '⚠️  "onSuccess" only support a function, ignore it.')
 
-            if (error) {
-              logger.error(TAG, 'Rebuild failed:', error)
-            }
-            else {
-              logger.success(TAG, 'Rebuild succeeded!')
-              if (child) {
-                child.off('exit', exitMainProcess)
-                child.kill()
-              }
+    const onSuccess: TsupOptions['onSuccess'] = async () => {
+      if (!watch)
+        return
 
-              // await result?.rebuild?.()
+      if (typeof _onSuccess === 'function')
+        await _onSuccess()
 
-              // await sleep(500)
-              child = runMainProcess(mainFile!, electron)
-            }
-          },
-        }
+      logger.success(TAG, 'Rebuild succeeded!')
+      if (child) {
+        child.off('exit', exitMainProcess)
+        child.kill()
       }
+
+      child = runMainProcess(mainFile!, electron)
     }
 
-    // use esbuild watcher
     if (i === 0)
-      await doTsupBuild({ clean: true, esbuildOptions, ...tsupOptions, watch: false }, dsEnv)
+      await doTsupBuild({ clean: true, onSuccess, watch, ...tsupOptions }, dsEnv)
     else
-      await doTsupBuild({ esbuildOptions, ...tsupOptions, watch: false }, dsEnv)
+      await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
   }
 
   if (isElectron && electronConfig.rendererUrl && electronConfig.waitForRenderer !== false) {

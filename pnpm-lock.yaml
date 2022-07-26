@@ -51,7 +51,7 @@ importers:
       esbuild: ^0.14.44
       joycon: ^3.1.1
       resolve-from: ^5.0.0
-      tsup: ^6.1.2
+      tsup: ^6.2.0
       wait-on: ^6.0.1
     dependencies:
       '@swc/core': 1.2.207
@@ -62,7 +62,7 @@ importers:
       esbuild: 0.14.44
       joycon: 3.1.1
       resolve-from: 5.0.0
-      tsup: 6.1.2_@swc+core@1.2.207
+      tsup: 6.2.0_@swc+core@1.2.207
       wait-on: 6.0.1
     devDependencies:
       '@types/wait-on': 5.3.1
@@ -1519,7 +1519,6 @@ packages:
     dependencies:
       esbuild: 0.14.49
       load-tsconfig: 0.2.3
-    dev: true
 
   /cac/6.7.12:
     resolution: {integrity: sha512-rM7E2ygtMkJqD9c7WnFU6fruFcN3xe4FM5yUmgxhZzIKJk4uHl9U/fhwdajGFQbQuv43FAUo1Fe8gX/oIKDeSA==}
@@ -2413,7 +2412,6 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-android-arm64/0.14.44:
@@ -2430,7 +2428,6 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-darwin-64/0.14.44:
@@ -2447,7 +2444,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-darwin-arm64/0.14.44:
@@ -2464,7 +2460,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-freebsd-64/0.14.44:
@@ -2481,7 +2476,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-freebsd-arm64/0.14.44:
@@ -2498,7 +2492,6 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-linux-32/0.14.44:
@@ -2515,7 +2508,6 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-linux-64/0.14.44:
@@ -2532,7 +2524,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-linux-arm/0.14.44:
@@ -2549,7 +2540,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-linux-arm64/0.14.44:
@@ -2566,7 +2556,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-linux-mips64le/0.14.44:
@@ -2583,7 +2572,6 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-linux-ppc64le/0.14.44:
@@ -2600,7 +2588,6 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-linux-riscv64/0.14.44:
@@ -2617,7 +2604,6 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-linux-s390x/0.14.44:
@@ -2634,7 +2620,6 @@ packages:
     cpu: [s390x]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-netbsd-64/0.14.44:
@@ -2651,7 +2636,6 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-openbsd-64/0.14.44:
@@ -2668,7 +2652,6 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-sunos-64/0.14.44:
@@ -2685,7 +2668,6 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-windows-32/0.14.44:
@@ -2702,7 +2684,6 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-windows-64/0.14.44:
@@ -2719,7 +2700,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild-windows-arm64/0.14.44:
@@ -2736,7 +2716,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /esbuild/0.14.44:
@@ -2792,7 +2771,6 @@ packages:
       esbuild-windows-32: 0.14.49
       esbuild-windows-64: 0.14.49
       esbuild-windows-arm64: 0.14.49
-    dev: true
 
   /escalade/3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
@@ -5722,8 +5700,8 @@ packages:
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
 
-  /tsup/6.1.2_@swc+core@1.2.207:
-    resolution: {integrity: sha512-Hw4hKDHaAQkm2eVavlArEOrAPA93bziRDamdfwaNs0vXQdUUFfItvUWY0L/F6oQQMVh6GvjQq1+HpDXw8UKtPA==}
+  /tsup/6.2.0_@swc+core@1.2.207:
+    resolution: {integrity: sha512-PNRQY/eUrtQgPHITOa9qU1Qss2AKHZl9OJFMsQGF+rpcQBMIYh5i0BUh5Gam8C8J0OuNQOGazqBEQHWMFLJKlQ==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -5739,11 +5717,11 @@ packages:
         optional: true
     dependencies:
       '@swc/core': 1.2.207
-      bundle-require: 3.0.4_esbuild@0.14.44
+      bundle-require: 3.0.4_esbuild@0.14.49
       cac: 6.7.12
       chokidar: 3.5.3
       debug: 4.3.4
-      esbuild: 0.14.44
+      esbuild: 0.14.49
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1

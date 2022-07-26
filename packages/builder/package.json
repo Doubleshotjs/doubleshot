@@ -55,7 +55,7 @@
     "esbuild": "^0.14.44",
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0",
-    "tsup": "^6.1.2",
+    "tsup": "^6.2.0",
     "wait-on": "^6.0.1"
   },
   "devDependencies": {
