@@ -159,6 +159,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
 
   let child: ChildProcess
   for (let i = 0; i < tsupConfigs.length; i++) {
+    let isFirstBuild = true
     const _tsupConfig = tsupConfigs[i]
     const { onSuccess: _onSuccess, watch: _watch, ...tsupOptions } = _tsupConfig
     const watch = _watch !== false
@@ -174,6 +175,12 @@ export async function dev(inlineConfig: InlineConfig = {}) {
 
       if (typeof _onSuccess === 'function')
         await _onSuccess()
+
+      // first build will not trigger rebuild
+      if (isFirstBuild) {
+        isFirstBuild = false
+        return
+      }
 
       logger.success(TAG, 'Rebuild succeeded!')
       if (child) {

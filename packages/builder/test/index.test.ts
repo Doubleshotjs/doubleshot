@@ -87,6 +87,44 @@ describe('Doubleshot Builder: Dev Mode', () => {
       expect(error.message).toContain('Timed out waiting for')
     }
   })
+
+  it('should rebuild when file changed', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      tsupConfig: {
+        env: {
+          EXIT_TIME: '5000',
+        },
+      },
+      electron: {
+        waitTimeout: 2000,
+        waitForRenderer: true,
+        rendererUrl: `file://${path.resolve(mockDir, 'index.html')}`,
+      },
+    })
+
+    const mainFile = path.resolve(mockDir, 'src', 'main.ts')
+    const mainFileContent = fs.readFileSync(mainFile, 'utf8')
+
+    try {
+      let logs = ''
+      await Promise.all([
+        (async () => {
+          await sleep(2000)
+          fs.writeFileSync(mainFile, `${mainFileContent}\nconsole.log("modify main.ts")`)
+        })(),
+        (async () => {
+          logs = await run('dev', ['-t', 'electron'])
+        })(),
+      ])
+
+      expect(logs).toContain('Rebuild succeeded!')
+      expect(logs).toContain('modify main.ts')
+    }
+    finally {
+      fs.writeFileSync(mainFile, mainFileContent)
+    }
+  })
 })
 
 describe('Doubleshot Builder: Build Mode', () => {
