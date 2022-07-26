@@ -1,3 +1,12 @@
+# [0.1.0-alpha.4](https://github.com/archergu/doubleshot/compare/nest-electron-ipc-transport@0.1.0-alpha.3...nest-electron-ipc-transport@0.1.0-alpha.4) (2022-07-26)
+
+
+### Bug Fixes
+
+* **nest-electron-ipc-transport:** remove GetParamsFromMessageChannel ([4799f16](https://github.com/archergu/doubleshot/commit/4799f16cd7669711c1345d16a53786074eea60b3))
+
+
+
 # [0.1.0-alpha.3](https://github.com/archergu/doubleshot/compare/nest-electron-ipc-transport@0.1.0-alpha.2...nest-electron-ipc-transport@0.1.0-alpha.3) (2022-07-24)
 
 
