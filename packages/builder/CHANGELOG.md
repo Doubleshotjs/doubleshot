@@ -1,3 +1,12 @@
+# [0.1.0-alpha.5](https://github.com/archergu/doubleshot/compare/builder@0.1.0-alpha.4...builder@0.1.0-alpha.5) (2022-07-26)
+
+
+### Features
+
+* **builder:** use tsup watch mode ([5e5dcb0](https://github.com/archergu/doubleshot/commit/5e5dcb09d34a1e12cb72baa755af3cd4c04ddc95))
+
+
+
 ## 0.1.0-alpha.4 (2022-07-25)
 
 * feat(builder): add autoPack for build ([0bdc9e6](https://github.com/archergu/doubleshot/commit/0bdc9e6))
