@@ -12,15 +12,15 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
   protected readonly logger = new Logger(ElectronIpcTransport.name)
 
   async onMessage(messageChannel: string, ...args: any[]): Promise<IpcResponse<any>> {
-    const handler: MessageHandler | undefined = this.messageHandlers.get(messageChannel)
-    if (!handler) {
-      const errMsg = `No handler for message channel "${messageChannel}"`
-      this.logger.warn(errMsg)
-      throw new Error(errMsg)
-    }
-
     try {
-      this.logger.debug(`Process message ${messageChannel}`)
+      const handler: MessageHandler | undefined = this.messageHandlers.get(messageChannel)
+      if (!handler) {
+        const errMsg = `No handler for message channel "${messageChannel}"`
+        this.logger.warn(errMsg)
+        throw new Error(errMsg)
+      }
+
+      this.logger.log(`Process message ${messageChannel}`)
       const [ipcMainEventObject, ...payload] = args
       const newArgs = [
         ...payload,
