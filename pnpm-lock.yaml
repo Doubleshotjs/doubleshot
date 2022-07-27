@@ -46,7 +46,7 @@ importers:
       cac: ^6.7.12
       check-package-exists: ^1.1.0
       colorette: ^2.0.19
-      electron: 19.0.9
+      electron: 19.0.10
       electron-builder: 23.1.0
       esbuild: ^0.14.44
       joycon: ^3.1.1
@@ -66,19 +66,19 @@ importers:
       wait-on: 6.0.1
     devDependencies:
       '@types/wait-on': 5.3.1
-      electron: 19.0.9
+      electron: 19.0.10
       electron-builder: 23.1.0
 
   packages/nest-electron:
     specifiers:
       '@nestjs/common': 9.0.5
       '@nestjs/core': 9.0.5
-      electron: 19.0.9
+      electron: 19.0.10
       reflect-metadata: 0.1.13
     devDependencies:
       '@nestjs/common': 9.0.5_47vcjb2de6lyibr6g4enoa5lyu
       '@nestjs/core': 9.0.5_wclkcf3nqj4alixp6w234apqaq
-      electron: 19.0.9
+      electron: 19.0.10
       reflect-metadata: 0.1.13
 
   packages/nest-electron-ipc-transport:
@@ -86,13 +86,13 @@ importers:
       '@nestjs/common': 9.0.5
       '@nestjs/core': 9.0.5
       '@nestjs/microservices': 9.0.5
-      electron: 19.0.9
+      electron: 19.0.10
       reflect-metadata: 0.1.13
     devDependencies:
       '@nestjs/common': 9.0.5_47vcjb2de6lyibr6g4enoa5lyu
       '@nestjs/core': 9.0.5_qpedux3nsop2ulo244ajfzouia
       '@nestjs/microservices': 9.0.5_djxetcc4cgjq2cnitoenkguul4
-      electron: 19.0.9
+      electron: 19.0.10
       reflect-metadata: 0.1.13
 
   packages/plugin-vite:
@@ -2297,8 +2297,8 @@ packages:
       - supports-color
     dev: true
 
-  /electron/19.0.9:
-    resolution: {integrity: sha512-ooEwrv8Y7NSzdhKcl6kPCYecnzcg5nFWuS5ryG+VFH3MMBR8zXh9nW2wLsZrBz6OGUxXrcc5BKBC7dA8C6RhGQ==}
+  /electron/19.0.10:
+    resolution: {integrity: sha512-EiWtPWdD7CzkRkp1cw7t0N9W2qhI5XZOudHX7daOh5wI076nsdV2dtlAf/XyTHhPNoKR5qhTWrSnYL9PY6D1vg==}
     engines: {node: '>= 8.6'}
     hasBin: true
     requiresBuild: true
@@ -5734,7 +5734,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - ts-node
-    dev: false
 
   /tsup/6.2.0_xztiqn7b6ytbqwqjfss7vjmmaa:
     resolution: {integrity: sha512-PNRQY/eUrtQgPHITOa9qU1Qss2AKHZl9OJFMsQGF+rpcQBMIYh5i0BUh5Gam8C8J0OuNQOGazqBEQHWMFLJKlQ==}
