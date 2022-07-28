@@ -33,7 +33,7 @@
     "build": "tsup"
   },
   "peerDependencies": {
-    "electron-builder": "^23.0.3"
+    "electron-builder": "^20.0.0 || 21.0.0 || ^22.0.0 || ^23.0.0"
   },
   "peerDependenciesMeta": {
     "electron-builder": {
