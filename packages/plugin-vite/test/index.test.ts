@@ -50,6 +50,22 @@ describe('Doubleshot Vite Plugin', () => {
     expect(logs).toContain('Development')
   })
 
+  describe('plugin\'s config should be overridden by `configureForMode`', async () => {
+    it('should match snapshot in development mode', async () => {
+      const devLogs = await run('dev')
+      const devResult = fs.readFileSync(path.resolve(mockDir, 'dist/main/index.js'), 'utf8')
+      expect(devLogs).toContain('override config for development')
+      expect(devResult).toMatchSnapshot()
+    })
+
+    it('should match snapshot in production mode', async () => {
+      const prodLogs = await run('build')
+      const prodResult = fs.readFileSync(path.resolve(mockDir, 'dist/main/index.js'), 'utf8')
+      expect(prodLogs).toContain('override config for production')
+      expect(prodResult).toMatchSnapshot()
+    })
+  })
+
   it('should also inject preload', async () => {
     const logs = await run('dev')
 

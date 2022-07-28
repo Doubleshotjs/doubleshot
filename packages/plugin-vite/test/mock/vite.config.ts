@@ -10,6 +10,20 @@ export default defineConfig({
       entry: 'src/index.ts',
       outDir: 'dist/main',
       external: ['electron'],
+      configureForMode(userConfig, mode) {
+        if (mode === 'production') {
+          console.log('override config for production')
+          userConfig.tsupConfig = {
+            minifyWhitespace: true,
+          }
+        }
+        else {
+          console.log('override config for development')
+          userConfig.tsupConfig = {
+            minifyWhitespace: false,
+          }
+        }
+      },
       electron: {
         build: {
           config: './electron-builder.config.js',
