@@ -17,7 +17,7 @@ importers:
       mono-release: 2.4.0
       rimraf: 3.0.2
       simple-git-hooks: 2.8.0
-      tsup: 6.2.0
+      tsup: 6.2.1
       typescript: 4.7.4
       vitest: 0.19.1
     devDependencies:
@@ -34,7 +34,7 @@ importers:
       mono-release: 2.4.0_3u3bztnv34xpapk67lcdq6fnmm
       rimraf: 3.0.2
       simple-git-hooks: 2.8.0
-      tsup: 6.2.0_2zb4djrd2nvmcl223gn4oup5r4
+      tsup: 6.2.1_2zb4djrd2nvmcl223gn4oup5r4
       typescript: 4.7.4
       vitest: 0.19.1
 
@@ -5722,43 +5722,6 @@ packages:
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
 
-  /tsup/6.2.0_2zb4djrd2nvmcl223gn4oup5r4:
-    resolution: {integrity: sha512-PNRQY/eUrtQgPHITOa9qU1Qss2AKHZl9OJFMsQGF+rpcQBMIYh5i0BUh5Gam8C8J0OuNQOGazqBEQHWMFLJKlQ==}
-    engines: {node: '>=14'}
-    hasBin: true
-    peerDependencies:
-      '@swc/core': ^1
-      postcss: ^8.4.12
-      typescript: ^4.1.0
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      postcss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@swc/core': 1.2.220
-      bundle-require: 3.0.4_esbuild@0.14.49
-      cac: 6.7.12
-      chokidar: 3.5.3
-      debug: 4.3.4
-      esbuild: 0.14.49
-      execa: 5.1.1
-      globby: 11.1.0
-      joycon: 3.1.1
-      postcss-load-config: 3.1.4
-      resolve-from: 5.0.0
-      rollup: 2.75.7
-      source-map: 0.8.0-beta.0
-      sucrase: 3.22.0
-      tree-kill: 1.2.2
-      typescript: 4.7.4
-    transitivePeerDependencies:
-      - supports-color
-      - ts-node
-    dev: true
-
   /tsup/6.2.0_@swc+core@1.2.207:
     resolution: {integrity: sha512-PNRQY/eUrtQgPHITOa9qU1Qss2AKHZl9OJFMsQGF+rpcQBMIYh5i0BUh5Gam8C8J0OuNQOGazqBEQHWMFLJKlQ==}
     engines: {node: '>=14'}
@@ -5794,6 +5757,43 @@ packages:
       - supports-color
       - ts-node
     dev: false
+
+  /tsup/6.2.1_2zb4djrd2nvmcl223gn4oup5r4:
+    resolution: {integrity: sha512-KhBhCqVA3bHrIWhkcqTUA7R69H05IcBlHEtCVLEu42XDGUzz+bDqCcfu5PwpkKJ8DqK5tpdgM/qmyk4DdUbkZw==}
+    engines: {node: '>=14'}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': ^1
+      postcss: ^8.4.12
+      typescript: ^4.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      postcss:
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@swc/core': 1.2.220
+      bundle-require: 3.0.4_esbuild@0.14.49
+      cac: 6.7.12
+      chokidar: 3.5.3
+      debug: 4.3.4
+      esbuild: 0.14.49
+      execa: 5.1.1
+      globby: 11.1.0
+      joycon: 3.1.1
+      postcss-load-config: 3.1.4
+      resolve-from: 5.0.0
+      rollup: 2.75.7
+      source-map: 0.8.0-beta.0
+      sucrase: 3.22.0
+      tree-kill: 1.2.2
+      typescript: 4.7.4
+    transitivePeerDependencies:
+      - supports-color
+      - ts-node
+    dev: true
 
   /tsutils/3.21.0_typescript@4.7.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
