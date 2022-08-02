@@ -41,7 +41,7 @@
     "build": "tsup"
   },
   "peerDependencies": {
-    "vite": "^2.0.0 || ^3.0.0"
+    "vite": ">=2.0.0"
   },
   "dependencies": {
     "@doubleshot/builder": "workspace:*"

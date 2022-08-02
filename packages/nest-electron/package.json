@@ -26,8 +26,8 @@
     "build": "rimraf dist && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@nestjs/common": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
-    "electron": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0"
+    "@nestjs/common": ">=6.0.0",
+    "electron": ">=16.0.0"
   },
   "devDependencies": {
     "@nestjs/common": "9.0.7",
