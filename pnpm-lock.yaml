@@ -46,7 +46,7 @@ importers:
       cac: ^6.7.12
       check-package-exists: ^1.1.0
       colorette: ^2.0.19
-      electron: 20.0.0
+      electron: 20.0.1
       electron-builder: 23.3.3
       esbuild: ^0.14.44
       joycon: ^3.1.1
@@ -66,19 +66,19 @@ importers:
       wait-on: 6.0.1
     devDependencies:
       '@types/wait-on': 5.3.1
-      electron: 20.0.0
+      electron: 20.0.1
       electron-builder: 23.3.3
 
   packages/nest-electron:
     specifiers:
       '@nestjs/common': 9.0.8
       '@nestjs/core': 9.0.8
-      electron: 20.0.0
+      electron: 20.0.1
       reflect-metadata: 0.1.13
     devDependencies:
       '@nestjs/common': 9.0.8_47vcjb2de6lyibr6g4enoa5lyu
       '@nestjs/core': 9.0.8_nw4ytuuvc67ann4nsnqjn5dffi
-      electron: 20.0.0
+      electron: 20.0.1
       reflect-metadata: 0.1.13
 
   packages/nest-electron-ipc-transport:
@@ -86,13 +86,13 @@ importers:
       '@nestjs/common': 9.0.8
       '@nestjs/core': 9.0.8
       '@nestjs/microservices': 9.0.8
-      electron: 20.0.0
+      electron: 20.0.1
       reflect-metadata: 0.1.13
     devDependencies:
       '@nestjs/common': 9.0.8_47vcjb2de6lyibr6g4enoa5lyu
       '@nestjs/core': 9.0.8_cn5xbvzl44aw56ihjcnvl75lda
       '@nestjs/microservices': 9.0.8_tbzj5hi3ifwu3qwrvd7a4loihe
-      electron: 20.0.0
+      electron: 20.0.1
       reflect-metadata: 0.1.13
 
   packages/plugin-vite:
@@ -2324,8 +2324,8 @@ packages:
       - supports-color
     dev: true
 
-  /electron/20.0.0:
-    resolution: {integrity: sha512-rPHTdjBKGSoLgGuJVsqDgmK9woDQxzlU18H+3cO4i+fNh29BMbFRwKKyit13lniO1hzRsEJDG5UKvFXs4vEpnA==}
+  /electron/20.0.1:
+    resolution: {integrity: sha512-5c7zr8oy1JsCV86BaoIPVLo4yevDfvPEsMQcGlgfJ5PS7ouAVvR1aHt0tjF65bL1vYdoQ1olvpextg2T8FyICA==}
     engines: {node: '>= 10.17.0'}
     hasBin: true
     requiresBuild: true
