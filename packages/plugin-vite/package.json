@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-doubleshot",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-beta.0",
   "description": "Doubleshot Builder for Vite",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "license": "MIT",
