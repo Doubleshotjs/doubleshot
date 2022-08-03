@@ -1,6 +1,6 @@
 {
   "name": "@doubleshot/nest-electron-ipc-transport",
-  "version": "0.1.0-alpha.5",
+  "version": "0.1.0-beta.0",
   "description": "Electron IPC transport for nestjs microservices",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "license": "MIT",
