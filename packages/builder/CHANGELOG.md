@@ -1,3 +1,12 @@
+# [0.1.0-beta.1](https://github.com/archergu/doubleshot/compare/builder@0.1.0-beta.0...builder@0.1.0-beta.1) (2022-08-03)
+
+
+### Bug Fixes
+
+* **builder:** rebuild will clean all outdir ([6332066](https://github.com/archergu/doubleshot/commit/6332066fb6cb88e428be7441395ad1338e9654d8))
+
+
+
 # [0.1.0-beta.0](https://github.com/archergu/doubleshot/compare/builder@0.1.0-alpha.5...builder@0.1.0-beta.0) (2022-08-03)
 
 
