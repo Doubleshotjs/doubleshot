@@ -99,11 +99,7 @@ export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
   // tsup build
   for (let i = 0; i < tsupConfigs.length; i++) {
     const tsupConfig = tsupConfigs[i]
-    if (i === 0)
-      await doTsupBuild({ clean: true, ...tsupConfig }, dsEnv)
-
-    else
-      await doTsupBuild({ ...tsupConfig }, dsEnv)
+    await doTsupBuild({ ...tsupConfig }, dsEnv)
   }
 
   await afterBuild?.()
@@ -191,10 +187,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
       child = runMainProcess(mainFile!, electron)
     }
 
-    if (i === 0)
-      await doTsupBuild({ clean: true, onSuccess, watch, ...tsupOptions }, dsEnv)
-    else
-      await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
+    await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
   }
 
   if (isElectron && electronConfig.rendererUrl && electronConfig.waitForRenderer !== false) {
