@@ -1,3 +1,12 @@
+# [0.1.0-beta.1](https://github.com/archergu/doubleshot/compare/nest-electron-ipc-transport@0.1.0-beta.0...nest-electron-ipc-transport@0.1.0-beta.1) (2022-08-05)
+
+
+### Features
+
+* **nest-electron-ipc-transport:** support custom logger name ([d72a6ca](https://github.com/archergu/doubleshot/commit/d72a6ca9923f2fac835398f7016545f360244f7c))
+
+
+
 # [0.1.0-beta.0](https://github.com/archergu/doubleshot/compare/nest-electron-ipc-transport@0.1.0-alpha.5...nest-electron-ipc-transport@0.1.0-beta.0) (2022-08-03)
 
 
