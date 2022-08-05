@@ -9,7 +9,12 @@ export interface IpcResponse<T> {
 }
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
-  protected readonly logger = new Logger(ElectronIpcTransport.name)
+  protected readonly logger: Logger
+
+  constructor(name: string = ElectronIpcTransport.name) {
+    super()
+    this.logger = new Logger(name)
+  }
 
   async onMessage(messageChannel: string, ...args: any[]): Promise<IpcResponse<any>> {
     try {
