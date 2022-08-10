@@ -52,7 +52,7 @@
     "cac": "^6.7.12",
     "check-package-exists": "^1.1.0",
     "colorette": "^2.0.19",
-    "esbuild": "^0.14.44",
+    "esbuild": "^0.15.0",
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0",
     "tsup": "^6.2.0",
