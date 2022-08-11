@@ -31,9 +31,9 @@
     "electron": ">=16.0.0"
   },
   "devDependencies": {
-    "@nestjs/common": "9.0.8",
-    "@nestjs/core": "9.0.8",
-    "@nestjs/microservices": "9.0.8",
+    "@nestjs/common": "9.0.9",
+    "@nestjs/core": "9.0.9",
+    "@nestjs/microservices": "9.0.9",
     "electron": "20.0.2",
     "reflect-metadata": "0.1.13"
   }
