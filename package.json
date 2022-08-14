@@ -21,7 +21,7 @@
   "devDependencies": {
     "@lightwing/eslint-config": "0.0.3",
     "@nestjs/testing": "9.0.9",
-    "@swc/core": "1.2.229",
+    "@swc/core": "1.2.230",
     "@types/fs-extra": "9.0.13",
     "@types/node": "18.0.2",
     "conventional-changelog-cli": "2.2.2",
