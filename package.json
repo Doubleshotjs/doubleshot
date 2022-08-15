@@ -19,7 +19,7 @@
     "ci-publish": "mor publish -u pnpm"
   },
   "devDependencies": {
-    "@lightwing/eslint-config": "0.0.3",
+    "@lightwing/eslint-config": "0.0.4",
     "@nestjs/testing": "9.0.9",
     "@swc/core": "1.2.231",
     "@types/fs-extra": "9.0.13",
