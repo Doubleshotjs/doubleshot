@@ -1,3 +1,17 @@
+# [0.1.0-beta.2](https://github.com/archergu/doubleshot/compare/builder@0.1.0-beta.1...builder@0.1.0-beta.2) (2022-08-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency esbuild to ^0.15.0 ([5f7f604](https://github.com/archergu/doubleshot/commit/5f7f604cf9c895840bc7b13aa5c9b41524da8dba))
+
+
+### Features
+
+* **builder:** support multiple preload files ([774c5c0](https://github.com/archergu/doubleshot/commit/774c5c0fb268964a91eb74f106bb8550c7327ab6))
+
+
+
 # [0.1.0-beta.1](https://github.com/archergu/doubleshot/compare/builder@0.1.0-beta.0...builder@0.1.0-beta.1) (2022-08-03)
 
 
