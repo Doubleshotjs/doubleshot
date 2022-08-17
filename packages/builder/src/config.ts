@@ -46,11 +46,23 @@ export type UserTsupConfig = Pick<_TsupOptions, 'outDir' | 'tsconfig' | 'externa
   tsupConfig?: string | TsupConfig
 }
 
+export type PreloadTsupConfig = Pick<_TsupOptions, 'outDir' | 'tsconfig' | 'external'> & {
+  /**
+   *  preload file entry points, support multiple files
+   */
+  entry?: string | string[]
+  /**
+   * tsup config file path, or tsup config object
+   * @note 'entry' will be ignored
+   */
+  tsupConfig?: string | TsupConfig
+}
+
 export interface ElectronConfig {
   /**
    * The build configuration of the preload file
    */
-  preload?: UserTsupConfig
+  preload?: PreloadTsupConfig
   /**
    * electron-builder configuration
    */
@@ -246,7 +258,7 @@ async function getMainFileAndCheck(cwd: string, defaultMainFile?: string) {
   return mainFile
 }
 
-async function mergeTsupConfig(inputConfig: UserTsupConfig, cwd: string, defaultConfig: _TsupOptions = {}): Promise<_TsupOptions> {
+async function mergeTsupConfig(inputConfig: UserTsupConfig | PreloadTsupConfig, cwd: string, defaultConfig: _TsupOptions = {}): Promise<_TsupOptions> {
   let extraCfg: _TsupOptions | undefined
   if (inputConfig.tsupConfig) {
     // load tsup config
@@ -277,7 +289,7 @@ async function mergeTsupConfig(inputConfig: UserTsupConfig, cwd: string, default
 
   // merge tsup config
   const tsupConfig: _TsupOptions = merge(defaultConfig, {
-    entry: inputConfig.entry ? [inputConfig.entry] : undefined,
+    entry: inputConfig.entry ? (Array.isArray(inputConfig.entry) ? inputConfig.entry : [inputConfig.entry]) : undefined,
     outDir: inputConfig.outDir,
     tsconfig: inputConfig.tsconfig,
     external: inputConfig.external,
