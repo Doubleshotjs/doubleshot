@@ -3,6 +3,8 @@ import type { Plugin, ResolvedConfig } from 'vite'
 import type { InlineConfig } from '@doubleshot/builder'
 import { build, dev } from '@doubleshot/builder'
 
+export { defineConfig } from '@doubleshot/builder'
+
 export interface VitePluginDoubleshotConfig extends InlineConfig {
   /**
    * This hook can override the plugin config by Vite mode ('development' or 'production')
