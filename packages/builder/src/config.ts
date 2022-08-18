@@ -81,6 +81,11 @@ export interface ElectronConfig {
   waitTimeout?: number
 }
 
+export interface DevArgs {
+  node?: string[]
+  electron?: string[]
+}
+
 export interface UserConfig extends UserTsupConfig {
   /**
    * App type, 'node' or 'electron'
@@ -92,6 +97,11 @@ export interface UserConfig extends UserTsupConfig {
    * @default 'package.json'.main
    */
   main?: string
+
+  /**
+   * Arguments passed to the command in development mode
+   */
+  args?: string[] | DevArgs
   /**
    * Some configuration for electron
    */
@@ -134,6 +144,7 @@ export type ResolvedConfig = Readonly<{
   cwd: string
   type: AppType
   main: string
+  args: string[] | DevArgs
   tsupConfigs: _TsupOptions[]
   electron: Omit<ElectronConfig, 'preload'>
 } & Pick<UserConfig, 'afterBuild'>>
@@ -220,6 +231,7 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
     cwd,
     type: appType,
     main: mainFile,
+    args: config.args || [],
     tsupConfigs: tsupConfigArr,
     electron: {
       build: electronBuilderConfig,

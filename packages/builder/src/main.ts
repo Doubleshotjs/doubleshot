@@ -9,7 +9,7 @@ import waitOn from 'wait-on'
 import { checkPackageExists } from 'check-package-exists'
 import { TAG } from './constants'
 import { resolveConfig } from './config'
-import type { AppType, InlineConfig, ResolvedConfig } from './config'
+import type { AppType, DevArgs, InlineConfig, ResolvedConfig } from './config'
 import { createLogger } from './log'
 
 const logger = createLogger()
@@ -19,12 +19,20 @@ function exitMainProcess() {
   process.exit(0)
 }
 
-function runMainProcess(mainFile: string, electron: any) {
+function runMainProcess(mainFile: string, electron: any, args: string[] | DevArgs = []) {
   if (!fs.existsSync(mainFile))
     throw new Error(`Main file not found: ${mainFile}`)
 
   logger.success(TAG, `⚡ Run main file: ${greenBright(mainFile)}`)
-  return spawn(electron ?? 'node', [mainFile], { stdio: 'inherit' }).on('exit', exitMainProcess)
+
+  let devArgs: string[] = []
+  if (Array.isArray(args))
+    devArgs = [...args]
+
+  else
+    devArgs = electron ? [...(args.electron || [])] : [...(args.node || [])]
+
+  return spawn(electron ?? 'node', [mainFile, ...devArgs], { stdio: 'inherit' }).on('exit', exitMainProcess)
 }
 
 /**
@@ -88,7 +96,7 @@ export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
   const isElectron = appType === 'electron'
   const startTime = performance.now()
 
-  logger.info(TAG, `📦 Mode: ${bgCyanBright('Production')}`)
+  logger.info(TAG, `📦 Mode: ${bgCyanBright(' Production ')}`)
   logger.info(TAG, `✅ Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   isElectron && electronEnvCheck()
@@ -136,13 +144,14 @@ export async function dev(inlineConfig: InlineConfig = {}) {
   const {
     main: mainFile,
     type: appType = 'node',
+    args = [],
     tsupConfigs = [],
     electron: electronConfig = {},
   } = config
 
   const isElectron = appType === 'electron'
 
-  logger.info(TAG, `💻 Mode: ${bgCyanBright('Development')}`)
+  logger.info(TAG, `💻 Mode: ${bgCyanBright(' Development ')}`)
   logger.info(TAG, `✅ Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   // doubleshot env
@@ -184,7 +193,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
         child.kill()
       }
 
-      child = runMainProcess(mainFile!, electron)
+      child = runMainProcess(mainFile!, electron, args)
     }
 
     await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
@@ -201,5 +210,5 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     }
   }
 
-  child = runMainProcess(mainFile, electron)
+  child = runMainProcess(mainFile, electron, args)
 }
