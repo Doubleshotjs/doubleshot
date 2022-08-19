@@ -125,6 +125,22 @@ describe('Doubleshot Builder: Dev Mode', () => {
       fs.writeFileSync(mainFile, mainFileContent)
     }
   })
+
+  it('should build files only if set "buildOnly" option', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      buildOnly: true,
+      tsupConfig: {
+        watch: false,
+      },
+    })
+
+    const logs = await run('dev', ['-t', 'electron'])
+
+    expect(logs).toContain('BUILD ONLY')
+    expect(logs).toContain('Application won\'t start')
+    expect(logs).not.toContain('Run main file')
+  })
 })
 
 describe('Doubleshot Builder: Build Mode', () => {
@@ -256,6 +272,21 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
     catch (error) {
       expect(error.message).toContain('Timed out waiting for')
     }
+  })
+
+  it('should build files only if set "buildOnly" option', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      tsupConfig: {
+        watch: false,
+      },
+    })
+
+    const logs = await run('dev', ['-t', 'electron', '--build-only'])
+
+    expect(logs).toContain('BUILD ONLY')
+    expect(logs).toContain('Application won\'t start')
+    expect(logs).not.toContain('Run main file')
   })
 })
 

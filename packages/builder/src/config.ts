@@ -97,11 +97,15 @@ export interface UserConfig extends UserTsupConfig {
    * @default 'package.json'.main
    */
   main?: string
-
   /**
    * Arguments passed to the command in development mode
    */
   args?: string[] | DevArgs
+  /**
+   * Only build files and won't run the application in development mode
+   * @default false
+   */
+  buildOnly?: boolean
   /**
    * Some configuration for electron
    */
@@ -145,6 +149,7 @@ export type ResolvedConfig = Readonly<{
   type: AppType
   main: string
   args: string[] | DevArgs
+  buildOnly: boolean
   tsupConfigs: _TsupOptions[]
   electron: Omit<ElectronConfig, 'preload'>
 } & Pick<UserConfig, 'afterBuild'>>
@@ -227,11 +232,14 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
     electronBuilderConfig = resolveElectronBuilderConfig(electronConfig, cwd)
   }
 
+  const buildOnly = !!(inlineConfig.buildOnly || config.buildOnly)
+
   return {
     cwd,
     type: appType,
     main: mainFile,
     args: config.args || [],
+    buildOnly,
     tsupConfigs: tsupConfigArr,
     electron: {
       build: electronBuilderConfig,

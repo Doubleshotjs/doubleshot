@@ -31,6 +31,7 @@ interface DevOptions {
   waitForRenderer?: boolean
   waitTimeout?: number
   rendererUrl?: string
+  buildOnly?: boolean
 }
 
 interface BuildOptions {
@@ -56,6 +57,7 @@ cli
   .option('--wait-for-renderer', 'Wait for renderer process to be ready')
   .option('--wait-timeout', 'Wait for renderer process ready timeout')
   .option('--renderer-url', 'Renderer process url')
+  .option('--build-only', 'Only build files and won\'t run the application')
   .action(async (options: DevOptions & GlobalCLIOptions) => {
     const logger = createLogger()
     const { dev } = await import('./main')
@@ -74,6 +76,7 @@ cli
         waitForRenderer: options.waitForRenderer,
         waitTimeout: options.waitTimeout,
         rendererUrl: options.rendererUrl,
+        buildOnly: options.buildOnly,
       })
     }
     catch (e) {

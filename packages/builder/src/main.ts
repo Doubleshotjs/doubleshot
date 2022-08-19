@@ -2,7 +2,7 @@ import { performance } from 'perf_hooks'
 import type { ChildProcess } from 'child_process'
 import { spawn } from 'child_process'
 import fs from 'fs'
-import { bgCyan, bgCyanBright, bgGreen, cyan, greenBright } from 'colorette'
+import { bgCyan, bgCyanBright, bgGreen, bgYellowBright, cyan, greenBright } from 'colorette'
 import { build as tsupBuild } from 'tsup'
 import type { Options as TsupOptions } from 'tsup'
 import waitOn from 'wait-on'
@@ -145,6 +145,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     main: mainFile,
     type: appType = 'node',
     args = [],
+    buildOnly = false,
     tsupConfigs = [],
     electron: electronConfig = {},
   } = config
@@ -188,6 +189,9 @@ export async function dev(inlineConfig: InlineConfig = {}) {
       }
 
       logger.success(TAG, 'Rebuild succeeded!')
+      if (buildOnly)
+        return
+
       if (child) {
         child.off('exit', exitMainProcess)
         child.kill()
@@ -197,6 +201,11 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     }
 
     await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
+  }
+
+  if (buildOnly) {
+    logger.info(TAG, `${bgYellowBright(' BUILD ONLY ')} Application won't start`)
+    return
   }
 
   if (isElectron && electronConfig.rendererUrl && electronConfig.waitForRenderer !== false) {
