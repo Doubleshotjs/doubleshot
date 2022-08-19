@@ -2,7 +2,7 @@ import { performance } from 'perf_hooks'
 import type { ChildProcess } from 'child_process'
 import { spawn } from 'child_process'
 import fs from 'fs'
-import { bgCyan, bgCyanBright, bgGreen, bgYellowBright, cyan, greenBright } from 'colorette'
+import { bgCyan, bgCyanBright, bgGreen, bgMagentaBright, bgYellowBright, cyan, greenBright } from 'colorette'
 import { build as tsupBuild } from 'tsup'
 import type { Options as TsupOptions } from 'tsup'
 import waitOn from 'wait-on'
@@ -97,7 +97,7 @@ export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
   const startTime = performance.now()
 
   logger.info(TAG, `📦 Mode: ${bgCyanBright(' Production ')}`)
-  logger.info(TAG, `✅ Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
+  logger.info(TAG, `💠 Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   isElectron && electronEnvCheck()
 
@@ -109,6 +109,7 @@ export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
     const tsupConfig = tsupConfigs[i]
     await doTsupBuild({ ...tsupConfig }, dsEnv)
   }
+  logger.success(TAG, '✅ Prebuild succeeded!')
 
   await afterBuild?.()
 
@@ -146,6 +147,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     type: appType = 'node',
     args = [],
     buildOnly = false,
+    runOnly = false,
     tsupConfigs = [],
     electron: electronConfig = {},
   } = config
@@ -153,58 +155,70 @@ export async function dev(inlineConfig: InlineConfig = {}) {
   const isElectron = appType === 'electron'
 
   logger.info(TAG, `💻 Mode: ${bgCyanBright(' Development ')}`)
-  logger.info(TAG, `✅ Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
+  logger.info(TAG, `💠 Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   // doubleshot env
   const dsEnv = createDoubleShotEnv(appType, config)
 
-  // tsup build
+  // run process init
   let electron: any | undefined
   if (isElectron && electronEnvCheck())
     electron = await import('electron')
-
   let child: ChildProcess
-  for (let i = 0; i < tsupConfigs.length; i++) {
-    let isFirstBuild = true
-    const _tsupConfig = tsupConfigs[i]
-    const { onSuccess: _onSuccess, watch: _watch, ...tsupOptions } = _tsupConfig
-    const watch = _watch !== false
-    if (!watch)
-      logger.info(TAG, '⚠️  Watch mode is disabled')
 
-    if (typeof _onSuccess === 'string')
-      logger.warn(TAG, '⚠️  "onSuccess" only support a function, ignore it.')
-
-    const onSuccess: TsupOptions['onSuccess'] = async () => {
+  // prebuild files
+  const prebuild = async () => {
+    // tsup build
+    for (let i = 0; i < tsupConfigs.length; i++) {
+      let isFirstBuild = true
+      const _tsupConfig = tsupConfigs[i]
+      const { onSuccess: _onSuccess, watch: _watch, ...tsupOptions } = _tsupConfig
+      const watch = _watch !== false
       if (!watch)
-        return
+        logger.info(TAG, '⚠️  Watch mode is disabled')
 
-      if (typeof _onSuccess === 'function')
-        await _onSuccess()
+      if (typeof _onSuccess === 'string')
+        logger.warn(TAG, '⚠️  "onSuccess" only support a function, ignore it.')
 
-      // first build will not trigger rebuild
-      if (isFirstBuild) {
-        isFirstBuild = false
-        return
+      const onSuccess: TsupOptions['onSuccess'] = async () => {
+        if (!watch)
+          return
+
+        if (typeof _onSuccess === 'function')
+          await _onSuccess()
+
+        // first build will not trigger rebuild
+        if (isFirstBuild) {
+          isFirstBuild = false
+          return
+        }
+
+        logger.success(TAG, 'Rebuild succeeded!')
+        if (buildOnly)
+          return
+
+        if (child) {
+          child.off('exit', exitMainProcess)
+          child.kill()
+        }
+
+        child = runMainProcess(mainFile!, electron, args)
       }
 
-      logger.success(TAG, 'Rebuild succeeded!')
-      if (buildOnly)
-        return
-
-      if (child) {
-        child.off('exit', exitMainProcess)
-        child.kill()
-      }
-
-      child = runMainProcess(mainFile!, electron, args)
+      await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
     }
+  }
 
-    await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
+  if (runOnly) {
+    logger.info(TAG, `🚄 ${bgMagentaBright(' RUN ONLY ')} Prebuild will be skipped`)
+  }
+  else {
+    await prebuild()
+    logger.success(TAG, '✅ Prebuild succeeded!')
   }
 
   if (buildOnly) {
-    logger.info(TAG, `${bgYellowBright(' BUILD ONLY ')} Application won't start`)
+    logger.info(TAG, `🛠️ ${bgYellowBright(' BUILD ONLY ')} Application won't start`)
     return
   }
 

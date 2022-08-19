@@ -32,6 +32,7 @@ interface DevOptions {
   waitTimeout?: number
   rendererUrl?: string
   buildOnly?: boolean
+  runOnly?: boolean
 }
 
 interface BuildOptions {
@@ -57,7 +58,8 @@ cli
   .option('--wait-for-renderer', 'Wait for renderer process to be ready')
   .option('--wait-timeout', 'Wait for renderer process ready timeout')
   .option('--renderer-url', 'Renderer process url')
-  .option('--build-only', 'Only build files and won\'t run the application')
+  .option('--build-only', 'Only prebuild files and won\'t run the application')
+  .option('--run-only', 'Skip prebuild and run the application')
   .action(async (options: DevOptions & GlobalCLIOptions) => {
     const logger = createLogger()
     const { dev } = await import('./main')
@@ -77,6 +79,7 @@ cli
         waitTimeout: options.waitTimeout,
         rendererUrl: options.rendererUrl,
         buildOnly: options.buildOnly,
+        runOnly: options.runOnly,
       })
     }
     catch (e) {

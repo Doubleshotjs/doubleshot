@@ -126,7 +126,7 @@ describe('Doubleshot Builder: Dev Mode', () => {
     }
   })
 
-  it('should build files only if set "buildOnly" option', async () => {
+  it('should prebuild files only if set "buildOnly" option', async () => {
     writeConfigFile({
       ...DEFAULT_CONFIG,
       buildOnly: true,
@@ -140,6 +140,19 @@ describe('Doubleshot Builder: Dev Mode', () => {
     expect(logs).toContain('BUILD ONLY')
     expect(logs).toContain('Application won\'t start')
     expect(logs).not.toContain('Run main file')
+  })
+
+  it('should skip prebuild if set "runOnly" option', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      runOnly: true,
+    })
+
+    const logs = await run('dev', ['-t', 'electron'])
+
+    expect(logs).not.toContain('Prebuild succeeded')
+    expect(logs).toContain('RUN ONLY')
+    expect(logs).toContain('Prebuild will be skipped')
   })
 })
 
@@ -274,7 +287,7 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
     }
   })
 
-  it('should build files only if set "buildOnly" option', async () => {
+  it('should prebuild files only if set "buildOnly" option', async () => {
     writeConfigFile({
       ...DEFAULT_CONFIG,
       tsupConfig: {
@@ -287,6 +300,18 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
     expect(logs).toContain('BUILD ONLY')
     expect(logs).toContain('Application won\'t start')
     expect(logs).not.toContain('Run main file')
+  })
+
+  it('should skip prebuild if set "runOnly" option', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+    })
+
+    const logs = await run('dev', ['-t', 'electron', '--run-only'])
+
+    expect(logs).not.toContain('Prebuild succeeded')
+    expect(logs).toContain('RUN ONLY')
+    expect(logs).toContain('Prebuild will be skipped')
   })
 })
 
