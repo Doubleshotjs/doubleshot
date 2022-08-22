@@ -4,6 +4,9 @@ import { BrowserWindow, app } from 'electron'
 const EXIT_TIME = process.env.EXIT_TIME || 1000
 const isElectron = process.env.DS_APP_TYPE === 'electron'
 const rendererUrl = process.env.DS_RENDERER_URL || `file://${join(__dirname, '../index.html')}`
+
+console.log(`DEBUG MODE ENV TEST: ${process.env.isDebug}`)
+
 function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }

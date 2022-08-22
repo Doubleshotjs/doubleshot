@@ -349,3 +349,58 @@ describe('Doubleshot Builder, Inline Command: Build Mode', () => {
     expect(fs.existsSync(path.resolve(mockDir, 'dist/electron'))).toBe(true)
   }, 10 * 60 * 1000)
 })
+
+describe('Doubleshot Builder, Debug Mode', () => {
+  it('should run in debug mode if sets "--debug" flag ', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+    })
+
+    const logs = await run('dev', ['-t', 'electron', '--debug'])
+
+    expect(logs).toContain('DEBUG')
+  })
+
+  it('should create sourcemap', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+    })
+
+    await run('dev', ['-t', 'electron', '--debug'])
+    expect(fs.existsSync(path.join(mockDir, 'dist', 'main.js.map'))).toBe(true)
+  })
+
+  it('should use debug env', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      debugCfg: {
+        env: {
+          isDebug: 'true',
+        },
+      },
+    })
+
+    let logs = await run('dev', ['-t', 'electron'])
+
+    expect(logs).toContain('DEBUG MODE ENV TEST: undefined')
+
+    logs = await run('dev', ['-t', 'electron', '--debug'])
+
+    expect(logs).toContain('DEBUG MODE ENV TEST: true')
+  })
+
+  it('should use debug args', async () => {
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      debugCfg: {
+        args: ['--inspect=5858'],
+      },
+    })
+
+    let logs = await run('dev', ['-t', 'electron'])
+    expect(logs).not.toContain('Debugger listening on')
+
+    logs = await run('dev', ['-t', 'electron', '--debug'])
+    expect(logs).toContain('Debugger listening on')
+  })
+})
