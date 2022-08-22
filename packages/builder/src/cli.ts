@@ -33,6 +33,7 @@ interface DevOptions {
   rendererUrl?: string
   buildOnly?: boolean
   runOnly?: boolean
+  debug?: boolean
 }
 
 interface BuildOptions {
@@ -60,6 +61,7 @@ cli
   .option('--renderer-url', 'Renderer process url')
   .option('--build-only', 'Only prebuild files and won\'t run the application')
   .option('--run-only', 'Skip prebuild and run the application')
+  .option('--debug', 'Run in debug mode')
   .action(async (options: DevOptions & GlobalCLIOptions) => {
     const logger = createLogger()
     const { dev } = await import('./main')
@@ -80,6 +82,7 @@ cli
         rendererUrl: options.rendererUrl,
         buildOnly: options.buildOnly,
         runOnly: options.runOnly,
+        debug: options.debug,
       })
     }
     catch (e) {

@@ -19,18 +19,13 @@ function exitMainProcess() {
   process.exit(0)
 }
 
-function runMainProcess(mainFile: string, electron: any, args: string[] | DevArgs = []) {
+function runMainProcess(mainFile: string, electron: any, args: DevArgs) {
   if (!fs.existsSync(mainFile))
     throw new Error(`Main file not found: ${mainFile}`)
 
   logger.success(TAG, `⚡ Run main file: ${greenBright(mainFile)}`)
 
-  let devArgs: string[] = []
-  if (Array.isArray(args))
-    devArgs = [...args]
-
-  else
-    devArgs = electron ? [...(args.electron || [])] : [...(args.node || [])]
+  const devArgs = electron ? [...(args.electron || [])] : [...(args.node || [])]
 
   return spawn(electron ?? 'node', [mainFile, ...devArgs], { stdio: 'inherit' }).on('exit', exitMainProcess)
 }
@@ -81,7 +76,44 @@ function createDoubleShotEnv(type: AppType, config: ResolvedConfig): TsupOptions
       dsEnv.DS_RENDERER_URL = config.electron.rendererUrl
   }
 
+  const { debugCfg = {} } = config
+  if (debugCfg.enabled && debugCfg.env) {
+    for (const key in debugCfg.env)
+      dsEnv[key] = debugCfg.env[key]
+  }
+
   return dsEnv
+}
+
+function createDoubleshotArgs(config: ResolvedConfig): DevArgs {
+  const { args = [], debugCfg = {} } = config
+
+  const dsArgs: ResolvedConfig['args'] = {
+    node: [],
+    electron: [],
+  }
+
+  if (Array.isArray(args)) {
+    dsArgs.node = [...args]
+    dsArgs.electron = [...args]
+  }
+  else {
+    dsArgs.node = [...(args.node || [])]
+    dsArgs.electron = [...(args.electron || [])]
+  }
+
+  if (debugCfg.enabled && debugCfg.args) {
+    if (Array.isArray(debugCfg.args)) {
+      dsArgs.node.push(...debugCfg.args)
+      dsArgs.electron.push(...debugCfg.args)
+    }
+    else {
+      dsArgs.node.push(...(debugCfg.args.node || []))
+      dsArgs.electron.push(...(debugCfg.args.electron || []))
+    }
+  }
+
+  return dsArgs
 }
 
 export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
@@ -145,20 +177,24 @@ export async function dev(inlineConfig: InlineConfig = {}) {
   const {
     main: mainFile,
     type: appType = 'node',
-    args = [],
     buildOnly = false,
     runOnly = false,
+    debugCfg = {},
     tsupConfigs = [],
     electron: electronConfig = {},
   } = config
 
+  const isDebug = !!debugCfg.enabled
   const isElectron = appType === 'electron'
 
-  logger.info(TAG, `💻 Mode: ${bgCyanBright(' Development ')}`)
+  logger.info(TAG, `💻 Mode: ${isDebug ? `${bgYellowBright(' DEBUG ')} ` : ''}${bgCyanBright(' Development ')}`)
   logger.info(TAG, `💠 Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   // doubleshot env
   const dsEnv = createDoubleShotEnv(appType, config)
+
+  // doubleshot args
+  const dsArgs = createDoubleshotArgs(config)
 
   // run process init
   let electron: any | undefined
@@ -172,7 +208,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     for (let i = 0; i < tsupConfigs.length; i++) {
       let isFirstBuild = true
       const _tsupConfig = tsupConfigs[i]
-      const { onSuccess: _onSuccess, watch: _watch, ...tsupOptions } = _tsupConfig
+      const { onSuccess: _onSuccess, watch: _watch, sourcemap: _sourcemap, ...tsupOptions } = _tsupConfig
       const watch = _watch !== false
       if (!watch)
         logger.info(TAG, '⚠️  Watch mode is disabled')
@@ -202,10 +238,12 @@ export async function dev(inlineConfig: InlineConfig = {}) {
           child.kill()
         }
 
-        child = runMainProcess(mainFile!, electron, args)
+        child = runMainProcess(mainFile!, electron, dsArgs)
       }
 
-      await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
+      const sourcemap = isDebug ? (_sourcemap || 'inline') : _sourcemap
+
+      await doTsupBuild({ onSuccess, watch, sourcemap, ...tsupOptions }, dsEnv)
     }
   }
 
@@ -233,5 +271,5 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     }
   }
 
-  child = runMainProcess(mainFile, electron, args)
+  child = runMainProcess(mainFile, electron, dsArgs)
 }

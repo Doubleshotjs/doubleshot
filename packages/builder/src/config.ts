@@ -86,6 +86,13 @@ export interface DevArgs {
   electron?: string[]
 }
 
+export interface DebugConfig {
+  enabled?: boolean
+  args?: string[] | DevArgs
+  env?: Record<string, string>
+  buildOnly?: boolean
+}
+
 export interface UserConfig extends UserTsupConfig {
   /**
    * App type, 'node' or 'electron'
@@ -119,6 +126,10 @@ export interface UserConfig extends UserTsupConfig {
    * Will be executed when tsup build is complete
    */
   afterBuild?: () => Promise<void>
+  /**
+   * Debug configuration
+   */
+  debugCfg?: DebugConfig
 }
 
 export interface InlineConfig extends UserConfig {
@@ -147,6 +158,10 @@ export interface InlineConfig extends UserConfig {
    * wait for the renderer process ready timeout
    */
   waitTimeout?: number
+  /**
+   * Run in debug mode
+   */
+  debug?: boolean
 }
 
 export type ResolvedConfig = Readonly<{
@@ -156,6 +171,7 @@ export type ResolvedConfig = Readonly<{
   args: string[] | DevArgs
   buildOnly: boolean
   runOnly: boolean
+  debugCfg: DebugConfig
   tsupConfigs: _TsupOptions[]
   electron: Omit<ElectronConfig, 'preload'>
 } & Pick<UserConfig, 'afterBuild'>>
@@ -238,8 +254,13 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
     electronBuilderConfig = resolveElectronBuilderConfig(electronConfig, cwd)
   }
 
+  // resolve debug config
+  const debugCfg = config.debugCfg || {}
+  debugCfg.enabled = !!(inlineConfig.debug || debugCfg.enabled)
+
   // resolve build only
-  const buildOnly = !!(inlineConfig.buildOnly || config.buildOnly)
+  const buildOnly = !!(inlineConfig.buildOnly || config.buildOnly || debugCfg.buildOnly)
+
   // resolve run only
   const runOnly = !!(inlineConfig.runOnly || config.runOnly)
 
@@ -248,6 +269,7 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
     type: appType,
     main: mainFile,
     args: config.args || [],
+    debugCfg,
     buildOnly,
     runOnly,
     tsupConfigs: tsupConfigArr,
