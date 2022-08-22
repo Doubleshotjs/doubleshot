@@ -367,7 +367,8 @@ describe('Doubleshot Builder, Debug Mode', () => {
     })
 
     await run('dev', ['-t', 'electron', '--debug'])
-    expect(fs.existsSync(path.join(mockDir, 'dist', 'main.js.map'))).toBe(true)
+    const content = fs.readFileSync(path.resolve(mockDir, 'dist/main.js'), 'utf8')
+    expect(content).toContain('//# sourceMappingURL')
   })
 
   it('should use debug env', async () => {
