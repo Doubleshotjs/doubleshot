@@ -76,3 +76,5 @@ export const createLogger = (name?: string) => {
     },
   }
 }
+
+export type LogType = 'info' | 'success' | 'error' | 'warn'
