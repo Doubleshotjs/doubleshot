@@ -90,6 +90,7 @@ export interface DebugConfig {
   enabled?: boolean
   args?: string[] | DevArgs
   env?: Record<string, string>
+  sourcemapType?: 'file' | 'inline'
   buildOnly?: boolean
 }
 
@@ -257,6 +258,11 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
   // resolve debug config
   const debugCfg = config.debugCfg || {}
   debugCfg.enabled = !!(inlineConfig.debug || debugCfg.enabled)
+  if (debugCfg.enabled) {
+    tsupConfigArr.forEach((c) => {
+      c.sourcemap = debugCfg.sourcemapType === 'file' ? true : 'inline'
+    })
+  }
 
   // resolve build only
   const buildOnly = !!(inlineConfig.buildOnly || config.buildOnly || debugCfg.buildOnly)

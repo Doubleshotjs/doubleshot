@@ -208,7 +208,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     for (let i = 0; i < tsupConfigs.length; i++) {
       let isFirstBuild = true
       const _tsupConfig = tsupConfigs[i]
-      const { onSuccess: _onSuccess, watch: _watch, sourcemap: _sourcemap, ...tsupOptions } = _tsupConfig
+      const { onSuccess: _onSuccess, watch: _watch, ...tsupOptions } = _tsupConfig
       const watch = _watch !== false
       if (!watch)
         logger.info(TAG, '⚠️  Watch mode is disabled')
@@ -241,9 +241,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
         child = runMainProcess(mainFile!, electron, dsArgs)
       }
 
-      const sourcemap = isDebug ? (_sourcemap || 'inline') : _sourcemap
-
-      await doTsupBuild({ onSuccess, watch, sourcemap, ...tsupOptions }, dsEnv)
+      await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
     }
   }
 
