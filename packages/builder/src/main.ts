@@ -156,6 +156,7 @@ export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
 
       await electronBuilder({
         config: electronConfig.build.config,
+        ...(electronConfig.build.cliOptions || {}),
       })
 
       await electronConfig.build.afterBuild?.()

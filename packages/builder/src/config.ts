@@ -1,7 +1,7 @@
 import path from 'path'
 import JoyCon from 'joycon'
 import { bundleRequire } from 'bundle-require'
-import type { Configuration as ElectronBuilderConfiguration } from 'electron-builder'
+import type { CliOptions as ElectronBuilderCliOptions, Configuration as ElectronBuilderConfiguration } from 'electron-builder'
 import { greenBright } from 'colorette'
 import type { Options as _TsupOptions } from 'tsup'
 import { merge, normalizePath, resolvePath } from './utils'
@@ -24,6 +24,10 @@ export interface ElectronBuildConfig {
    * electron-builder config or electron-builder config file path
    */
   config?: string | ElectronBuilderConfiguration
+  /**
+   * electron-builder cli config
+   */
+  cliOptions?: ElectronBuilderCliOptions
   /**
    * Will be executed when electron-builder build is complete
    */
