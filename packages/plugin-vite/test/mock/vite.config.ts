@@ -32,7 +32,7 @@ export default defineConfig({
           entry: 'src/preload.ts',
         },
       },
-    }),
+    }) as any,
   ],
   build: {
     outDir: 'dist/renderer',

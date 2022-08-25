@@ -1,7 +1,7 @@
 import type { AddressInfo } from 'net'
-import type { Plugin, ResolvedConfig } from 'vite'
+import type { PluginOption, ResolvedConfig } from 'vite'
 import type { InlineConfig } from '@doubleshot/builder'
-import { build, dev } from '@doubleshot/builder'
+import { build, dev, printLog } from '@doubleshot/builder'
 
 export { defineConfig } from '@doubleshot/builder'
 
@@ -12,7 +12,7 @@ export interface VitePluginDoubleshotConfig extends InlineConfig {
   configureForMode: (userConfig: InlineConfig, mode: string) => (void | InlineConfig) | Promise<(void | InlineConfig)>
 }
 
-export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotConfig> = {}): Plugin[] {
+export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotConfig> = {}): PluginOption[] {
   const PLUGIN_NAME = 'vite-plugin-doubleshot'
 
   let pack: (() => Promise<void>) | undefined
@@ -23,6 +23,10 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
       await userConfig.configureForMode(userConfig, mode)
     }
   }
+
+  const isDebug = process.argv.includes('--dsb-debug')
+  // enable debug mode
+  userConfig.debug = isDebug
 
   return [
     {
@@ -38,7 +42,13 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
             userConfig.rendererUrl = `http://${address}:${port}`
           }
 
-          dev(userConfig)
+          await dev(userConfig)
+
+          // Debug Mode Note
+          if (isDebug) {
+            printLog('info', '⚠️  Debug mode enabled, in Vite plugin, @doubleshot/builder will prebuild files only.')
+            printLog('info', '➡️  You should start the application manually in debug mode.(e.g. create "launch.json" in Visual Studio Code to start it)')
+          }
         })
       },
     },
