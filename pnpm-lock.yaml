@@ -14,7 +14,7 @@ importers:
       execa: 6.1.0
       fs-extra: 10.1.0
       lint-staged: 13.0.3
-      mono-release: 2.4.0
+      mono-release: 2.5.0
       rimraf: 3.0.2
       simple-git-hooks: 2.8.0
       tsup: 6.2.3
@@ -31,7 +31,7 @@ importers:
       execa: 6.1.0
       fs-extra: 10.1.0
       lint-staged: 13.0.3
-      mono-release: 2.4.0_3u3bztnv34xpapk67lcdq6fnmm
+      mono-release: 2.5.0_3u3bztnv34xpapk67lcdq6fnmm
       rimraf: 3.0.2
       simple-git-hooks: 2.8.0
       tsup: 6.2.3_2g5s4tc5rxsqexo2mxc3gnzici
@@ -1565,6 +1565,7 @@ packages:
     dependencies:
       esbuild: 0.14.49
       load-tsconfig: 0.2.3
+    dev: false
 
   /bundle-require/3.0.4_esbuild@0.15.0:
     resolution: {integrity: sha512-VXG6epB1yrLAvWVQpl92qF347/UXmncQj7J3U8kZEbdVZ1ZkQyr4hYeL/9RvcE8vVVdp53dY78Fd/3pqfRqI1A==}
@@ -4763,8 +4764,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /mono-release/2.4.0_3u3bztnv34xpapk67lcdq6fnmm:
-    resolution: {integrity: sha512-ZePSYSjx6A30cMkJkiDtskZDm09uMbsDoLG8zy32fEXGIT7xSZR/7lgOf9MDDspnuZXvEpPpeBtUZ7iQRmwLOQ==}
+  /mono-release/2.5.0_3u3bztnv34xpapk67lcdq6fnmm:
+    resolution: {integrity: sha512-Yi5681iACm+AufGFjB4kb0ptmyDBODwszUrl02zm0jaWyCFhmh1y1Nm7WnmelreJ2U0QTnzmPIgRIPYTy2kfqg==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -4773,12 +4774,12 @@ packages:
       conventional-changelog-cli:
         optional: true
     dependencies:
-      bundle-require: 3.0.4_esbuild@0.14.49
+      bundle-require: 3.1.0_esbuild@0.15.1
       cac: 6.7.12
       check-package-exists: 1.1.0
       colorette: 2.0.19
       conventional-changelog-cli: 2.2.2
-      esbuild: 0.14.49
+      esbuild: 0.15.1
       execa: 6.1.0
       fs-extra: 10.1.0
       joycon: 3.1.1
