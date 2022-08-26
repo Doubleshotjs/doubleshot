@@ -250,7 +250,7 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
     let logs = ''
     await Promise.all([
       (async () => {
-        await sleep(2000)
+        await sleep(3000)
         checkOrCreateHtmlFile()
       })(),
       (async () => {
