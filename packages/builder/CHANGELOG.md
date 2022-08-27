@@ -1,3 +1,17 @@
+## [0.0.1](https://github.com/archergu/doubleshot/compare/builder@0.1.0-beta.2...builder@0.0.1) (2022-08-27)
+
+
+### Features
+
+* **builder:** add "buildOnly" option ([fe80d28](https://github.com/archergu/doubleshot/commit/fe80d282c4c904c097f97490c04c443bfead4d11))
+* **builder:** add "runOnly" option ([aa94634](https://github.com/archergu/doubleshot/commit/aa946341462943d51d2e48ac4bb4942b11487b82))
+* **builder:** support debug config ([aca2050](https://github.com/archergu/doubleshot/commit/aca205011573fa3746a79fafd789bf8dd9872494))
+* **builder:** support debugCfg.sourcemapType ([e9a1d97](https://github.com/archergu/doubleshot/commit/e9a1d97dca49284ce44331c98b78e280328cb99b))
+* **builder:** support development args ([7dc9dc3](https://github.com/archergu/doubleshot/commit/7dc9dc3c20cd0936bb5d03cde60ce983c44dde3f))
+* **builder:** support electron-builder cli options ([d73072c](https://github.com/archergu/doubleshot/commit/d73072ceb214138f60598205022ddf7dca569f0f))
+
+
+
 # [0.1.0-beta.2](https://github.com/archergu/doubleshot/compare/builder@0.1.0-beta.1...builder@0.1.0-beta.2) (2022-08-17)
 
 
