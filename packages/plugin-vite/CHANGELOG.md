@@ -1,3 +1,13 @@
+## [0.0.1](https://github.com/archergu/doubleshot/compare/plugin-vite@0.1.0-beta.2...plugin-vite@0.0.1) (2022-08-27)
+
+
+### Features
+
+* **plugin-vite:** re-export defineConfig from builder ([54bb53d](https://github.com/archergu/doubleshot/commit/54bb53d1e0ea173d3e9ca742f5fee0b0d9f58492))
+* **plugin-vite:** support builder debug mode ([cd3ebb6](https://github.com/archergu/doubleshot/commit/cd3ebb6667a46e64523704cef509a3f1df806e67))
+
+
+
 # [0.1.0-beta.2](https://github.com/archergu/doubleshot/compare/plugin-vite@0.1.0-beta.1...plugin-vite@0.1.0-beta.2) (2022-08-17)
 
 
