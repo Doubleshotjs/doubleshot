@@ -1,21 +1,21 @@
 import { Controller } from '@nestjs/common'
 import { app } from 'electron'
-import { IpcInvoke } from '../../../dist'
+import { IpcHandle } from '../../../dist'
 
 @Controller()
 export class AppController {
-  @IpcInvoke('chat')
+  @IpcHandle('chat')
   chat(msg: string) {
     console.log(`Get message from frontend: ${msg}`)
     return 'This is a message to frontend'
   }
 
-  @IpcInvoke('print-log')
+  @IpcHandle('print-log')
   printLog(log: string) {
     console.log(`Get log: ${log}`)
   }
 
-  @IpcInvoke('exit')
+  @IpcHandle('exit')
   exit() {
     console.log('Electron exiting...')
     setTimeout(() => {

@@ -4,7 +4,12 @@ import { ipcMain } from 'electron'
 import { ipcMessageDispatcher } from './dispatcher'
 import { AllExceptionsFilter } from './filter'
 
-export function IpcInvoke(messageChannel: string) {
+/**
+ * Ipc handle decorator. It will be called by ipcRenderer.invoke
+ *
+ * ipcMain.handle --> @IpcHandle
+ */
+export function IpcHandle(messageChannel: string) {
   ipcMain.handle(messageChannel, (...args) => ipcMessageDispatcher.emit(messageChannel, ...args))
 
   // Do not modify the order!
