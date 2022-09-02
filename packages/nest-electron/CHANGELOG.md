@@ -1,3 +1,12 @@
+## [0.0.1](https://github.com/archergu/doubleshot/compare/nest-electron@0.1.0-beta.0...nest-electron@0.0.1) (2022-09-02)
+
+
+### Features
+
+* **nest-electron:** integrated ipc transport ([80d9ea3](https://github.com/archergu/doubleshot/commit/80d9ea3b018e7a27411ee61d8c102039a9ede376))
+
+
+
 # [0.1.0-beta.0](https://github.com/archergu/doubleshot/compare/nest-electron@0.1.0-alpha.3...nest-electron@0.1.0-beta.0) (2022-08-03)
 
 
