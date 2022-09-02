@@ -1,3 +1,12 @@
+## [0.0.1](https://github.com/archergu/doubleshot/compare/runner@0.1.0-beta.0...runner@0.0.1) (2022-09-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency esbuild to ^0.15.0 ([5f7f604](https://github.com/archergu/doubleshot/commit/5f7f604cf9c895840bc7b13aa5c9b41524da8dba))
+
+
+
 # [0.1.0-beta.0](https://github.com/archergu/doubleshot/compare/runner@0.1.0-alpha.3...runner@0.1.0-beta.0) (2022-08-03)
 
 
