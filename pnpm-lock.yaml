@@ -73,11 +73,13 @@ importers:
     specifiers:
       '@nestjs/common': 9.0.11
       '@nestjs/core': 9.0.11
+      '@nestjs/microservices': '>=6.0.0'
       electron: 20.1.1
       reflect-metadata: 0.1.13
     devDependencies:
       '@nestjs/common': 9.0.11_47vcjb2de6lyibr6g4enoa5lyu
-      '@nestjs/core': 9.0.11_lhpjf6p5qzdioje3hfzma3fdte
+      '@nestjs/core': 9.0.11_rbkg5ksfjcvo3bm2q6if3y5t5m
+      '@nestjs/microservices': 9.0.11_w7eeql6odqpqho5tkvnpcx2354
       electron: 20.1.1
       reflect-metadata: 0.1.13
 

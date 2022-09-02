@@ -27,6 +27,7 @@
   },
   "peerDependencies": {
     "@nestjs/common": ">=6.0.0",
+    "@nestjs/microservices": ">=6.0.0",
     "electron": ">=16.0.0"
   },
   "devDependencies": {

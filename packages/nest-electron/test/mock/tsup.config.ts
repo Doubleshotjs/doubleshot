@@ -5,6 +5,6 @@ export default defineConfig({
   target: 'node14',
   clean: true,
   splitting: true,
-  entry: ['src/main.ts'],
+  entry: ['src/main.ts', 'src/preload.ts'],
   external: ['electron', '@nestjs', '../../../dist'],
 })

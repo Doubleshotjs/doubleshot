@@ -10,6 +10,26 @@
 
 <body>
   <h1>Doubleshot Nest Electron Module Test</h1>
+  <script type="text/javascript">
+    const {
+      chat,
+      printLog,
+      exit
+    } = window.electron
+
+    const test = async () => {
+      const {
+        data: msgFromBackend
+      } = await chat('This is a message to backend')
+
+      await printLog(msgFromBackend)
+
+      exit()
+    }
+
+    test()
+
+  </script>
 </body>
 
 </html>

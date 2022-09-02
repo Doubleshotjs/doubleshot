@@ -13,6 +13,7 @@
     "esModuleInterop": true
   },
   "include": [
-    "./**/*.ts"
+    "./**/*.ts",
+    "./**/*.html"
   ]
 }

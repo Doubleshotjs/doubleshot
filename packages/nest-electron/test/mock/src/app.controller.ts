@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common'
-import { app } from 'electron'
-import { ElectronService } from '../../../dist'
+import { BrowserWindow, app } from 'electron'
+import { ElectronService, IpcHandle } from '../../../dist'
 
 @Controller()
 export class AppController {
@@ -9,17 +9,29 @@ export class AppController {
   ) {
     if (this.electronService instanceof ElectronService)
       console.log('ElectronService injected successfully')
+
+    const win = this.electronService.getWindow()
+    const webContents = this.electronService.getWebContents()
+    console.log(`"ElectronService.getWindow()" should return a BrowserWindow: ${win instanceof BrowserWindow}`)
+    console.log(`"ElectronService.getWebContents()" should return a WebContents: ${webContents === win.webContents}`)
   }
 
-  getWindow() {
-    return this.electronService.getWindow()
+  @IpcHandle('chat')
+  chat(msg: string) {
+    console.log(`Get message from frontend: ${msg}`)
+    return 'This is a message to frontend'
   }
 
-  getWebContents() {
-    return this.electronService.getWebContents()
+  @IpcHandle('print-log')
+  printLog(log: string) {
+    console.log(`Get log: ${log}`)
   }
 
+  @IpcHandle('exit')
   exit() {
-    app.quit()
+    console.log('Electron exiting...')
+    setTimeout(() => {
+      app.quit()
+    }, 500)
   }
 }
