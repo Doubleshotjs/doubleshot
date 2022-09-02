@@ -9,12 +9,15 @@ import { AllExceptionsFilter } from './filter'
  *
  * ipcMain.handle --> @IpcHandle
  */
-export function IpcHandle(messageChannel: string) {
-  ipcMain.handle(messageChannel, (...args) => ipcMessageDispatcher.emit(messageChannel, ...args))
+export function IpcHandle(channel: string) {
+  if (!channel)
+    throw new Error('ipc handle channel is required')
+
+  ipcMain.handle(channel, (...args) => ipcMessageDispatcher.emit(channel, ...args))
 
   // Do not modify the order!
   return applyDecorators(
-    MessagePattern(messageChannel),
+    MessagePattern(channel),
     UseFilters(new AllExceptionsFilter()),
   )
 }
