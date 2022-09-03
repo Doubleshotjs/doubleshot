@@ -1,10 +1,12 @@
 # @doubleshot/nest-electron-ipc-transport
 
+> **Note**: This is an archive and may not be updated. This package has been integrated into [@doubleshot/nest-electron](https://github.com/archergu/doubleshot/tree/main/packages/nest-electron#readme).
+
 ## Description
 
 It is an electron ipc transport for [nestjs](https://nestjs.com/) that provides simple ipc communication.
 
-> **Warning**: this project is in early stage, do not use in production environment
+> **Warning**: this project is in early stage, do not use in production environment.
 
 ## Install
 
