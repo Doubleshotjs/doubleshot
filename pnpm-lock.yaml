@@ -19,7 +19,7 @@ importers:
       simple-git-hooks: 2.8.0
       tsup: 6.2.3
       typescript: 4.8.2
-      vitest: 0.22.1
+      vitest: 0.23.0
     devDependencies:
       '@lightwing/eslint-config': 0.0.7_yqf6kl63nyoq5megxukfnom5rm
       '@nestjs/testing': 9.0.11_khr6mt6ojlxbw7bo55fknouh34
@@ -36,7 +36,7 @@ importers:
       simple-git-hooks: 2.8.0
       tsup: 6.2.3_s32bdumnjize376l7vbstyvzdm
       typescript: 4.8.2
-      vitest: 0.22.1
+      vitest: 0.23.0
 
   packages/builder:
     specifiers:
@@ -5842,6 +5842,12 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
+  /strip-literal/0.4.0:
+    resolution: {integrity: sha512-ql/sBDoJOybTKSIOWrrh8kgUEMjXMwRAkZTD0EwiwxQH/6tTPkZvMIEjp0CRlpi6V5FMiJyvxeRkEi1KrGISoA==}
+    dependencies:
+      acorn: 8.8.0
+    dev: true
+
   /sucrase/3.22.0:
     resolution: {integrity: sha512-RZeE0UPxCjf99p4c9Sb27qRbsuZBd7TViR/q1P6TsUPYa/H2LIkaCPpio6F1nQksrynYA78KEBUnpxswZiPYcg==}
     engines: {node: '>=8'}
@@ -5954,6 +5960,11 @@ packages:
     resolution: {integrity: sha512-iOqSav00cVxEEICeD7TjLB1sueEL+81Wpzp2bY17uZjZN0pWZPuo4suZ/61VujxmqSGFfgOcNuTZ85QJwNZQpw==}
     dependencies:
       readable-stream: 3.6.0
+    dev: true
+
+  /tinybench/2.1.4:
+    resolution: {integrity: sha512-NFWIw2Gg7EUPdeE8nL1Dc7AMVlk7sOr2PmSNKVuQrZ0YwTOFoshPQ+hcLrgnhK8dTP3FWMCJaf4N+/hXp6lKPw==}
+    engines: {node: '>=16.0.0'}
     dev: true
 
   /tinypool/0.2.4:
@@ -6288,33 +6299,6 @@ packages:
     dev: true
     optional: true
 
-  /vite/3.0.8:
-    resolution: {integrity: sha512-AOZ4eN7mrkJiOLuw8IA7piS4IdOQyQCA81GxGsAQvAZzMRi9ZwGB3TOaYsj4uLAWK46T5L4AfQ6InNGlxX30IQ==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.14.49
-      postcss: 8.4.16
-      resolve: 1.22.1
-      rollup: 2.75.7
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /vite/3.0.9:
     resolution: {integrity: sha512-waYABTM+G6DBTCpYAxvevpG50UOlZuynR0ckTK5PawNVt7ebX6X7wNXHaGIO6wYYFXSM7/WcuFuO2QzhBB6aMw==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -6342,8 +6326,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.22.1:
-    resolution: {integrity: sha512-+x28YTnSLth4KbXg7MCzoDAzPJlJex7YgiZbUh6YLp0/4PqVZ7q7/zyfdL0OaPtKTpNiQFPpMC8Y2MSzk8F7dw==}
+  /vitest/0.23.0:
+    resolution: {integrity: sha512-I3ctlfiXYprA2tID1qP+m6pmgmKx3HYfRe66MetGOHKCHLY7hz74ihiwIEtN7LReJgF3U5cM735iYPkn/Go1iQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -6370,9 +6354,11 @@ packages:
       chai: 4.3.6
       debug: 4.3.4
       local-pkg: 0.4.2
+      strip-literal: 0.4.0
+      tinybench: 2.1.4
       tinypool: 0.2.4
       tinyspy: 1.0.2
-      vite: 3.0.8
+      vite: 3.0.9
     transitivePeerDependencies:
       - less
       - sass
