@@ -5,7 +5,7 @@ contextBridge.exposeInMainWorld(
   'electron',
   {
     chat: (msg: string): Promise<IpcResponse<string>> => ipcRenderer.invoke('chat', msg),
-    printLog: (log: string): Promise<IpcResponse<string>> => ipcRenderer.invoke('print-log', log),
-    exit: (): Promise<IpcResponse<void>> => ipcRenderer.invoke('exit'),
+    printLog: (log: string): void => ipcRenderer.send('print-log', log),
+    exit: (): void => ipcRenderer.send('exit'),
   },
 )

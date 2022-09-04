@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common'
 import { BrowserWindow, app } from 'electron'
-import { ElectronService, IpcHandle } from '../../../dist'
+import { ElectronService, IpcHandle, IpcOn } from '../../../dist'
 
 @Controller()
 export class AppController {
@@ -22,12 +22,12 @@ export class AppController {
     return 'This is a message to frontend'
   }
 
-  @IpcHandle('print-log')
+  @IpcOn('print-log')
   printLog(log: string) {
     console.log(`Get log: ${log}`)
   }
 
-  @IpcHandle('exit')
+  @IpcOn('exit')
   exit() {
     console.log('Electron exiting...')
     setTimeout(() => {

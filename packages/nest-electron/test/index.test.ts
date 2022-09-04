@@ -53,15 +53,15 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('"ElectronService.getWebContents()" should return a WebContents: true')
   })
 
-  it('should receive message from frontend', async () => {
+  test('@IpcHandle', async () => {
     expect(logs).toContain('Get message from frontend: This is a message to backend')
   })
 
-  it('should print log from frontend if frontend got reply', async () => {
+  test('@IpcOn: send args', async () => {
     expect(logs).toContain('Get log: This is a message to frontend')
   })
 
-  it('should exit electron invoked by frontend', async () => {
+  test('@IpcOn', async () => {
     expect(logs).toContain('Electron exiting...')
   })
 })
