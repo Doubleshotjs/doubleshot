@@ -1,3 +1,12 @@
+## [0.0.2](https://github.com/archergu/doubleshot/compare/nest-electron@0.0.1...nest-electron@0.0.2) (2022-09-04)
+
+
+### Features
+
+* **nest-electron:** add decorator IpcOn ([13f4571](https://github.com/archergu/doubleshot/commit/13f4571d7e7b0e46914bef8b208bd5ef3a3e46a6))
+
+
+
 ## [0.0.1](https://github.com/archergu/doubleshot/compare/nest-electron@0.1.0-beta.0...nest-electron@0.0.1) (2022-09-02)
 
 
