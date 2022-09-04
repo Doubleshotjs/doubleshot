@@ -1,1 +1,3 @@
 export const ELECTRON_MODULE_OPTIONS = 'ELECTRON_MODULE_OPTIONS'
+export const IPC_HANDLE = 'IPC:HANDLE'
+export const IPC_ON = 'IPC:ON'
