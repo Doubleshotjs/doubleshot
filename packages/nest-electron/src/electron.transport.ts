@@ -26,7 +26,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
         throw new Error(errMsg)
       }
 
-      this.logger.log(`Process message ${messageChannel}`)
+      this.logger.log(`[${type === IPC_HANDLE ? 'ipcMain.handle' : 'ipcMain.on'}] Process message ${messageChannel}`)
       const [ipcMainEventObject, ...payload] = args
       const newArgs = [
         ...payload,
