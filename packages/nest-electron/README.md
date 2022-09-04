@@ -103,7 +103,7 @@ Bind ipc channel through the decorators:
 
 ```ts
 import { Controller } from '@nestjs/common'
-import { IpcHandle } from '@doubleshot/nest-electron'
+import { IpcHandle, IpcOn } from '@doubleshot/nest-electron'
 
 @Controller()
 export class AppController {
@@ -113,7 +113,7 @@ export class AppController {
     return 'This is a message to frontend'
   }
 
-  @IpcHandle('print-log')
+  @IpcOn('print-log')
   printLog(log: string) {
     console.log(`Get log: ${log}`)
   }
