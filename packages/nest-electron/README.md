@@ -24,7 +24,7 @@ Nestjs bootstrap file:
 import { NestFactory } from '@nestjs/core'
 import type { MicroserviceOptions } from '@nestjs/microservices'
 import { app } from 'electron'
-import { ElectronIpcTransport } from '@doubleshot/nest-electron-ipc-transport'
+import { ElectronIpcTransport } from '@doubleshot/nest-electron'
 import { AppModule } from './app.module'
 
 async function bootstrap() {
@@ -103,8 +103,7 @@ Bind ipc channel through the decorators:
 
 ```ts
 import { Controller } from '@nestjs/common'
-import { BrowserWindow, app } from 'electron'
-import { ElectronService, IpcHandle } from '@doubleshot/nest-electron'
+import { IpcHandle } from '@doubleshot/nest-electron'
 
 @Controller()
 export class AppController {
