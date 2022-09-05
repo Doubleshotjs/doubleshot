@@ -1,3 +1,12 @@
+## [0.0.3](https://github.com/archergu/doubleshot/compare/nest-electron@0.0.2...nest-electron@0.0.3) (2022-09-05)
+
+
+### Features
+
+* **nest-electron:** provide @Window to inject BrowserWindow ([f238d6f](https://github.com/archergu/doubleshot/commit/f238d6fb8a67e25733ec4f3537a816ccd66e50e5))
+
+
+
 ## [0.0.2](https://github.com/archergu/doubleshot/compare/nest-electron@0.0.1...nest-electron@0.0.2) (2022-09-04)
 
 
