@@ -1,5 +1,5 @@
 export * from './interfaces'
-export * from './decorators'
+export * from './electron.decorators'
 export * from './electron.module'
 export * from './electron.service'
 export * from './electron.transport'
