@@ -1,7 +1,7 @@
-import { UseFilters, applyDecorators } from '@nestjs/common'
+import { Inject, UseFilters, applyDecorators } from '@nestjs/common'
 import { MessagePattern } from '@nestjs/microservices'
 import { ipcMain } from 'electron'
-import { IPC_HANDLE, IPC_ON } from './electron.constants'
+import { ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME, IPC_HANDLE, IPC_ON } from './electron.constants'
 import { IpcExceptionsFilter, ipcMessageDispatcher } from './transport'
 
 /**
@@ -39,3 +39,8 @@ export function IpcOn(channel: string) {
     UseFilters(new IpcExceptionsFilter()),
   )
 }
+
+/**
+ * Window decorator, help to inject window
+ */
+export const Window = (name = ELECTRON_WINDOW_DEFAULT_NAME): ReturnType<typeof Inject> => Inject(`${ELECTRON_WINDOW}:${name}`)

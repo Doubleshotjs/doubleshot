@@ -1,11 +1,14 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common'
 import { ElectronModuleAsyncOptions, ElectronModuleOptions, ElectronWindowOptionsFactory } from './interfaces/electron-module-options.interface'
-import { ElectronService } from './electron.service'
-import { ELECTRON_MODULE_OPTIONS } from './electron.constants'
+import { ELECTRON_MODULE_OPTIONS, ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME } from './electron.constants'
 
 @Module({
-  providers: [ElectronService],
-  exports: [ElectronService],
+  providers: [{
+    provide: `${ELECTRON_WINDOW}:${ELECTRON_WINDOW_DEFAULT_NAME}`,
+    useFactory: (options: ElectronModuleOptions) => options.win,
+    inject: [ELECTRON_MODULE_OPTIONS],
+  }],
+  exports: [`${ELECTRON_WINDOW}:${ELECTRON_WINDOW_DEFAULT_NAME}`],
 })
 export class ElectronModule {
   static register(options: ElectronModuleOptions): DynamicModule {

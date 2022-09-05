@@ -1,3 +1,5 @@
 export const ELECTRON_MODULE_OPTIONS = 'ELECTRON_MODULE_OPTIONS'
 export const IPC_HANDLE = 'IPC:HANDLE'
 export const IPC_ON = 'IPC:ON'
+export const ELECTRON_WINDOW = 'ELECTRON_WINDOW'
+export const ELECTRON_WINDOW_DEFAULT_NAME = 'main'
