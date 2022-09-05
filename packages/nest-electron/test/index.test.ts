@@ -41,16 +41,8 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('Electron is running')
   })
 
-  it('should inject ElectronService', async () => {
-    expect(logs).toContain('ElectronService injected successfully')
-  })
-
-  test('ElectronService.getWindow()', async () => {
-    expect(logs).toContain('"ElectronService.getWindow()" should return a BrowserWindow: true')
-  })
-
-  test('ElectronService.getWebContents()', async () => {
-    expect(logs).toContain('"ElectronService.getWebContents()" should return a WebContents: true')
+  test('@Window', async () => {
+    expect(logs).toContain('Inject BrowserWindow successfully')
   })
 
   test('@IpcHandle', async () => {

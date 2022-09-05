@@ -1,19 +1,14 @@
 import { Controller } from '@nestjs/common'
 import { BrowserWindow, app } from 'electron'
-import { ElectronService, IpcHandle, IpcOn } from '../../../dist'
+import { IpcHandle, IpcOn, Window } from '../../../dist'
 
 @Controller()
 export class AppController {
   constructor(
-    private readonly electronService: ElectronService,
+    @Window() private readonly win: BrowserWindow,
   ) {
-    if (this.electronService instanceof ElectronService)
-      console.log('ElectronService injected successfully')
-
-    const win = this.electronService.getWindow()
-    const webContents = this.electronService.getWebContents()
-    console.log(`"ElectronService.getWindow()" should return a BrowserWindow: ${win instanceof BrowserWindow}`)
-    console.log(`"ElectronService.getWebContents()" should return a WebContents: ${webContents === win.webContents}`)
+    if (this.win instanceof BrowserWindow)
+      console.log('Inject BrowserWindow successfully')
   }
 
   @IpcHandle('chat')
