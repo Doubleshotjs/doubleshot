@@ -255,7 +255,6 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     await prebuild()
     const prebuildTime = performance.now() - startTime
     logger.success(TAG, `✅ Prebuild succeeded! (${prebuildTime.toFixed(2)}ms)`)
-    logger.success(TAG, '✅ Prebuild succeeded!')
   }
 
   if (buildOnly) {
