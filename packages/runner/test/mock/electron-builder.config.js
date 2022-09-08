@@ -11,9 +11,6 @@ const config = {
   directories: {
     output: resolve('dist'),
   },
-  electronDownload: {
-    mirror: 'https://npm.taobao.org/mirrors/electron/',
-  },
   files: [
     {
       from: resolve('backend'),

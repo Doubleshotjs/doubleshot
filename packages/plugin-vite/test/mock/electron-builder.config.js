@@ -9,9 +9,6 @@ const config = {
   publish: null,
   npmRebuild: false,
   buildDependenciesFromSource: true,
-  electronDownload: {
-    mirror: 'https://npm.taobao.org/mirrors/electron/',
-  },
   files: [
     'dist/main/**/*',
     'dist/renderer/**/*',
