@@ -141,7 +141,8 @@ export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
     const tsupConfig = tsupConfigs[i]
     await doTsupBuild({ ...tsupConfig }, dsEnv)
   }
-  logger.success(TAG, '✅ Prebuild succeeded!')
+  const prebuildTime = performance.now() - startTime
+  logger.success(TAG, `✅ Prebuild succeeded! (${prebuildTime.toFixed(2)}ms)`)
 
   await afterBuild?.()
 
@@ -187,6 +188,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
 
   const isDebug = !!debugCfg.enabled
   const isElectron = appType === 'electron'
+  const startTime = performance.now()
 
   logger.info(TAG, `💻 Mode: ${isDebug ? `${bgYellowBright(' DEBUG ')} ` : ''}${bgCyanBright(' Development ')}`)
   logger.info(TAG, `💠 Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
@@ -251,6 +253,8 @@ export async function dev(inlineConfig: InlineConfig = {}) {
   }
   else {
     await prebuild()
+    const prebuildTime = performance.now() - startTime
+    logger.success(TAG, `✅ Prebuild succeeded! (${prebuildTime.toFixed(2)}ms)`)
     logger.success(TAG, '✅ Prebuild succeeded!')
   }
 
