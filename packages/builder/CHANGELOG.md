@@ -1,3 +1,12 @@
+## [0.0.2](https://github.com/archergu/doubleshot/compare/builder@0.0.1...builder@0.0.2) (2022-09-08)
+
+
+### Features
+
+* **builder:** show prebuild time ([73b685a](https://github.com/archergu/doubleshot/commit/73b685ad42460e3c97ff83ca075059b43e9ec3fc))
+
+
+
 ## [0.0.1](https://github.com/archergu/doubleshot/compare/builder@0.1.0-beta.2...builder@0.0.1) (2022-08-27)
 
 
