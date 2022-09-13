@@ -1,3 +1,12 @@
+## [0.0.5](https://github.com/archergu/doubleshot/compare/builder@0.0.4...builder@0.0.5) (2022-09-13)
+
+
+### Bug Fixes
+
+* **builder:** electron-builder cliOptions ([f74754d](https://github.com/archergu/doubleshot/commit/f74754d43dc11b8827efc14653e0c91dca009b8d))
+
+
+
 ## [0.0.4](https://github.com/archergu/doubleshot/compare/builder@0.0.3...builder@0.0.4) (2022-09-13)
 
 
