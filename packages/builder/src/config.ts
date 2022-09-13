@@ -370,5 +370,6 @@ function resolveElectronBuilderConfig(buildConfig: ElectronBuildConfig | undefin
     disabled: buildConfig.disabled === true,
     config: resolvedConfig,
     afterBuild: buildConfig.afterBuild,
+    cliOptions: buildConfig.cliOptions,
   }
 }
