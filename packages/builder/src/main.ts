@@ -66,9 +66,10 @@ function electronEnvCheck() {
   return true
 }
 
-function createDoubleShotEnv(type: AppType, config: ResolvedConfig): TsupOptions['env'] {
+function createDoubleShotEnv(type: AppType, config: ResolvedConfig, mode: 'production' | 'development'): TsupOptions['env'] {
   const dsEnv: TsupOptions['env'] = {
     DS_APP_TYPE: type,
+    DS_MODE: mode,
   }
 
   if (type === 'electron') {
@@ -134,7 +135,7 @@ export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
   isElectron && electronEnvCheck()
 
   // doubleshot env
-  const dsEnv = createDoubleShotEnv(appType, config)
+  const dsEnv = createDoubleShotEnv(appType, config, 'production')
 
   // tsup build
   for (let i = 0; i < tsupConfigs.length; i++) {
@@ -194,7 +195,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
   logger.info(TAG, `💠 Application type: ${isElectron ? bgCyan(' electron ') : bgGreen(' node ')}`)
 
   // doubleshot env
-  const dsEnv = createDoubleShotEnv(appType, config)
+  const dsEnv = createDoubleShotEnv(appType, config, 'development')
 
   // doubleshot args
   const dsArgs = createDoubleshotArgs(config)
