@@ -1,3 +1,7 @@
+## [0.0.4](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.3...plugin-vite@0.0.4) (2022-09-13)
+
+
+
 ## [0.0.3](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.2...plugin-vite@0.0.3) (2022-09-08)
 
 
