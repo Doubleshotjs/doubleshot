@@ -1,3 +1,12 @@
+## [0.0.4](https://github.com/archergu/doubleshot/compare/builder@0.0.3...builder@0.0.4) (2022-09-13)
+
+
+### Features
+
+* **builder:** inject env DS_MODE ([b08aad6](https://github.com/archergu/doubleshot/commit/b08aad6f197cd7d5dc08c47db60e9586b7d546ab))
+
+
+
 ## [0.0.3](https://github.com/archergu/doubleshot/compare/builder@0.0.2...builder@0.0.3) (2022-09-08)
 
 
