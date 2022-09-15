@@ -1,3 +1,12 @@
+## [0.0.6](https://github.com/archergu/doubleshot/compare/builder@0.0.5...builder@0.0.6) (2022-09-15)
+
+
+### Features
+
+* **builder:** support excluding specific package.json ([4f75939](https://github.com/archergu/doubleshot/commit/4f759396284f45f9ddb2fe2b37a10c76913194dd))
+
+
+
 ## [0.0.5](https://github.com/archergu/doubleshot/compare/builder@0.0.4...builder@0.0.5) (2022-09-13)
 
 
