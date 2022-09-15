@@ -1,4 +1,5 @@
 import path from 'path'
+import fs from 'fs'
 import JoyCon from 'joycon'
 import { bundleRequire } from 'bundle-require'
 import type { CliOptions as ElectronBuilderCliOptions, Configuration as ElectronBuilderConfiguration } from 'electron-builder'
@@ -350,7 +351,7 @@ async function mergeTsupConfig(inputConfig: UserTsupConfig | PreloadTsupConfig, 
   delete extraCfg?.entry
 
   // merge tsup config
-  const tsupConfig: _TsupOptions = merge(defaultConfig, {
+  let tsupConfig: _TsupOptions = merge(defaultConfig, {
     entry: inputConfig.entry ? (Array.isArray(inputConfig.entry) ? inputConfig.entry : [inputConfig.entry]) : undefined,
     outDir: inputConfig.outDir,
     tsconfig: inputConfig.tsconfig,
@@ -358,7 +359,28 @@ async function mergeTsupConfig(inputConfig: UserTsupConfig | PreloadTsupConfig, 
     config: false,
   })
 
-  return extraCfg ? { ...tsupConfig, ...extraCfg } : tsupConfig
+  tsupConfig = extraCfg ? { ...tsupConfig, ...extraCfg } : tsupConfig
+
+  // support specific package.json, "dependencies" in package.json will be external
+  if (Array.isArray(tsupConfig.external) && tsupConfig.external.some(e => typeof e === 'string' && e.includes('package.json'))) {
+    const external = []
+
+    for (const item of tsupConfig.external) {
+      if (typeof item !== 'string' || !item.includes('package.json')) {
+        external.push(item)
+        continue
+      }
+
+      const pkgJsonPath = resolvePath(item, cwd)
+      const { dependencies = {}, peerDependencies = {} } = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf8'))
+      for (const dep in { ...dependencies, ...peerDependencies })
+        external.push(dep)
+    }
+
+    tsupConfig.external = [...new Set(external)]
+  }
+
+  return tsupConfig
 }
 
 function resolveElectronBuilderConfig(buildConfig: ElectronBuildConfig | undefined, cwd: string): ElectronBuildConfig {
