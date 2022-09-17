@@ -101,11 +101,11 @@ importers:
   packages/plugin-vite:
     specifiers:
       '@doubleshot/builder': workspace:*
-      vite: 3.1.1
+      vite: 3.1.2
     dependencies:
       '@doubleshot/builder': link:../builder
     devDependencies:
-      vite: 3.1.1
+      vite: 3.1.2
 
   packages/runner:
     specifiers:
@@ -6551,8 +6551,8 @@ packages:
     dev: true
     optional: true
 
-  /vite/3.1.1:
-    resolution: {integrity: sha512-hgxQWev/AL7nWYrqByYo8nfcH9n97v6oFsta9+JX8h6cEkni7nHKP2kJleNYV2kcGhE8jsbaY1aStwPZXzPbgA==}
+  /vite/3.1.2:
+    resolution: {integrity: sha512-wTDKPkiVbeT+drTPdkuvjVIC/2vKKUc1w3qNOuwgpyvPCZF6fvdxB5v5WEcCsqaYea0zrwA4+XialJKCHM3oVQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -6610,7 +6610,7 @@ packages:
       tinybench: 2.1.5
       tinypool: 0.3.0
       tinyspy: 1.0.2
-      vite: 3.1.1
+      vite: 3.1.2
     transitivePeerDependencies:
       - less
       - sass
