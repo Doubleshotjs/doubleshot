@@ -22,6 +22,14 @@ export class AppController {
     console.log(`Get log: ${log}`)
   }
 
+  @IpcOn('multi-params')
+  multiParams(param1: string, param2: string) {
+    console.log(`param1: ${param1}`)
+    console.log(`param2: ${param2}`)
+
+    this.printLog('Direct call function')
+  }
+
   @IpcOn('exit')
   exit() {
     console.log('Electron exiting...')

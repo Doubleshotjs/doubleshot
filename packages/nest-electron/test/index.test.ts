@@ -56,4 +56,13 @@ describe('Doubleshot Nest Electron Module', () => {
   test('@IpcOn', async () => {
     expect(logs).toContain('Electron exiting...')
   })
+
+  it('should send multi params via the @IpcOn or @IpcHandle decorators', async () => {
+    expect(logs).toContain('param1: this is a param1')
+    expect(logs).toContain('param2: this is a param2')
+  })
+
+  it('should also support call functions with decorators directly', async () => {
+    expect(logs).toContain('Get log: Direct call function')
+  })
 })

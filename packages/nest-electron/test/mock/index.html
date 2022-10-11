@@ -14,6 +14,7 @@
     const {
       chat,
       printLog,
+      sendMultiParams,
       exit
     } = window.electron
 
@@ -23,6 +24,8 @@
       } = await chat('This is a message to backend')
 
       await printLog(msgFromBackend)
+
+      await sendMultiParams('this is a param1', 'this is a param2')
 
       exit()
     }
