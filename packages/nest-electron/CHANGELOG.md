@@ -1,3 +1,17 @@
+## [0.0.4](https://github.com/archergu/doubleshot/compare/nest-electron@0.0.3...nest-electron@0.0.4) (2022-10-11)
+
+
+### Bug Fixes
+
+* **nest-electron:** multi params send ([b5a84f3](https://github.com/archergu/doubleshot/commit/b5a84f3afc7268674558c8311d973b0d4277485f))
+
+
+### Features
+
+* **nest-electron:** support direct call functions with decorators ([b13bfff](https://github.com/archergu/doubleshot/commit/b13bfff20cd692c777ed62279b22889bd479cef5))
+
+
+
 ## [0.0.3](https://github.com/archergu/doubleshot/compare/nest-electron@0.0.2...nest-electron@0.0.3) (2022-09-05)
 
 
