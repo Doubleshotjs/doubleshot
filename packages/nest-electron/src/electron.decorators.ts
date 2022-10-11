@@ -50,7 +50,13 @@ export function MultiParams(): MethodDecorator {
   ) => {
     const originalMethod = descriptor.value
     descriptor.value = function (this: any, ...args: any[]) {
-      return originalMethod.apply(this, args[0])
+      // args is from ipc
+      if (args.length > 0 && Array.isArray(args[0]) && args[0][args[0].length - 1].evt) {
+        return originalMethod.apply(this, args[0])
+      }
+      else { // args is from direct call
+        return originalMethod.apply(this, args)
+      }
     }
     return descriptor
   }
