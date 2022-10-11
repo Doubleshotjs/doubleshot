@@ -35,7 +35,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
         },
       ]
 
-      const result = await handler.apply(this, newArgs)
+      const result = await handler(newArgs)
 
       if (type === IPC_HANDLE) {
         return {

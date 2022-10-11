@@ -17,6 +17,7 @@ export function IpcHandle(channel: string) {
 
   // Do not modify the order!
   return applyDecorators(
+    MultiParams(),
     MessagePattern(channel),
     UseFilters(new IpcExceptionsFilter()),
   )
@@ -35,9 +36,24 @@ export function IpcOn(channel: string) {
 
   // Do not modify the order!
   return applyDecorators(
+    MultiParams(),
     MessagePattern(channel),
     UseFilters(new IpcExceptionsFilter()),
   )
+}
+
+export function MultiParams(): MethodDecorator {
+  return (
+    _target: object,
+    _key: string | symbol,
+    descriptor: PropertyDescriptor,
+  ) => {
+    const originalMethod = descriptor.value
+    descriptor.value = function (this: any, ...args: any[]) {
+      return originalMethod.apply(this, args[0])
+    }
+    return descriptor
+  }
 }
 
 /**
