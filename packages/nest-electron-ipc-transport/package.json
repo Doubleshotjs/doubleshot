@@ -34,7 +34,7 @@
     "@nestjs/common": "9.1.6",
     "@nestjs/core": "9.1.6",
     "@nestjs/microservices": "9.1.6",
-    "electron": "21.2.0",
+    "electron": "21.2.1",
     "reflect-metadata": "0.1.13"
   }
 }
