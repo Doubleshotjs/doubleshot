@@ -19,7 +19,7 @@ importers:
       simple-git-hooks: 2.8.1
       tsup: 6.5.0
       typescript: 4.9.3
-      vitest: 0.25.2
+      vitest: 0.25.3
     devDependencies:
       '@lightwing/eslint-config': 0.0.8_hsf322ms6xhhd4b5ne6lb74y4a
       '@nestjs/testing': 9.2.0_pf2fb646rsvo5szivgkaevcpvi
@@ -36,7 +36,7 @@ importers:
       simple-git-hooks: 2.8.1
       tsup: 6.5.0_ln2gzsx5ek44xmzmk3dvcokxge
       typescript: 4.9.3
-      vitest: 0.25.2
+      vitest: 0.25.3
 
   packages/builder:
     specifiers:
@@ -6111,8 +6111,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.25.2:
-    resolution: {integrity: sha512-qqkzfzglEFbQY7IGkgSJkdOhoqHjwAao/OrphnHboeYHC5JzsVFoLCaB2lnAy8krhj7sbrFTVRApzpkTOeuDWQ==}
+  /vitest/0.25.3:
+    resolution: {integrity: sha512-/UzHfXIKsELZhL7OaM2xFlRF8HRZgAHtPctacvNK8H4vOcbJJAMEgbWNGSAK7Y9b1NBe5SeM7VTuz2RsTHFJJA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
