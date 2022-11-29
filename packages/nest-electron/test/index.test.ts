@@ -57,6 +57,11 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('Electron exiting...')
   })
 
+  test('@Window for multiple windows', async () => {
+    expect(logs).toContain('Inject another BrowserWindow successfully')
+    expect(logs).toContain('Get log: This is an another window')
+  })
+
   it('should send multi params via the @IpcOn or @IpcHandle decorators', async () => {
     expect(logs).toContain('param1: this is a param1')
     expect(logs).toContain('param2: this is a param2')

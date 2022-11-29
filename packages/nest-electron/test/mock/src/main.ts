@@ -1,5 +1,4 @@
-import { join } from 'path'
-import { BrowserWindow, app } from 'electron'
+import { app } from 'electron'
 import { NestFactory } from '@nestjs/core'
 import type { MicroserviceOptions } from '@nestjs/microservices'
 import { ElectronIpcTransport } from '../../../dist'
@@ -25,20 +24,7 @@ async function bootstrap() {
   )
 
   await nestApp.listen()
-
-  const win = new BrowserWindow({
-    webPreferences: {
-      contextIsolation: true,
-      preload: join(__dirname, 'preload.js'),
-    },
-  })
-
-  win.on('closed', () => {
-    win.destroy()
-  })
-
   console.log('Electron is running')
-  await win.loadFile('../index.html')
 }
 
 bootstrap()

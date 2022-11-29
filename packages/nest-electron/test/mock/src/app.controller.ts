@@ -6,9 +6,13 @@ import { IpcHandle, IpcOn, Window } from '../../../dist'
 export class AppController {
   constructor(
     @Window() private readonly win: BrowserWindow,
+    @Window('another-win') private readonly anotherWin: BrowserWindow,
   ) {
     if (this.win instanceof BrowserWindow)
       console.log('Inject BrowserWindow successfully')
+
+    if (this.anotherWin instanceof BrowserWindow)
+      console.log('Inject another BrowserWindow successfully')
   }
 
   @IpcHandle('chat')
