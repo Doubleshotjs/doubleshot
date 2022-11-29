@@ -1,64 +1,41 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common'
-import { ElectronModuleAsyncOptions, ElectronModuleOptions, ElectronWindowOptionsFactory } from './interfaces/electron-module-options.interface'
-import { ELECTRON_MODULE_OPTIONS, ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME } from './electron.constants'
+import { BrowserWindow } from 'electron'
+import { ElectronModuleAsyncOptions, ElectronModuleOptions, ElectronModuleProviderValue } from './interfaces/electron-module-options.interface'
+import { ELECTRON_MODULE_PROVIDER_VALUE, ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME } from './electron.constants'
 
-@Module({
-  providers: [{
-    provide: `${ELECTRON_WINDOW}:${ELECTRON_WINDOW_DEFAULT_NAME}`,
-    useFactory: (options: ElectronModuleOptions) => options.win,
-    inject: [ELECTRON_MODULE_OPTIONS],
-  }],
-  exports: [`${ELECTRON_WINDOW}:${ELECTRON_WINDOW_DEFAULT_NAME}`],
-})
+@Module({})
 export class ElectronModule {
   static register(options: ElectronModuleOptions): DynamicModule {
+    const provideName = `${ELECTRON_WINDOW}:${options.name || ELECTRON_WINDOW_DEFAULT_NAME}`
     const electronProvider: Provider = {
-      provide: ELECTRON_MODULE_OPTIONS,
-      useValue: options,
+      provide: provideName,
+      useValue: options.win,
     }
 
     return {
       module: ElectronModule,
       providers: [electronProvider],
+      exports: [provideName],
     }
   }
 
   static registerAsync(options: ElectronModuleAsyncOptions): DynamicModule {
+    const provideName = `${ELECTRON_WINDOW}:${options.name || ELECTRON_WINDOW_DEFAULT_NAME}`
     return {
       module: ElectronModule,
-      imports: options.imports || [],
-      providers: this.createAsyncProviders(options),
-    }
-  }
-
-  private static createAsyncProviders(options: ElectronModuleAsyncOptions): Provider[] {
-    if (options.useExisting || options.useFactory)
-      return [this.createAsyncOptionsProvider(options)]
-
-    return [
-      this.createAsyncOptionsProvider(options),
-      {
-        provide: options.useClass,
-        useClass: options.useClass,
-      },
-    ]
-  }
-
-  private static createAsyncOptionsProvider(
-    options: ElectronModuleAsyncOptions,
-  ): Provider {
-    if (options.useFactory) {
-      return {
-        provide: ELECTRON_MODULE_OPTIONS,
-        useFactory: options.useFactory,
-        inject: options.inject || [],
-      }
-    }
-    return {
-      provide: ELECTRON_MODULE_OPTIONS,
-      useFactory: async (optionsFactory: ElectronWindowOptionsFactory) =>
-        await optionsFactory.createElectronWindowOptions(),
-      inject: [options.useExisting || options.useClass],
+      providers: [
+        {
+          provide: provideName,
+          useFactory: (value: ElectronModuleProviderValue) => value instanceof BrowserWindow ? value : value.win,
+          inject: [ELECTRON_MODULE_PROVIDER_VALUE],
+        },
+        {
+          provide: ELECTRON_MODULE_PROVIDER_VALUE,
+          useFactory: options.useFactory,
+          inject: options.inject || [],
+        },
+      ],
+      exports: [provideName],
     }
   }
 }

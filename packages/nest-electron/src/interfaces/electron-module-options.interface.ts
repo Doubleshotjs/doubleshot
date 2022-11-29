@@ -1,17 +1,14 @@
 import type { BrowserWindow } from 'electron'
-import type { ModuleMetadata, Type } from '@nestjs/common'
 
 export interface ElectronModuleOptions {
+  name?: string
   win: BrowserWindow
 }
 
-export interface ElectronWindowOptionsFactory {
-  createElectronWindowOptions(): Promise<ElectronModuleOptions> | ElectronModuleOptions
-}
+export type ElectronModuleProviderValue = (BrowserWindow) | ({ win: BrowserWindow })
 
-export interface ElectronModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
-  useExisting?: Type<ElectronWindowOptionsFactory>
-  useClass?: Type<ElectronWindowOptionsFactory>
-  useFactory?: (...args: any[]) => Promise<ElectronModuleOptions> | ElectronModuleOptions
+export interface ElectronModuleAsyncOptions {
+  name?: string
+  useFactory: (...args: any[]) => Promise<ElectronModuleProviderValue> | ElectronModuleProviderValue
   inject?: any[]
 }
