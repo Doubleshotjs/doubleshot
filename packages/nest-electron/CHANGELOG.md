@@ -1,3 +1,12 @@
+## [0.0.5](https://github.com/archergu/doubleshot/compare/nest-electron@0.0.4...nest-electron@0.0.5) (2022-11-29)
+
+
+### Features
+
+* **nest-electron:** support multiple windows ([47cc989](https://github.com/archergu/doubleshot/commit/47cc989f178481c8a0f0f6479f79b200887fbe2d))
+
+
+
 ## [0.0.4](https://github.com/archergu/doubleshot/compare/nest-electron@0.0.3...nest-electron@0.0.4) (2022-10-11)
 
 
