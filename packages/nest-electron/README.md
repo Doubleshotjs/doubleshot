@@ -65,6 +65,7 @@ import { AppService } from './app.service'
 
 @Module({
   imports: [ElectronModule.registerAsync({
+    // name: 'main', // default window names "main"
     useFactory: async () => {
       const win = new BrowserWindow()
 
@@ -79,22 +80,22 @@ import { AppService } from './app.service'
 export class AppModule { }
 ```
 
-Provides an injected service `ElectronService`:
+Provides injected BrowserWindow(s):
 
 ```ts
-import type { ElectronService } from '@doubleshot/nest-electron'
+import { Window } from '@doubleshot/nest-electron'
 import { Injectable } from '@nestjs/common'
+import type { BrowserWindow } from 'electron'
 
 @Injectable()
 export class AppService {
   constructor(
-    private readonly electronService: ElectronService,
+    @Window() private readonly win: BrowserWindow,
+    @Window('another-win') private readonly anotherWin: BrowserWindow,
   ) { }
 
   public getWindowTitle() {
-    const win = this.electronService.getWindow()
-
-    return win.title
+    return this.win.title
   }
 }
 ```
