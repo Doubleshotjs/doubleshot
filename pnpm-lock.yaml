@@ -12,7 +12,7 @@ importers:
       conventional-changelog-cli: 2.2.2
       eslint: 8.28.0
       execa: 6.1.0
-      fs-extra: 11.0.0
+      fs-extra: 11.1.0
       lint-staged: 13.0.4
       mono-release: 2.6.0
       rimraf: 3.0.2
@@ -29,7 +29,7 @@ importers:
       conventional-changelog-cli: 2.2.2
       eslint: 8.28.0
       execa: 6.1.0
-      fs-extra: 11.0.0
+      fs-extra: 11.1.0
       lint-staged: 13.0.4
       mono-release: 2.6.0_3u3bztnv34xpapk67lcdq6fnmm
       rimraf: 3.0.2
@@ -3552,8 +3552,8 @@ packages:
       universalify: 2.0.0
     dev: true
 
-  /fs-extra/11.0.0:
-    resolution: {integrity: sha512-4YxRvMi4P5C3WQTvdRfrv5UVqbISpqjORFQAW5QPiKAauaxNCwrEdIi6pG3tDFhKKpMen+enEhHIzB/tvIO+/w==}
+  /fs-extra/11.1.0:
+    resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}
     engines: {node: '>=14.14'}
     dependencies:
       graceful-fs: 4.2.10
