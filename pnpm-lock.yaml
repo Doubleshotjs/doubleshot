@@ -19,7 +19,7 @@ importers:
       simple-git-hooks: 2.8.1
       tsup: 6.5.0
       typescript: 4.9.3
-      vitest: 0.25.3
+      vitest: 0.25.4
     devDependencies:
       '@lightwing/eslint-config': 0.0.8_s5ps7njkmjlaqajutnox5ntcla
       '@nestjs/testing': 9.2.1_hjcqpoaebdr7gdo5hgc22hthbe
@@ -36,7 +36,7 @@ importers:
       simple-git-hooks: 2.8.1
       tsup: 6.5.0_6xzt72mebcmfvahk4jb54mm2eq
       typescript: 4.9.3
-      vitest: 0.25.3
+      vitest: 0.25.4
 
   packages/builder:
     specifiers:
@@ -1196,12 +1196,12 @@ packages:
       through: 2.3.8
     dev: true
 
-  /acorn-jsx/5.3.2_acorn@8.8.0:
+  /acorn-jsx/5.3.2_acorn@8.8.1:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.8.0
+      acorn: 8.8.1
     dev: true
 
   /acorn-walk/8.2.0:
@@ -1211,6 +1211,12 @@ packages:
 
   /acorn/8.8.0:
     resolution: {integrity: sha512-QOxyigPVrpZ2GXT+PFyZTl6TtOFc5egxHIP9IlQ+RbupQuX4RkT/Bee4/kQuC02Xkzg84JcT7oLYtDIQxp+v7w==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+    dev: true
+
+  /acorn/8.8.1:
+    resolution: {integrity: sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
@@ -3349,8 +3355,8 @@ packages:
     resolution: {integrity: sha512-DQmnRpLj7f6TgN/NYb0MTzJXL+vJF9h3pHy4JhCIs3zwcgez8xmGg3sXHcEO97BrmO2OSvCwMdfdlyl+E9KjOw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.8.0
-      acorn-jsx: 5.3.2_acorn@8.8.0
+      acorn: 8.8.1
+      acorn-jsx: 5.3.2_acorn@8.8.1
       eslint-visitor-keys: 3.3.0
     dev: true
 
@@ -4282,7 +4288,7 @@ packages:
     resolution: {integrity: sha512-qCRJWlbP2v6HbmKW7R3lFbeiVWHo+oMJ0j+MizwvauqnCV/EvtAeEeuCgoc/ErtsuoKgYB8U4Ih8AxJbXoE6/g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.8.0
+      acorn: 8.8.1
       eslint-visitor-keys: 3.3.0
       espree: 9.4.0
       semver: 7.3.7
@@ -5617,10 +5623,10 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
-  /strip-literal/0.4.2:
-    resolution: {integrity: sha512-pv48ybn4iE1O9RLgCAN0iU4Xv7RlBTiit6DKmMiErbs9x1wH6vXBs45tWc0H5wUIF6TLTrKweqkmYF/iraQKNw==}
+  /strip-literal/1.0.0:
+    resolution: {integrity: sha512-5o4LsH1lzBzO9UFH63AJ2ad2/S2AVx6NtjOcaz+VTT2h1RiRvbipW72z8M/lxEhcPHDBQwpDrnTF7sXy/7OwCQ==}
     dependencies:
-      acorn: 8.8.0
+      acorn: 8.8.1
     dev: true
 
   /sucrase/3.22.0:
@@ -6090,8 +6096,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.25.3:
-    resolution: {integrity: sha512-/UzHfXIKsELZhL7OaM2xFlRF8HRZgAHtPctacvNK8H4vOcbJJAMEgbWNGSAK7Y9b1NBe5SeM7VTuz2RsTHFJJA==}
+  /vitest/0.25.4:
+    resolution: {integrity: sha512-v/qoSEYPrf8qa1CbKIKYK+1GGmPPEJyXFbkuD6jhh080cfNBsuUDAdMu6hV2h9Uv34EMiUrVETL/wB+EHxFtbA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -6121,7 +6127,7 @@ packages:
       debug: 4.3.4
       local-pkg: 0.4.2
       source-map: 0.6.1
-      strip-literal: 0.4.2
+      strip-literal: 1.0.0
       tinybench: 2.3.1
       tinypool: 0.3.0
       tinyspy: 1.0.2
