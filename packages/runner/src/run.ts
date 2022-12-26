@@ -70,7 +70,7 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
         logger.info(TAG, `Command "${yellow(id)}" exited, killing others`)
         commands.forEach((c) => {
           if (`[${c.index}]${c.name}:${c.command}` !== id)
-            c.kill('0')
+            c.kill('SIGKILL')
         })
       })
     }
