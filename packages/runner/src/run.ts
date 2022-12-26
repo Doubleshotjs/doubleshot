@@ -4,14 +4,14 @@ import type { ConcurrentlyCommandInput } from 'concurrently'
 import concurrently from 'concurrently'
 import { yellow } from 'colorette'
 import { checkPackageExists } from 'check-package-exists'
-import type { ElectronBuildConfig, RunCommandInfo } from './config'
+import type { ElectronBuildConfig, InlineConfig, RunCommandInfo } from './config'
 import { resolveConfig } from './config'
 import { createLogger } from './log'
 import { TAG } from './constants'
 
-export async function run(command: string) {
+export async function run(command: string, inlineConfig: InlineConfig = {}) {
   const logger = createLogger()
-  const config = await resolveConfig()
+  const config = await resolveConfig(inlineConfig)
   const commandsList: ConcurrentlyCommandInput[] = []
   const commandsWhoCanKillOthers: string[] = []
 

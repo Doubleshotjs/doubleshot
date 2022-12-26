@@ -28,7 +28,7 @@ export interface RunConfig {
    */
   cwd?: string
   /**
-   * Command name
+   * Running name
    */
   name?: string
   /**
@@ -65,8 +65,14 @@ export interface DoubleShotRunnerConfig {
    */
   root?: string
   run?: RunConfig[]
+  /**
+   * Filter running names
+   */
+  filter?: string[]
   electronBuild?: ElectronBuildConfig
 }
+
+export interface InlineConfig extends Pick<DoubleShotRunnerConfig, 'root' | 'filter'> { }
 
 export type ResolvedConfig = Readonly<{
   configFile: string | undefined
@@ -82,7 +88,7 @@ export function defineConfig(config: DoubleShotRunnerConfigExport): DoubleShotRu
 /**
  * Resolve doubleshot runner config
  */
-export async function resolveConfig(): Promise<ResolvedConfig> {
+export async function resolveConfig(inlineConfig: InlineConfig): Promise<ResolvedConfig> {
   const logger = createLogger()
   const cwd = process.cwd()
   const configJoycon = new JoyCon()
@@ -106,11 +112,12 @@ export async function resolveConfig(): Promise<ResolvedConfig> {
 
     const config: DoubleShotRunnerConfig = mod.default || mod
 
-    const resolvedRunConfig = resolveRunConfig(config.run, cwd)
+    const filter = inlineConfig.filter || config.filter || []
+    const resolvedRunConfig = resolveRunConfig(config.run?.filter(e => !(e.name && filter.includes(e.name))), cwd)
     const resolvedElectronBuildConfig = resoleElectronBuilderConfig(config.electronBuild, cwd)
 
     return {
-      root: config.root || cwd,
+      root: inlineConfig.root || config.root || cwd,
       configFile: configPath,
       run: resolvedRunConfig,
       electronBuild: resolvedElectronBuildConfig,

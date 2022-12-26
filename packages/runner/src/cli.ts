@@ -5,10 +5,18 @@ import { createLogger } from './log'
 import { TAG } from './constants'
 
 const cli = cac('doubleshot-run')
+
+interface CliOptions {
+  root?: string
+  filter?: string // string,string,string...
+}
+
 // run
 cli
   .command('[command]', 'run commands') // default command
-  .action(async (command: string) => {
+  .option('--root <path>', 'Project root directory')
+  .option('--filter <names>', 'Filter running names')
+  .action(async (command: string, options: CliOptions) => {
     const logger = createLogger()
     if (!command) {
       logger.error('doubleshot runner needs a command')
@@ -20,7 +28,10 @@ cli
     const { run } = await import('./run')
 
     try {
-      await run(command)
+      await run(command, {
+        root: options.root,
+        filter: options.filter?.split(','),
+      })
     }
     catch (e) {
       logger.error(TAG, e)
