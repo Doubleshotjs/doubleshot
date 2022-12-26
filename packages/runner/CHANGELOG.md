@@ -1,3 +1,18 @@
+## [0.0.2](https://github.com/archergu/doubleshot/compare/runner@0.0.1...runner@0.0.2) (2022-12-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency esbuild to ^0.16.0 ([367d94f](https://github.com/archergu/doubleshot/commit/367d94f1ca517cd2ef7ede8f5cd45e8601d7909d))
+* **runner:** kill other with right signal ([6696df9](https://github.com/archergu/doubleshot/commit/6696df9da57ba3ee6f83e24d6d62af0a3596ec62))
+
+
+### Features
+
+* **runner:** support filter option ([16c8588](https://github.com/archergu/doubleshot/commit/16c85885b47ec200c4a79d5cd6ca9088441c139d))
+
+
+
 ## [0.0.1](https://github.com/archergu/doubleshot/compare/runner@0.1.0-beta.0...runner@0.0.1) (2022-09-02)
 
 
