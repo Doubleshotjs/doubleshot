@@ -39,4 +39,3 @@ if (isElectron) {
 else {
   console.log('This is node app')
 }
-

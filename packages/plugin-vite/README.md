@@ -36,7 +36,6 @@ export default defineConfig({
     }),
   ]
 })
-
 ```
 
 You can find more configurations through the type definition file.

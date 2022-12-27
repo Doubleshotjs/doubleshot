@@ -119,7 +119,6 @@ export class AppController {
     console.log(`Get log: ${log}`)
   }
 }
-
 ```
 
 ## License

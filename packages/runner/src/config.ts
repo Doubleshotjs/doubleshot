@@ -156,4 +156,3 @@ function resolveRunConfig(runConfig: RunConfig[] | undefined, cwd: string) {
     }
   })
 }
-

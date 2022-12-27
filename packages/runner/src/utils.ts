@@ -10,4 +10,3 @@ export function slash(p: string): string {
 export function normalizePath(id: string): string {
   return path.posix.normalize(isWindows ? slash(id) : id)
 }
-
