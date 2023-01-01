@@ -1,3 +1,13 @@
+## [0.0.7](https://github.com/archergu/doubleshot/compare/builder@0.0.6...builder@0.0.7) (2023-01-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency esbuild to ^0.16.0 ([367d94f](https://github.com/archergu/doubleshot/commit/367d94f1ca517cd2ef7ede8f5cd45e8601d7909d))
+* **deps:** update dependency wait-on to v7 ([fd07a70](https://github.com/archergu/doubleshot/commit/fd07a70052beadbedd689e1559d5cd55271271e9))
+
+
+
 ## [0.0.6](https://github.com/archergu/doubleshot/compare/builder@0.0.5...builder@0.0.6) (2022-09-15)
 
 
