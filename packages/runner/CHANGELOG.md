@@ -1,3 +1,7 @@
+## [0.0.4](https://github.com/archergu/doubleshot/compare/runner@0.0.3...runner@0.0.4) (2023-01-02)
+
+
+
 ## [0.0.3](https://github.com/archergu/doubleshot/compare/runner@0.0.2...runner@0.0.3) (2023-01-01)
 
 
