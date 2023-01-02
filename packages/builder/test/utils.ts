@@ -1,7 +1,7 @@
 import path from 'path'
-import { execa } from 'execa'
+import { execa } from '@esm2cjs/execa'
 import fs from 'fs-extra'
-import type { Options as ExecaOptions } from 'execa'
+import type { Options as ExecaOptions } from '@esm2cjs/execa'
 import type { UserConfigExport } from '../src'
 
 export const bin = path.resolve(__dirname, '../dist/cli.js')

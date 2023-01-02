@@ -39,3 +39,5 @@ if (isElectron) {
 else {
   console.log('This is node app')
 }
+
+console.log('modify main.ts')
