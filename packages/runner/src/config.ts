@@ -69,10 +69,14 @@ export interface DoubleShotRunnerConfig {
    * Filter running names
    */
   filter?: string[]
+  /**
+   * Only run special name
+   */
+  only?: string
   electronBuild?: ElectronBuildConfig
 }
 
-export interface InlineConfig extends Pick<DoubleShotRunnerConfig, 'root' | 'filter'> { }
+export interface InlineConfig extends Pick<DoubleShotRunnerConfig, 'root' | 'filter' | 'only'> { }
 
 export type ResolvedConfig = Readonly<{
   configFile: string | undefined
@@ -113,7 +117,17 @@ export async function resolveConfig(inlineConfig: InlineConfig): Promise<Resolve
     const config: DoubleShotRunnerConfig = mod.default || mod
 
     const filter = inlineConfig.filter || config.filter || []
-    const resolvedRunConfig = resolveRunConfig(config.run?.filter(e => !(e.name && filter.includes(e.name))), cwd)
+    const only = inlineConfig.only || config.only
+    let runConfig: RunConfig[] | undefined = []
+    if (only) {
+      runConfig = config.run?.filter(e => e.name === only)
+      filter.length > 1 && logger.warn(TAG, '\'only\' has a greater priority than \'filter\'')
+    }
+    else {
+      runConfig = config.run?.filter(e => !(e.name && filter.includes(e.name)))
+    }
+
+    const resolvedRunConfig = resolveRunConfig(runConfig, cwd)
     const resolvedElectronBuildConfig = resoleElectronBuilderConfig(config.electronBuild, cwd)
 
     return {
