@@ -1,3 +1,12 @@
+## [0.0.5](https://github.com/archergu/doubleshot/compare/runner@0.0.4...runner@0.0.5) (2023-01-10)
+
+
+### Features
+
+* **runner:** add 'only' option ([b8dcb1c](https://github.com/archergu/doubleshot/commit/b8dcb1c8b220f4f50d28c1208f51a23f675edc56))
+
+
+
 ## [0.0.4](https://github.com/archergu/doubleshot/compare/runner@0.0.3...runner@0.0.4) (2023-01-02)
 
 
