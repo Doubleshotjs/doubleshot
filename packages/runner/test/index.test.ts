@@ -176,6 +176,59 @@ describe('Doubleshot Runner', () => {
     expect(logs).not.toContain('build backend')
   })
 
+  it('should only run special name', async () => {
+    writeConfigFile({
+      run: [
+        {
+          name: 'frontend',
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+        {
+          name: 'backend',
+          cwd: 'backend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+      ],
+      only: 'frontend',
+    })
+
+    const logs = await run('build')
+    expect(logs).toContain('build frontend')
+    expect(logs).not.toContain('build backend')
+  })
+
+  it('should use "only" config first then "filter" config', async () => {
+    writeConfigFile({
+      run: [
+        {
+          name: 'frontend',
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+        {
+          name: 'backend',
+          cwd: 'backend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+      ],
+      only: 'frontend',
+      filter: ['frontend', 'backend'],
+    })
+
+    const logs = await run('build')
+    expect(logs).toContain('build frontend')
+    expect(logs).not.toContain('build backend')
+  })
+
   it('should run electron build if "electronBuild" config is set', async () => {
     writeConfigFile({
       run: [
