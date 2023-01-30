@@ -37,9 +37,13 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
       },
       configureServer(server) {
         server?.httpServer?.on('listening', async () => {
-          if (server.httpServer) {
-            const { address, port } = server.httpServer.address() as AddressInfo
-            userConfig.rendererUrl = `http://${address}:${port}`
+          if (server.httpServer && !userConfig.rendererUrl) {
+            const { address, port, family } = server.httpServer.address() as AddressInfo
+            if (family === 'IPv6')
+              userConfig.rendererUrl = `http://[${address}]:${port}`
+
+            else
+              userConfig.rendererUrl = `http://${address}:${port}`
           }
 
           await dev(userConfig)
