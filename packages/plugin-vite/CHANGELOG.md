@@ -1,3 +1,12 @@
+## [0.0.9](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.8...plugin-vite@0.0.9) (2023-01-30)
+
+
+### Bug Fixes
+
+* **plugin-vite:** handle ipv6 address ([8457ea1](https://github.com/archergu/doubleshot/commit/8457ea17a492b962795c5454a9638a862b795ae4))
+
+
+
 ## [0.0.8](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.7...plugin-vite@0.0.8) (2023-01-02)
 
 
