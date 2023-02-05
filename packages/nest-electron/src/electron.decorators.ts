@@ -1,3 +1,4 @@
+import type { ExecutionContext } from '@nestjs/common'
 import { Inject, UseFilters, applyDecorators } from '@nestjs/common'
 import { MessagePattern } from '@nestjs/microservices'
 import { ipcMain } from 'electron'
@@ -9,11 +10,15 @@ import { IpcExceptionsFilter, ipcMessageDispatcher } from './transport'
  *
  * ipcMain.handle --> @IpcHandle
  */
-export function IpcHandle(channel: string) {
+export function IpcHandle(channel: string, ctx: ExecutionContext) {
   if (!channel)
     throw new Error('ipc handle channel is required')
 
-  ipcMain.handle(channel, (...args) => ipcMessageDispatcher.emit(channel, IPC_HANDLE, ...args))
+  const ctrlPrefix = Reflect.getMetadata('controller', ctx.getClass()) || '/'
+
+  const fullChannel = [ctrlPrefix, channel].join('/')
+
+  ipcMain.handle(fullChannel, (...args) => ipcMessageDispatcher.emit(channel, IPC_HANDLE, ...args))
 
   // Do not modify the order!
   return applyDecorators(
