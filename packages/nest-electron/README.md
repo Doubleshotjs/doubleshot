@@ -121,6 +121,21 @@ export class AppController {
 }
 ```
 
+Export methods in preload/index.ts
+```ts
+import { contextBridge, ipcRenderer } from 'electron'
+
+contextBridge.exposeInMainWorld(
+  'electron',
+  {
+    chat: (msg: string): Promise<string> => ipcRenderer.invoke('chat', msg),
+    printLog: (log: string): void => ipcRenderer.send('print-log', log),
+    sendMultiParams: (param1: string, param2: string): void => ipcRenderer.send('multi-params', param1, param2),
+    exit: (): void => ipcRenderer.send('exit'),
+  },
+)
+```
+
 ## License
 
 MIT License © 2022 [Archer Gu](https://github.com/archergu)
