@@ -19,9 +19,7 @@
     } = window.electron
 
     const test = async () => {
-      const {
-        data: msgFromBackend
-      } = await chat('This is a message to backend')
+      const msgFromBackend = await chat('This is a message to backend')
 
       await printLog(msgFromBackend)
 
