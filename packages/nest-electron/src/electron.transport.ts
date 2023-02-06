@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common'
 import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservices'
 import { Server } from '@nestjs/microservices'
-import { IPC_HANDLE } from './electron.constants'
+import { IPC_HANDLE, IPC_ON } from './electron.constants'
 import { ipcMessageDispatcher } from './transport'
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
@@ -12,7 +12,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
     this.logger = new Logger(name)
   }
 
-  onMessage(messageChannel: string, type: string, ...args: any[]): Promise<any> {
+  onMessage(messageChannel: string, type: string, ...args: any[]): Promise<any | void> {
     try {
       const handler: MessageHandler | undefined = this.messageHandlers.get(messageChannel)
       if (!handler) {
@@ -30,7 +30,8 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
         },
       ]
 
-      return handler(newArgs)
+      if (type !== IPC_ON)
+        return handler(newArgs)
     }
     catch (error) {
       this.logger.error(error)
