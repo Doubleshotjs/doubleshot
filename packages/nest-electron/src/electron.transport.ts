@@ -12,7 +12,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
     this.logger = new Logger(name)
   }
 
-  onMessage(messageChannel: string, type: string, ...args: any[]): Promise<any | void> {
+  async onMessage(messageChannel: string, type: string, ...args: any[]): Promise<any | void> {
     try {
       const handler: MessageHandler | undefined = this.messageHandlers.get(messageChannel)
       if (!handler) {
@@ -30,8 +30,10 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
         },
       ]
 
+      const result = await handler(newArgs)
+
       if (type !== IPC_ON)
-        return handler(newArgs)
+        return result
     }
     catch (error) {
       this.logger.error(error)
