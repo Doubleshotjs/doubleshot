@@ -9,3 +9,10 @@ contextBridge.exposeInMainWorld(
     exit: (): void => ipcRenderer.send('exit'),
   },
 )
+
+contextBridge.exposeInMainWorld(
+  'custom',
+  {
+    chat: (msg: string): Promise<string> => ipcRenderer.invoke('/custom-prefix/chat', msg),
+  },
+)

@@ -53,6 +53,14 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('Get log: This is a message to frontend')
   })
 
+  test('@IpcHandle with controller prefix', async () => {
+    expect(logs).toContain('Get message from frontend with controller prefix: This is a message to custom prefix backend')
+  })
+
+  test('@IpcOn: send args', async () => {
+    expect(logs).toContain('Get log: This is a message to frontend from custom prefix controller')
+  })
+
   test('@IpcOn', async () => {
     expect(logs).toContain('Electron exiting...')
   })

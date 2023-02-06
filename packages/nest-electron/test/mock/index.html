@@ -23,6 +23,14 @@
 
       await printLog(msgFromBackend)
 
+      const { chat: chatWithPrefix } = window.custom
+
+      const {
+        data: msgFromPrefixBackend
+      } = await chatWithPrefix('This is a message to custom prefix backend')
+
+      await printLog(msgFromPrefixBackend)
+
       await sendMultiParams('this is a param1', 'this is a param2')
 
       exit()
