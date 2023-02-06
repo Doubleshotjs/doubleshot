@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common'
 import { BrowserWindow } from 'electron'
 import { ElectronModule } from '../../../dist'
 import { AppController } from './app.controller'
+import { CustomPrefixController } from './custom-prefix.controller'
 
 @Module({
   imports: [
@@ -45,6 +46,6 @@ import { AppController } from './app.controller'
       },
     }),
   ],
-  controllers: [AppController],
+  controllers: [AppController, CustomPrefixController],
 })
 export class AppModule { }

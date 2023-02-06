@@ -14,7 +14,7 @@ export function IpcHandle(channel: string, ctx: ExecutionContext) {
   if (!channel)
     throw new Error('ipc handle channel is required')
 
-  const ctrlPrefix = Reflect.getMetadata('controller', ctx.getClass()) || '/'
+  const ctrlPrefix = Reflect.getMetadata('controller', ctx.getClass()) || ''
 
   const fullChannel = [ctrlPrefix, channel].join('/')
 
