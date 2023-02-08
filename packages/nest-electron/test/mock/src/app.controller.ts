@@ -21,6 +21,11 @@ export class AppController {
     return 'This is a message to frontend'
   }
 
+  @IpcHandle('error')
+  throwError() {
+    throw new Error('This is an error')
+  }
+
   @IpcOn('print-log')
   printLog(log: string) {
     console.log(`Get log: ${log}`)

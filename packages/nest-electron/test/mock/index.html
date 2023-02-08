@@ -15,10 +15,17 @@
       chat,
       printLog,
       sendMultiParams,
+      throwError,
       exit
     } = window.electron
 
     const test = async () => {
+      try {
+        await throwError()
+      } catch (error) {
+        await printLog(error.message)
+      }
+
       const msgFromBackend = await chat('This is a message to backend')
 
       await printLog(msgFromBackend)

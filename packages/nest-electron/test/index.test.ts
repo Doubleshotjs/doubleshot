@@ -70,4 +70,8 @@ describe('Doubleshot Nest Electron Module', () => {
   it('should also support call functions with decorators directly', async () => {
     expect(logs).toContain('Get log: Direct call function')
   })
+
+  it('should throw an error if an error occurs in the main process', async () => {
+    expect(logs).toContain('This is an error')
+  })
 })
