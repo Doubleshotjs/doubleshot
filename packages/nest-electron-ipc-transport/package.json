@@ -23,7 +23,8 @@
     "index.d.ts"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.json"
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "test": "npm run build && vitest run"
   },
   "peerDependencies": {
     "@nestjs/common": ">=6.0.0",

@@ -32,7 +32,8 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "test": "tsup && vitest run"
   },
   "peerDependencies": {
     "electron": ">=16.0.0",
