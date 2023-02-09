@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "echo 'run example2 in dev mode'",
+    "build": "echo 'build example2'"
+  }
+}
