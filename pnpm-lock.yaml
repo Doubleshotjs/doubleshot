@@ -6,7 +6,7 @@ importers:
     specifiers:
       '@esm2cjs/execa': 6.1.1-cjs.1
       '@lightwing/eslint-config': 0.0.10
-      '@nestjs/testing': 9.3.5
+      '@nestjs/testing': 9.3.7
       '@swc/core': 1.3.32
       '@types/fs-extra': 11.0.1
       '@types/node': 18.13.0
@@ -23,7 +23,7 @@ importers:
     devDependencies:
       '@esm2cjs/execa': 6.1.1-cjs.1
       '@lightwing/eslint-config': 0.0.10_4vsywjlpuriuw3tl5oq6zy5a64
-      '@nestjs/testing': 9.3.5_vtjd3ozrxh4msyvkhv3qln6oeu
+      '@nestjs/testing': 9.3.7_zmctrozi6xxh3beaccl6ebop6u
       '@swc/core': 1.3.32
       '@types/fs-extra': 11.0.1
       '@types/node': 18.13.0
@@ -71,30 +71,30 @@ importers:
 
   packages/nest-electron:
     specifiers:
-      '@nestjs/common': 9.3.5
-      '@nestjs/core': 9.3.5
+      '@nestjs/common': 9.3.7
+      '@nestjs/core': 9.3.7
       '@nestjs/microservices': '>=6.0.0'
       electron: 23.0.0
       reflect-metadata: 0.1.13
     dependencies:
-      '@nestjs/microservices': 9.0.11_k5rp7t7goy2wgpzgqwg2ievwku
+      '@nestjs/microservices': 9.0.11_zopo4oyrexfpa3czalg73ujjpm
     devDependencies:
-      '@nestjs/common': 9.3.5_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/core': 9.3.5_i2wk2udys5ey2brx5vkn5xokvy
+      '@nestjs/common': 9.3.7_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/core': 9.3.7_pww4uyu5igpg32wtyilzv5unee
       electron: 23.0.0
       reflect-metadata: 0.1.13
 
   packages/nest-electron-ipc-transport:
     specifiers:
-      '@nestjs/common': 9.3.5
-      '@nestjs/core': 9.3.5
-      '@nestjs/microservices': 9.3.5
+      '@nestjs/common': 9.3.7
+      '@nestjs/core': 9.3.7
+      '@nestjs/microservices': 9.3.7
       electron: 23.0.0
       reflect-metadata: 0.1.13
     devDependencies:
-      '@nestjs/common': 9.3.5_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/core': 9.3.5_gxncica2daukx336bzvyvchhqi
-      '@nestjs/microservices': 9.3.5_k5rp7t7goy2wgpzgqwg2ievwku
+      '@nestjs/common': 9.3.7_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/core': 9.3.7_zt2f7tapwmho7aha3n6o32evxy
+      '@nestjs/microservices': 9.3.7_zopo4oyrexfpa3czalg73ujjpm
       electron: 23.0.0
       reflect-metadata: 0.1.13
 
@@ -814,8 +814,8 @@ packages:
       - supports-color
     dev: true
 
-  /@nestjs/common/9.3.5_mnr6j2del53muneqly5h4y27ai:
-    resolution: {integrity: sha512-18pEYuE+4Lj6r5kYbgy+S2Udmhxqd80dyVZkEcWt8mIwykVeGAITrJ/NIr26aQXoXXy0J3WNhqT7So3qh32ZZA==}
+  /@nestjs/common/9.3.7_mnr6j2del53muneqly5h4y27ai:
+    resolution: {integrity: sha512-7hwY2lIkmB+K8wPSP9T8auzKPSlO15Gzujl3/ZxLX9SBt6B7N5Niv5E+5AzOcfL+h2X8JGysMG620hiGbUsT9A==}
     peerDependencies:
       cache-manager: <=5
       class-transformer: '*'
@@ -836,8 +836,8 @@ packages:
       tslib: 2.5.0
       uid: 2.0.1
 
-  /@nestjs/core/9.3.5_gxncica2daukx336bzvyvchhqi:
-    resolution: {integrity: sha512-dRVasVaIvNVTvoSXMNDS3aQYPwJt30y59i6i29ZjK+kifmBVgThYLev1tAOLVmao4Pmxcua8NNNAg2UZ2RxlQA==}
+  /@nestjs/core/9.3.7_ojttuksvundfk3amlyo674va74:
+    resolution: {integrity: sha512-FXGVivZiujZl1aJF6jdPpg1XnLKp7kDhVGhWhJtnpv2IW/cz/YQHD2uMz/o+GZ9TCZxsGlxg79jbcuJITG11iQ==}
     requiresBuild: true
     peerDependencies:
       '@nestjs/common': ^9.0.0
@@ -854,9 +854,7 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.5_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/microservices': 9.3.5_k5rp7t7goy2wgpzgqwg2ievwku
-      '@node-rs/xxhash': 1.3.0
+      '@nestjs/common': 9.3.7_mnr6j2del53muneqly5h4y27ai
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
       iterare: 1.2.1
@@ -869,8 +867,8 @@ packages:
       - encoding
     dev: true
 
-  /@nestjs/core/9.3.5_i2wk2udys5ey2brx5vkn5xokvy:
-    resolution: {integrity: sha512-dRVasVaIvNVTvoSXMNDS3aQYPwJt30y59i6i29ZjK+kifmBVgThYLev1tAOLVmao4Pmxcua8NNNAg2UZ2RxlQA==}
+  /@nestjs/core/9.3.7_pww4uyu5igpg32wtyilzv5unee:
+    resolution: {integrity: sha512-FXGVivZiujZl1aJF6jdPpg1XnLKp7kDhVGhWhJtnpv2IW/cz/YQHD2uMz/o+GZ9TCZxsGlxg79jbcuJITG11iQ==}
     requiresBuild: true
     peerDependencies:
       '@nestjs/common': ^9.0.0
@@ -887,9 +885,8 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.5_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/microservices': 9.0.11_k5rp7t7goy2wgpzgqwg2ievwku
-      '@node-rs/xxhash': 1.3.0
+      '@nestjs/common': 9.3.7_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/microservices': 9.0.11_zopo4oyrexfpa3czalg73ujjpm
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
       iterare: 1.2.1
@@ -901,8 +898,8 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nestjs/core/9.3.5_lbuxfzim43akipncy7qb6bj2oi:
-    resolution: {integrity: sha512-dRVasVaIvNVTvoSXMNDS3aQYPwJt30y59i6i29ZjK+kifmBVgThYLev1tAOLVmao4Pmxcua8NNNAg2UZ2RxlQA==}
+  /@nestjs/core/9.3.7_zt2f7tapwmho7aha3n6o32evxy:
+    resolution: {integrity: sha512-FXGVivZiujZl1aJF6jdPpg1XnLKp7kDhVGhWhJtnpv2IW/cz/YQHD2uMz/o+GZ9TCZxsGlxg79jbcuJITG11iQ==}
     requiresBuild: true
     peerDependencies:
       '@nestjs/common': ^9.0.0
@@ -919,8 +916,8 @@ packages:
       '@nestjs/websockets':
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.5_mnr6j2del53muneqly5h4y27ai
-      '@node-rs/xxhash': 1.3.0
+      '@nestjs/common': 9.3.7_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/microservices': 9.3.7_zopo4oyrexfpa3czalg73ujjpm
       '@nuxtjs/opencollective': 0.3.2
       fast-safe-stringify: 2.1.1
       iterare: 1.2.1
@@ -933,7 +930,7 @@ packages:
       - encoding
     dev: true
 
-  /@nestjs/microservices/9.0.11_k5rp7t7goy2wgpzgqwg2ievwku:
+  /@nestjs/microservices/9.0.11_zopo4oyrexfpa3czalg73ujjpm:
     resolution: {integrity: sha512-SalP+y96HAsrNnPkt+RQAYlPSzofs/D90Y0ZS9oveBiCQhezKSnkBZ7Qpv3uLFbs6TsL/VHG9nVoQC6aiZA0ww==}
     peerDependencies:
       '@grpc/grpc-js': '*'
@@ -969,15 +966,15 @@ packages:
       nats:
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.5_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/core': 9.3.5_i2wk2udys5ey2brx5vkn5xokvy
+      '@nestjs/common': 9.3.7_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/core': 9.3.7_pww4uyu5igpg32wtyilzv5unee
       iterare: 1.2.1
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
       tslib: 2.4.0
 
-  /@nestjs/microservices/9.3.5_k5rp7t7goy2wgpzgqwg2ievwku:
-    resolution: {integrity: sha512-ww1fJupKQXCfx/SKvlD25lnGoGXRjwgV3+eJ5NAbJEPj/KxI9vYKjVlQ2iummEgjsMdC44eiMx4pZ69o0/IfBw==}
+  /@nestjs/microservices/9.3.7_zopo4oyrexfpa3czalg73ujjpm:
+    resolution: {integrity: sha512-y3C8fTvKgDWiw8s7p2nDSPcgm8RhW/BclBxW1rhQseR7wOlpWCtlHJRdJVB2XZp8fhMMOUkVoudU0m3fudzKow==}
     peerDependencies:
       '@grpc/grpc-js': '*'
       '@nestjs/common': ^9.0.0
@@ -1012,16 +1009,16 @@ packages:
       nats:
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.5_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/core': 9.3.5_gxncica2daukx336bzvyvchhqi
+      '@nestjs/common': 9.3.7_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/core': 9.3.7_zt2f7tapwmho7aha3n6o32evxy
       iterare: 1.2.1
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
       tslib: 2.5.0
     dev: true
 
-  /@nestjs/testing/9.3.5_vtjd3ozrxh4msyvkhv3qln6oeu:
-    resolution: {integrity: sha512-Xz9Bn6zUBV3VBNfdIsAY1bvsAWGoX7uGUVIONzleBBsaWqdL35CRMD10xWKnWBGXPiqmilb2HfDNoHLT2Le9ZQ==}
+  /@nestjs/testing/9.3.7_zmctrozi6xxh3beaccl6ebop6u:
+    resolution: {integrity: sha512-tNJuNYfDXMJzTgQXRwnQtLdd7PIIqrSsZ//TP/wnqPnbUpTkWMCSK5exWfPWvdyS8P3Fy2wy5hNj8Rvp9+KvYw==}
     peerDependencies:
       '@nestjs/common': ^9.0.0
       '@nestjs/core': ^9.0.0
@@ -1033,132 +1030,10 @@ packages:
       '@nestjs/platform-express':
         optional: true
     dependencies:
-      '@nestjs/common': 9.3.5_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/core': 9.3.5_lbuxfzim43akipncy7qb6bj2oi
+      '@nestjs/common': 9.3.7_mnr6j2del53muneqly5h4y27ai
+      '@nestjs/core': 9.3.7_ojttuksvundfk3amlyo674va74
       tslib: 2.5.0
     dev: true
-
-  /@node-rs/xxhash-android-arm-eabi/1.3.0:
-    resolution: {integrity: sha512-Wq2pFlOYs6JpPn23lcRyxjSUmVuv92w+vywuhba4Bj556r3RPYbZH49LGfu90AdcUlEYI/+RwVKjSFusz5zTPA==}
-    engines: {node: '>= 12'}
-    cpu: [arm]
-    os: [android]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-android-arm64/1.3.0:
-    resolution: {integrity: sha512-dw77/P7jHgtZzReGRgqc2PS6wmfCn/1PVKVQZW/b/6/10E4EiDWgiD4U6BxSN+2InePnsfb/IRjJ9dvkmiNHVg==}
-    engines: {node: '>= 12'}
-    cpu: [arm64]
-    os: [android]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-darwin-arm64/1.3.0:
-    resolution: {integrity: sha512-2SKiITOr5Lt35vv2PpdcKV7mhdfudR0Cheuk9dj1fBx6hXrl9lDf5Yu+RWPC1j8CskSYbxFqWQC1iSZJD1MFcw==}
-    engines: {node: '>= 12'}
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-darwin-x64/1.3.0:
-    resolution: {integrity: sha512-V4D05YuiI7Hwn1L8IKr3cEhERBEd+mFte0aKM1rnlMxFV4IBtdevM8asXv4hKcJTtV+4h0QAVpTydb4+MW21KQ==}
-    engines: {node: '>= 12'}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-freebsd-x64/1.3.0:
-    resolution: {integrity: sha512-/tffg1aJ/M2XDwCKVOkUs/J3aCarZzTJbTg26mi4T6E9YqSjpCNIkQidJPZT2VEIw2xqU/Rlj+ccar39vVk2ww==}
-    engines: {node: '>= 12'}
-    cpu: [x64]
-    os: [freebsd]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-linux-arm-gnueabihf/1.3.0:
-    resolution: {integrity: sha512-zjpHjOonCdBb+ccAtHO3HShc7sXKe1PsMWY9kklAX1Gxv+MRok0+ZzmLvO878IRExgKgMQESG27y+gey15yu8Q==}
-    engines: {node: '>= 12'}
-    cpu: [arm]
-    os: [linux]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-linux-arm64-gnu/1.3.0:
-    resolution: {integrity: sha512-Ayr72tbWAsroADMBNnV/cuDFgwKDKXxFoDGdGrtL11A4Fyn39dQwsh3hgL2iO+JeLHIqsfSej+djBE5XaLQGjQ==}
-    engines: {node: '>= 12'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-linux-arm64-musl/1.3.0:
-    resolution: {integrity: sha512-CkvDh0+gAyTuy3J3jZa5mUO64GV9701VC5iOsd5IN4iJz9DYiv/C+7ci9d0CwcjsWm3/oNM35K1IlX52xPfQdw==}
-    engines: {node: '>= 12'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-linux-x64-gnu/1.3.0:
-    resolution: {integrity: sha512-F6wqncSd+Cp+Hfaumo0hrb5TIKdJtNCOGRCmeKH7XmJu5iDzinIPYb0TLKNlpfIKVlMT2xE+PWq3YF4K1+zgyw==}
-    engines: {node: '>= 12'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-linux-x64-musl/1.3.0:
-    resolution: {integrity: sha512-YdUrXxSMk20Hn/16DClyerpk4vWuHrEUOMK6Vuov+xYHehkd33MFDUyTg0O5//VPUWP49FS/wzDNtSHQVEJNcg==}
-    engines: {node: '>= 12'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-win32-arm64-msvc/1.3.0:
-    resolution: {integrity: sha512-qwf12QVJNkaLvgCza05bJM1DC2xHRh/UUG6kE6tE+x+a3rP4008V0i5ns6fl0UMM+gts1uHUpW6dPIWkVqq86Q==}
-    engines: {node: '>= 12'}
-    cpu: [arm64]
-    os: [win32]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-win32-ia32-msvc/1.3.0:
-    resolution: {integrity: sha512-bFVThe4OH1gbT0MXD+F3cDwEeVVjnnb3BazkkB8lH0zOwSQANc1qunftivSeYTiGupLvw/xIE0eelXjDv6w1hQ==}
-    engines: {node: '>= 12'}
-    cpu: [ia32]
-    os: [win32]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash-win32-x64-msvc/1.3.0:
-    resolution: {integrity: sha512-hIyWzIAGGRF/WFdJd56+VgnZ37V/PzGv1GIkLEv/iDbjpap0FJpY6MBXB/WERwrBgy9QGoE3DXfT00uKCxN25A==}
-    engines: {node: '>= 12'}
-    cpu: [x64]
-    os: [win32]
-    requiresBuild: true
-    optional: true
-
-  /@node-rs/xxhash/1.3.0:
-    resolution: {integrity: sha512-uy+/zGE0p17e9qbeo6aul/TaRBpRr9p7oDgSgkqduCWDr2vFGqdJuKM8ENmG3uuE9B6CNXhwf4Mho5xZ2kmWFQ==}
-    engines: {node: '>= 12'}
-    optionalDependencies:
-      '@node-rs/xxhash-android-arm-eabi': 1.3.0
-      '@node-rs/xxhash-android-arm64': 1.3.0
-      '@node-rs/xxhash-darwin-arm64': 1.3.0
-      '@node-rs/xxhash-darwin-x64': 1.3.0
-      '@node-rs/xxhash-freebsd-x64': 1.3.0
-      '@node-rs/xxhash-linux-arm-gnueabihf': 1.3.0
-      '@node-rs/xxhash-linux-arm64-gnu': 1.3.0
-      '@node-rs/xxhash-linux-arm64-musl': 1.3.0
-      '@node-rs/xxhash-linux-x64-gnu': 1.3.0
-      '@node-rs/xxhash-linux-x64-musl': 1.3.0
-      '@node-rs/xxhash-win32-arm64-msvc': 1.3.0
-      '@node-rs/xxhash-win32-ia32-msvc': 1.3.0
-      '@node-rs/xxhash-win32-x64-msvc': 1.3.0
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
