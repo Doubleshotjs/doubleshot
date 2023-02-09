@@ -66,13 +66,13 @@ export interface DoubleShotRunnerConfig {
   root?: string
   run?: RunConfig[]
   /**
-   * Filter running names
+   * Filter running names. It requires RunConfig to set `name` config.
    */
   filter?: string[]
   /**
-   * Only run special name
+   * Only run special names. It requires RunConfig to set `name` config.
    */
-  only?: string
+  only?: string[] | string
   electronBuild?: ElectronBuildConfig
 }
 
@@ -117,10 +117,11 @@ export async function resolveConfig(inlineConfig: InlineConfig): Promise<Resolve
     const config: DoubleShotRunnerConfig = mod.default || mod
 
     const filter = inlineConfig.filter || config.filter || []
-    const only = inlineConfig.only || config.only
+    const onlyConfig = inlineConfig.only || config.only
+    const only = Array.isArray(onlyConfig) ? onlyConfig : onlyConfig ? [onlyConfig] : []
     let runConfig: RunConfig[] | undefined = []
-    if (only) {
-      runConfig = config.run?.filter(e => e.name === only)
+    if (only && only.length > 0) {
+      runConfig = config.run?.filter(e => e.name && only.includes(e.name))
       filter.length > 1 && logger.warn(TAG, '\'only\' has a greater priority than \'filter\'')
     }
     else {

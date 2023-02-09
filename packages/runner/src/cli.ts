@@ -9,7 +9,7 @@ const cli = cac('doubleshot-run')
 interface CliOptions {
   root?: string
   filter?: string // string,string,string...
-  only?: string
+  only?: string // string,string,string...
 }
 
 // run
@@ -17,7 +17,7 @@ cli
   .command('[command]', 'run commands') // default command
   .option('--root <path>', 'Project root directory')
   .option('--filter <names>', 'Filter running names')
-  .option('--only <name>', 'Only run special name')
+  .option('--only <names>', 'Only run special names')
   .action(async (command: string, options: CliOptions) => {
     const logger = createLogger()
     if (!command) {
@@ -33,7 +33,7 @@ cli
       await run(command, {
         root: options.root,
         filter: options.filter?.split(','),
-        only: options.only,
+        only: options.only?.split(','),
       })
     }
     catch (e) {
