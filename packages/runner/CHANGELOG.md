@@ -1,3 +1,12 @@
+## [0.0.6](https://github.com/archergu/doubleshot/compare/runner@0.0.5...runner@0.0.6) (2023-02-09)
+
+
+### Features
+
+* **runner:** `only` config now support an array ([48a21dc](https://github.com/archergu/doubleshot/commit/48a21dc6cb161fb050745e8f3a04bfc45caba4e6))
+
+
+
 ## [0.0.5](https://github.com/archergu/doubleshot/compare/runner@0.0.4...runner@0.0.5) (2023-01-10)
 
 
