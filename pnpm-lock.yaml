@@ -13,7 +13,7 @@ importers:
       conventional-changelog-cli: 2.2.2
       eslint: 8.34.0
       fs-extra: 11.1.0
-      lint-staged: 13.1.1
+      lint-staged: 13.1.2
       mono-release: 2.6.2
       rimraf: 4.1.2
       simple-git-hooks: 2.8.1
@@ -30,7 +30,7 @@ importers:
       conventional-changelog-cli: 2.2.2
       eslint: 8.34.0
       fs-extra: 11.1.0
-      lint-staged: 13.1.1
+      lint-staged: 13.1.2
       mono-release: 2.6.2_3u3bztnv34xpapk67lcdq6fnmm
       rimraf: 4.1.2
       simple-git-hooks: 2.8.1
@@ -4344,8 +4344,8 @@ packages:
   /lines-and-columns/1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  /lint-staged/13.1.1:
-    resolution: {integrity: sha512-LLJLO0Kdbcv2a+CvSF4p1M7jBZOajKSMpBUvyR8+bXccsqPER0/NxTFQSpNHjqwV9kM3tkHczYerTB5wI+bksQ==}
+  /lint-staged/13.1.2:
+    resolution: {integrity: sha512-K9b4FPbWkpnupvK3WXZLbgu9pchUJ6N7TtVZjbaPsoizkqFUDkUReUL25xdrCljJs7uLUF3tZ7nVPeo/6lp+6w==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
