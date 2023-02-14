@@ -6,14 +6,26 @@ const mockDir = path.resolve(__dirname, './mock')
 const mockDist = path.resolve(mockDir, 'dist')
 
 const buildMock = async () => {
-  const { stdout, stderr } = await execa(
+  const { stdout: mainOut, stderr: mainErr } = await execa(
     'tsup',
+    ['src/main.ts', '--clean'],
     {
       cwd: mockDir,
     },
   )
 
-  const logs = stdout + stderr
+  let logs = mainOut + mainErr
+
+  const { stdout: preloadOut, stderr: preloadErr } = await execa(
+    'tsup',
+    ['src/preload.ts'],
+    {
+      cwd: mockDir,
+    },
+  )
+
+  logs += preloadOut + preloadErr
+
   return logs
 }
 
@@ -73,5 +85,11 @@ describe('Doubleshot Nest Electron Module', () => {
 
   it('should throw an error if an error occurs in the main process', async () => {
     expect(logs).toContain('This is an error')
+  })
+
+  it('should throw a custom error if an error occurs in the main process', async () => {
+    expect(logs).toContain('This is an custom error')
+    expect(logs).toContain('[custom-error]: test_extra_key')
+    expect(logs).toContain('[custom-error]: {"k1":1,"k2":"v2"}')
   })
 })

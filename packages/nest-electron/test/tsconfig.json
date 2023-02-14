@@ -10,10 +10,14 @@
     "target": "es6",
     "sourceMap": false,
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": [
+      "./mock/types"
+    ]
   },
   "include": [
     "./**/*.ts",
-    "./**/*.html"
+    "./**/*.html",
+    "mock/types"
   ]
 }

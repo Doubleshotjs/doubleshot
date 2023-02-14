@@ -26,6 +26,23 @@ export class AppController {
     throw new Error('This is an error')
   }
 
+  @IpcHandle('custom-error')
+  throwCustomError() {
+    interface CustomError extends Error {
+      extraKey: string
+      extraObj: any
+    }
+
+    const err = (new Error('This is an custom error')) as CustomError
+    err.extraKey = 'test_extra_key'
+    err.extraObj = {
+      k1: 1,
+      k2: 'v2',
+    }
+
+    throw err
+  }
+
   @IpcOn('print-log')
   printLog(log: string) {
     console.log(`Get log: ${log}`)

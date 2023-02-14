@@ -16,6 +16,7 @@
       printLog,
       sendMultiParams,
       throwError,
+      throwCustomError,
       exit
     } = window.electron
 
@@ -24,6 +25,14 @@
         await throwError()
       } catch (error) {
         await printLog(error.message)
+      }
+
+      try {
+        await throwCustomError()
+      } catch (error) {
+        await printLog(error.message)
+        await printLog(`[custom-error]: ${error.extraKey}`)
+        await printLog(`[custom-error]: ${JSON.stringify(error.extraObj)}`)
       }
 
       const msgFromBackend = await chat('This is a message to backend')
