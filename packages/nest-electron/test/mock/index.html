@@ -16,7 +16,9 @@
       printLog,
       sendMultiParams,
       throwError,
-      exit
+      exit,
+      ipcChat,
+      throwIpcError,
     } = window.electron
 
     const test = async () => {
@@ -29,6 +31,15 @@
       const msgFromBackend = await chat('This is a message to backend')
 
       await printLog(msgFromBackend)
+
+      try {
+        await throwIpcError()
+      } catch (error) {
+        // await printLog('aaaaa')
+        await printLog(error.message)
+      }
+
+      await printLog(await ipcChat('This is a message to backend using @Ipc'))
 
       await sendMultiParams('this is a param1', 'this is a param2')
 

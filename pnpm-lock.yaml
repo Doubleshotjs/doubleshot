@@ -73,12 +73,12 @@ importers:
     specifiers:
       '@nestjs/common': 9.3.8
       '@nestjs/core': 9.3.8
-      '@nestjs/microservices': '>=6.0.0'
+      '@nestjs/microservices': ^9.3.5
       electron: 23.0.0
       reflect-metadata: 0.1.13
       rxjs: ^7.8.0
     dependencies:
-      '@nestjs/microservices': 9.0.11_rfkwsi4anokjnfq4xl4onkvzwa
+      '@nestjs/microservices': 9.3.8_rfkwsi4anokjnfq4xl4onkvzwa
     devDependencies:
       '@nestjs/common': 9.3.8_mnr6j2del53muneqly5h4y27ai
       '@nestjs/core': 9.3.8_6sysrfnceog466mrogtvxnbmxe
@@ -838,38 +838,6 @@ packages:
       tslib: 2.5.0
       uid: 2.0.1
 
-  /@nestjs/core/9.3.8_67fuby44ix4iqquztl7cj7hhoy:
-    resolution: {integrity: sha512-LtKMF7qzlSN+B4lItxHc/r9IJTSgURZAT5LqMtZynmYDpIkkiG7UrKKx/jAolUF41SGkKXzC6Lh+yralZ97i5A==}
-    requiresBuild: true
-    peerDependencies:
-      '@nestjs/common': ^9.0.0
-      '@nestjs/microservices': ^9.0.0
-      '@nestjs/platform-express': ^9.0.0
-      '@nestjs/websockets': ^9.0.0
-      reflect-metadata: ^0.1.12
-      rxjs: ^7.1.0
-    peerDependenciesMeta:
-      '@nestjs/microservices':
-        optional: true
-      '@nestjs/platform-express':
-        optional: true
-      '@nestjs/websockets':
-        optional: true
-    dependencies:
-      '@nestjs/common': 9.3.8_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/microservices': 9.0.11_rfkwsi4anokjnfq4xl4onkvzwa
-      '@nuxtjs/opencollective': 0.3.2
-      fast-safe-stringify: 2.1.1
-      iterare: 1.2.1
-      path-to-regexp: 3.2.0
-      reflect-metadata: 0.1.13
-      rxjs: 7.8.0
-      tslib: 2.5.0
-      uid: 2.0.1
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /@nestjs/core/9.3.8_6sysrfnceog466mrogtvxnbmxe:
     resolution: {integrity: sha512-LtKMF7qzlSN+B4lItxHc/r9IJTSgURZAT5LqMtZynmYDpIkkiG7UrKKx/jAolUF41SGkKXzC6Lh+yralZ97i5A==}
     requiresBuild: true
@@ -931,51 +899,6 @@ packages:
       uid: 2.0.1
     transitivePeerDependencies:
       - encoding
-    dev: true
-
-  /@nestjs/microservices/9.0.11_rfkwsi4anokjnfq4xl4onkvzwa:
-    resolution: {integrity: sha512-SalP+y96HAsrNnPkt+RQAYlPSzofs/D90Y0ZS9oveBiCQhezKSnkBZ7Qpv3uLFbs6TsL/VHG9nVoQC6aiZA0ww==}
-    peerDependencies:
-      '@grpc/grpc-js': '*'
-      '@nestjs/common': ^9.0.0
-      '@nestjs/core': ^9.0.0
-      '@nestjs/websockets': ^9.0.0
-      amqp-connection-manager: '*'
-      amqplib: '*'
-      cache-manager: '*'
-      ioredis: '*'
-      kafkajs: '*'
-      mqtt: '*'
-      nats: '*'
-      reflect-metadata: ^0.1.12
-      rxjs: ^7.1.0
-    peerDependenciesMeta:
-      '@grpc/grpc-js':
-        optional: true
-      '@nestjs/websockets':
-        optional: true
-      amqp-connection-manager:
-        optional: true
-      amqplib:
-        optional: true
-      cache-manager:
-        optional: true
-      ioredis:
-        optional: true
-      kafkajs:
-        optional: true
-      mqtt:
-        optional: true
-      nats:
-        optional: true
-    dependencies:
-      '@nestjs/common': 9.3.8_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/core': 9.3.8_67fuby44ix4iqquztl7cj7hhoy
-      iterare: 1.2.1
-      reflect-metadata: 0.1.13
-      rxjs: 7.8.0
-      tslib: 2.4.0
-    dev: false
 
   /@nestjs/microservices/9.3.8_rfkwsi4anokjnfq4xl4onkvzwa:
     resolution: {integrity: sha512-A4+LJlhDwMig/y/L8jI5/EQEZp0v3fpCMS4Ll1w4BcxuuyUSwLBF4AZdta7X4adb93Yo5qy7eNCVF3tyWl715Q==}
@@ -1019,7 +942,6 @@ packages:
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
       tslib: 2.5.0
-    dev: true
 
   /@nestjs/testing/9.3.8_znlpu2ktzydjx7rl4llynpumdm:
     resolution: {integrity: sha512-QyGOfrEOWbT8mi7ruYnh/taKuHDv4caAyf4WZ1YKkGn4tCeTKKNXSvV/y+NoO5o9Li/sLiq9B8EmleB1fxGajw==}
@@ -1146,6 +1068,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: false
     optional: true
@@ -1165,6 +1088,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: false
     optional: true
@@ -1184,6 +1108,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: false
     optional: true
@@ -1203,6 +1128,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: false
     optional: true
@@ -5853,10 +5779,6 @@ packages:
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
-
-  /tslib/2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-    dev: false
 
   /tslib/2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}

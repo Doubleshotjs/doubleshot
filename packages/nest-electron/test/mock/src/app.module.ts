@@ -1,13 +1,16 @@
 import { join } from 'path'
 import { Module } from '@nestjs/common'
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core'
 import { BrowserWindow } from 'electron'
 import { ElectronModule } from '../../../dist'
 import { AppController } from './app.controller'
+import { ResponseInterceptor } from './interceptors/response.interceptor'
+import { AllExecptionFilter } from './filters/all-exception.filter'
 
 @Module({
   imports: [
     ElectronModule.registerAsync({
-      // name: 'main', // default window names "main"
+    // name: 'main', // default window names "main"
       useFactory: async () => {
         const win = new BrowserWindow({
           webPreferences: {
@@ -46,5 +49,15 @@ import { AppController } from './app.controller'
     }),
   ],
   controllers: [AppController],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ResponseInterceptor,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: AllExecptionFilter,
+    },
+  ],
 })
 export class AppModule { }

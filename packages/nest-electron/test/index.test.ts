@@ -6,14 +6,25 @@ const mockDir = path.resolve(__dirname, './mock')
 const mockDist = path.resolve(mockDir, 'dist')
 
 const buildMock = async () => {
-  const { stdout, stderr } = await execa(
+  const { stdout: mainOut, stderr: mainErr } = await execa(
     'tsup',
+    ['src/main.ts', '--clean'],
+    {
+      cwd: mockDir,
+    },
+  )
+  let logs = mainOut + mainErr
+
+  const { stdout: preloadOut, stderr: preloadErr } = await execa(
+    'tsup',
+    ['src/preload.ts'],
     {
       cwd: mockDir,
     },
   )
 
-  const logs = stdout + stderr
+  logs += preloadOut + preloadErr
+
   return logs
 }
 
@@ -49,6 +60,10 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('Get message from frontend: This is a message to backend')
   })
 
+  test('@Ipc', async () => {
+    expect(logs).toContain('Get message from frontend via @Ipc: This is a message to backend using @Ipc')
+  })
+
   test('@IpcOn: send args', async () => {
     expect(logs).toContain('Get log: This is a message to frontend')
   })
@@ -73,5 +88,9 @@ describe('Doubleshot Nest Electron Module', () => {
 
   it('should throw an error if an error occurs in the main process', async () => {
     expect(logs).toContain('This is an error')
+  })
+
+  it('should throw an error via @Ipc if an error occurs in the main process', async () => {
+    expect(logs).toContain('This is an error throw by @ipc')
   })
 })

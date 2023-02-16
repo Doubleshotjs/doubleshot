@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug TEST [nest-electron]",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/nest-electron/test/mock",
+      "runtimeExecutable": "${workspaceFolder}/packages/nest-electron/node_modules/.bin/electron",
+      "program": "${workspaceFolder}/packages/nest-electron/test/mock/dist/main.js",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+    }
+  ]
+}
