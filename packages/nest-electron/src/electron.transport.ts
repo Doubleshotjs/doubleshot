@@ -1,6 +1,7 @@
 import { Logger } from '@nestjs/common'
 import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservices'
 import { Server } from '@nestjs/microservices'
+import { isObservable, lastValueFrom } from 'rxjs'
 import { IPC_HANDLE, IPC_ON } from './electron.constants'
 import { ipcMessageDispatcher } from './transport'
 
@@ -29,15 +30,21 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
           evt: ipcMainEventObject,
         },
       ]
+      const result = await handler(newArgs).then(async (res) => {
+        if (isObservable(res))
+          return await lastValueFrom(res)
 
-      const result = await handler(newArgs)
+        return res
+      })
 
       if (type !== IPC_ON)
         return result
     }
     catch (error) {
       this.logger.error(error)
-      throw error
+      // v8 error only pass message property
+      // thow only message from Error or object of rpc exception
+      throw new Error(error.message)
     }
   }
 

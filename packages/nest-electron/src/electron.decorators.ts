@@ -1,13 +1,49 @@
-import { Inject, UseFilters, applyDecorators } from '@nestjs/common'
+import { Inject, applyDecorators } from '@nestjs/common'
 import { MessagePattern } from '@nestjs/microservices'
 import { ipcMain } from 'electron'
 import { ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME, IPC_HANDLE, IPC_ON } from './electron.constants'
-import { IpcExceptionsFilter, ipcMessageDispatcher } from './transport'
+import { ipcMessageDispatcher } from './transport'
+
+/**
+ * Ipc handle decorator. It will be called by ipcRenderer.invoke
+ *
+ *
+ * WARNING: You should handle your exception manually.
+ * Example:
+ *   1. Return custom structure object throw RpcException instead of Error
+ *   2. Parse the return object to target value/exception in preload.js
+ *
+ *
+ * Limitations: You could only pass all your parameters inside first parameter slot.
+ * Example:
+ *   1. ipcRenderer.invoke('app.message', 'hello', 'word'); // @Payload will only received 'hello'
+ *   2. ipcRenderer.invoke('app.message', {title: 'hello', message: 'word'}); // This is the proper way to pass more than one parameters.
+ */
+export function Ipc(channel: string) {
+  if (!channel)
+    throw new Error('ipc handle channel is required')
+
+  ipcMain.handle(channel, (...args) => ipcMessageDispatcher.emit(channel, IPC_HANDLE, ...args))
+
+  return MessagePattern(channel)
+}
 
 /**
  * Ipc handle decorator. It will be called by ipcRenderer.invoke
  *
  * ipcMain.handle --> @IpcHandle
+ *
+ *
+ * WARNING: You should handle your exception manually.
+ * Example:
+ *   1. Return custom structure object throw RpcException instead of Error
+ *   2. Parse the return object to target value/exception in preload.js
+ *
+ *
+ * WARNING: All args will wrap in an array until function call.
+ * Example:
+ *    1. @Payload will no work correctly in this case.
+ *    2. Another MethodDecorator will received args wrap as args[0][0]
  */
 export function IpcHandle(channel: string) {
   if (!channel)
@@ -19,7 +55,6 @@ export function IpcHandle(channel: string) {
   return applyDecorators(
     MultiParams(),
     MessagePattern(channel),
-    UseFilters(new IpcExceptionsFilter()),
   )
 }
 
@@ -27,6 +62,18 @@ export function IpcHandle(channel: string) {
  * Ipc on decorator. It will be called by ipcRenderer.send/sendSync
  *
  * ipcMain.on --> @IpcOn
+ *
+ *
+ * WARNING: You should handle your exception manually.
+ * Example:
+ *   1. Return custom structure object throw RpcException instead of Error.
+ *   2. Parse the return object to target value/exception in preload.js.
+ *
+ *
+ * Warning: All args will wrap in an array until function call.
+ * Example:
+ *    1. @Payload will no work correctly in this case.
+ *    2. Another MethodDecorator will received args wrap as args[0][0]
  */
 export function IpcOn(channel: string) {
   if (!channel)
@@ -38,7 +85,6 @@ export function IpcOn(channel: string) {
   return applyDecorators(
     MultiParams(),
     MessagePattern(channel),
-    UseFilters(new IpcExceptionsFilter()),
   )
 }
 

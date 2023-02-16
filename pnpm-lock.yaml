@@ -76,13 +76,15 @@ importers:
       '@nestjs/microservices': '>=6.0.0'
       electron: 23.0.0
       reflect-metadata: 0.1.13
+      rxjs: ^7.8.0
     dependencies:
       '@nestjs/microservices': 9.0.11_rfkwsi4anokjnfq4xl4onkvzwa
     devDependencies:
       '@nestjs/common': 9.3.8_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/core': 9.3.8_67fuby44ix4iqquztl7cj7hhoy
+      '@nestjs/core': 9.3.8_6sysrfnceog466mrogtvxnbmxe
       electron: 23.0.0
       reflect-metadata: 0.1.13
+      rxjs: 7.8.0
 
   packages/nest-electron-ipc-transport:
     specifiers:
@@ -866,6 +868,7 @@ packages:
       uid: 2.0.1
     transitivePeerDependencies:
       - encoding
+    dev: false
 
   /@nestjs/core/9.3.8_6sysrfnceog466mrogtvxnbmxe:
     resolution: {integrity: sha512-LtKMF7qzlSN+B4lItxHc/r9IJTSgURZAT5LqMtZynmYDpIkkiG7UrKKx/jAolUF41SGkKXzC6Lh+yralZ97i5A==}
@@ -972,6 +975,7 @@ packages:
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
       tslib: 2.4.0
+    dev: false
 
   /@nestjs/microservices/9.3.8_rfkwsi4anokjnfq4xl4onkvzwa:
     resolution: {integrity: sha512-A4+LJlhDwMig/y/L8jI5/EQEZp0v3fpCMS4Ll1w4BcxuuyUSwLBF4AZdta7X4adb93Yo5qy7eNCVF3tyWl715Q==}
@@ -1151,6 +1155,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -1169,6 +1174,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -1187,6 +1193,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     dev: true
     optional: true
@@ -1205,6 +1212,7 @@ packages:
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     dev: true
     optional: true
@@ -5848,6 +5856,7 @@ packages:
 
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: false
 
   /tslib/2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
