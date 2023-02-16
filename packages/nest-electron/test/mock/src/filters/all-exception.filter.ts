@@ -7,9 +7,9 @@ import type { ExceptionFilter } from '@nestjs/common'
 export class AllExecptionFilter implements ExceptionFilter {
   catch(exception: any): Observable<any> {
     return of({
+      ...exception,
       code: 1,
       message: exception.message,
-      ...exception,
     })
   }
 }
