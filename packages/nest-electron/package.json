@@ -34,7 +34,7 @@
   "devDependencies": {
     "@nestjs/common": "9.3.9",
     "@nestjs/core": "9.3.9",
-    "electron": "23.0.0",
+    "electron": "23.1.0",
     "reflect-metadata": "0.1.13"
   }
 }
