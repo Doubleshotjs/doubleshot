@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common'
 import { BrowserWindow, app } from 'electron'
-import { IpcHandle, IpcOn, Window } from '../../../dist'
+import { Ipc, IpcHandle, IpcOn, Window } from '../../../dist'
 
 @Controller()
 export class AppController {
@@ -13,6 +13,17 @@ export class AppController {
 
     if (this.anotherWin instanceof BrowserWindow)
       console.log('Inject another BrowserWindow successfully')
+  }
+
+  @Ipc('ipc-chat')
+  ipcChat(msg: string) {
+    console.log(`Get message from frontend via @Ipc: ${msg}`)
+    return 'This is a message to frontend using @Ipc'
+  }
+
+  @Ipc('ipc-error')
+  throwIpcError() {
+    throw new Error('This is an error throw by @ipc')
   }
 
   @IpcHandle('chat')
