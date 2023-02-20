@@ -101,11 +101,11 @@ importers:
   packages/plugin-vite:
     specifiers:
       '@doubleshot/builder': workspace:*
-      vite: 4.1.2
+      vite: 4.1.3
     dependencies:
       '@doubleshot/builder': link:../builder
     devDependencies:
-      vite: 4.1.2
+      vite: 4.1.3
 
   packages/runner:
     specifiers:
@@ -6086,7 +6086,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.1.2_@types+node@18.14.0
+      vite: 4.1.3_@types+node@18.14.0
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -6097,8 +6097,8 @@ packages:
       - terser
     dev: true
 
-  /vite/4.1.2:
-    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
+  /vite/4.1.3:
+    resolution: {integrity: sha512-0Zqo4/Fr/swSOBmbl+HAAhOjrqNwju+yTtoe4hQX9UsARdcuc9njyOdr6xU0DDnV7YP0RT6mgTTOiRtZgxfCxA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -6130,8 +6130,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite/4.1.2_@types+node@18.14.0:
-    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
+  /vite/4.1.3_@types+node@18.14.0:
+    resolution: {integrity: sha512-0Zqo4/Fr/swSOBmbl+HAAhOjrqNwju+yTtoe4hQX9UsARdcuc9njyOdr6xU0DDnV7YP0RT6mgTTOiRtZgxfCxA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -6207,7 +6207,7 @@ packages:
       tinybench: 2.3.1
       tinypool: 0.3.1
       tinyspy: 1.0.2
-      vite: 4.1.2_@types+node@18.14.0
+      vite: 4.1.3_@types+node@18.14.0
       vite-node: 0.28.5_@types+node@18.14.0
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
