@@ -3,6 +3,7 @@ import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservi
 import { Server } from '@nestjs/microservices'
 import { IPC_HANDLE, IPC_ON } from './electron.constants'
 import { ipcMessageDispatcher } from './transport'
+import './nest.hacker'
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
   protected readonly logger: Logger
@@ -36,8 +37,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
         return result
     }
     catch (error) {
-      this.logger.error(error)
-      throw error
+      throw new Error(error.message ?? error)
     }
   }
 

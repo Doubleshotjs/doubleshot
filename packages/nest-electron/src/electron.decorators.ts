@@ -1,8 +1,8 @@
-import { Inject, UseFilters, applyDecorators } from '@nestjs/common'
+import { Inject, applyDecorators } from '@nestjs/common'
 import { MessagePattern } from '@nestjs/microservices'
 import { ipcMain } from 'electron'
 import { ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME, IPC_HANDLE, IPC_ON } from './electron.constants'
-import { IpcExceptionsFilter, ipcMessageDispatcher } from './transport'
+import { ipcMessageDispatcher } from './transport'
 
 /**
  * Ipc handle decorator. It will be called by ipcRenderer.invoke
@@ -19,7 +19,6 @@ export function IpcHandle(channel: string) {
   return applyDecorators(
     MultiParams(),
     MessagePattern(channel),
-    UseFilters(new IpcExceptionsFilter()),
   )
 }
 
@@ -38,7 +37,6 @@ export function IpcOn(channel: string) {
   return applyDecorators(
     MultiParams(),
     MessagePattern(channel),
-    UseFilters(new IpcExceptionsFilter()),
   )
 }
 
