@@ -121,7 +121,7 @@ export class AppController {
 }
 ```
 
-Export methods in preload/index.ts
+Export methods in preload/index.ts:
 ```ts
 import { contextBridge, ipcRenderer } from 'electron'
 
@@ -134,6 +134,26 @@ contextBridge.exposeInMainWorld(
     exit: (): void => ipcRenderer.send('exit'),
   },
 )
+```
+
+IPC channel name will be combined with the controller route:
+```ts
+import { Controller } from '@nestjs/common'
+import { IpcHandle, IpcOn } from '@doubleshot/nest-electron'
+
+@Controller('app')
+export class AppController {
+  @IpcHandle('chat') // ipcRenderer.invoke('app/chat', msg); '/app/chat', 'app/chat/', '/app/chat/' are also available
+  chat(msg: string) {
+    console.log(`Get message from frontend: ${msg}`)
+    return 'This is a message to frontend'
+  }
+
+  @IpcOn('print-log') // ipcRenderer.send('app/print-log', msg),
+  printLog(log: string) {
+    console.log(`Get log: ${log}`)
+  }
+}
 ```
 
 ## License

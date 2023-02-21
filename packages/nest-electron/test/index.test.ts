@@ -65,7 +65,7 @@ describe('Doubleshot Nest Electron Module', () => {
 
   it('should throw an error if an error occurs in the main process', async () => {
     expect(logs).toContain('IpcExceptionsFilter')
-    expect(logs).toContain('Get log: Error invoking remote method \'error\': Error: This is an error')
+    expect(logs).toContain('Get log: Error invoking remote method \'/error\': Error: This is an error')
   })
 
   it('should support controller route prefix', async () => {
