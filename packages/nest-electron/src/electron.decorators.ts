@@ -3,26 +3,7 @@ import { MessagePattern } from '@nestjs/microservices'
 import { app, ipcMain } from 'electron'
 import { ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME, IPC_HANDLE, IPC_ON } from './electron.constants'
 import { ChannelMaps, ipcMessageDispatcher } from './transport'
-
-function linkPathAndChannel(channel: string, path = '') {
-  path = path.charAt(0) === '/' ? path.slice(1) : path
-  path = path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path
-  channel = channel.charAt(0) === '/' ? channel.slice(1) : channel
-  channel = channel.charAt(channel.length - 1) === '/' ? channel.slice(0, -1) : channel
-
-  channel = path.length > 0 ? `${path}/${channel}` : channel
-
-  return [
-    `/${channel}`,
-    `${channel}/`,
-    `/${channel}/`,
-    channel,
-  ]
-}
-
-function generateRandomString() {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-}
+import { generateRandomString, linkPathAndChannel } from './utils'
 
 function createIpcDecorator(type: typeof IPC_HANDLE | typeof IPC_ON) {
   return (channel: string) => {
