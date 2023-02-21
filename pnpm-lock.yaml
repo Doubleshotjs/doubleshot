@@ -73,14 +73,14 @@ importers:
     specifiers:
       '@nestjs/common': 9.3.9
       '@nestjs/core': 9.3.9
-      '@nestjs/microservices': '>=6.0.0'
+      '@nestjs/microservices': '>=8.0.0'
       electron: 23.1.0
       reflect-metadata: 0.1.13
     dependencies:
-      '@nestjs/microservices': 9.0.11_xap76i5unmrgcq3fgd6nhqgyvy
+      '@nestjs/microservices': 9.3.9_xap76i5unmrgcq3fgd6nhqgyvy
     devDependencies:
       '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/core': 9.3.9_lubsvq36odnadsrftl632k3ucm
+      '@nestjs/core': 9.3.9_qzie2x4y27zejjf374i4nkgexu
       electron: 23.1.0
       reflect-metadata: 0.1.13
 
@@ -867,37 +867,6 @@ packages:
       - encoding
     dev: true
 
-  /@nestjs/core/9.3.9_lubsvq36odnadsrftl632k3ucm:
-    resolution: {integrity: sha512-9g1A1G9eirLXEpH21rc6dKb08zHc2+adhCRz8NW39hbejcsxxD72FApJzt4QBQAKvu862ixt/tdpStnFT7lOSw==}
-    requiresBuild: true
-    peerDependencies:
-      '@nestjs/common': ^9.0.0
-      '@nestjs/microservices': ^9.0.0
-      '@nestjs/platform-express': ^9.0.0
-      '@nestjs/websockets': ^9.0.0
-      reflect-metadata: ^0.1.12
-      rxjs: ^7.1.0
-    peerDependenciesMeta:
-      '@nestjs/microservices':
-        optional: true
-      '@nestjs/platform-express':
-        optional: true
-      '@nestjs/websockets':
-        optional: true
-    dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/microservices': 9.0.11_xap76i5unmrgcq3fgd6nhqgyvy
-      '@nuxtjs/opencollective': 0.3.2
-      fast-safe-stringify: 2.1.1
-      iterare: 1.2.1
-      path-to-regexp: 3.2.0
-      reflect-metadata: 0.1.13
-      rxjs: 7.8.0
-      tslib: 2.5.0
-      uid: 2.0.1
-    transitivePeerDependencies:
-      - encoding
-
   /@nestjs/core/9.3.9_qzie2x4y27zejjf374i4nkgexu:
     resolution: {integrity: sha512-9g1A1G9eirLXEpH21rc6dKb08zHc2+adhCRz8NW39hbejcsxxD72FApJzt4QBQAKvu862ixt/tdpStnFT7lOSw==}
     requiresBuild: true
@@ -928,50 +897,6 @@ packages:
       uid: 2.0.1
     transitivePeerDependencies:
       - encoding
-    dev: true
-
-  /@nestjs/microservices/9.0.11_xap76i5unmrgcq3fgd6nhqgyvy:
-    resolution: {integrity: sha512-SalP+y96HAsrNnPkt+RQAYlPSzofs/D90Y0ZS9oveBiCQhezKSnkBZ7Qpv3uLFbs6TsL/VHG9nVoQC6aiZA0ww==}
-    peerDependencies:
-      '@grpc/grpc-js': '*'
-      '@nestjs/common': ^9.0.0
-      '@nestjs/core': ^9.0.0
-      '@nestjs/websockets': ^9.0.0
-      amqp-connection-manager: '*'
-      amqplib: '*'
-      cache-manager: '*'
-      ioredis: '*'
-      kafkajs: '*'
-      mqtt: '*'
-      nats: '*'
-      reflect-metadata: ^0.1.12
-      rxjs: ^7.1.0
-    peerDependenciesMeta:
-      '@grpc/grpc-js':
-        optional: true
-      '@nestjs/websockets':
-        optional: true
-      amqp-connection-manager:
-        optional: true
-      amqplib:
-        optional: true
-      cache-manager:
-        optional: true
-      ioredis:
-        optional: true
-      kafkajs:
-        optional: true
-      mqtt:
-        optional: true
-      nats:
-        optional: true
-    dependencies:
-      '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
-      '@nestjs/core': 9.3.9_lubsvq36odnadsrftl632k3ucm
-      iterare: 1.2.1
-      reflect-metadata: 0.1.13
-      rxjs: 7.8.0
-      tslib: 2.4.0
 
   /@nestjs/microservices/9.3.9_xap76i5unmrgcq3fgd6nhqgyvy:
     resolution: {integrity: sha512-G4EsQpOS3l2dWjJID+z/YyDPTx+SEq/5YQ/cC8XV9Hap1S0rEmo+Z1R2OdlUt+ZnkcJp7H0GIHiB0EjaYanmjA==}
@@ -1015,7 +940,6 @@ packages:
       reflect-metadata: 0.1.13
       rxjs: 7.8.0
       tslib: 2.5.0
-    dev: true
 
   /@nestjs/testing/9.3.9_77foi4w27ghy47yutmnzv7krjy:
     resolution: {integrity: sha512-+mPvSVvSC2SAkYgZZv1mOI2xsdGc1pmq7/sem7iin/JDoFtlvoGSK+pfZHD3IV3EpYtq1v/8/5gi+UFH9yZnDg==}
@@ -5845,9 +5769,6 @@ packages:
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
-
-  /tslib/2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
 
   /tslib/2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
