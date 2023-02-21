@@ -1,4 +1,4 @@
-import { Inject, applyDecorators } from '@nestjs/common'
+import { Inject } from '@nestjs/common'
 import { MessagePattern } from '@nestjs/microservices'
 import { ipcMain } from 'electron'
 import { ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME, IPC_HANDLE, IPC_ON } from './electron.constants'
@@ -15,11 +15,7 @@ export function IpcHandle(channel: string) {
 
   ipcMain.handle(channel, (...args) => ipcMessageDispatcher.emit(channel, IPC_HANDLE, ...args))
 
-  // Do not modify the order!
-  return applyDecorators(
-    MultiParams(),
-    MessagePattern(channel),
-  )
+  return MessagePattern(channel)
 }
 
 /**
@@ -34,12 +30,14 @@ export function IpcOn(channel: string) {
   ipcMain.on(channel, (...args) => ipcMessageDispatcher.emit(channel, IPC_ON, ...args))
 
   // Do not modify the order!
-  return applyDecorators(
-    MultiParams(),
-    MessagePattern(channel),
-  )
+  return MessagePattern(channel)
 }
 
+/**
+ * This decorator helps you get multiple parameters from IPC communication, rather than a single array or object
+ *
+ * @NOTE Because it modifies the method's reference relationship, place it at the bottom of all decorators
+ */
 export function MultiParams(): MethodDecorator {
   return (
     _target: object,

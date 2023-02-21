@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common'
 import { BrowserWindow, app } from 'electron'
-import { IpcHandle, IpcOn, Window } from '../../../dist'
+import { IpcHandle, IpcOn, MultiParams, Window } from '../../../dist'
 
 @Controller()
 export class AppController {
@@ -16,7 +16,7 @@ export class AppController {
   }
 
   @IpcHandle('chat')
-  chat(msg: string) {
+  chat([msg]: [string, any?]) {
     console.log(`Get message from frontend: ${msg}`)
     return 'This is a message to frontend'
   }
@@ -27,16 +27,17 @@ export class AppController {
   }
 
   @IpcOn('print-log')
-  printLog(log: string) {
+  printLog([log]: [string, any?]) {
     console.log(`Get log: ${log}`)
   }
 
   @IpcOn('multi-params')
+  @MultiParams()
   multiParams(param1: string, param2: string) {
     console.log(`param1: ${param1}`)
     console.log(`param2: ${param2}`)
 
-    this.printLog('Direct call function')
+    this.printLog(['Direct call function'])
   }
 
   @IpcOn('exit')
