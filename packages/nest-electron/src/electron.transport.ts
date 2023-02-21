@@ -2,7 +2,7 @@ import { Logger } from '@nestjs/common'
 import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservices'
 import { Server } from '@nestjs/microservices'
 import { IPC_HANDLE, IPC_ON } from './electron.constants'
-import { ipcMessageDispatcher } from './transport'
+import { ChannelMaps, ipcMessageDispatcher } from './transport'
 import './nest.hacker'
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
@@ -15,12 +15,19 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
 
   async onMessage(messageChannel: string, type: string, ...args: any[]): Promise<any | void> {
     try {
-      const handler: MessageHandler | undefined = this.messageHandlers.get(messageChannel)
-      if (!handler) {
+      const noHandlerError = () => {
         const errMsg = `No handler for message channel "${messageChannel}"`
-        this.logger.warn(errMsg)
+        this.logger.error(errMsg)
         throw new Error(errMsg)
       }
+
+      const channelId = ChannelMaps.get(messageChannel)
+      if (!channelId)
+        noHandlerError()
+
+      const handler: MessageHandler | undefined = this.messageHandlers.get(channelId)
+      if (!handler)
+        noHandlerError()
 
       this.logger.log(`[${type === IPC_HANDLE ? 'ipcMain.handle' : 'ipcMain.on'}] Process message ${messageChannel}`)
       const [ipcMainEventObject, ...payload] = args

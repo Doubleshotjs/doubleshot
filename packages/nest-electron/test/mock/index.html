@@ -12,25 +12,40 @@
   <h1>Doubleshot Nest Electron Module Test</h1>
   <script type="text/javascript">
     const {
-      chat,
+      sendData,
       printLog,
       sendMultiParams,
       throwError,
-      exit
+      exit,
+      sendMsg,
+      printOtherLog,
+      invoke
     } = window.electron
 
     const test = async () => {
+      // test @IpcHandle base usage
+      let result = await sendData('send data to backend')
+      // test @IpcOn base usage
+      await printLog(result)
+
+      // test @MultiParams usage
+      await sendMultiParams('this is a param1', 'this is a param2')
+
+      // test error handling
       try {
         await throwError()
       } catch (error) {
         await printLog(error.message)
       }
 
-      const msgFromBackend = await chat('This is a message to backend')
-
-      await printLog(msgFromBackend)
-
-      await sendMultiParams('this is a param1', 'this is a param2')
+      // test ipc channel with Controller prefix
+      result = await sendMsg('send message to backend')
+      await printOtherLog(result)
+      // test ipc channel with Controller prefix and different slash placement
+      await invoke('/other/invoke')
+      await invoke('other/invoke')
+      await invoke('other/invoke/')
+      await invoke('/other/invoke/')
 
       exit()
     }

@@ -45,21 +45,17 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('Inject BrowserWindow successfully')
   })
 
-  test('@IpcHandle', async () => {
-    expect(logs).toContain('Get message from frontend: This is a message to backend')
-  })
-
-  test('@IpcOn: send args', async () => {
-    expect(logs).toContain('Get log: This is a message to frontend')
-  })
-
-  test('@IpcOn', async () => {
-    expect(logs).toContain('Electron exiting...')
-  })
-
   test('@Window for multiple windows', async () => {
     expect(logs).toContain('Inject another BrowserWindow successfully')
     expect(logs).toContain('Get log: This is an another window')
+  })
+
+  test('@IpcHandle', async () => {
+    expect(logs).toContain('Get data from frontend: send data to backend')
+  })
+
+  test('@IpcOn', async () => {
+    expect(logs).toContain('Get log: Main process received data from frontend')
   })
 
   it('should send multi params via the @IpcOn or @IpcHandle decorators', async () => {
@@ -67,11 +63,20 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('param2: this is a param2')
   })
 
-  it('should also support call functions with decorators directly', async () => {
-    expect(logs).toContain('Get log: Direct call function')
+  it('should throw an error if an error occurs in the main process', async () => {
+    expect(logs).toContain('IpcExceptionsFilter')
+    expect(logs).toContain('Get log: Error invoking remote method \'error\': Error: This is an error')
   })
 
-  it('should throw an error if an error occurs in the main process', async () => {
-    expect(logs).toContain('This is an error')
+  it('should support controller route prefix', async () => {
+    expect(logs).toContain('Get message from frontend: send message to backend')
+    expect(logs).toContain('Get other log: Main process received message from frontend')
+  })
+
+  it('should support controller route prefix with or without slash at the beginning or end', async () => {
+    expect(logs).toContain('invoke with /other/invoke')
+    expect(logs).toContain('invoke with other/invoke')
+    expect(logs).toContain('invoke with other/invoke/')
+    expect(logs).toContain('invoke with /other/invoke/')
   })
 })

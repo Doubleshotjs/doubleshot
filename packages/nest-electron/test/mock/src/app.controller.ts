@@ -15,10 +15,10 @@ export class AppController {
       console.log('Inject another BrowserWindow successfully')
   }
 
-  @IpcHandle('chat')
-  chat([msg]: [string, any?]) {
-    console.log(`Get message from frontend: ${msg}`)
-    return 'This is a message to frontend'
+  @IpcHandle('data')
+  sendData([data]: [string, any?]) {
+    console.log(`Get data from frontend: ${data}`)
+    return 'Main process received data from frontend'
   }
 
   @IpcHandle('error')
@@ -36,8 +36,6 @@ export class AppController {
   multiParams(param1: string, param2: string) {
     console.log(`param1: ${param1}`)
     console.log(`param2: ${param2}`)
-
-    this.printLog(['Direct call function'])
   }
 
   @IpcOn('exit')

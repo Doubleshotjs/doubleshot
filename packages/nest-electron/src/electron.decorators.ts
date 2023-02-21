@@ -1,37 +1,75 @@
-import { Inject } from '@nestjs/common'
+import { Inject, applyDecorators } from '@nestjs/common'
 import { MessagePattern } from '@nestjs/microservices'
-import { ipcMain } from 'electron'
+import { app, ipcMain } from 'electron'
 import { ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME, IPC_HANDLE, IPC_ON } from './electron.constants'
-import { ipcMessageDispatcher } from './transport'
+import { ChannelMaps, ipcMessageDispatcher } from './transport'
+
+function linkPathAndChannel(channel: string, path = '') {
+  path = path.charAt(0) === '/' ? path.slice(1) : path
+  path = path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path
+  channel = channel.charAt(0) === '/' ? channel.slice(1) : channel
+  channel = channel.charAt(channel.length - 1) === '/' ? channel.slice(0, -1) : channel
+
+  channel = path.length > 0 ? `${path}/${channel}` : channel
+
+  return [
+    `/${channel}`,
+    `${channel}/`,
+    `/${channel}/`,
+    channel,
+  ]
+}
+
+function generateRandomString() {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
+
+function createIpcDecorator(type: typeof IPC_HANDLE | typeof IPC_ON) {
+  return (channel: string) => {
+    if (!channel || channel.length === 0)
+      throw new Error('ipc handle channel is required')
+
+    const channelId = `${channel}-${generateRandomString()}`
+
+    function ipcDecorator() {
+      return (target: any, _key: string, _descriptor: PropertyDescriptor) => {
+        app.on('ready', () => {
+          const path = Reflect.getMetadata('path', target.constructor)
+          const channelNames = linkPathAndChannel(channel, path)
+          const mainChannelName = channelNames[0]
+          for (const channel of channelNames) {
+            // These four channel names eventually converge into mainChannelName
+            if (type === IPC_ON)
+              ipcMain.on(channel, (...args) => ipcMessageDispatcher.emit(mainChannelName, IPC_ON, ...args))
+            else if (type === IPC_HANDLE)
+              ipcMain.handle(channel, (...args) => ipcMessageDispatcher.emit(mainChannelName, IPC_HANDLE, ...args))
+          }
+
+          ChannelMaps.set(mainChannelName, channelId)
+        })
+      }
+    }
+
+    return applyDecorators(
+      ipcDecorator(),
+      MessagePattern(channelId),
+    )
+  }
+}
 
 /**
  * Ipc handle decorator. It will be called by ipcRenderer.invoke
  *
  * ipcMain.handle --> @IpcHandle
  */
-export function IpcHandle(channel: string) {
-  if (!channel)
-    throw new Error('ipc handle channel is required')
-
-  ipcMain.handle(channel, (...args) => ipcMessageDispatcher.emit(channel, IPC_HANDLE, ...args))
-
-  return MessagePattern(channel)
-}
+export const IpcHandle = createIpcDecorator(IPC_HANDLE)
 
 /**
  * Ipc on decorator. It will be called by ipcRenderer.send/sendSync
  *
  * ipcMain.on --> @IpcOn
  */
-export function IpcOn(channel: string) {
-  if (!channel)
-    throw new Error('ipc on channel is required')
-
-  ipcMain.on(channel, (...args) => ipcMessageDispatcher.emit(channel, IPC_ON, ...args))
-
-  // Do not modify the order!
-  return MessagePattern(channel)
-}
+export const IpcOn = createIpcDecorator(IPC_ON)
 
 /**
  * This decorator helps you get multiple parameters from IPC communication, rather than a single array or object
