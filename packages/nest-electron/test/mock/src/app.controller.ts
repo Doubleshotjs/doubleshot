@@ -34,6 +34,12 @@ export class AppController {
     console.log(`Get log: ${data}`)
   }
 
+  @IpcOn('multi-params')
+  sendMultiParams(@Payload() [param1, param2]) {
+    console.log(`Get param1: ${param1}`)
+    console.log(`Get param2: ${param2}`)
+  }
+
   @IpcOn('exit')
   exit() {
     console.log('Electron exiting...')

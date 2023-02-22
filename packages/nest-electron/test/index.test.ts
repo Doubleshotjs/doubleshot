@@ -62,6 +62,11 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('Get ipc event object')
   })
 
+  it('should get an array if send multi params via ipc channel', () => {
+    expect(logs).toContain('Get param1: The early bird catches the worm')
+    expect(logs).toContain('Get param2: I saw a saw saw a saw')
+  })
+
   it('should throw an error if an error occurs in the main process', () => {
     expect(logs).toContain('IpcExceptionsFilter')
     expect(logs).toContain('Get log: Error invoking remote method \'/error\': Error: This is an error')

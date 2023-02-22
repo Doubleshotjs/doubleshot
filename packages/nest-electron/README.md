@@ -105,18 +105,25 @@ Bind ipc channel through the decorators:
 ```ts
 import { Controller } from '@nestjs/common'
 import { IpcHandle, IpcOn } from '@doubleshot/nest-electron'
+import { Ctx, Payload } from '@nestjs/microservices'
 
 @Controller()
 export class AppController {
   @IpcHandle('chat')
-  chat(msg: string) {
+  chat(@Payload() msg: string, @Ctx() { ipcEvt }) { // you can get ipc event object from @Ctx decorator
     console.log(`Get message from frontend: ${msg}`)
     return 'This is a message to frontend'
   }
 
   @IpcOn('print-log')
-  printLog(log: string) {
+  printLog(@Payload() log: string) {
     console.log(`Get log: ${log}`)
+  }
+
+  @IpcOn('multi-params')
+  sendMultiParams(@Payload() [param1, param2]) { // multi params will be an array from ipc channel
+    console.log(`Get param1: ${param1}`)
+    console.log(`Get param2: ${param2}`)
   }
 }
 ```
@@ -144,13 +151,13 @@ import { IpcHandle, IpcOn } from '@doubleshot/nest-electron'
 @Controller('app')
 export class AppController {
   @IpcHandle('chat') // ipcRenderer.invoke('app/chat', msg); '/app/chat', 'app/chat/', '/app/chat/' are also available
-  chat(msg: string) {
+  chat(@Payload() msg: string) {
     console.log(`Get message from frontend: ${msg}`)
     return 'This is a message to frontend'
   }
 
   @IpcOn('print-log') // ipcRenderer.send('app/print-log', msg),
-  printLog(log: string) {
+  printLog(@Payload() log: string) {
     console.log(`Get log: ${log}`)
   }
 }
