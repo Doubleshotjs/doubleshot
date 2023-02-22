@@ -1,9 +1,8 @@
 import { Inject, applyDecorators } from '@nestjs/common'
-import { MessagePattern } from '@nestjs/microservices'
-import { app, ipcMain } from 'electron'
+import { EventPattern, MessagePattern } from '@nestjs/microservices'
 import { ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME, IPC_HANDLE, IPC_ON } from './electron.constants'
-import { ChannelMaps, ipcMessageDispatcher } from './transport'
-import { generateRandomString, linkPathAndChannel } from './utils'
+import { ChannelMaps } from './transport'
+import { generateRandomString } from './utils'
 
 function createIpcDecorator(type: typeof IPC_HANDLE | typeof IPC_ON) {
   return (channel: string) => {
@@ -13,27 +12,14 @@ function createIpcDecorator(type: typeof IPC_HANDLE | typeof IPC_ON) {
     const channelId = `${channel}-${generateRandomString()}`
 
     function ipcDecorator() {
-      return (target: any, _key: string, _descriptor: PropertyDescriptor) => {
-        app.on('ready', () => {
-          const path = Reflect.getMetadata('path', target.constructor)
-          const channelNames = linkPathAndChannel(channel, path)
-          const mainChannelName = channelNames[0]
-          for (const channel of channelNames) {
-            // These four channel names eventually converge into mainChannelName
-            if (type === IPC_ON)
-              ipcMain.on(channel, (...args) => ipcMessageDispatcher.emit(mainChannelName, IPC_ON, ...args))
-            else if (type === IPC_HANDLE)
-              ipcMain.handle(channel, (...args) => ipcMessageDispatcher.emit(mainChannelName, IPC_HANDLE, ...args))
-          }
-
-          ChannelMaps.set(mainChannelName, channelId)
-        })
+      return (target: any, key: string, _descriptor: PropertyDescriptor) => {
+        ChannelMaps.set(channelId, { target, key, channel })
       }
     }
 
     return applyDecorators(
       ipcDecorator(),
-      MessagePattern(channelId),
+      type === IPC_HANDLE ? MessagePattern(channelId) : EventPattern(channelId),
     )
   }
 }
