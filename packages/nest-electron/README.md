@@ -104,13 +104,13 @@ Bind ipc channel through the decorators:
 
 ```ts
 import { Controller } from '@nestjs/common'
-import { IpcHandle, IpcOn } from '@doubleshot/nest-electron'
+import { IpcHandle, IpcOn, type IpcContext } from '@doubleshot/nest-electron'
 import { Ctx, Payload } from '@nestjs/microservices'
 
 @Controller()
 export class AppController {
   @IpcHandle('chat')
-  chat(@Payload() msg: string, @Ctx() { ipcEvt }) { // you can get ipc event object from @Ctx decorator
+  chat(@Payload() msg: string, @Ctx() { ipcEvt }: IpcContext) { // you can get ipc event object from @Ctx decorator
     console.log(`Get message from frontend: ${msg}`)
     return 'This is a message to frontend'
   }

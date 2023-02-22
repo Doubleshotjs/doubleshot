@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common'
-import { BrowserWindow, IpcMainInvokeEvent, app } from 'electron'
+import { BrowserWindow, app } from 'electron'
 import { Ctx, Payload } from '@nestjs/microservices'
-import { IpcHandle, IpcOn, Window } from '../../../dist'
+import { type IpcContext, IpcHandle, IpcOn, Window } from '../../../dist'
 
 @Controller()
 export class AppController {
@@ -17,7 +17,7 @@ export class AppController {
   }
 
   @IpcHandle('data')
-  sendData(@Payload() data: string, @Ctx() { ipcEvt }: { ipcEvt: IpcMainInvokeEvent }) {
+  sendData(@Payload() data: string, @Ctx() { ipcEvt }: IpcContext) {
     const hasIpcEvt = ipcEvt && typeof ipcEvt === 'object'
     hasIpcEvt && console.log('Get ipc event object')
     console.log(`Get data from frontend: ${data}`)

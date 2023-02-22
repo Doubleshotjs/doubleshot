@@ -12,9 +12,6 @@ export interface IpcContext {
 }
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
-  close(): any {
-  }
-
   listen(callback: () => void): any {
     ChannelMaps.forEach(({ target, channel }, channelId) => {
       const path = Reflect.getMetadata('path', target.constructor)
@@ -51,15 +48,17 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
         const data = payload.length === 0 ? undefined : payload.length === 1 ? payload[0] : payload
         const ctx: IpcContext = { ipcEvt: ipcMainEventObject }
 
-        return await handler(data, ctx).then(async (res) => {
-          return isObservable(res)
-            ? await lastValueFrom(res)
-            : res
-        })
+        const res = await handler(data, ctx)
+        return isObservable(res)
+          ? await lastValueFrom(res)
+          : res
       }
       catch (error) {
         throw new Error(error.message ?? error)
       }
     }
+  }
+
+  close(): any {
   }
 }
