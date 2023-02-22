@@ -1,55 +1,67 @@
-import { Logger } from '@nestjs/common'
 import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservices'
 import { Server } from '@nestjs/microservices'
 import { isObservable, lastValueFrom } from 'rxjs'
 import './nest.hacker'
-import { IPC_HANDLE, IPC_ON } from './electron.constants'
-import { ChannelMaps, ipcMessageDispatcher } from './transport'
+import type { IpcMainEvent, IpcMainInvokeEvent } from 'electron'
+import { ipcMain } from 'electron'
+import { ChannelMaps } from './transport'
+import { linkPathAndChannel } from './utils'
+
+export interface IpcContext {
+  ipcEvt: IpcMainEvent | IpcMainInvokeEvent
+}
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
-  protected readonly logger: Logger
-
-  constructor(name: string = ElectronIpcTransport.name) {
-    super()
-    this.logger = new Logger(name)
-  }
-
-  async onMessage(messageChannel: string, type: string, ...args: any[]): Promise<any | void> {
-    try {
-      const noHandlerError = () => {
-        const errMsg = `No handler for message channel "${messageChannel}"`
-        this.logger.error(errMsg)
-        throw new Error(errMsg)
-      }
-
-      const channelId = ChannelMaps.get(messageChannel)
-      if (!channelId)
-        noHandlerError()
-
-      const handler: MessageHandler | undefined = this.messageHandlers.get(channelId)
-      if (!handler)
-        noHandlerError()
-
-      this.logger.log(`[${type === IPC_HANDLE ? 'ipcMain.handle' : 'ipcMain.on'}] Process message ${messageChannel}`)
-      const [ipcEventObject, ...payload] = args
-
-      const data = payload.length === 0 ? undefined : payload.length === 1 ? payload[0] : payload
-
-      const result = await handler(data, { ipcEvt: ipcEventObject })
-
-      if (type !== IPC_ON)
-        return isObservable(result) ? await lastValueFrom(result) : result
-    }
-    catch (error) {
-      throw new Error(error.message ?? error)
-    }
-  }
-
   close(): any {
   }
 
   listen(callback: () => void): any {
-    ipcMessageDispatcher.on('ipc-message', this.onMessage.bind(this))
+    ChannelMaps.forEach(({ target, channel }, channelId) => {
+      const path = Reflect.getMetadata('path', target.constructor)
+      const channelNames = linkPathAndChannel(channel, path)
+
+      const handler = this.getHandlerByPattern(channelId)
+      if (!handler) {
+        const errMsg = `No handler for message channel "${channelNames[0]}"`
+        this.logger.error(errMsg)
+        throw new Error(errMsg)
+      }
+
+      for (const ch of channelNames) {
+        if (handler.isEventHandler)
+
+          ipcMain.on(ch, this.applyHandler(handler, ch))
+        else
+          ipcMain.handle(ch, this.applyHandler(handler, ch))
+      }
+    })
+
     callback()
+  }
+
+  private applyHandler(handler: MessageHandler, channel: string) {
+    return async (...args) => {
+      try {
+        if (!handler.isEventHandler)
+          this.logger.log(`[IPC] Process message ${channel}`)
+        else
+          this.logger.log(`[IPC] Process event ${channel}`)
+
+        const [ipcMainEventObject, ...payload] = args
+
+        const data = payload.length === 0 ? undefined : payload.length === 1 ? payload[0] : payload
+        const ctx: IpcContext = { ipcEvt: ipcMainEventObject }
+
+        const result = await handler(data, ctx).then(async (res) => {
+          return isObservable(res)
+            ? await lastValueFrom(res)
+            : res
+        })
+        return result
+      }
+      catch (error) {
+        throw new Error(error.message ?? error)
+      }
+    }
   }
 }
