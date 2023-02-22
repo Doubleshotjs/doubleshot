@@ -53,31 +53,6 @@ export const IpcHandle = createIpcDecorator(IPC_HANDLE)
 export const IpcOn = createIpcDecorator(IPC_ON)
 
 /**
- * This decorator helps you get multiple parameters from IPC communication, rather than a single array or object
- *
- * @NOTE Because it modifies the method's reference relationship, place it at the bottom of all decorators
- */
-export function MultiParams(): MethodDecorator {
-  return (
-    _target: object,
-    _key: string | symbol,
-    descriptor: PropertyDescriptor,
-  ) => {
-    const originalMethod = descriptor.value
-    descriptor.value = function (this: any, ...args: any[]) {
-      // args is from ipc
-      if (args.length > 0 && Array.isArray(args[0]) && args[0][args[0].length - 1].evt) {
-        return originalMethod.apply(this, args[0])
-      }
-      else { // args is from direct call
-        return originalMethod.apply(this, args)
-      }
-    }
-    return descriptor
-  }
-}
-
-/**
  * Window decorator, help to inject window
  */
 export const Window = (name = ELECTRON_WINDOW_DEFAULT_NAME): ReturnType<typeof Inject> => Inject(`${ELECTRON_WINDOW}:${name}`)
