@@ -37,7 +37,7 @@ const run = async (mode: 'dev' | 'build') => {
 beforeAll(async () => {
   remove()
   await installDeps(mockDir)
-}, Infinity)
+}, 10 * 60 * 1000)
 
 afterAll(() => {
   remove()
