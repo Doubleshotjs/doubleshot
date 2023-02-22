@@ -29,7 +29,6 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
 
       for (const ch of channelNames) {
         if (handler.isEventHandler)
-
           ipcMain.on(ch, this.applyHandler(handler, ch))
         else
           ipcMain.handle(ch, this.applyHandler(handler, ch))
