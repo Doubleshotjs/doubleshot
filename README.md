@@ -21,8 +21,8 @@ A software engineer's time is precious, and I hope that one set of code can be a
 
 - 🏃‍ A [Runner](https://github.com/Doubleshotjs/doubleshot/tree/main/packages/runner) to start and build both the frontend (renderer) and backend (main).
 - 🔨 A [Builder](https://github.com/Doubleshotjs/doubleshot/tree/main/packages/builder) to run/build electron main process or node backend.
-- 🛻 An electron ipc transport for [nestjs](https://nestjs.com/) that provides simple ipc communication.
-- 🪟 An electron module for [nestjs](https://nestjs.com/) to launch electron windows.
+- 🛻 An [electron ipc transport](https://github.com/Doubleshotjs/doubleshot/blob/main/packages/nest-electron/src/electron.transport.ts) for [nestjs](https://nestjs.com/) that provides simple ipc communication.
+- 🪟 An [electron module](https://github.com/Doubleshotjs/doubleshot/blob/main/packages/nest-electron/src/electron.module.ts) for [nestjs](https://nestjs.com/) to launch electron windows.
 - 😎 Very easy integration of electron and node.
 - ⚡ Quickly split and convert between C/S and B/S.
 - ⏩ Quick start and build, powered by [tsup](https://tsup.egoist.sh/) and [electron-builder](https://www.electron.build/)
