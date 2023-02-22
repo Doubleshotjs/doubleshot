@@ -50,7 +50,7 @@ const run = async (command: string) => {
 beforeAll(async () => {
   remove()
   await installDeps(path.resolve(mockDir, 'backend'))
-}, Infinity)
+}, 10 * 60 * 1000)
 
 afterAll(() => {
   remove()
