@@ -51,12 +51,11 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
         const data = payload.length === 0 ? undefined : payload.length === 1 ? payload[0] : payload
         const ctx: IpcContext = { ipcEvt: ipcMainEventObject }
 
-        const result = await handler(data, ctx).then(async (res) => {
+        return await handler(data, ctx).then(async (res) => {
           return isObservable(res)
             ? await lastValueFrom(res)
             : res
         })
-        return result
       }
       catch (error) {
         throw new Error(error.message ?? error)
