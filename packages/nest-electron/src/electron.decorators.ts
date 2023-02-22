@@ -5,15 +5,12 @@ import { ChannelMaps } from './transport'
 import { generateRandomString } from './utils'
 
 function createIpcDecorator(type: typeof IPC_HANDLE | typeof IPC_ON) {
-  return (channel: string) => {
-    if (!channel || channel.length === 0)
-      throw new Error('ipc handle channel is required')
-
-    const channelId = `${channel}-${generateRandomString()}`
+  return (channel?: string) => {
+    const channelId = `ipc-${channel}-${generateRandomString()}`
 
     function ipcDecorator() {
       return (target: any, key: string, _descriptor: PropertyDescriptor) => {
-        ChannelMaps.set(channelId, { target, key, channel })
+        ChannelMaps.set(channelId, { target, key, channel: channel || key })
       }
     }
 

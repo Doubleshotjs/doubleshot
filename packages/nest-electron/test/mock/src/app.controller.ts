@@ -40,7 +40,7 @@ export class AppController {
     console.log(`Get param2: ${param2}`)
   }
 
-  @IpcOn('exit')
+  @IpcOn()
   exit() {
     console.log('Electron exiting...')
     setTimeout(() => {
