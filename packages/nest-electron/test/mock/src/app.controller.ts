@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common'
-import { BrowserWindow, app } from 'electron'
-import { IpcHandle, IpcOn, MultiParams, Window } from '../../../dist'
+import { BrowserWindow, IpcMainInvokeEvent, app } from 'electron'
+import { Ctx, Payload } from '@nestjs/microservices'
+import { IpcHandle, IpcOn, Window } from '../../../dist'
 
 @Controller()
 export class AppController {
@@ -16,7 +17,9 @@ export class AppController {
   }
 
   @IpcHandle('data')
-  sendData([data]: [string, any?]) {
+  sendData(@Payload() data: string, @Ctx() { ipcEvt }: { ipcEvt: IpcMainInvokeEvent }) {
+    const hasIpcEvt = ipcEvt && typeof ipcEvt === 'object'
+    hasIpcEvt && console.log('Get ipc event object')
     console.log(`Get data from frontend: ${data}`)
     return 'Main process received data from frontend'
   }
@@ -27,15 +30,8 @@ export class AppController {
   }
 
   @IpcOn('print-log')
-  printLog([log]: [string, any?]) {
-    console.log(`Get log: ${log}`)
-  }
-
-  @IpcOn('multi-params')
-  @MultiParams()
-  multiParams(param1: string, param2: string) {
-    console.log(`param1: ${param1}`)
-    console.log(`param2: ${param2}`)
+  printLog(@Payload() data) {
+    console.log(`Get log: ${data}`)
   }
 
   @IpcOn('exit')

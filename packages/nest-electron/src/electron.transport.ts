@@ -30,15 +30,11 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
         noHandlerError()
 
       this.logger.log(`[${type === IPC_HANDLE ? 'ipcMain.handle' : 'ipcMain.on'}] Process message ${messageChannel}`)
-      const [ipcMainEventObject, ...payload] = args
-      const newArgs = [
-        ...payload,
-        {
-          evt: ipcMainEventObject,
-        },
-      ]
+      const [ipcEventObject, ...payload] = args
 
-      const result = await handler(newArgs)
+      const data = payload.length === 0 ? undefined : payload.length === 1 ? payload[0] : payload
+
+      const result = await handler(data, { ipcEvt: ipcEventObject })
 
       if (type !== IPC_ON)
         return result

@@ -14,7 +14,6 @@
     const {
       sendData,
       printLog,
-      sendMultiParams,
       throwError,
       exit,
       sendMsg,
@@ -27,9 +26,6 @@
       let result = await sendData('send data to backend')
       // test @IpcOn base usage
       await printLog(result)
-
-      // test @MultiParams usage
-      await sendMultiParams('this is a param1', 'this is a param2')
 
       // test error handling
       try {

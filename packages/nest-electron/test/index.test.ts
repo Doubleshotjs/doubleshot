@@ -37,43 +37,42 @@ describe('Doubleshot Nest Electron Module', () => {
     logs = await runElectron()
   }, Infinity)
 
-  it('should run electron', async () => {
+  it('should run electron', () => {
     expect(logs).toContain('Electron is running')
   })
 
-  test('@Window', async () => {
+  test('@Window', () => {
     expect(logs).toContain('Inject BrowserWindow successfully')
   })
 
-  test('@Window for multiple windows', async () => {
+  test('@Window for multiple windows', () => {
     expect(logs).toContain('Inject another BrowserWindow successfully')
     expect(logs).toContain('Get log: This is an another window')
   })
 
-  test('@IpcHandle', async () => {
+  test('@IpcHandle', () => {
     expect(logs).toContain('Get data from frontend: send data to backend')
   })
 
-  test('@IpcOn', async () => {
+  test('@IpcOn', () => {
     expect(logs).toContain('Get log: Main process received data from frontend')
   })
 
-  it('should send multi params via the @IpcOn or @IpcHandle decorators', async () => {
-    expect(logs).toContain('param1: this is a param1')
-    expect(logs).toContain('param2: this is a param2')
+  it('should get ipc event object from @Ctx', () => {
+    expect(logs).toContain('Get ipc event object')
   })
 
-  it('should throw an error if an error occurs in the main process', async () => {
+  it('should throw an error if an error occurs in the main process', () => {
     expect(logs).toContain('IpcExceptionsFilter')
     expect(logs).toContain('Get log: Error invoking remote method \'/error\': Error: This is an error')
   })
 
-  it('should support controller route prefix', async () => {
+  it('should support controller route prefix', () => {
     expect(logs).toContain('Get message from frontend: send message to backend')
     expect(logs).toContain('Get other log: Main process received message from frontend')
   })
 
-  it('should support controller route prefix with or without slash at the beginning or end', async () => {
+  it('should support controller route prefix with or without slash at the beginning or end', () => {
     expect(logs).toContain('invoke with /other/invoke')
     expect(logs).toContain('invoke with other/invoke')
     expect(logs).toContain('invoke with other/invoke/')
