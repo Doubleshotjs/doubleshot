@@ -20,7 +20,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
       const path = Reflect.getMetadata('path', target.constructor)
       const channelNames = linkPathAndChannel(channel, path)
 
-      const handler = this.getHandlerByPattern(channelId)
+      const handler = this.getHandlers().get(channelId)
       if (!handler) {
         const errMsg = `No handler for message channel "${channelNames[0]}"`
         this.logger.error(errMsg)
