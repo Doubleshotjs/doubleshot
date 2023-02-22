@@ -1,3 +1,26 @@
+# [0.2.0](https://github.com/archergu/doubleshot/compare/nest-electron@0.1.0...nest-electron@0.2.0) (2023-02-22)
+
+
+### Bug Fixes
+
+* **nest-electron:** custom filters do not take effect ([591803a](https://github.com/archergu/doubleshot/commit/591803a9077dba342f9083c5acd3b2aa5415f339))
+* **nest-electron:** remove MultiParams ([b4b10d1](https://github.com/archergu/doubleshot/commit/b4b10d19889ed9373808f3240d179febc4cfcc19))
+
+
+### Features
+
+* **nest-electron:** get ipc event object from @Ctx decorator ([20c3c15](https://github.com/archergu/doubleshot/commit/20c3c1571e4a85c31a6f8f2cc4053b7cb0017cbf))
+* **nest-electron:** hack connectMicroservice ([91a07ca](https://github.com/archergu/doubleshot/commit/91a07ca32cb726274a54359ab4241f36563f3dd0))
+* **nest-electron:** support controller route prefix ([a96b593](https://github.com/archergu/doubleshot/commit/a96b59348ecc207d69c0507455759e20d669831e))
+* **nest-electron:** support return an observable ([f0f8797](https://github.com/archergu/doubleshot/commit/f0f87977c1b71316130cdc61fa3a27d2ae639057))
+
+
+### Performance Improvements
+
+* **nest-electron:** MultiParams decorators are now optional ([b424837](https://github.com/archergu/doubleshot/commit/b424837fc50c00a9c4cd0f3ad0532ae7275d0160))
+
+
+
 # [0.1.0](https://github.com/archergu/doubleshot/compare/nest-electron@0.0.5...nest-electron@0.1.0) (2023-02-08)
 
 

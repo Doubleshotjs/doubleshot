@@ -1,6 +1,6 @@
 {
   "name": "@doubleshot/nest-electron",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Electron module for nestjs",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "license": "MIT",
