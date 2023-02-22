@@ -2,14 +2,10 @@ import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservi
 import { Server } from '@nestjs/microservices'
 import { isObservable, lastValueFrom } from 'rxjs'
 import './nest.hacker'
-import type { IpcMainEvent, IpcMainInvokeEvent } from 'electron'
 import { ipcMain } from 'electron'
 import { ChannelMaps } from './transport'
 import { linkPathAndChannel } from './utils'
-
-export interface IpcContext {
-  ipcEvt: IpcMainEvent | IpcMainInvokeEvent
-}
+import type { IpcContext } from './interfaces'
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
   listen(callback: () => void): any {
