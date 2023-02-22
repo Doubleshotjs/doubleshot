@@ -13,5 +13,6 @@ contextBridge.exposeInMainWorld(
     sendMsg: (msg: string): Promise<string> => ipcRenderer.invoke('other/send-msg', msg),
     printOtherLog: (log: string): void => ipcRenderer.send('other/print-other-log', log),
     invoke: (channel: string): void => ipcRenderer.send(channel, channel),
+    returnObservable: (): Promise<string> => ipcRenderer.invoke('other/return-observable'),
   },
 )

@@ -1,9 +1,10 @@
 import { Logger } from '@nestjs/common'
 import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservices'
 import { Server } from '@nestjs/microservices'
+import { isObservable, lastValueFrom } from 'rxjs'
+import './nest.hacker'
 import { IPC_HANDLE, IPC_ON } from './electron.constants'
 import { ChannelMaps, ipcMessageDispatcher } from './transport'
-import './nest.hacker'
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
   protected readonly logger: Logger
@@ -37,7 +38,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
       const result = await handler(data, { ipcEvt: ipcEventObject })
 
       if (type !== IPC_ON)
-        return result
+        return isObservable(result) ? await lastValueFrom(result) : result
     }
     catch (error) {
       throw new Error(error.message ?? error)

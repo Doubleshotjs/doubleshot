@@ -125,6 +125,11 @@ export class AppController {
     console.log(`Get param1: ${param1}`)
     console.log(`Get param2: ${param2}`)
   }
+
+  @IpcHandle('return-observable')
+  returnObservable() {
+    return of('Main process return an observable') // observable is also supported
+  }
 }
 ```
 

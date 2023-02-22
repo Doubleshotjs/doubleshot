@@ -76,8 +76,10 @@ importers:
       '@nestjs/microservices': '>=8.0.0'
       electron: 23.1.0
       reflect-metadata: 0.1.13
+      rxjs: '>=7.0.0'
     dependencies:
       '@nestjs/microservices': 9.3.9_xap76i5unmrgcq3fgd6nhqgyvy
+      rxjs: 7.8.0
     devDependencies:
       '@nestjs/common': 9.3.9_mnr6j2del53muneqly5h4y27ai
       '@nestjs/core': 9.3.9_qzie2x4y27zejjf374i4nkgexu

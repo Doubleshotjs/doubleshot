@@ -19,7 +19,8 @@
       exit,
       sendMsg,
       printOtherLog,
-      invoke
+      invoke,
+      returnObservable
     } = window.electron
 
     const test = async () => {
@@ -46,6 +47,10 @@
       await invoke('other/invoke')
       await invoke('other/invoke/')
       await invoke('/other/invoke/')
+
+      // test return observable
+      result = await returnObservable()
+      await printOtherLog(result)
 
       exit()
     }

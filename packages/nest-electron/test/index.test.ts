@@ -35,7 +35,7 @@ describe('Doubleshot Nest Electron Module', () => {
   beforeAll(async () => {
     await buildMock()
     logs = await runElectron()
-  }, Infinity)
+  }, 60 * 1000)
 
   it('should run electron', () => {
     expect(logs).toContain('Electron is running')
@@ -82,5 +82,9 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('invoke with other/invoke')
     expect(logs).toContain('invoke with other/invoke/')
     expect(logs).toContain('invoke with /other/invoke/')
+  })
+
+  it('should support return an observable', () => {
+    expect(logs).toContain('Get other log: Main process return an observable')
   })
 })

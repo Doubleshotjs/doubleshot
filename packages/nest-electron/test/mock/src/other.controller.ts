@@ -1,5 +1,6 @@
 import { Controller } from '@nestjs/common'
 import { Payload } from '@nestjs/microservices'
+import { of } from 'rxjs'
 import { IpcHandle, IpcOn } from '../../../dist'
 
 @Controller('other')
@@ -20,5 +21,10 @@ export class OtherController {
   @IpcOn('invoke')
   invoke(@Payload() channel: string) {
     console.log(`invoke with ${channel}`)
+  }
+
+  @IpcHandle('return-observable')
+  returnObservable() {
+    return of('Main process return an observable')
   }
 }
