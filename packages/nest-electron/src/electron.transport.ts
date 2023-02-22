@@ -3,11 +3,19 @@ import { Server } from '@nestjs/microservices'
 import { isObservable, lastValueFrom } from 'rxjs'
 import './nest.hacker'
 import { ipcMain } from 'electron'
+import { Logger } from '@nestjs/common'
 import { ChannelMaps } from './transport'
 import { linkPathAndChannel } from './utils'
 import type { IpcContext } from './interfaces'
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
+  protected readonly logger: Logger
+
+  constructor(name: string = ElectronIpcTransport.name) {
+    super()
+    this.logger = new Logger(name)
+  }
+
   listen(callback: () => void): any {
     ChannelMaps.forEach(({ target, channel }, channelId) => {
       const path = Reflect.getMetadata('path', target.constructor)
