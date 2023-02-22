@@ -6,7 +6,7 @@ import { DEFAULT_CONFIG, DEFAULT_INLINE_CONFIG, checkOrCreateHtmlFile, installDe
 beforeAll(async () => {
   remove()
   await installDeps(mockDir)
-}, Infinity)
+}, 10 * 60 * 1000)
 
 beforeEach(() => {
   checkOrCreateHtmlFile()
