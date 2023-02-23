@@ -47,8 +47,7 @@ describe('Doubleshot Nest Electron Module: Hybrid Application', async () => {
   await buildMock()
 
   describe('Electron with Node Backend', async () => {
-    let logs = ''
-    logs = await runElectron()
+    const logs = await runElectron()
 
     it('should run application', () => {
       expect(logs).toContain('Electron hybrid application is running')
@@ -80,8 +79,7 @@ describe('Doubleshot Nest Electron Module: Hybrid Application', async () => {
   })
 
   describe('Node Backend', async () => {
-    let logs = ''
-    logs = await runNode()
+    const logs = await runNode()
 
     it('should run application', () => {
       expect(logs).toContain('Single node backend is running')
