@@ -1,3 +1,5 @@
+export const isElectron = process.versions.hasOwnProperty('electron')
+
 export function linkPathAndChannel(channel: string, path = '') {
   path = path.charAt(0) === '/' ? path.slice(1) : path
   path = path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path

@@ -12,6 +12,15 @@
       }
     },
     {
+      "files": [
+        "packages/nest-electron/**/*.{ts,js}"
+      ],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off",
+        "no-prototype-builtins": "off"
+      }
+    },
+    {
       "files": ".github/workflows/**/*.{yml,yaml}",
       "rules": {
         "yml/no-empty-mapping-value": "off"
