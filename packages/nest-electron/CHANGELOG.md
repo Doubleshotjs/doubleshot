@@ -1,3 +1,18 @@
+## [0.2.1](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.0...nest-electron@0.2.1) (2023-02-23)
+
+
+### Features
+
+* **nest-electron:** add isElectron to check if in electron ([dc71cd0](https://github.com/archergu/doubleshot/commit/dc71cd01f1c6f8d9bcc165ab618718779e193987))
+* **nest-electron:** compatible with node environment ([bdc4ef6](https://github.com/archergu/doubleshot/commit/bdc4ef6e84fc974813cfa8858ad9392ef2cae3ce))
+
+
+### Performance Improvements
+
+* **nest-electron:** avoid passing messages multiple times ([#331](https://github.com/archergu/doubleshot/issues/331)) ([613104b](https://github.com/archergu/doubleshot/commit/613104bc24e5dfa4461fac69e1bce66df5d72868))
+
+
+
 # [0.2.0](https://github.com/archergu/doubleshot/compare/nest-electron@0.1.0...nest-electron@0.2.0) (2023-02-22)
 
 
