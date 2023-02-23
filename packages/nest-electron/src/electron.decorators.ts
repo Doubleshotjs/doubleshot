@@ -2,26 +2,28 @@ import { Inject, applyDecorators } from '@nestjs/common'
 import { EventPattern, MessagePattern } from '@nestjs/microservices'
 import { ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME, IPC_HANDLE, IPC_ON } from './electron.constants'
 import { ChannelMaps } from './transport'
-import { generateRandomString } from './utils'
+import { generateRandomString, isElectron } from './utils'
 
 function createIpcDecorator(type: typeof IPC_HANDLE | typeof IPC_ON) {
-  return (channel: string) => {
-    if (!channel || channel.length === 0)
-      throw new Error('ipc handle channel is required')
+  return isElectron
+    ? (channel: string) => {
+        if (!channel || channel.length === 0)
+          throw new Error('ipc handle channel is required')
 
-    const channelId = `${channel}-${generateRandomString()}`
+        const channelId = `${channel}-${generateRandomString()}`
 
-    function ipcDecorator() {
-      return (target: any, key: string, _descriptor: PropertyDescriptor) => {
-        ChannelMaps.set(channelId, { target, key, channel })
+        function ipcDecorator() {
+          return (target: any, key: string, _descriptor: PropertyDescriptor) => {
+            ChannelMaps.set(channelId, { target, key, channel })
+          }
+        }
+
+        return applyDecorators(
+          ipcDecorator(),
+          type === IPC_HANDLE ? MessagePattern(channelId) : EventPattern(channelId),
+        )
       }
-    }
-
-    return applyDecorators(
-      ipcDecorator(),
-      type === IPC_HANDLE ? MessagePattern(channelId) : EventPattern(channelId),
-    )
-  }
+    : (_channel: string) => () => { }
 }
 
 /**

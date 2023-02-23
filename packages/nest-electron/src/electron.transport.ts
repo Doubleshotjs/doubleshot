@@ -2,10 +2,9 @@ import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservi
 import { Server } from '@nestjs/microservices'
 import { isObservable, lastValueFrom } from 'rxjs'
 import './nest.hacker'
-import { ipcMain } from 'electron'
 import { Logger } from '@nestjs/common'
 import { ChannelMaps } from './transport'
-import { linkPathAndChannel } from './utils'
+import { isElectron, linkPathAndChannel } from './utils'
 import type { IpcContext } from './interfaces'
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
@@ -17,24 +16,27 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
   }
 
   listen(callback: () => void): any {
-    ChannelMaps.forEach(({ target, channel }, channelId) => {
-      const path = Reflect.getMetadata('path', target.constructor)
-      const channelNames = linkPathAndChannel(channel, path)
+    if (isElectron) {
+      const { ipcMain } = require('electron')
+      ChannelMaps.forEach(({ target, channel }, channelId) => {
+        const path = Reflect.getMetadata('path', target.constructor)
+        const channelNames = linkPathAndChannel(channel, path)
 
-      const handler = this.getHandlers().get(channelId)
-      if (!handler) {
-        const errMsg = `No handler for message channel "${channelNames[0]}"`
-        this.logger.error(errMsg)
-        throw new Error(errMsg)
-      }
+        const handler = this.getHandlers().get(channelId)
+        if (!handler) {
+          const errMsg = `No handler for message channel "${channelNames[0]}"`
+          this.logger.error(errMsg)
+          throw new Error(errMsg)
+        }
 
-      for (const ch of channelNames) {
-        if (handler.isEventHandler)
-          ipcMain.on(ch, this.applyHandler(handler, ch))
-        else
-          ipcMain.handle(ch, this.applyHandler(handler, ch))
-      }
-    })
+        for (const ch of channelNames) {
+          if (handler.isEventHandler)
+            ipcMain.on(ch, this.applyHandler(handler, ch))
+          else
+            ipcMain.handle(ch, this.applyHandler(handler, ch))
+        }
+      })
+    }
 
     callback()
   }
