@@ -1,5 +1,5 @@
 import path from 'path'
-import { beforeAll, describe, expect, it, test } from 'vitest'
+import { describe, expect, it, test } from 'vitest'
 import { execa } from '@esm2cjs/execa'
 
 const mockDir = path.resolve(__dirname, './hybrid')
@@ -43,23 +43,21 @@ const runNode = async () => {
   return logs
 }
 
-beforeAll(async () => {
-  await buildMock()
-}, 60 * 1000)
-
 describe('Doubleshot Nest Electron Module: Hybrid Application', async () => {
-  let logs = ''
-  logs = await runElectron()
+  await buildMock()
 
-  it('should run application', () => {
-    expect(logs).toContain('Electron hybrid application is running')
-  })
+  describe('Electron with Node Backend', async () => {
+    let logs = ''
+    logs = await runElectron()
 
-  test('@Window', () => {
-    expect(logs).toContain('Inject BrowserWindow successfully')
-  })
+    it('should run application', () => {
+      expect(logs).toContain('Electron hybrid application is running')
+    })
 
-  describe('IPC', () => {
+    test('@Window', () => {
+      expect(logs).toContain('Inject BrowserWindow successfully')
+    })
+
     test('@IpcHandle', () => {
       expect(logs).toContain('Get ipc data from frontend: send ipc data to backend')
     })
@@ -67,9 +65,7 @@ describe('Doubleshot Nest Electron Module: Hybrid Application', async () => {
     test('@IpcOn', () => {
       expect(logs).toContain('Get ipc log: Main process received data from frontend')
     })
-  })
 
-  describe('HTTP', () => {
     test('@Post', () => {
       expect(logs).toContain('Get http data from frontend: send http data to backend')
     })
@@ -77,40 +73,40 @@ describe('Doubleshot Nest Electron Module: Hybrid Application', async () => {
     test('@Get', () => {
       expect(logs).toContain('Get http log: Main process received data from frontend')
     })
+
+    test('electron exit', () => {
+      expect(logs).toContain('Electron exiting...')
+    })
   })
 
-  test('electron exit', () => {
-    expect(logs).toContain('Electron exiting...')
-  })
-})
+  describe('Node Backend', async () => {
+    let logs = ''
+    logs = await runNode()
 
-describe('Doubleshot Nest Electron Module: Hybrid Application in node environment', async () => {
-  let logs = ''
-  logs = await runNode()
+    it('should run application', () => {
+      expect(logs).toContain('Single node backend is running')
+      expect(logs).toContain('Not in Electron environment')
+    })
 
-  it('should run application', () => {
-    expect(logs).toContain('Single node backend is running')
-    expect(logs).toContain('Not in Electron environment')
-  })
+    test('@Window not work', () => {
+      expect(logs).not.toContain('Inject BrowserWindow successfully')
+    })
 
-  test('@Window not work', () => {
-    expect(logs).not.toContain('Inject BrowserWindow successfully')
-  })
+    test('@Window for multiple windows not work', () => {
+      expect(logs).not.toContain('Inject another BrowserWindow successfully')
+      expect(logs).not.toContain('Get ipc log: This is an another window')
+    })
 
-  test('@Window for multiple windows not work', () => {
-    expect(logs).not.toContain('Inject another BrowserWindow successfully')
-    expect(logs).not.toContain('Get ipc log: This is an another window')
-  })
+    test('@Post still work', () => {
+      expect(logs).toContain('Get http data from frontend: send http data to backend')
+    })
 
-  test('@Post still work', () => {
-    expect(logs).toContain('Get http data from frontend: send http data to backend')
-  })
+    test('@Get still work', () => {
+      expect(logs).toContain('Get http log: Main process received data from frontend')
+    })
 
-  test('@Get still work', () => {
-    expect(logs).toContain('Get http log: Main process received data from frontend')
+    test('node process exit', () => {
+      expect(logs).toContain('Node exiting...')
+    })
   })
-
-  test('node process exit', () => {
-    expect(logs).toContain('Node exiting...')
-  })
-})
+}, { timeout: 60 * 1000 })
