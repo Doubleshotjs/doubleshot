@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.1...nest-electron@0.2.2) (2023-02-28)
+
+
+### Features
+
+* **nest-electron:** add ipc opts ([c457c4a](https://github.com/archergu/doubleshot/commit/c457c4a50dde9d83e71350148ba5ae5866820c2a))
+
+
+
 ## [0.2.1](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.0...nest-electron@0.2.1) (2023-02-23)
 
 
