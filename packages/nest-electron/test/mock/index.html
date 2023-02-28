@@ -14,6 +14,7 @@
     const {
       sendData,
       printLog,
+      noLogMsg,
       sendMultiParams,
       throwError,
       exit,
@@ -28,6 +29,9 @@
       let result = await sendData('send data to backend')
       // test @IpcOn base usage
       await printLog(result)
+
+      // test no log opt
+      await noLogMsg('Go to the sea, if you would fish well')
 
       // test send multi params
       await sendMultiParams('The early bird catches the worm', 'I saw a saw saw a saw')

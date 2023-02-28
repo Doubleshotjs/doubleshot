@@ -87,4 +87,9 @@ describe('Doubleshot Nest Electron Module', () => {
   it('should support return an observable', () => {
     expect(logs).toContain('Get other log: Main process return an observable')
   })
+
+  it('should not log if set noLog to true', () => {
+    expect(logs).not.toContain('[IPC] Process event no-log-msg')
+    expect(logs).toContain('Get no log msg: Go to the sea, if you would fish well')
+  })
 })

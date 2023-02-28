@@ -5,7 +5,7 @@ import './nest.hacker'
 import { Logger } from '@nestjs/common'
 import { ChannelMaps } from './transport'
 import { isElectron, linkPathAndChannel } from './utils'
-import type { IpcContext } from './interfaces'
+import type { IpcContext, IpcOptions } from './interfaces'
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
   protected readonly logger: Logger
@@ -18,7 +18,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
   listen(callback: () => void): any {
     if (isElectron) {
       const { ipcMain } = require('electron')
-      ChannelMaps.forEach(({ target, channel }, channelId) => {
+      ChannelMaps.forEach(({ target, channel, opts }, channelId) => {
         const path = Reflect.getMetadata('path', target.constructor)
         const channelNames = linkPathAndChannel(channel, path)
 
@@ -31,9 +31,9 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
 
         for (const ch of channelNames) {
           if (handler.isEventHandler)
-            ipcMain.on(ch, this.applyHandler(handler, ch))
+            ipcMain.on(ch, this.applyHandler(handler, ch, opts))
           else
-            ipcMain.handle(ch, this.applyHandler(handler, ch))
+            ipcMain.handle(ch, this.applyHandler(handler, ch, opts))
         }
       })
     }
@@ -41,13 +41,16 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
     callback()
   }
 
-  private applyHandler(handler: MessageHandler, channel: string) {
+  private applyHandler(handler: MessageHandler, channel: string, opts: IpcOptions = {}) {
     return async (...args) => {
       try {
-        if (!handler.isEventHandler)
-          this.logger.log(`[IPC] Process message ${channel}`)
-        else
-          this.logger.log(`[IPC] Process event ${channel}`)
+        const { noLog } = opts
+        if (!noLog) {
+          if (!handler.isEventHandler)
+            this.logger.log(`[IPC] Process message ${channel}`)
+          else
+            this.logger.log(`[IPC] Process event ${channel}`)
+        }
 
         const [ipcMainEventObject, ...payload] = args
 
