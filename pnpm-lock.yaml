@@ -15,7 +15,7 @@ importers:
       fs-extra: 11.1.0
       lint-staged: 13.1.2
       mono-release: 2.6.2
-      rimraf: 4.3.1
+      rimraf: 4.4.0
       simple-git-hooks: 2.8.1
       tsup: 6.6.3
       typescript: 4.9.5
@@ -32,7 +32,7 @@ importers:
       fs-extra: 11.1.0
       lint-staged: 13.1.2
       mono-release: 2.6.2_3u3bztnv34xpapk67lcdq6fnmm
-      rimraf: 4.3.1
+      rimraf: 4.4.0
       simple-git-hooks: 2.8.1
       tsup: 6.6.3_avmllzpz6c6jske3h4ptxj4w6y
       typescript: 4.9.5
@@ -5532,8 +5532,8 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rimraf/4.3.1:
-    resolution: {integrity: sha512-GfHJHBzFQra23IxDzIdBqhOWfbtdgS1/dCHrDy+yvhpoJY5TdwdT28oWaHWfRpKFDLd3GZnGTx6Mlt4+anbsxQ==}
+  /rimraf/4.4.0:
+    resolution: {integrity: sha512-X36S+qpCUR0HjXlkDe4NAOhS//aHH0Z+h8Ckf2auGJk3PTnx5rLmrHkwNdbVQuCSUhOyFrlRvFEllZOYE+yZGQ==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
