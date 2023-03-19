@@ -17,7 +17,7 @@ importers:
       mono-release: 2.6.2
       rimraf: 4.4.0
       simple-git-hooks: 2.8.1
-      tsup: 6.6.3
+      tsup: 6.7.0
       typescript: 5.0.2
       vitest: 0.29.3
     devDependencies:
@@ -34,7 +34,7 @@ importers:
       mono-release: 2.6.2_3u3bztnv34xpapk67lcdq6fnmm
       rimraf: 4.4.0
       simple-git-hooks: 2.8.1
-      tsup: 6.6.3_w6avwkdklr2pf4o6fcw5zz7r3e
+      tsup: 6.7.0_w6avwkdklr2pf4o6fcw5zz7r3e
       typescript: 5.0.2
       vitest: 0.29.3
 
@@ -5340,6 +5340,7 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
 
   /rollup/3.19.1:
     resolution: {integrity: sha512-lAbrdN7neYCg/8WaoWn/ckzCtz+jr70GFfYdlf50OF7387HTg+wiuiqJRFYawwSPpqfqDNYqK7smY/ks2iAudg==}
@@ -5954,14 +5955,14 @@ packages:
       - ts-node
     dev: false
 
-  /tsup/6.6.3_w6avwkdklr2pf4o6fcw5zz7r3e:
-    resolution: {integrity: sha512-OLx/jFllYlVeZQ7sCHBuRVEQBBa1tFbouoc/gbYakyipjVQdWy/iQOvmExUA/ewap9iQ7tbJf9pW0PgcEFfJcQ==}
+  /tsup/6.7.0_w6avwkdklr2pf4o6fcw5zz7r3e:
+    resolution: {integrity: sha512-L3o8hGkaHnu5TdJns+mCqFsDBo83bJ44rlK7e6VdanIvpea4ArPcU3swWGsLVbXak1PqQx/V+SSmFPujBK+zEQ==}
     engines: {node: '>=14.18'}
     hasBin: true
     peerDependencies:
       '@swc/core': ^1
       postcss: ^8.4.12
-      typescript: ^4.1.0
+      typescript: '>=4.1.0'
     peerDependenciesMeta:
       '@swc/core':
         optional: true
@@ -5981,7 +5982,7 @@ packages:
       joycon: 3.1.1
       postcss-load-config: 3.1.4
       resolve-from: 5.0.0
-      rollup: 3.12.1
+      rollup: 3.19.1
       source-map: 0.8.0-beta.0
       sucrase: 3.22.0
       tree-kill: 1.2.2
