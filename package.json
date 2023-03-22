@@ -30,7 +30,7 @@
     "fs-extra": "11.1.1",
     "lint-staged": "13.2.0",
     "mono-release": "2.6.2",
-    "rimraf": "4.4.0",
+    "rimraf": "4.4.1",
     "simple-git-hooks": "2.8.1",
     "tsup": "6.7.0",
     "typescript": "5.0.2",
