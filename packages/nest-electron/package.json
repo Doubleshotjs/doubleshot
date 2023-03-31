@@ -37,7 +37,7 @@
     "@nestjs/core": "9.3.12",
     "@nestjs/platform-express": "^9.3.9",
     "axios": "^1.3.3",
-    "electron": "23.2.0",
+    "electron": "23.2.1",
     "reflect-metadata": "0.1.13"
   }
 }
