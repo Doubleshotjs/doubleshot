@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.2...nest-electron@0.2.3) (2023-04-07)
+
+
+### Features
+
+* **nest-electron:** add isGlobal option ([#399](https://github.com/archergu/doubleshot/issues/399)) ([7ff0cf2](https://github.com/archergu/doubleshot/commit/7ff0cf221e7703202758f6cb173384c7af6340bd))
+
+
+
 ## [0.2.2](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.1...nest-electron@0.2.2) (2023-02-28)
 
 
