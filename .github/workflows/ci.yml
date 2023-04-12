@@ -37,12 +37,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Cache ~/.pnpm-store
+      - name: Cache pnpm store
         uses: actions/cache@v3
         env:
           cache-name: cache-pnpm-store
         with:
-          path: ~/.pnpm-store
+          path: ${{ github.workspace }}/.pnpm-store
           key: ${{ runner.os }}-${{ matrix.node-version }}-test-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-test-${{ env.cache-name }}-
@@ -51,6 +51,9 @@ jobs:
 
       - name: Install pnpm
         run: npm i -g pnpm
+
+      - name: Set pnpm store path
+        run: pnpm config set store-dir .pnpm-store
 
       - name: Install deps
         run: pnpm i --no-frozen-lockfile
