@@ -131,8 +131,8 @@ importers:
         version: link:../builder
     devDependencies:
       vite:
-        specifier: 4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        specifier: 4.2.2
+        version: 4.2.2(@types/node@18.15.11)
 
   packages/runner:
     dependencies:
@@ -6289,7 +6289,7 @@ packages:
       mlly: 1.2.0
       pathe: 1.1.0
       picocolors: 1.0.0
-      vite: 4.2.1(@types/node@18.15.11)
+      vite: 4.2.2(@types/node@18.15.11)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -6300,8 +6300,8 @@ packages:
       - terser
     dev: true
 
-  /vite@4.2.1(@types/node@18.15.11):
-    resolution: {integrity: sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==}
+  /vite@4.2.2(@types/node@18.15.11):
+    resolution: {integrity: sha512-PcNtT5HeDxb3QaSqFYkEum8f5sCVe0R3WK20qxgIvNBZPXU/Obxs/+ubBMeE7nLWeCo2LDzv+8hRYSlcaSehig==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -6388,7 +6388,7 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.4.0
       tinypool: 0.4.0
-      vite: 4.2.1(@types/node@18.15.11)
+      vite: 4.2.2(@types/node@18.15.11)
       vite-node: 0.30.1(@types/node@18.15.11)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
