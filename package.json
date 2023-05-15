@@ -22,7 +22,7 @@
     "@esm2cjs/execa": "6.1.1-cjs.1",
     "@lightwing/eslint-config": "0.0.15",
     "@nestjs/testing": "9.4.0",
-    "@swc/core": "1.3.57",
+    "@swc/core": "1.3.58",
     "@types/fs-extra": "11.0.1",
     "@types/node": "18.16.9",
     "conventional-changelog-cli": "2.2.2",
