@@ -48,6 +48,6 @@
     "@doubleshot/builder": "workspace:*"
   },
   "devDependencies": {
-    "vite": "4.3.6"
+    "vite": "4.3.7"
   }
 }
