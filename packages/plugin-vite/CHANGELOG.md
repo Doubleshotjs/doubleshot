@@ -1,3 +1,19 @@
+## [0.0.11](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.10...plugin-vite@0.0.11) (2023-06-11)
+
+
+### Bug Fixes
+
+* **plugin-vite:** handle ipv6 address ([8457ea1](https://github.com/archergu/doubleshot/commit/8457ea17a492b962795c5454a9638a862b795ae4))
+
+
+### Features
+
+* **plugin-vite:** re-export defineConfig from builder ([54bb53d](https://github.com/archergu/doubleshot/commit/54bb53d1e0ea173d3e9ca742f5fee0b0d9f58492))
+* **plugin-vite:** support builder debug mode ([cd3ebb6](https://github.com/archergu/doubleshot/commit/cd3ebb6667a46e64523704cef509a3f1df806e67))
+* **plugin-vite:** support configureForMode ([85fa857](https://github.com/archergu/doubleshot/commit/85fa8570abc3d29adf2bae58d40c3b1ecedf288c))
+
+
+
 ## [0.0.10](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.9...plugin-vite@0.0.10) (2023-04-12)
 
 
