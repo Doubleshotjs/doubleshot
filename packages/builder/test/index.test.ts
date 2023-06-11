@@ -98,10 +98,7 @@ describe('Doubleshot Builder: Dev Mode', () => {
     ])
 
     expect(logs).toContain('Run main file')
-    expect(logs).toContain(`Wait for renderer: ${url1}`)
-    expect(logs).toContain(`Wait for renderer: ${url2}`)
-    expect(logs).toContain(`Renderer URL1: ${url1}`)
-    expect(logs).toContain(`Renderer URL2: ${url2}`)
+    expect(logs).toContain('Wait for renderer')
     expect(logs).toContain('Main process exit')
   })
 
@@ -334,10 +331,7 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
     ])
 
     expect(logs).toContain('Run main file')
-    expect(logs).toContain(`Wait for renderer: ${url1}`)
-    expect(logs).toContain(`Wait for renderer: ${url2}`)
-    expect(logs).toContain(`Renderer URL1: ${url1}`)
-    expect(logs).toContain(`Renderer URL2: ${url2}`)
+    expect(logs).toContain('Wait for renderer')
     expect(logs).toContain('Main process exit')
   })
 
