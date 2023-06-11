@@ -1,5 +1,5 @@
-import path from 'path'
-import fs from 'fs'
+import path from 'node:path'
+import fs from 'node:fs'
 import JoyCon from 'joycon'
 import { bundleRequire } from 'bundle-require'
 import type { CliOptions as ElectronBuilderCliOptions, Configuration as ElectronBuilderConfiguration } from 'electron-builder'
@@ -75,7 +75,7 @@ export interface ElectronConfig {
   /**
    * Renderer process url on development mode
    */
-  rendererUrl?: string
+  rendererUrl?: string | string[]
   /**
    * whether to wait for the renderer process ready
    */
@@ -155,7 +155,7 @@ export interface InlineConfig extends UserConfig {
   /**
    * Renderer process url on development mode
    */
-  rendererUrl?: string
+  rendererUrl?: string | string[]
   /**
    * whether to wait for the renderer process ready
    */

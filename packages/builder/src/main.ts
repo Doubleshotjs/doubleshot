@@ -1,7 +1,7 @@
-import { performance } from 'perf_hooks'
-import type { ChildProcess } from 'child_process'
-import { spawn } from 'child_process'
-import fs from 'fs'
+import { performance } from 'node:perf_hooks'
+import type { ChildProcess } from 'node:child_process'
+import { spawn } from 'node:child_process'
+import fs from 'node:fs'
 import { bgCyan, bgCyanBright, bgGreen, bgMagentaBright, bgYellowBright, cyan, greenBright } from 'colorette'
 import { build as tsupBuild } from 'tsup'
 import type { Options as TsupOptions } from 'tsup'
@@ -73,8 +73,19 @@ function createDoubleShotEnv(type: AppType, config: ResolvedConfig, mode: 'produ
   }
 
   if (type === 'electron') {
-    if (config.electron.rendererUrl)
-      dsEnv.DS_RENDERER_URL = config.electron.rendererUrl
+    if (config.electron.rendererUrl) {
+      if (Array.isArray(config.electron.rendererUrl)) {
+        for (let i = 0; i < config.electron.rendererUrl.length; i++) {
+          if (i === 0)
+            dsEnv.DS_RENDERER_URL = config.electron.rendererUrl[i]
+          else
+            dsEnv[`DS_RENDERER_URL_${i + 1}`] = config.electron.rendererUrl[i]
+        }
+      }
+      else {
+        dsEnv.DS_RENDERER_URL = config.electron.rendererUrl
+      }
+    }
   }
 
   const { debugCfg = {} } = config
@@ -264,14 +275,21 @@ export async function dev(inlineConfig: InlineConfig = {}) {
   }
 
   if (isElectron && electronConfig.rendererUrl && electronConfig.waitForRenderer !== false) {
-    const url = electronConfig.rendererUrl
-    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('file://')) {
-      logger.info(TAG, `🚦 Wait for renderer: ${cyan(url)}`)
-      await waitOn(createWaitOnOpts(url, electronConfig.waitTimeout))
+    const waitFn = async (url: string) => {
+      if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('file://')) {
+        logger.info(TAG, `🚦 Wait for renderer: ${cyan(url)}`)
+        await waitOn(createWaitOnOpts(url, electronConfig.waitTimeout))
+      }
+      else {
+        logger.warn(TAG, `Invalid renderer url: ${url}, ignored.\n`)
+      }
     }
-    else {
-      logger.warn(TAG, `Invalid renderer url: ${url}, ignored.\n`)
-    }
+
+    if (!Array.isArray(electronConfig.rendererUrl))
+      await waitFn(electronConfig.rendererUrl)
+
+    else
+      await Promise.all(electronConfig.rendererUrl.map(waitFn))
   }
 
   child = runMainProcess(mainFile, electron, dsArgs)

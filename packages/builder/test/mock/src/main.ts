@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import { BrowserWindow, app } from 'electron'
 
 const EXIT_TIME = process.env.EXIT_TIME || 1000
@@ -13,6 +13,9 @@ function sleep(ms: number) {
 
 if (isElectron) {
   console.log('This is electron app')
+
+  console.log(`Renderer URL1: ${rendererUrl}`)
+  console.log(`Renderer URL2: ${process.env.DS_RENDERER_URL_2}`)
 
   const createWindow = async () => {
     const win = new BrowserWindow({

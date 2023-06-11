@@ -44,7 +44,7 @@ cli
   .option('-t, --type <type>', 'Application type, \'node\' or \'electron\'', { default: 'node' })
   .option('-c, --config <config>', 'Specify config file')
   .option('--disable-config', 'Do not load config file')
-  .option('-e, --entry <file>', 'Entry file for bundleing')
+  .option('-e, --entry <file>', 'Entry file for bundling')
   .option('-o, --out <dir>', 'Output directory')
   .option('--tsconfig <file>', 'TS config file')
   .option('--external <names>', 'External packages')
@@ -58,7 +58,7 @@ cli
   .option('-m, --main <file>', 'The main file of the application')
   .option('--wait-for-renderer', 'Wait for renderer process to be ready')
   .option('--wait-timeout', 'Wait for renderer process ready timeout')
-  .option('--renderer-url', 'Renderer process url')
+  .option('--renderer-url', 'Renderer process url, support multiple')
   .option('--build-only', 'Only prebuild files and won\'t run the application')
   .option('--run-only', 'Skip prebuild and run the application')
   .option('--debug', 'Run in debug mode')
@@ -79,7 +79,7 @@ cli
         preload: options.preload,
         waitForRenderer: options.waitForRenderer,
         waitTimeout: options.waitTimeout,
-        rendererUrl: options.rendererUrl,
+        rendererUrl: options.rendererUrl ? (options.rendererUrl.includes(',') ? options.rendererUrl.split(',') : options.rendererUrl) : undefined,
         buildOnly: options.buildOnly,
         runOnly: options.runOnly,
         debug: options.debug,

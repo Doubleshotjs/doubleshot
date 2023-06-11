@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'node:path'
 import { execa } from '@esm2cjs/execa'
 import fs from 'fs-extra'
 import type { Options as ExecaOptions } from '@esm2cjs/execa'
@@ -29,8 +29,8 @@ export function writeConfigFile(config: UserConfigExport) {
   fs.writeFileSync(configFile, configContent)
 }
 
-export function checkOrCreateHtmlFile() {
-  if (fs.existsSync(path.resolve(mockDir, 'index.html')))
+export function checkOrCreateHtmlFile(fileName = 'index.html') {
+  if (fs.existsSync(path.resolve(mockDir, fileName)))
     return
 
   const htmlContent = `
@@ -51,7 +51,7 @@ export function checkOrCreateHtmlFile() {
     </html>
   `
 
-  fs.writeFileSync(path.resolve(mockDir, 'index.html'), htmlContent)
+  fs.writeFileSync(path.resolve(mockDir, fileName), htmlContent)
 }
 
 export async function installDeps(cwd: string) {
@@ -71,6 +71,7 @@ export function remove() {
   fs.removeSync(configFile)
   fs.removeSync(path.resolve(mockDir, 'dist'))
   fs.removeSync(path.resolve(mockDir, 'index.html'))
+  fs.removeSync(path.resolve(mockDir, 'index_another.html'))
 }
 
 export async function run(command: 'dev' | 'build', args: string[], options: ExecaOptions = {}) {

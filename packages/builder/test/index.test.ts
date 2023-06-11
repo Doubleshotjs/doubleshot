@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'node:path'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import fs from 'fs-extra'
 import { DEFAULT_CONFIG, DEFAULT_INLINE_CONFIG, checkOrCreateHtmlFile, installDeps, mockDir, remove, run, sleep, writeConfigFile } from './utils'
@@ -65,6 +65,43 @@ describe('Doubleshot Builder: Dev Mode', () => {
 
     expect(logs).toContain('Run main file')
     expect(logs).toContain('Wait for renderer')
+    expect(logs).toContain('Main process exit')
+  })
+
+  it('should wait for multiple renderer process before main process', async () => {
+    const url1 = `file://${path.resolve(mockDir, 'index.html')}`
+    const url2 = `file://${path.resolve(mockDir, 'index_another.html')}`
+    writeConfigFile({
+      ...DEFAULT_CONFIG,
+      electron: {
+        waitForRenderer: true,
+        rendererUrl: [url1, url2],
+      },
+    })
+
+    fs.removeSync(path.resolve(mockDir, 'index.html'))
+    fs.removeSync(path.resolve(mockDir, 'index_another.html'))
+
+    let logs = ''
+    await Promise.all([
+      (async () => {
+        await sleep(1000)
+        checkOrCreateHtmlFile('index.html')
+      })(),
+      (async () => {
+        await sleep(2000)
+        checkOrCreateHtmlFile('index_another.html')
+      })(),
+      (async () => {
+        logs = await run('dev', ['-t', 'electron'])
+      })(),
+    ])
+
+    expect(logs).toContain('Run main file')
+    expect(logs).toContain(`Wait for renderer: ${url1}`)
+    expect(logs).toContain(`Wait for renderer: ${url2}`)
+    expect(logs).toContain(`Renderer URL1: ${url1}`)
+    expect(logs).toContain(`Renderer URL2: ${url2}`)
     expect(logs).toContain('Main process exit')
   })
 
@@ -266,6 +303,41 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
 
     expect(logs).toContain('Run main file')
     expect(logs).toContain('Wait for renderer')
+    expect(logs).toContain('Main process exit')
+  })
+
+  it('should wait for multiple renderer process before main process', async () => {
+    const url1 = `file://${path.resolve(mockDir, 'index.html')}`
+    const url2 = `file://${path.resolve(mockDir, 'index_another.html')}`
+    fs.removeSync(path.resolve(mockDir, 'index.html'))
+    fs.removeSync(path.resolve(mockDir, 'index_another.html'))
+
+    let logs = ''
+    await Promise.all([
+      (async () => {
+        await sleep(1000)
+        checkOrCreateHtmlFile('index.html')
+      })(),
+      (async () => {
+        await sleep(2000)
+        checkOrCreateHtmlFile('index_another.html')
+      })(),
+      (async () => {
+        logs = await run('dev', [
+          '-t', 'electron',
+          '-m', 'dist/main.js',
+          ...DEFAULT_INLINE_CONFIG,
+          '--wait-for-renderer',
+          '--renderer-url', `${url1},${url2}`,
+        ])
+      })(),
+    ])
+
+    expect(logs).toContain('Run main file')
+    expect(logs).toContain(`Wait for renderer: ${url1}`)
+    expect(logs).toContain(`Wait for renderer: ${url2}`)
+    expect(logs).toContain(`Renderer URL1: ${url1}`)
+    expect(logs).toContain(`Renderer URL2: ${url2}`)
     expect(logs).toContain('Main process exit')
   })
 
