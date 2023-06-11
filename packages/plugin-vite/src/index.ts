@@ -1,11 +1,21 @@
-import type { AddressInfo } from 'net'
+import type { AddressInfo } from 'node:net'
 import type { PluginOption, ResolvedConfig } from 'vite'
-import type { InlineConfig } from '@doubleshot/builder'
+import type { ElectronConfig, InlineConfig } from '@doubleshot/builder'
 import { build, dev, printLog } from '@doubleshot/builder'
 
 export { defineConfig } from '@doubleshot/builder'
 
-export interface VitePluginDoubleshotConfig extends InlineConfig {
+export interface VitePluginDoubleshotConfig extends Omit<InlineConfig, 'rendererUrl' | 'electron'> {
+  /**
+   * Renderer process url on development mode
+   */
+  rendererUrl?: string
+  /**
+   * Some configuration for electron
+   */
+  electron?: Omit<ElectronConfig, 'rendererUrl'> & {
+    rendererUrl?: string
+  }
   /**
    * This hook can override the plugin config by Vite mode ('development' or 'production')
    */
