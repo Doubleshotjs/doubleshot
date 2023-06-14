@@ -76,7 +76,10 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
     }
   }
 
-  result.then(async () => {
+  result.then(async (e) => {
+    if (e.some(c => c.killed))
+      return
+
     if (
       config.electronBuild
       && config.electronBuild.disabled !== true
