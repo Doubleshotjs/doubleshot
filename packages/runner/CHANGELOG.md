@@ -1,3 +1,30 @@
+## [0.0.7](https://github.com/archergu/doubleshot/compare/runner@0.0.6...runner@0.0.7) (2023-06-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency concurrently to v8 ([2eef5d5](https://github.com/archergu/doubleshot/commit/2eef5d5b175d28b19fb5a8514c51069abcc65740))
+* **deps:** update dependency esbuild to ^0.15.0 ([5f7f604](https://github.com/archergu/doubleshot/commit/5f7f604cf9c895840bc7b13aa5c9b41524da8dba))
+* **deps:** update dependency esbuild to ^0.16.0 ([367d94f](https://github.com/archergu/doubleshot/commit/367d94f1ca517cd2ef7ede8f5cd45e8601d7909d))
+* **deps:** update dependency esbuild to ^0.18.0 ([f54d925](https://github.com/archergu/doubleshot/commit/f54d92526d1ac6f72adfaff8e401f2c41ad21839))
+* optional peer dependencies check ([ab4857d](https://github.com/archergu/doubleshot/commit/ab4857d299f1639f51340cc53738a0c2ca0a6926))
+* **runner:** kill other with right signal ([6696df9](https://github.com/archergu/doubleshot/commit/6696df9da57ba3ee6f83e24d6d62af0a3596ec62))
+
+
+### Features
+
+* add builder dev mode ([b2ef6dc](https://github.com/archergu/doubleshot/commit/b2ef6dce87670d4167e36f19e65a3c07edabbbba))
+* **builder:** support wait renderer url(dev mode) ([7b71b30](https://github.com/archergu/doubleshot/commit/7b71b30a3427551331b1fac577a996efde689abf))
+* dsr(runner) ([9cbe285](https://github.com/archergu/doubleshot/commit/9cbe2853ae8b5b66b58590e6262305aca41d810b))
+* runner support electron-builder ([f378208](https://github.com/archergu/doubleshot/commit/f3782081f55536b313b26e946ba30ba61567ed68))
+* **runner:** `only` config now support an array ([48a21dc](https://github.com/archergu/doubleshot/commit/48a21dc6cb161fb050745e8f3a04bfc45caba4e6))
+* **runner:** add 'only' option ([b8dcb1c](https://github.com/archergu/doubleshot/commit/b8dcb1c8b220f4f50d28c1208f51a23f675edc56))
+* **runner:** runner will exit by code 1 if some cmd throw error ([da56e22](https://github.com/archergu/doubleshot/commit/da56e2278f0a58b67400e65180c29d1918fc7b0a))
+* **runner:** support filter option ([16c8588](https://github.com/archergu/doubleshot/commit/16c85885b47ec200c4a79d5cd6ca9088441c139d))
+* **runner:** support run commands by alias ([0e79c0e](https://github.com/archergu/doubleshot/commit/0e79c0e1baef2cd0f6bb56032e749f52e829561d))
+
+
+
 ## [0.0.6](https://github.com/archergu/doubleshot/compare/runner@0.0.5...runner@0.0.6) (2023-02-09)
 
 
