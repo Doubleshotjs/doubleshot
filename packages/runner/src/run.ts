@@ -90,10 +90,11 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
     logger.success(TAG, 'All commands finished successfully')
     logger.info(TAG, 'Exiting...')
     process.exit(0)
-  }, () => {
+  }, (reason) => {
+    const noError = reason.some((e: any) => e.exitCode === 0)
     logger.warn(TAG, 'Some commands exit')
     logger.info(TAG, 'Exiting...')
-    process.exit(1)
+    process.exit(noError ? 0 : 1)
   }).catch((e) => {
     logger.error(TAG, e)
     logger.info(TAG, 'Exiting...')
