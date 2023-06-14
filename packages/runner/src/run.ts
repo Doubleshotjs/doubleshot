@@ -1,5 +1,5 @@
-import path from 'path'
-import { performance } from 'perf_hooks'
+import path from 'node:path'
+import { performance } from 'node:perf_hooks'
 import type { ConcurrentlyCommandInput } from 'concurrently'
 import concurrently from 'concurrently'
 import { yellow } from 'colorette'
@@ -85,13 +85,16 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
       await doElectronBuild(config.electronBuild)
 
     logger.success(TAG, 'All commands finished successfully')
-  }, () => {
-    logger.warn(TAG, 'Some commands exit')
-  }).catch((e) => {
-    logger.error(TAG, e)
-  }).finally(() => {
     logger.info(TAG, 'Exiting...')
     process.exit(0)
+  }, () => {
+    logger.warn(TAG, 'Some commands exit')
+    logger.info(TAG, 'Exiting...')
+    process.exit(1)
+  }).catch((e) => {
+    logger.error(TAG, e)
+    logger.info(TAG, 'Exiting...')
+    process.exit(1)
   })
 }
 
