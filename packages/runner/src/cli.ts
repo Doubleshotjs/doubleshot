@@ -10,6 +10,7 @@ interface CliOptions {
   root?: string
   filter?: string // string,string,string...
   only?: string // string,string,string...
+  disableElectronBuild?: boolean
 }
 
 // run
@@ -18,6 +19,7 @@ cli
   .option('--root <path>', 'Project root directory')
   .option('--filter <names>', 'Filter running names')
   .option('--only <names>', 'Only run special names')
+  .option('--disable-electron-build', 'Disable electron build')
   .action(async (command: string, options: CliOptions) => {
     const logger = createLogger()
     if (!command) {
@@ -34,6 +36,7 @@ cli
         root: options.root,
         filter: options.filter?.split(','),
         only: options.only?.split(','),
+        disableElectronBuild: options.disableElectronBuild,
       })
     }
     catch (e) {

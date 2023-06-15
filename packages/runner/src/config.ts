@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'node:path'
 import JoyCon from 'joycon'
 import { bundleRequire } from 'bundle-require'
 import type { Configuration as ElectronBuilderConfiguration } from 'electron-builder'
@@ -76,7 +76,13 @@ export interface DoubleShotRunnerConfig {
   electronBuild?: ElectronBuildConfig
 }
 
-export interface InlineConfig extends Pick<DoubleShotRunnerConfig, 'root' | 'filter' | 'only'> { }
+export interface InlineConfig extends Pick<DoubleShotRunnerConfig, 'root' | 'filter' | 'only'> {
+  /**
+   * Disable electron-builder
+   * @default false
+   */
+  disableElectronBuild?: boolean
+}
 
 export type ResolvedConfig = Readonly<{
   configFile: string | undefined
@@ -135,7 +141,10 @@ export async function resolveConfig(inlineConfig: InlineConfig): Promise<Resolve
       root: inlineConfig.root || config.root || cwd,
       configFile: configPath,
       run: resolvedRunConfig,
-      electronBuild: resolvedElectronBuildConfig,
+      electronBuild: {
+        ...resolvedElectronBuildConfig,
+        disabled: inlineConfig.disableElectronBuild || resolvedElectronBuildConfig.disabled,
+      },
     }
   }
   else {
