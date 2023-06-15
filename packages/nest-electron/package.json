@@ -33,9 +33,9 @@
     "rxjs": ">=7.0.0"
   },
   "devDependencies": {
-    "@nestjs/common": "9.4.3",
-    "@nestjs/core": "9.4.3",
-    "@nestjs/platform-express": "^9.4.2",
+    "@nestjs/common": "10.0.0",
+    "@nestjs/core": "10.0.0",
+    "@nestjs/platform-express": "^10.0.0",
     "axios": "^1.4.0",
     "electron": "25.1.1",
     "reflect-metadata": "0.1.13"
