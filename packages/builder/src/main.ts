@@ -217,6 +217,14 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     electron = await import('electron')
   let child: ChildProcess
 
+  // process once exit, kill child process
+  process.on('exit', () => {
+    if (child) {
+      child.off('exit', exitMainProcess)
+      child.kill()
+    }
+  })
+
   // prebuild files
   const prebuild = async () => {
     // tsup build
