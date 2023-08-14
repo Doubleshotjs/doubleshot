@@ -1,3 +1,38 @@
+## [0.2.4](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.3...nest-electron@0.2.4) (2023-08-14)
+
+
+### Bug Fixes
+
+* **nest-electron:** custom filters do not take effect ([591803a](https://github.com/archergu/doubleshot/commit/591803a9077dba342f9083c5acd3b2aa5415f339))
+* **nest-electron:** multi params send ([b5a84f3](https://github.com/archergu/doubleshot/commit/b5a84f3afc7268674558c8311d973b0d4277485f))
+* **nest-electron:** remove MultiParams ([b4b10d1](https://github.com/archergu/doubleshot/commit/b4b10d19889ed9373808f3240d179febc4cfcc19))
+
+
+### Features
+
+* nest-electron && nest-electron-ipc-transport ([ca7d25f](https://github.com/archergu/doubleshot/commit/ca7d25fde9d03d85451491da09390d5377f020f9))
+* **nest-electron:** add decorator IpcOn ([13f4571](https://github.com/archergu/doubleshot/commit/13f4571d7e7b0e46914bef8b208bd5ef3a3e46a6))
+* **nest-electron:** add ipc opts ([c457c4a](https://github.com/archergu/doubleshot/commit/c457c4a50dde9d83e71350148ba5ae5866820c2a))
+* **nest-electron:** add isElectron to check if in electron ([dc71cd0](https://github.com/archergu/doubleshot/commit/dc71cd01f1c6f8d9bcc165ab618718779e193987))
+* **nest-electron:** add isGlobal option ([#399](https://github.com/archergu/doubleshot/issues/399)) ([7ff0cf2](https://github.com/archergu/doubleshot/commit/7ff0cf221e7703202758f6cb173384c7af6340bd))
+* **nest-electron:** compatible with node environment ([bdc4ef6](https://github.com/archergu/doubleshot/commit/bdc4ef6e84fc974813cfa8858ad9392ef2cae3ce))
+* **nest-electron:** get ipc event object from @Ctx decorator ([20c3c15](https://github.com/archergu/doubleshot/commit/20c3c1571e4a85c31a6f8f2cc4053b7cb0017cbf))
+* **nest-electron:** hack connectMicroservice ([91a07ca](https://github.com/archergu/doubleshot/commit/91a07ca32cb726274a54359ab4241f36563f3dd0))
+* **nest-electron:** integrated ipc transport ([80d9ea3](https://github.com/archergu/doubleshot/commit/80d9ea3b018e7a27411ee61d8c102039a9ede376))
+* **nest-electron:** provide @Window to inject BrowserWindow ([f238d6f](https://github.com/archergu/doubleshot/commit/f238d6fb8a67e25733ec4f3537a816ccd66e50e5))
+* **nest-electron:** support controller route prefix ([a96b593](https://github.com/archergu/doubleshot/commit/a96b59348ecc207d69c0507455759e20d669831e))
+* **nest-electron:** support direct call functions with decorators ([b13bfff](https://github.com/archergu/doubleshot/commit/b13bfff20cd692c777ed62279b22889bd479cef5))
+* **nest-electron:** support multiple windows ([47cc989](https://github.com/archergu/doubleshot/commit/47cc989f178481c8a0f0f6479f79b200887fbe2d))
+* **nest-electron:** support return an observable ([f0f8797](https://github.com/archergu/doubleshot/commit/f0f87977c1b71316130cdc61fa3a27d2ae639057))
+
+
+### Performance Improvements
+
+* **nest-electron:** avoid passing messages multiple times ([#331](https://github.com/archergu/doubleshot/issues/331)) ([613104b](https://github.com/archergu/doubleshot/commit/613104bc24e5dfa4461fac69e1bce66df5d72868))
+* **nest-electron:** MultiParams decorators are now optional ([b424837](https://github.com/archergu/doubleshot/commit/b424837fc50c00a9c4cd0f3ad0532ae7275d0160))
+
+
+
 ## [0.2.3](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.2...nest-electron@0.2.3) (2023-04-07)
 
 
