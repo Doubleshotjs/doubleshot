@@ -5,6 +5,7 @@ import { VitePluginDoubleshot } from '../../dist'
 export default defineConfig({
   server: {
     host: '127.0.0.1',
+    port: 12345,
   },
   plugins: [
     VitePluginDoubleshot({

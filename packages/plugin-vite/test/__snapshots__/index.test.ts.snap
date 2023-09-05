@@ -20,7 +20,7 @@ var createWindow = () => {
     console.log(msg);
     import_electron.app.quit();
   });
-  const URL = isDev ? \\"http://127.0.0.1:5173\\" : \`file://\${(0, import_path.join)(import_electron.app.getAppPath(), \\"dist/renderer/index.html\\")}\`;
+  const URL = isDev ? \\"http://127.0.0.1:12345\\" : \`file://\${(0, import_path.join)(import_electron.app.getAppPath(), \\"dist/renderer/index.html\\")}\`;
   win.loadURL(URL);
 };
 import_electron.app.whenReady().then(() => {
