@@ -1,10 +1,11 @@
-import path from 'path'
+import path from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { execa } from '@esm2cjs/execa'
 import fs from 'fs-extra'
+
 const mockDir = path.resolve(__dirname, './mock')
 
-const installDeps = async (cwd: string) => {
+async function installDeps(cwd: string) {
   const { stdout, stderr } = await execa(
     'npm',
     ['install', '--package-lock=false'],
@@ -17,11 +18,11 @@ const installDeps = async (cwd: string) => {
   return logs
 }
 
-const remove = () => {
+function remove() {
   fs.removeSync(path.resolve(mockDir, 'dist'))
 }
 
-const run = async (mode: 'dev' | 'build') => {
+async function run(mode: 'dev' | 'build') {
   const { stdout, stderr } = await execa(
     'npm',
     ['run', mode],

@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { execa } from '@esm2cjs/execa'
 import fs from 'fs-extra'
@@ -8,7 +8,7 @@ const bin = path.resolve(__dirname, '../dist/cli.js')
 const mockDir = path.resolve(__dirname, './mock')
 const configFile = path.resolve(mockDir, 'dsr.config.ts')
 
-const writeConfigFile = (config: DoubleShotRunnerConfigExport) => {
+function writeConfigFile(config: DoubleShotRunnerConfigExport) {
   const configContent = `
     import { defineConfig } from "../../src"
     export default defineConfig(${JSON.stringify(config)})
@@ -16,7 +16,7 @@ const writeConfigFile = (config: DoubleShotRunnerConfigExport) => {
   fs.writeFileSync(configFile, configContent)
 }
 
-const installDeps = async (cwd: string) => {
+async function installDeps(cwd: string) {
   const { stdout, stderr } = await execa(
     'npm',
     ['install', '--package-lock=false'],
@@ -29,12 +29,12 @@ const installDeps = async (cwd: string) => {
   return logs
 }
 
-const remove = () => {
+function remove() {
   fs.removeSync(configFile)
   fs.removeSync(path.resolve(mockDir, 'dist'))
 }
 
-const run = async (command: string) => {
+async function run(command: string) {
   const { stdout, stderr } = await execa(
     bin,
     [command],

@@ -1,7 +1,7 @@
 import type { IpcOptions } from '../interfaces'
 
 interface MapData {
-  target: Object
+  target: object
   key: string | symbol
   channel: string
   opts?: IpcOptions

@@ -1,5 +1,5 @@
-import path from 'path'
-import os from 'os'
+import path from 'node:path'
+import os from 'node:os'
 
 export const isWindows = os.platform() === 'win32'
 

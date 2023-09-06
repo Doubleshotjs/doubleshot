@@ -17,7 +17,8 @@
       ],
       "rules": {
         "@typescript-eslint/no-var-requires": "off",
-        "no-prototype-builtins": "off"
+        "no-prototype-builtins": "off",
+        "@typescript-eslint/no-require-imports": "off"
       }
     },
     {

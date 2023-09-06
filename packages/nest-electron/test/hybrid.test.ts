@@ -1,11 +1,11 @@
-import path from 'path'
+import path from 'node:path'
 import { describe, expect, it, test } from 'vitest'
 import { execa } from '@esm2cjs/execa'
 
 const mockDir = path.resolve(__dirname, './hybrid')
 const mockDist = path.resolve(mockDir, 'dist')
 
-const buildMock = async () => {
+async function buildMock() {
   const { stdout, stderr } = await execa(
     'tsup',
     {
@@ -17,7 +17,7 @@ const buildMock = async () => {
   return logs
 }
 
-const runElectron = async () => {
+async function runElectron() {
   const { stdout, stderr } = await execa(
     'npx',
     ['electron', path.resolve(mockDist, 'main.js')],
@@ -30,7 +30,7 @@ const runElectron = async () => {
   return logs
 }
 
-const runNode = async () => {
+async function runNode() {
   const { stdout, stderr } = await execa(
     'node',
     [path.resolve(mockDist, 'main.js')],

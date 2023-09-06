@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'node:path'
 import { Module } from '@nestjs/common'
 import { ElectronModule, isElectron } from '../../../dist'
 import { AppController } from './app.controller'

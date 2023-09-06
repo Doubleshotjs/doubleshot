@@ -19,7 +19,7 @@ export class ElectronModule {
       module: ElectronModule,
       providers: [electronProvider],
       exports: [provideName],
-      global: options.isGlobal
+      global: options.isGlobal,
     }
   }
 
@@ -54,7 +54,7 @@ export class ElectronModule {
       module: ElectronModule,
       providers,
       exports: [provideName],
-      global: options.isGlobal
+      global: options.isGlobal,
     }
   }
 }

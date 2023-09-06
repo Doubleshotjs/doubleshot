@@ -1,8 +1,7 @@
-// eslint-disable-next-line n/prefer-global/process
 export const isElectron = process.versions.hasOwnProperty('electron')
 
 export function linkPathAndChannel(channel: string, path = '') {
-  const merged = [...path.split('/'), ...channel.split('/')].filter(s => s.length).join('/')
+  const merged = [...path.split('/'), ...channel.split('/')].filter(s => !!s.length).join('/')
 
   return [
     `/${merged}`,
