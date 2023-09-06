@@ -4,25 +4,25 @@ exports[`Doubleshot Vite Plugin > plugin's config should be overridden by \`conf
 "\\"use strict\\";
 
 // src/index.ts
-var import_path = require(\\"path\\");
+var import_node_path = require(\\"path\\");
 var import_electron = require(\\"electron\\");
-var createWindow = () => {
+function createWindow() {
   const isDev = !import_electron.app.isPackaged;
   const win = new import_electron.BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       contextIsolation: true,
-      preload: (0, import_path.join)(__dirname, \\"./preload.js\\")
+      preload: (0, import_node_path.join)(__dirname, \\"./preload.js\\")
     }
   });
   import_electron.ipcMain.handle(\\"msg\\", (_, msg) => {
     console.log(msg);
     import_electron.app.quit();
   });
-  const URL = isDev ? \\"http://127.0.0.1:12345\\" : \`file://\${(0, import_path.join)(import_electron.app.getAppPath(), \\"dist/renderer/index.html\\")}\`;
+  const URL = isDev ? \\"http://127.0.0.1:12345\\" : \`file://\${(0, import_node_path.join)(import_electron.app.getAppPath(), \\"dist/renderer/index.html\\")}\`;
   win.loadURL(URL);
-};
+}
 import_electron.app.whenReady().then(() => {
   createWindow();
 });
@@ -34,6 +34,6 @@ import_electron.app.on(\\"window-all-closed\\", () => {
 `;
 
 exports[`Doubleshot Vite Plugin > plugin's config should be overridden by \`configureForMode\` > should match snapshot in production mode 1`] = `
-"\\"use strict\\";var import_path=require(\\"path\\");var import_electron=require(\\"electron\\");var createWindow=()=>{const isDev=!import_electron.app.isPackaged;const win=new import_electron.BrowserWindow({width:800,height:600,webPreferences:{contextIsolation:true,preload:(0,import_path.join)(__dirname,\\"./preload.js\\")}});import_electron.ipcMain.handle(\\"msg\\",(_,msg)=>{console.log(msg);import_electron.app.quit()});const URL=isDev?process.env.DS_RENDERER_URL:\`file://\${(0,import_path.join)(import_electron.app.getAppPath(),\\"dist/renderer/index.html\\")}\`;win.loadURL(URL)};import_electron.app.whenReady().then(()=>{createWindow()});import_electron.app.on(\\"window-all-closed\\",()=>{if(process.platform!==\\"darwin\\")import_electron.app.quit()});
+"\\"use strict\\";var import_node_path=require(\\"path\\");var import_electron=require(\\"electron\\");function createWindow(){const isDev=!import_electron.app.isPackaged;const win=new import_electron.BrowserWindow({width:800,height:600,webPreferences:{contextIsolation:true,preload:(0,import_node_path.join)(__dirname,\\"./preload.js\\")}});import_electron.ipcMain.handle(\\"msg\\",(_,msg)=>{console.log(msg);import_electron.app.quit()});const URL=isDev?process.env.DS_RENDERER_URL:\`file://\${(0,import_node_path.join)(import_electron.app.getAppPath(),\\"dist/renderer/index.html\\")}\`;win.loadURL(URL)}import_electron.app.whenReady().then(()=>{createWindow()});import_electron.app.on(\\"window-all-closed\\",()=>{if(process.platform!==\\"darwin\\")import_electron.app.quit()});
 "
 `;
