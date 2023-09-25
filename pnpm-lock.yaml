@@ -91,8 +91,8 @@ importers:
         version: 7.0.1
     devDependencies:
       '@types/wait-on':
-        specifier: 5.3.1
-        version: 5.3.1
+        specifier: 5.3.2
+        version: 5.3.2
       electron:
         specifier: 26.2.2
         version: 26.2.2
@@ -1489,10 +1489,6 @@ packages:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: true
 
-  /@types/node@18.11.18:
-    resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
-    dev: true
-
   /@types/node@18.16.16:
     resolution: {integrity: sha512-NpaM49IGQQAUlBhHMF82QH80J08os4ZmyF9MkpCzWAGuOHqE4gTEbhzd7L3l5LmWuZ6E0OiC1FweQ4tsiW35+g==}
     dev: true
@@ -1534,10 +1530,10 @@ packages:
     dev: true
     optional: true
 
-  /@types/wait-on@5.3.1:
-    resolution: {integrity: sha512-2FFOKCF/YydrMUaqg+fkk49qf0e5rDgwt6aQsMzFQzbS419h2gNOXyiwp/o2yYy27bi/C1z+HgfncryjGzlvgQ==}
+  /@types/wait-on@5.3.2:
+    resolution: {integrity: sha512-7NBSJs/YvbHlaYCJ7wIUF6t7ct3OMt525NmZ+US73pPlkmpxd9ADwfNxrRAmg8nWlcTMqR0PkhW7aYk3FLlvrQ==}
     dependencies:
-      '@types/node': 18.11.18
+      '@types/node': 20.6.5
     dev: true
 
   /@types/yauzl@2.10.0:
