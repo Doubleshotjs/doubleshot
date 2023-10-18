@@ -39,8 +39,8 @@ importers:
         specifier: 15.0.1
         version: 15.0.1
       mono-release:
-        specifier: 2.6.4
-        version: 2.6.4(conventional-changelog-cli@4.1.0)
+        specifier: 2.8.0
+        version: 2.8.0(conventional-changelog-cli@4.1.0)
       rimraf:
         specifier: 5.0.5
         version: 5.0.5
@@ -4781,8 +4781,8 @@ packages:
       ufo: 1.1.2
     dev: true
 
-  /mono-release@2.6.4(conventional-changelog-cli@4.1.0):
-    resolution: {integrity: sha512-KkeoeONgMo9glyiC/HAhs5Qusus945lth7l5e6meMK1heye6CMOGZNPV2mdNZDadfcFqiSUPVReDfS2beBrQ/g==}
+  /mono-release@2.8.0(conventional-changelog-cli@4.1.0):
+    resolution: {integrity: sha512-9Cr+SF5ymcPgAXR/aUr989XGUbvycrKn+9/UpZK/rEXOJaauHmnWtrHMlf2D2r84DpH0NzB29jXn6rS4PH9IBg==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
