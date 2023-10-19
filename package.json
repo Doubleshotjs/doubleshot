@@ -28,7 +28,7 @@
     "conventional-changelog-cli": "4.1.0",
     "eslint": "8.51.0",
     "fs-extra": "11.1.1",
-    "lint-staged": "15.0.1",
+    "lint-staged": "15.0.2",
     "mono-release": "2.9.0",
     "rimraf": "5.0.5",
     "simple-git-hooks": "2.9.0",
