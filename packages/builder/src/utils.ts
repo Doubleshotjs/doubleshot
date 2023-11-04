@@ -26,8 +26,7 @@ export function isObject(value: unknown): value is Record<string, any> {
   return Object.prototype.toString.call(value) === '[object Object]'
 }
 
-export function merge(defaults: Record<string, any>,
-  overrides: Record<string, any>) {
+export function merge(defaults: Record<string, any>, overrides: Record<string, any>) {
   const merged: Record<string, any> = { ...defaults }
   for (const key in overrides) {
     const value = overrides[key]

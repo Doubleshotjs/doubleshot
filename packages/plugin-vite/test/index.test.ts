@@ -44,7 +44,7 @@ afterAll(() => {
   remove()
 })
 
-describe('Doubleshot Vite Plugin', () => {
+describe('doubleshot Vite Plugin', () => {
   it('should run dev mode', async () => {
     const logs = await run('dev')
 

@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { describe, expect, it, test } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { execa } from '@esm2cjs/execa'
 
 const mockDir = path.resolve(__dirname, './hybrid')
@@ -43,42 +43,42 @@ async function runNode() {
   return logs
 }
 
-describe('Doubleshot Nest Electron Module: Hybrid Application', async () => {
+describe('doubleshot Nest Electron Module: Hybrid Application', async () => {
   await buildMock()
 
-  describe('Electron with Node Backend', async () => {
+  describe('electron with Node Backend', async () => {
     const logs = await runElectron()
 
     it('should run application', () => {
       expect(logs).toContain('Electron hybrid application is running')
     })
 
-    test('@Window', () => {
+    it('@Window', () => {
       expect(logs).toContain('Inject BrowserWindow successfully')
     })
 
-    test('@IpcHandle', () => {
+    it('@IpcHandle', () => {
       expect(logs).toContain('Get ipc data from frontend: send ipc data to backend')
     })
 
-    test('@IpcOn', () => {
+    it('@IpcOn', () => {
       expect(logs).toContain('Get ipc log: Main process received data from frontend')
     })
 
-    test('@Post', () => {
+    it('@Post', () => {
       expect(logs).toContain('Get http data from frontend: send http data to backend')
     })
 
-    test('@Get', () => {
+    it('@Get', () => {
       expect(logs).toContain('Get http log: Main process received data from frontend')
     })
 
-    test('electron exit', () => {
+    it('electron exit', () => {
       expect(logs).toContain('Electron exiting...')
     })
   })
 
-  describe('Node Backend', async () => {
+  describe('node Backend', async () => {
     const logs = await runNode()
 
     it('should run application', () => {
@@ -86,24 +86,24 @@ describe('Doubleshot Nest Electron Module: Hybrid Application', async () => {
       expect(logs).toContain('Not in Electron environment')
     })
 
-    test('@Window not work', () => {
+    it('@Window not work', () => {
       expect(logs).not.toContain('Inject BrowserWindow successfully')
     })
 
-    test('@Window for multiple windows not work', () => {
+    it('@Window for multiple windows not work', () => {
       expect(logs).not.toContain('Inject another BrowserWindow successfully')
       expect(logs).not.toContain('Get ipc log: This is an another window')
     })
 
-    test('@Post still work', () => {
+    it('@Post still work', () => {
       expect(logs).toContain('Get http data from frontend: send http data to backend')
     })
 
-    test('@Get still work', () => {
+    it('@Get still work', () => {
       expect(logs).toContain('Get http log: Main process received data from frontend')
     })
 
-    test('node process exit', () => {
+    it('node process exit', () => {
       expect(logs).toContain('Node exiting...')
     })
   })

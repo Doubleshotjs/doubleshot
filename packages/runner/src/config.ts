@@ -48,8 +48,8 @@ export interface ElectronBuildConfig {
    */
   commandName?: string
   /**
-  * @default process.cwd()
-  */
+   * @default process.cwd()
+   */
   projectDir?: string
   /**
    * electron-builder config or electron-builder config file path

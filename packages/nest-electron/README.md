@@ -104,7 +104,7 @@ Bind ipc channel through the decorators:
 
 ```ts
 import { Controller } from '@nestjs/common'
-import { IpcHandle, IpcOn, type IpcContext } from '@doubleshot/nest-electron'
+import { type IpcContext, IpcHandle, IpcOn } from '@doubleshot/nest-electron'
 import { Ctx, Payload } from '@nestjs/microservices'
 
 @Controller()

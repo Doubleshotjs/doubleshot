@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common'
-import { type BrowserWindow as BrowserWindowType } from 'electron'
+import type { BrowserWindow as BrowserWindowType } from 'electron'
 import { Ctx, Payload } from '@nestjs/microservices'
 import { IpcHandle, IpcOn, Window, isElectron } from '../../../dist'
 

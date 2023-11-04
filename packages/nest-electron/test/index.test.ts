@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { beforeAll, describe, expect, it, test } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 import { execa } from '@esm2cjs/execa'
 
 const mockDir = path.resolve(__dirname, './mock')
@@ -30,7 +30,7 @@ async function runElectron() {
   return logs
 }
 
-describe('Doubleshot Nest Electron Module', () => {
+describe('doubleshot Nest Electron Module', () => {
   let logs = ''
   beforeAll(async () => {
     await buildMock()
@@ -41,20 +41,20 @@ describe('Doubleshot Nest Electron Module', () => {
     expect(logs).toContain('Electron is running')
   })
 
-  test('@Window', () => {
+  it('@Window', () => {
     expect(logs).toContain('Inject BrowserWindow successfully')
   })
 
-  test('@Window for multiple windows', () => {
+  it('@Window for multiple windows', () => {
     expect(logs).toContain('Inject another BrowserWindow successfully')
     expect(logs).toContain('Get log: This is an another window')
   })
 
-  test('@IpcHandle', () => {
+  it('@IpcHandle', () => {
     expect(logs).toContain('Get data from frontend: send data to backend')
   })
 
-  test('@IpcOn', () => {
+  it('@IpcOn', () => {
     expect(logs).toContain('Get log: Main process received data from frontend')
   })
 

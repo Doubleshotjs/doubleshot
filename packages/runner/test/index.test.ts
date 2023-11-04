@@ -87,7 +87,7 @@ const runBuildConfig: RunConfig[] = [
   },
 ]
 
-describe('Doubleshot Runner', () => {
+describe('doubleshot Runner', () => {
   it('should run all commands', async () => {
     writeConfigFile({
       run: [...runBuildConfig],

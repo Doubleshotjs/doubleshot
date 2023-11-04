@@ -16,7 +16,7 @@ afterAll(() => {
   remove()
 })
 
-describe('Doubleshot Builder: Dev Mode', () => {
+describe('doubleshot Builder: Dev Mode', () => {
   it('should run electron process when app type is electron', async () => {
     writeConfigFile({
       ...DEFAULT_CONFIG,
@@ -190,7 +190,7 @@ describe('Doubleshot Builder: Dev Mode', () => {
   })
 })
 
-describe('Doubleshot Builder: Build Mode', () => {
+describe('doubleshot Builder: Build Mode', () => {
   it('should build source files', async () => {
     writeConfigFile({
       ...DEFAULT_CONFIG,
@@ -253,11 +253,13 @@ describe('Doubleshot Builder: Build Mode', () => {
   }, 10 * 60 * 1000)
 })
 
-describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
+describe('doubleshot Builder, Inline Command: Dev Mode', () => {
   it('should run electron process when app type is electron', async () => {
     const logs = await run('dev', [
-      '-t', 'electron',
-      '-m', 'dist/main.js',
+      '-t',
+      'electron',
+      '-m',
+      'dist/main.js',
       ...DEFAULT_INLINE_CONFIG,
     ])
 
@@ -268,8 +270,10 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
 
   it('should run node process when app type is node', async () => {
     const logs = await run('dev', [
-      '-t', 'node',
-      '-m', 'dist/main.js',
+      '-t',
+      'node',
+      '-m',
+      'dist/main.js',
       ...DEFAULT_INLINE_CONFIG,
     ])
 
@@ -289,11 +293,14 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
       })(),
       (async () => {
         logs = await run('dev', [
-          '-t', 'electron',
-          '-m', 'dist/main.js',
+          '-t',
+          'electron',
+          '-m',
+          'dist/main.js',
           ...DEFAULT_INLINE_CONFIG,
           '--wait-for-renderer',
-          '--renderer-url', `file://${path.resolve(mockDir, 'index.html')}`,
+          '--renderer-url',
+`file://${path.resolve(mockDir, 'index.html')}`,
         ])
       })(),
     ])
@@ -321,11 +328,14 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
       })(),
       (async () => {
         logs = await run('dev', [
-          '-t', 'electron',
-          '-m', 'dist/main.js',
+          '-t',
+          'electron',
+          '-m',
+          'dist/main.js',
           ...DEFAULT_INLINE_CONFIG,
           '--wait-for-renderer',
-          '--renderer-url', `${url1},${url2}`,
+          '--renderer-url',
+`${url1},${url2}`,
         ])
       })(),
     ])
@@ -340,12 +350,16 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
 
     try {
       await run('dev', [
-        '-t', 'electron',
-        '-m', 'dist/main.js',
+        '-t',
+        'electron',
+        '-m',
+        'dist/main.js',
         ...DEFAULT_INLINE_CONFIG,
         '--wait-for-renderer',
-        '--renderer-url', `file://${path.resolve(mockDir, 'index.html')}`,
-        '--wait-timeout', '2000',
+        '--renderer-url',
+`file://${path.resolve(mockDir, 'index.html')}`,
+'--wait-timeout',
+'2000',
       ])
     }
     catch (error) {
@@ -381,10 +395,11 @@ describe('Doubleshot Builder, Inline Command: Dev Mode', () => {
   })
 })
 
-describe('Doubleshot Builder, Inline Command: Build Mode', () => {
+describe('doubleshot Builder, Inline Command: Build Mode', () => {
   it('should build source files', async () => {
     const logs = await run('build', [
-      '-t', 'electron',
+      '-t',
+      'electron',
       ...DEFAULT_INLINE_CONFIG,
     ])
 
@@ -394,9 +409,11 @@ describe('Doubleshot Builder, Inline Command: Build Mode', () => {
 
   it('should build preload source file', async () => {
     const logs = await run('build', [
-      '-t', 'electron',
+      '-t',
+      'electron',
       ...DEFAULT_INLINE_CONFIG,
-      '--preload', './src/preload.ts',
+      '--preload',
+      './src/preload.ts',
     ])
 
     expect(logs).toContain('Build succeeded')
@@ -405,9 +422,11 @@ describe('Doubleshot Builder, Inline Command: Build Mode', () => {
 
   it('should build electron app if "electron.build" is set', async () => {
     const logs = await run('build', [
-      '-t', 'electron',
+      '-t',
+      'electron',
       ...DEFAULT_INLINE_CONFIG,
-      '--electron-builder-config', 'electron-builder.config.js',
+      '--electron-builder-config',
+      'electron-builder.config.js',
     ])
 
     expect(logs).toContain('Start electron build')
@@ -416,7 +435,7 @@ describe('Doubleshot Builder, Inline Command: Build Mode', () => {
   }, 10 * 60 * 1000)
 })
 
-describe('Doubleshot Builder, Debug Mode', () => {
+describe('doubleshot Builder, Debug Mode', () => {
   it('should run in debug mode if sets "--debug" flag ', async () => {
     writeConfigFile({
       ...DEFAULT_CONFIG,

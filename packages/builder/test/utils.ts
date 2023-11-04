@@ -15,9 +15,12 @@ export const DEFAULT_CONFIG: UserConfigExport = {
 }
 
 export const DEFAULT_INLINE_CONFIG: string[] = [
-  '-o', 'dist',
-  '-e', './src/main.ts',
-  '--external', 'electron',
+  '-o',
+  'dist',
+  '-e',
+  './src/main.ts',
+  '--external',
+  'electron',
   '--disable-config',
 ]
 

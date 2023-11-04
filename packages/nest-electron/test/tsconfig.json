@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "noImplicitAny": false,
-    "removeComments": true,
+    "target": "es6",
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "declaration": true,
+    "removeComments": true,
     "sourceMap": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": [
     "./**/*.ts",

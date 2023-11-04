@@ -18,9 +18,7 @@ export function colorize(type: LOG_TYPE, data: any, onlyImportant = false) {
   return colors[color](data)
 }
 
-export function makeLabel(name: string | undefined,
-  input: string,
-  type: LOG_TYPE) {
+export function makeLabel(name: string | undefined, input: string, type: LOG_TYPE) {
   return [
     name && `${colors.dim('[')}${name.toUpperCase()}${colors.dim(']')}`,
     colorize(type, input.toUpperCase()),

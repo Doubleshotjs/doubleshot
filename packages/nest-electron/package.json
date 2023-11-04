@@ -19,8 +19,8 @@
   ],
   "files": [
     "dist",
-    "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "index.js"
   ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.json",
