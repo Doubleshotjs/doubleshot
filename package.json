@@ -16,7 +16,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "mor",
-    "ci-publish": "mor publish -u pnpm"
+    "ci-publish": "mor publish -u pnpm",
+    "postinstall": "npx simple-git-hooks"
   },
   "devDependencies": {
     "@esm2cjs/execa": "6.1.1-cjs.1",
