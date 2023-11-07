@@ -91,8 +91,8 @@ importers:
         version: 7.1.0
     devDependencies:
       '@types/wait-on':
-        specifier: 5.3.3
-        version: 5.3.3
+        specifier: 5.3.4
+        version: 5.3.4
       electron:
         specifier: 27.0.3
         version: 27.0.3
@@ -1504,12 +1504,6 @@ packages:
       undici-types: 5.26.5
     dev: true
 
-  /@types/node@20.8.7:
-    resolution: {integrity: sha512-21TKHHh3eUHIi2MloeptJWALuCu5H7HQTdTrWIFReA8ad+aggoX+lRes3ex7/FtpC+sVUpFMQ+QTfYr74mruiQ==}
-    dependencies:
-      undici-types: 5.25.3
-    dev: true
-
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
@@ -1543,10 +1537,10 @@ packages:
     dev: true
     optional: true
 
-  /@types/wait-on@5.3.3:
-    resolution: {integrity: sha512-I8EnhU/DuvV2LODzBcLw85FPFFZ9mBvtgqfsgXbhkbo5IZYfIne5qxPTv4PGbD8d5uDQJG5g/pGwGdpM8lQ6Lg==}
+  /@types/wait-on@5.3.4:
+    resolution: {integrity: sha512-EBsPjFMrFlMbbUFf9D1Fp+PAB2TwmUn7a3YtHyD9RLuTIk1jDd8SxXVAoez2Ciy+8Jsceo2MYEYZzJ/DvorOKw==}
     dependencies:
-      '@types/node': 20.8.7
+      '@types/node': 20.8.10
     dev: true
 
   /@types/yauzl@2.10.0:
@@ -6454,10 +6448,6 @@ packages:
       has-bigints: 1.0.2
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
-    dev: true
-
-  /undici-types@5.25.3:
-    resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
     dev: true
 
   /undici-types@5.26.5:
