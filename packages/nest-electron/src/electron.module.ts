@@ -6,21 +6,57 @@ import { isElectron } from './utils'
 
 @Module({})
 export class ElectronModule {
+  private static isMainNameUsed = false
+
   protected static readonly logger = new Logger(ElectronModule.name)
+
+  private static getProviderName(name: any) {
+    let provideName: string
+    if (name === ELECTRON_WINDOW_DEFAULT_NAME || !name || typeof name !== 'string') {
+      if (ElectronModule.isMainNameUsed) {
+        throw new Error(`Default name "${ELECTRON_WINDOW_DEFAULT_NAME}" has been used, please specify a name for the window`)
+      }
+      else {
+        provideName = `${ELECTRON_WINDOW}:${ELECTRON_WINDOW_DEFAULT_NAME}`
+        ElectronModule.isMainNameUsed = true
+      }
+    }
+    else {
+      provideName = `${ELECTRON_WINDOW}:${name}`
+    }
+    return provideName
+  }
+
   static register(options: ElectronModuleOptions): DynamicModule {
     !isElectron && ElectronModule.logger.warn('Not in Electron environment, all providers from ElectronModule will be null')
 
-    const provideName = `${ELECTRON_WINDOW}:${options.name || ELECTRON_WINDOW_DEFAULT_NAME}`
-    const electronProvider: Provider = {
-      provide: provideName,
-      useValue: isElectron ? options.win : null,
+    const providers: Provider[] = []
+    const exportNames: string[] = []
+
+    if (Array.isArray(options.win)) {
+      for (const { name, win } of options.win) {
+        const provideName = ElectronModule.getProviderName(name)
+        providers.push({
+          provide: provideName,
+          useValue: isElectron ? win : null,
+        })
+        exportNames.push(provideName)
+      }
+    }
+    else {
+      const provideName = `${ELECTRON_WINDOW}:${options.name || ELECTRON_WINDOW_DEFAULT_NAME}`
+      providers.push({
+        provide: provideName,
+        useValue: isElectron ? options.win : null,
+      })
+      exportNames.push(provideName)
     }
 
     return {
       module: ElectronModule,
-      providers: [electronProvider],
-      exports: [provideName],
-      global: options.isGlobal,
+      providers,
+      exports: exportNames,
+      global: !!options.isGlobal,
     }
   }
 

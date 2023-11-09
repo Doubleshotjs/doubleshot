@@ -1,8 +1,13 @@
 import type { BrowserWindow } from 'electron'
 
-export interface ElectronModuleOptions {
+export interface ElectronModuleWindowInfo {
   name?: string
   win: BrowserWindow
+}
+
+export interface ElectronModuleOptions {
+  name?: string
+  win: BrowserWindow | ElectronModuleWindowInfo[]
   isGlobal?: boolean
 }
 
