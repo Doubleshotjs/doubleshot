@@ -42,7 +42,11 @@ jobs:
         env:
           cache-name: cache-pnpm-store
         with:
-          path: ${{ github.workspace }}/.pnpm-store
+          path: |
+            ${{ github.workspace }}/.pnpm-store
+            ${{ github.workspace }}/packages/builder/test/mock/node_modules
+            ${{ github.workspace }}/packages/plugin-vite/test/mock/node_modules
+            ${{ github.workspace }}/packages/runner/test/mock/backend/node_modules
           key: ${{ runner.os }}-${{ matrix.node-version }}-test-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-test-${{ env.cache-name }}-
