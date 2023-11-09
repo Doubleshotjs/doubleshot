@@ -1,3 +1,13 @@
+## [0.2.5](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.4...nest-electron@0.2.5) (2023-11-09)
+
+
+### Features
+
+* **nest-electron:** support multiple windows for register ([cc72b28](https://github.com/archergu/doubleshot/commit/cc72b28176e01b980d857e1e1d12aa4b1a652c20))
+* **nest-electron:** support multiple windows for registerAsync ([3784eae](https://github.com/archergu/doubleshot/commit/3784eae3975bbdf339c093727bdf6fa1bba8eea0))
+
+
+
 ## [0.2.4](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.3...nest-electron@0.2.4) (2023-08-14)
 
 
