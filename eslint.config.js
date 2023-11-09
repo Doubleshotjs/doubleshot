@@ -6,11 +6,11 @@ module.exports = lightwing(
     ignores: [
       'dist',
       'node_modules',
-      '*.svelte',
-      '*.snap',
-      '*.d.ts',
       'coverage',
-      '*.md',
+      '**/*.svelte',
+      '**/*.snap',
+      '**/*.d.ts',
+      '**/*.md',
     ],
   },
   {
