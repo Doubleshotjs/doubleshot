@@ -1,3 +1,12 @@
+## [0.0.13](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.12...plugin-vite@0.0.13) (2023-11-09)
+
+
+### Bug Fixes
+
+* **plugin-vite:** remove error debug info log ([38f6624](https://github.com/archergu/doubleshot/commit/38f6624bca8a70ac6d02fe474609fccd0b944706))
+
+
+
 ## [0.0.12](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.11...plugin-vite@0.0.12) (2023-06-16)
 
 
