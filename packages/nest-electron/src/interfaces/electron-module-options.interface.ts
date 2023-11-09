@@ -11,10 +11,10 @@ export interface ElectronModuleOptions {
   isGlobal?: boolean
 }
 
-export type ElectronModuleProviderValue = (BrowserWindow) | ({ win: BrowserWindow })
+export type ElectronModuleProviderValue = BrowserWindow | BrowserWindow[] | { win: BrowserWindow }
 
 export interface ElectronModuleAsyncOptions {
-  name?: string
+  name?: string | string[]
   useFactory: (...args: any[]) => Promise<ElectronModuleProviderValue> | ElectronModuleProviderValue
   inject?: any[]
   isGlobal?: boolean

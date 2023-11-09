@@ -1,4 +1,4 @@
-import type { DynamicModule, Provider } from '@nestjs/common'
+import type { DynamicModule } from '@nestjs/common'
 import { Logger, Module } from '@nestjs/common'
 import type { ElectronModuleAsyncOptions, ElectronModuleOptions, ElectronModuleProviderValue } from './interfaces/electron-module-options.interface'
 import { ELECTRON_MODULE_PROVIDER_VALUE, ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME } from './electron.constants'
@@ -30,7 +30,7 @@ export class ElectronModule {
   static register(options: ElectronModuleOptions): DynamicModule {
     !isElectron && ElectronModule.logger.warn('Not in Electron environment, all providers from ElectronModule will be null')
 
-    const providers: Provider[] = []
+    const providers: DynamicModule['providers'] = []
     const exportNames: string[] = []
 
     if (Array.isArray(options.win)) {
@@ -63,34 +63,57 @@ export class ElectronModule {
   static registerAsync(options: ElectronModuleAsyncOptions): DynamicModule {
     !isElectron && ElectronModule.logger.warn('Not in Electron environment, all providers from ElectronModule will be null')
 
-    const provideName = `${ELECTRON_WINDOW}:${options.name || ELECTRON_WINDOW_DEFAULT_NAME}`
+    const names = Array.isArray(options.name) ? options.name : [options.name]
     const providers: DynamicModule['providers'] = []
+    const exportNames: string[] = []
+
     if (isElectron) {
-      const { BrowserWindow } = require('electron')
+      const nameKey = Array.isArray(options.name) ? options.name.join(',') : options.name
+      const preProvideName = `${ELECTRON_MODULE_PROVIDER_VALUE}:${nameKey || ELECTRON_WINDOW_DEFAULT_NAME}`
+      // preProvideName is to create provider array for next window provider
       providers.push(
         {
-          provide: provideName,
-          useFactory: (value: ElectronModuleProviderValue) => value instanceof BrowserWindow ? value : value.win,
-          inject: [ELECTRON_MODULE_PROVIDER_VALUE],
-        },
-        {
-          provide: ELECTRON_MODULE_PROVIDER_VALUE,
+          provide: preProvideName,
           useFactory: options.useFactory,
           inject: options.inject || [],
         },
       )
+
+      let isSingleBind = false
+      for (let i = 0; i < names.length; i++) {
+        const provideName = ElectronModule.getProviderName(names[i])
+        providers.push({
+          provide: provideName,
+          useFactory: (value: ElectronModuleProviderValue) => {
+            if (Array.isArray(value))
+              return value[i] || null
+
+            if (isSingleBind)
+              return null
+
+            isSingleBind = true
+            return (typeof value === 'object' && 'win' in value) ? value.win : value
+          },
+          inject: [preProvideName],
+        })
+        exportNames.push(provideName)
+      }
     }
     else {
-      providers.push({
-        provide: provideName,
-        useValue: null,
-      })
+      for (const name of names) {
+        const provideName = ElectronModule.getProviderName(name)
+        providers.push({
+          provide: provideName,
+          useValue: null,
+        })
+        exportNames.push(provideName)
+      }
     }
 
     return {
       module: ElectronModule,
       providers,
-      exports: [provideName],
+      exports: exportNames,
       global: options.isGlobal,
     }
   }
