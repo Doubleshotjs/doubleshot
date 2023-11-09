@@ -1,48 +1,40 @@
 import { join } from 'node:path'
 import { Module } from '@nestjs/common'
 import { BrowserWindow } from 'electron'
-import { ElectronModule } from '../../../dist'
+import { ELECTRON_WINDOW_DEFAULT_NAME, ElectronModule } from '../../../dist'
 import { AppController } from './app.controller'
 import { OtherController } from './other.controller'
 
 @Module({
   imports: [
     ElectronModule.registerAsync({
-      // name: 'main', // default window names "main"
+      name: [ELECTRON_WINDOW_DEFAULT_NAME, 'another-win'],
       useFactory: async () => {
-        const win = new BrowserWindow({
+        const mainWin = new BrowserWindow({
+          webPreferences: {
+            contextIsolation: true,
+            preload: join(__dirname, 'preload.js'),
+          },
+        })
+        mainWin.on('closed', () => {
+          mainWin.destroy()
+        })
+        mainWin.loadFile('../index.html')
+
+        const anotherWin = new BrowserWindow({
           webPreferences: {
             contextIsolation: true,
             preload: join(__dirname, 'preload.js'),
           },
         })
 
-        win.on('closed', () => {
-          win.destroy()
+        anotherWin.on('closed', () => {
+          anotherWin.destroy()
         })
 
-        win.loadFile('../index.html')
+        anotherWin.loadFile('../another.html')
 
-        return { win }
-      },
-    }),
-    ElectronModule.registerAsync({
-      name: 'another-win',
-      useFactory: async () => {
-        const win = new BrowserWindow({
-          webPreferences: {
-            contextIsolation: true,
-            preload: join(__dirname, 'preload.js'),
-          },
-        })
-
-        win.on('closed', () => {
-          win.destroy()
-        })
-
-        win.loadFile('../another.html')
-
-        return { win }
+        return [mainWin, anotherWin]
       },
     }),
   ],
