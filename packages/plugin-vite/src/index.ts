@@ -1,7 +1,7 @@
 import type { AddressInfo } from 'node:net'
 import type { PluginOption, ResolvedConfig } from 'vite'
 import type { ElectronConfig, InlineConfig } from '@doubleshot/builder'
-import { build, dev, printLog } from '@doubleshot/builder'
+import { build, dev } from '@doubleshot/builder'
 
 export { defineConfig } from '@doubleshot/builder'
 
@@ -57,12 +57,6 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
           }
 
           await dev(userConfig)
-
-          // Debug Mode Note
-          if (isDebug) {
-            printLog('info', '⚠️  Debug mode enabled, in Vite plugin, @doubleshot/builder will prebuild files only.')
-            printLog('info', '➡️  You should start the application manually in debug mode.(e.g. create "launch.json" in Visual Studio Code to start it)')
-          }
         })
       },
     },
