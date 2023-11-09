@@ -65,13 +65,40 @@ import { AppService } from './app.service'
 
 @Module({
   imports: [ElectronModule.registerAsync({
-    // name: 'main', // default window names "main"
+    // name: 'main', // default window names "main", you can skip the name if only provide one window
     useFactory: async () => {
       const win = new BrowserWindow()
-
       win.loadURL('http://localhost:3000')
 
-      return { win }
+      return win
+    },
+  })],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule { }
+```
+Provides multi BrowserWindow(s):
+
+```ts
+import { Module } from '@nestjs/common'
+import { ElectronModule,ELECTRON_WINDOW_DEFAULT_NAME } from '@doubleshot/nest-electron'
+import { BrowserWindow } from 'electron'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+
+@Module({
+  imports: [ElectronModule.registerAsync({
+    name: [ELECTRON_WINDOW_DEFAULT_NAME, 'another-win']
+    useFactory: async () => {
+      const mainWin = new BrowserWindow()
+      mainWin.loadURL('http://localhost:3000')
+
+      const anotherWin = new BrowserWindow()
+      anotherWin.loadURL('http://localhost:3001')
+
+      // correspond to the above names
+      return [mainWin, anotherWin]
     },
   })],
   controllers: [AppController],
@@ -90,7 +117,9 @@ import type { BrowserWindow } from 'electron'
 @Injectable()
 export class AppService {
   constructor(
+    // default window names "main", you can skip the name
     @Window() private readonly win: BrowserWindow,
+    // other window you should specify the name
     @Window('another-win') private readonly anotherWin: BrowserWindow,
   ) { }
 
