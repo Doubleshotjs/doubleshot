@@ -47,7 +47,12 @@ export default defineConfig({
       cwd: 'packages/backend',
       commands: {
         dev: 'npm run dev',
-        build: 'npm run build'
+        build: 
+          // multi-line command is also available
+          `
+            npm run build &&
+            echo 'build finished'
+          `
       }
     }
   ]
