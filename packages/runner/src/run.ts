@@ -8,6 +8,7 @@ import type { ElectronBuildConfig, InlineConfig, RunCommandInfo } from './config
 import { resolveConfig } from './config'
 import { createLogger } from './log'
 import { TAG } from './constants'
+import { generateCommandToOneLine } from './utils'
 
 export async function run(command: string, inlineConfig: InlineConfig = {}) {
   const logger = createLogger()
@@ -45,17 +46,19 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
     if (typeof cmd === 'string') {
       commandsList.push({
         ...base,
-        command: cmd,
+        command: generateCommandToOneLine(cmd),
       })
     }
     else if (typeof cmd === 'object') {
+      const oneLineCmd = generateCommandToOneLine(cmd.command)
       const len = commandsList.push({
         ...base,
         ...cmd,
+        command: oneLineCmd,
       })
 
       if (cmd.killOthersWhenExit)
-        commandsWhoCanKillOthers.push(`[${len - 1}][${cmd.name || base.name}]: ${cmd.command}`)
+        commandsWhoCanKillOthers.push(`[${len - 1}][${cmd.name || base.name}]: ${oneLineCmd}`)
     }
   }
 
