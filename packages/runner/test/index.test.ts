@@ -82,7 +82,11 @@ const runBuildConfig: RunConfig[] = [
     name: 'example2',
     cwd: 'example2',
     commands: {
-      build: 'npm run build',
+      build:
+        `
+          npm run build &&
+          echo "example2 build finished"
+        `,
     },
   },
 ]
@@ -126,6 +130,15 @@ describe('doubleshot Runner', () => {
 
     expect(logs).toContain('run frontend in dev mode')
     expect(logs).toContain('build backend')
+  })
+
+  it('should support multi-format line command', async () => {
+    writeConfigFile({
+      run: [...runBuildConfig],
+    })
+
+    const logs = await run('build')
+    expect(logs).toContain('example2 build finished')
   })
 
   it('should throw error if no config file', async () => {
