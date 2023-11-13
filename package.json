@@ -1,7 +1,7 @@
 {
   "name": "doubleshot-monorepo",
   "private": true,
-  "packageManager": "pnpm@8.10.3",
+  "packageManager": "pnpm@8.10.4",
   "description": "A solution to save effort",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "keywords": [
