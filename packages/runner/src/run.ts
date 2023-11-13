@@ -13,8 +13,8 @@ import { generateCommandToOneLine } from './utils'
 export async function run(command: string, inlineConfig: InlineConfig = {}) {
   const logger = createLogger()
   const config = await resolveConfig(inlineConfig)
-  const commandsList: ConcurrentlyCommandInput[] = []
-  const commandsWhoCanKillOthers: string[] = []
+  const commandsList: (ConcurrentlyCommandInput & { rId: string; rIndex: number; killOthers?: boolean })[] = []
+  // const beforeRuns: (Exclude<RunCommandInfo, string>['beforeRun'])[] = []
 
   for (const runConfig of config.run || []) {
     const { cwd, name, commands, prefixColor } = runConfig
@@ -38,41 +38,50 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
       continue
 
     const base = {
+      rIndex: commandsList.length,
       cwd: cwd || config.root,
       name: name || (cwd ? path.basename(cwd) : undefined),
       prefixColor,
     }
 
+    let item: typeof commandsList[number] | undefined
     if (typeof cmd === 'string') {
-      commandsList.push({
+      const oneLineCmd = generateCommandToOneLine(cmd)
+      item = {
+        rId: `[${base.rIndex}][${base.name}]: ${oneLineCmd}`,
         ...base,
-        command: generateCommandToOneLine(cmd),
-      })
+        command: oneLineCmd,
+      }
     }
     else if (typeof cmd === 'object') {
       const oneLineCmd = generateCommandToOneLine(cmd.command)
-      const len = commandsList.push({
+      item = {
+        rId: `[${base.rIndex}][${cmd.name || base.name}]: ${oneLineCmd}`,
         ...base,
         ...cmd,
         command: oneLineCmd,
-      })
-
-      if (cmd.killOthersWhenExit)
-        commandsWhoCanKillOthers.push(`[${len - 1}][${cmd.name || base.name}]: ${oneLineCmd}`)
+        killOthers: cmd.killOthersWhenExit,
+      }
     }
+
+    item && commandsList.push(item)
   }
 
   const { result, commands } = concurrently(commandsList, {
     killOthers: ['failure'],
   })
 
+  const commandsWhoCanKillOthers = commandsList.filter(c => c.killOthers).map(c => ({
+    rIndex: c.rIndex,
+    rId: c.rId,
+  }))
   for (const cmd of commands) {
-    const id = `[${cmd.index}][${cmd.name}]: ${cmd.command}`
-    if (commandsWhoCanKillOthers.includes(id)) {
+    const item = commandsWhoCanKillOthers.find(c => c.rIndex === cmd.index)
+    if (item) {
       cmd.close.subscribe(() => {
-        logger.info(TAG, `Command "${yellow(id)}" exited, killing others`)
+        logger.info(TAG, `Command "${yellow(item.rId)}" exited, killing others`)
         commands.forEach((c) => {
-          if (`[${c.index}]${c.name}:${c.command}` !== id)
+          if (c.index !== item.rIndex)
             c.kill('SIGKILL')
         })
       })
