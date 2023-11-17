@@ -2,19 +2,29 @@ import path from 'node:path'
 import { performance } from 'node:perf_hooks'
 import type { ConcurrentlyCommandInput } from 'concurrently'
 import concurrently from 'concurrently'
-import { yellow } from 'colorette'
+import { magenta, red, yellow } from 'colorette'
 import { checkPackageExists } from 'check-package-exists'
-import type { ElectronBuildConfig, InlineConfig, RunCommandInfo } from './config'
+import type { CommandHook, ElectronBuildConfig, InlineConfig, RunCommandInfo } from './config'
 import { resolveConfig } from './config'
 import { createLogger } from './log'
 import { TAG } from './constants'
 import { generateCommandToOneLine } from './utils'
 
+interface BeforeRunHooks {
+  functions: ({ rIndex: number; fn: () => boolean | Promise<boolean>; result?: boolean })[]
+  commands: ({ rIndex: number } & CommandHook)[]
+  nodeFiles: ({ rIndex: number } & CommandHook)[]
+}
+
 export async function run(command: string, inlineConfig: InlineConfig = {}) {
   const logger = createLogger()
   const config = await resolveConfig(inlineConfig)
   const commandsList: (ConcurrentlyCommandInput & { rId: string; rIndex: number; killOthers?: boolean })[] = []
-  // const beforeRuns: (Exclude<RunCommandInfo, string>['beforeRun'])[] = []
+  const beforeRunHooks: BeforeRunHooks = {
+    functions: [],
+    commands: [],
+    nodeFiles: [],
+  }
 
   for (const runConfig of config.run || []) {
     const { cwd, name, commands, prefixColor } = runConfig
@@ -62,9 +72,50 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
         command: oneLineCmd,
         killOthers: cmd.killOthersWhenExit,
       }
+
+      if (typeof cmd.beforeRun === 'function') {
+        beforeRunHooks.functions.push({
+          rIndex: item.rIndex,
+          fn: cmd.beforeRun,
+        })
+      }
+      else if (typeof cmd.beforeRun === 'object') {
+        if (cmd.beforeRun.type === 'command') {
+          beforeRunHooks.commands.push({
+            rIndex: item.rIndex,
+            ...cmd.beforeRun,
+          })
+        }
+        else if (cmd.beforeRun.type === 'node-file') {
+          beforeRunHooks.nodeFiles.push({
+            rIndex: item.rIndex,
+            ...cmd.beforeRun,
+          })
+        }
+      }
     }
 
     item && commandsList.push(item)
+  }
+
+  // Before run hooks
+  if (beforeRunHooks.functions.length > 0 || beforeRunHooks.commands.length > 0 || beforeRunHooks.nodeFiles.length > 0) {
+    logger.info(TAG, `➡️ Start ${magenta('beforeRun')} hooks ⬅️\n`)
+    // run beforeRunHooks.functions first and get results
+    for (const hook of beforeRunHooks.functions) {
+      const result = await hook.fn()
+      hook.result = result
+      if (hook.result === false) {
+        const item = commandsList.find(c => c.rIndex === hook.rIndex)
+        if (item && item.killOthers) {
+          logger.info(TAG, `Command "${yellow(item.rId)}"(${red('killOthersWhenExit')}) beforeRun hook return false, next commands will not be executed`)
+          logger.info(TAG, `➡️ End ${magenta('beforeRun')} hooks ⬅️\n`)
+          return
+        }
+      }
+    }
+
+    logger.info(TAG, `➡️ End ${magenta('beforeRun')} hooks ⬅️\n`)
   }
 
   const { result, commands } = concurrently(commandsList, {

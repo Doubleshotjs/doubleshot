@@ -8,10 +8,25 @@ const bin = path.resolve(__dirname, '../dist/cli.js')
 const mockDir = path.resolve(__dirname, './mock')
 const configFile = path.resolve(mockDir, 'dsr.config.ts')
 
+function changeConfigToString(config: DoubleShotRunnerConfigExport) {
+  return JSON.stringify(config, (_, value) => {
+    if (typeof value === 'function')
+      return `[FUNCTION]${value}`
+
+    return value
+  }).replace(/"(\[FUNCTION])?((?:\\.|[^\\"])*)"(:)?/g, (match, group1, group2, group3) => {
+    if (group1)
+      return JSON.parse(`"${group2}"`)
+    if (group3 && /^\w+$/.test(group2))
+      return `${group2}:`
+    return match
+  })
+}
+
 function writeConfigFile(config: DoubleShotRunnerConfigExport) {
   const configContent = `
     import { defineConfig } from "../../src"
-    export default defineConfig(${JSON.stringify(config)})
+    export default defineConfig(${changeConfigToString(config)})
   `
   fs.writeFileSync(configFile, configContent)
 }
@@ -261,4 +276,70 @@ describe('doubleshot Runner', () => {
     expect(logs).toContain('Electron build finished')
     expect(fs.existsSync(path.resolve(mockDir, 'dist'))).toBe(true)
   }, 10 * 60 * 1000)
+
+  it('should run "beforeRun" hook before command', async () => {
+    writeConfigFile({
+      run: [
+        {
+          name: 'frontend',
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+        {
+          name: 'backend',
+          cwd: 'backend',
+          commands: {
+            build: {
+              command: 'npm run build',
+              beforeRun: () => {
+                console.log('this is a beforeRun function type hook')
+                return true
+              },
+            },
+          },
+        },
+      ],
+    })
+
+    const logs = await run('build')
+
+    expect(logs).toContain('this is a beforeRun function type hook')
+  })
+
+  it('should break running if "beforeRun" function hook return false and this command set killOthersWhenExit=true', async () => {
+    writeConfigFile({
+      run: [
+        {
+          name: 'frontend',
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+        {
+          name: 'backend',
+          cwd: 'backend',
+          commands: {
+            build: {
+              command: 'npm run build',
+              killOthersWhenExit: true,
+              beforeRun: () => {
+                console.log('this is a beforeRun function type hook')
+                return false
+              },
+            },
+          },
+        },
+      ],
+    })
+
+    const logs = await run('build')
+
+    expect(logs).toContain('this is a beforeRun function type hook')
+    expect(logs).toContain('next commands will not be executed')
+    expect(logs).not.toContain('build backend')
+    expect(logs).not.toContain('build frontend')
+  })
 })

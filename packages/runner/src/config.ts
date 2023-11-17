@@ -10,6 +10,22 @@ import { CONFIG_FILE, TAG } from './constants'
 
 export type DoubleShotRunnerConfigExport = DoubleShotRunnerConfig | Promise<DoubleShotRunnerConfig>
 
+export interface CommandHook {
+  cwd?: string
+  /**
+   * hook type, you should tell dsr how to run it:
+   * - 'node-file': run it as a node file, support typescript
+   * - 'command': run it as a command
+   * @default 'node-file'
+   */
+  type: 'node-file' | 'command'
+  /**
+   * - if type is 'node-file', this is the file path, relative path will be resolved in cwd, and run in cwd
+   * - if type is 'command', this is the command, will be run in cwd
+   */
+  hook: string
+}
+
 export type RunCommandInfo = string | (Exclude<ConcurrentlyCommandInput, string> & {
   /**
    * alias name
@@ -20,6 +36,12 @@ export type RunCommandInfo = string | (Exclude<ConcurrentlyCommandInput, string>
    * @default false
    */
   killOthersWhenExit?: boolean
+  /**
+   * hook runs before command
+   *
+   * If it is a function, its return value is false, which will prevent the execution of the command
+   */
+  beforeRun?: (() => boolean | Promise<boolean>) | CommandHook
 })
 
 export interface RunConfig {
