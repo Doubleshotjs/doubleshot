@@ -12,8 +12,8 @@ importers:
         specifier: 6.1.1-cjs.1
         version: 6.1.1-cjs.1
       '@lightwing/eslint-config':
-        specifier: 1.0.17
-        version: 1.0.17(@vue/compiler-sfc@3.3.10)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6)
+        specifier: 1.0.18
+        version: 1.0.18(@vue/compiler-sfc@3.3.10)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6)
       '@nestjs/testing':
         specifier: 10.2.10
         version: 10.2.10(@nestjs/common@10.2.10)(@nestjs/core@10.2.10)
@@ -180,8 +180,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@antfu/eslint-config@2.4.3(@vue/compiler-sfc@3.3.10)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6):
-    resolution: {integrity: sha512-DUMNwxPHxC0To63h7Z3bII41HqBUd+5iL0woubgjhhxJlZ0YRevOLHiSVGOifuivknwPW2nweF//8+BfoQCLjg==}
+  /@antfu/eslint-config@2.4.4(@vue/compiler-sfc@3.3.10)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6):
+    resolution: {integrity: sha512-TGiS9STAwiwBWHkqnnRHVLgjw1ogbqr1d+2U3NNpnoaedMWaDpfTYthuxgr0FNuWntABd3jhG4zRDa+kLZYu8A==}
     hasBin: true
     peerDependencies:
       '@unocss/eslint-plugin': '>=0.50.0'
@@ -225,11 +225,11 @@ packages:
       eslint-plugin-perfectionist: 2.5.0(eslint@8.55.0)(typescript@5.3.3)(vue-eslint-parser@9.3.2)
       eslint-plugin-unicorn: 49.0.0(eslint@8.55.0)
       eslint-plugin-unused-imports: 3.0.0(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)
-      eslint-plugin-vitest: 0.3.10(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6)
+      eslint-plugin-vitest: 0.3.15(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6)
       eslint-plugin-vue: 9.19.2(eslint@8.55.0)
       eslint-plugin-yml: 1.10.0(eslint@8.55.0)
       eslint-processor-vue-blocks: 0.1.1(@vue/compiler-sfc@3.3.10)(eslint@8.55.0)
-      globals: 13.23.0
+      globals: 13.24.0
       jsonc-eslint-parser: 2.4.0
       local-pkg: 0.5.0
       parse-gitignore: 2.0.0
@@ -727,13 +727,13 @@ packages:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
     dev: true
 
-  /@lightwing/eslint-config@1.0.17(@vue/compiler-sfc@3.3.10)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6):
-    resolution: {integrity: sha512-4SvIU2/CtU0LET2HV5QnFfk+AJW+5InolFpwtSbzumvjzC2esWg6MBS01wUjlPYupuRVWEtcqAT88RTTwuljLw==}
+  /@lightwing/eslint-config@1.0.18(@vue/compiler-sfc@3.3.10)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6):
+    resolution: {integrity: sha512-w6xt5hyW241rdti7X1JJxBXuTkjC2cmoDm/IzJ6v7QcjzkTFeVi8PsKKwdY6Nl6ObmMyYSSp2XO2FuVLR+E9fg==}
     peerDependencies:
       eslint: '>=8.0.0'
       typescript: '>=4.0.0'
     dependencies:
-      '@antfu/eslint-config': 2.4.3(@vue/compiler-sfc@3.3.10)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6)
+      '@antfu/eslint-config': 2.4.4(@vue/compiler-sfc@3.3.10)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6)
       eslint: 8.55.0
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -3248,9 +3248,9 @@ packages:
       eslint-rule-composer: 0.3.0
     dev: true
 
-  /eslint-plugin-vitest@0.3.10(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6):
-    resolution: {integrity: sha512-08lj4rdhZHYyHk+Py2nJ7SlE6arP8GNfGXl9jVqhe9s5JoZIGiBpIkLGX+VNBiB6vXTn56H6Ant7Koc6XzRjtQ==}
-    engines: {node: 14.x || >= 16}
+  /eslint-plugin-vitest@0.3.15(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@0.34.6):
+    resolution: {integrity: sha512-ZUUd9ARKR3p0W7zoWg0irmQW9aM+SlJYZOoFOBemmgwQIHLxtdRLodQGP48nYf8jLdCGFDQqPyaltQQKsa9UMw==}
+    engines: {node: ^18.0.0 || >= 20.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '*'
       eslint: '>=8.0.0'
@@ -3849,6 +3849,13 @@ packages:
 
   /globals@13.23.0:
     resolution: {integrity: sha512-XAmF0RjlrjY23MA51q3HltdlGxUpXPvg0GioKiD9X6HD28iMjo2dKC8Vqwm7lne4GNr78+RHTfliktR6ZH09wA==}
+    engines: {node: '>=8'}
+    dependencies:
+      type-fest: 0.20.2
+    dev: true
+
+  /globals@13.24.0:
+    resolution: {integrity: sha512-AhO5QUcj8llrbG09iWhPU2B204J1xnPeL8kQmVorSsy+Sjj1sk8gIyh6cUocGmH4L0UuhAJy+hJMRA4mgA4mFQ==}
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.20.2
