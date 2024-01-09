@@ -94,8 +94,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4
       electron:
-        specifier: 28.1.1
-        version: 28.1.1
+        specifier: 28.1.2
+        version: 28.1.2
       electron-builder:
         specifier: 24.9.1
         version: 24.9.1
@@ -122,8 +122,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0
       electron:
-        specifier: 28.1.1
-        version: 28.1.1
+        specifier: 28.1.2
+        version: 28.1.2
       reflect-metadata:
         specifier: 0.2.1
         version: 0.2.1
@@ -2992,8 +2992,8 @@ packages:
     resolution: {integrity: sha512-1n7zWYh8eS0L9Uy+GskE0lkBUNK83cXTVJI0pU3mGprFsbfSdAc15VTFbo+A+Bq4pwstmL30AVcEU3Fo463lNg==}
     dev: true
 
-  /electron@28.1.1:
-    resolution: {integrity: sha512-HJSbGHpRl46jWCp5G4OH57KSm2F5u15tB10ixD8iFiz9dhwojqlSQTRAcjSwvga+Vqs1jv7iqwQRrolXP4DgOA==}
+  /electron@28.1.2:
+    resolution: {integrity: sha512-rbRuIj5pRn6K16Hx3XYlI2C4jp6s0ZJ4QptQ+wGw0blO5563cXCtZxK/wifVGfuwVfa3n/UqMuUwn3IshjZ8dw==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
