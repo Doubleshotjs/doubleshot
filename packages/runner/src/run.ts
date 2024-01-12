@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { performance } from 'node:perf_hooks'
-import type { ConcurrentlyCommandInput } from 'concurrently'
+import type { CloseEvent as ConcurrentlyCloseEvent, ConcurrentlyCommandInput } from 'concurrently'
 import concurrently from 'concurrently'
 import { magenta, red, yellow } from 'colorette'
 import { checkPackageExists } from 'check-package-exists'
@@ -11,15 +11,17 @@ import { TAG } from './constants'
 import { generateCommandToOneLine } from './utils'
 
 interface BeforeRunHooks {
-  functions: ({ rIndex: number; fn: () => boolean | Promise<boolean>; result?: boolean })[]
+  functions: ({ rIndex: number, fn: () => boolean | Promise<boolean>, result?: boolean })[]
   commands: ({ rIndex: number } & CommandHook)[]
   nodeFiles: ({ rIndex: number } & CommandHook)[]
 }
 
+type CommandInfo = Exclude<ConcurrentlyCommandInput, string> & { rId: string, rIndex: number, killOthers?: boolean }
+
 export async function run(command: string, inlineConfig: InlineConfig = {}) {
   const logger = createLogger()
   const config = await resolveConfig(inlineConfig)
-  const commandsList: (ConcurrentlyCommandInput & { rId: string; rIndex: number; killOthers?: boolean })[] = []
+  const commandsList: CommandInfo[] = []
   const beforeRunHooks: BeforeRunHooks = {
     functions: [],
     commands: [],
@@ -102,15 +104,74 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
   if (beforeRunHooks.functions.length > 0 || beforeRunHooks.commands.length > 0 || beforeRunHooks.nodeFiles.length > 0) {
     logger.info(TAG, `➡️ Start ${magenta('beforeRun')} hooks ⬅️\n`)
     // run beforeRunHooks.functions first and get results
-    for (const hook of beforeRunHooks.functions) {
-      const result = await hook.fn()
-      hook.result = result
-      if (hook.result === false) {
-        const item = commandsList.find(c => c.rIndex === hook.rIndex)
-        if (item && item.killOthers) {
+    for (const fnHook of beforeRunHooks.functions) {
+      if (typeof fnHook.fn !== 'function') {
+        logger.warn(TAG, `beforeRun function type hook of command "${yellow(fnHook.rIndex)}" is not a function, skipped`)
+        continue
+      }
+
+      const item = commandsList.find(c => c.rIndex === fnHook.rIndex)
+      if (!item)
+        continue
+
+      // check result
+      let hasError = false
+      try {
+        fnHook.result = await fnHook.fn()
+      }
+      catch (error) {
+        logger.error(TAG, error)
+        hasError = true
+      }
+
+      if (fnHook.result === false || hasError) {
+        if (item.killOthers) {
           logger.info(TAG, `Command "${yellow(item.rId)}"(${red('killOthersWhenExit')}) beforeRun hook return false, next commands will not be executed`)
           logger.info(TAG, `➡️ End ${magenta('beforeRun')} hooks ⬅️\n`)
           return
+        }
+        else {
+          logger.warn(TAG, `Command "${yellow(item.rId)}" beforeRun hook return false, next commands will still be executed`)
+        }
+      }
+    }
+
+    // run beforeRunHooks.commands
+    for (const cmdHook of beforeRunHooks.commands) {
+      if (cmdHook.type !== 'command' || typeof cmdHook.hook !== 'string') {
+        logger.warn(TAG, `beforeRun hook of command "${yellow(cmdHook.rIndex)}" is not a command type, skipped`)
+        continue
+      }
+
+      const item = commandsList.find(c => c.rIndex === cmdHook.rIndex)
+      if (!item)
+        continue
+
+      const oneLineCmd = generateCommandToOneLine(cmdHook.hook)
+      // run command
+      const { result } = concurrently([oneLineCmd], {
+        cwd: cmdHook.cwd || item.cwd,
+      })
+
+      // check result
+      let hasError = false
+      let closeEvent: ConcurrentlyCloseEvent[] = []
+      try {
+        closeEvent = await result
+      }
+      catch (error) {
+        logger.error(TAG, error)
+        hasError = true
+      }
+
+      if (closeEvent.some(c => c.exitCode !== 0) || hasError) {
+        if (item.killOthers) {
+          logger.info(TAG, `Command "${yellow(item.rId)}"(${red('killOthersWhenExit')}) beforeRun hook failed, next commands will not be executed`)
+          logger.info(TAG, `➡️ End ${magenta('beforeRun')} hooks ⬅️\n`)
+          return
+        }
+        else {
+          logger.warn(TAG, `Command "${yellow(item.rId)}" beforeRun hook failed, next commands will still be executed`)
         }
       }
     }

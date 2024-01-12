@@ -277,7 +277,7 @@ describe('doubleshot Runner', () => {
     expect(fs.existsSync(path.resolve(mockDir, 'dist'))).toBe(true)
   }, 10 * 60 * 1000)
 
-  it('should run "beforeRun" hook before command', async () => {
+  it('should run "beforeRun" function hook before command', async () => {
     writeConfigFile({
       run: [
         {
@@ -341,5 +341,74 @@ describe('doubleshot Runner', () => {
     expect(logs).toContain('next commands will not be executed')
     expect(logs).not.toContain('build backend')
     expect(logs).not.toContain('build frontend')
+  })
+
+  it('should run "beforeRun" command hook before command', async () => {
+    writeConfigFile({
+      run: [
+        {
+          name: 'frontend',
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+        {
+          name: 'backend',
+          cwd: 'backend',
+          commands: {
+            build: {
+              command: 'npm run build',
+              beforeRun: {
+                cwd: path.resolve(__dirname, './mock'),
+                type: 'command',
+                hook: `
+                  echo "this is a beforeRun command type hook" && \
+                  echo "this is a beforeRun command type hook with multi-line"
+                `,
+              },
+            },
+          },
+        },
+      ],
+    })
+
+    const logs = await run('build')
+
+    expect(logs).toContain('this is a beforeRun command type hook')
+    expect(logs).toContain('this is a beforeRun command type hook with multi-line')
+  })
+
+  it('should break running if "beforeRun" command hook failed and this command set killOthersWhenExit=true', async () => {
+    writeConfigFile({
+      run: [
+        {
+          name: 'frontend',
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+        {
+          name: 'backend',
+          cwd: 'backend',
+          commands: {
+            build: {
+              command: 'npm run build',
+              killOthersWhenExit: true,
+              beforeRun: {
+                cwd: path.resolve(__dirname, './mock'),
+                type: 'command',
+                hook: 'npm run not-exist',
+              },
+            },
+          },
+        },
+      ],
+    })
+
+    const logs = await run('build')
+
+    expect(logs).toContain('beforeRun hook failed, next commands will not be executed')
   })
 })
