@@ -48,16 +48,16 @@
     }
   },
   "dependencies": {
-    "@swc/core": "^1.3.95",
+    "@swc/core": "^1.3.102",
     "bundle-require": "^4.0.2",
     "cac": "^6.7.14",
     "check-package-exists": "^1.1.3",
     "colorette": "^2.0.20",
-    "esbuild": "^0.19.5",
+    "esbuild": "^0.19.11",
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0",
-    "tsup": "^8.0.0",
-    "wait-on": "^7.1.0"
+    "tsup": "^8.0.1",
+    "wait-on": "^7.2.0"
   },
   "devDependencies": {
     "@types/wait-on": "5.3.4",
