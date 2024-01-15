@@ -1,3 +1,19 @@
+## [0.0.11](https://github.com/archergu/doubleshot/compare/runner@0.0.10...runner@0.0.11) (2024-01-15)
+
+
+### Features
+
+* **runner:** add beforeRun hook, function type ([afe9c4e](https://github.com/archergu/doubleshot/commit/afe9c4eb7747c9827e49362578f9d03c82078e50))
+* **runner:** beforeRun hook support command ([21669c9](https://github.com/archergu/doubleshot/commit/21669c9b4d42c91a7828e3b0aaec41a070f4bdc9))
+* **runner:** beforeRun hook support node script ([3c3e9cb](https://github.com/archergu/doubleshot/commit/3c3e9cbe01a0d0f2e20113fce1b72353d61daf5f))
+
+
+### Performance Improvements
+
+* **runner:** optimize some types ([759672e](https://github.com/archergu/doubleshot/commit/759672ea70896fa0fc36563496e96cdb61e1b396))
+
+
+
 ## [0.0.10](https://github.com/archergu/doubleshot/compare/runner@0.0.9...runner@0.0.10) (2023-11-10)
 
 
