@@ -1,14 +1,16 @@
 import path from 'node:path'
+import fs from 'node:fs'
 import { performance } from 'node:perf_hooks'
 import type { CloseEvent as ConcurrentlyCloseEvent, ConcurrentlyCommandInput } from 'concurrently'
 import concurrently from 'concurrently'
 import { magenta, red, yellow } from 'colorette'
 import { checkPackageExists } from 'check-package-exists'
+import { build as esbuildBuild } from 'esbuild'
 import type { CommandHook, ElectronBuildConfig, InlineConfig, RunCommandInfo } from './config'
 import { resolveConfig } from './config'
 import { createLogger } from './log'
 import { TAG } from './constants'
-import { generateCommandToOneLine } from './utils'
+import { generateCommandToOneLine, getCachePath } from './utils'
 
 interface BeforeRunHooks {
   functions: ({ rIndex: number, fn: () => boolean | Promise<boolean>, result?: boolean })[]
@@ -21,6 +23,7 @@ type CommandInfo = Exclude<ConcurrentlyCommandInput, string> & { rId: string, rI
 export async function run(command: string, inlineConfig: InlineConfig = {}) {
   const logger = createLogger()
   const config = await resolveConfig(inlineConfig)
+  const cachePath = getCachePath()
   const commandsList: CommandInfo[] = []
   const beforeRunHooks: BeforeRunHooks = {
     functions: [],
@@ -103,7 +106,8 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
   // Before run hooks
   if (beforeRunHooks.functions.length > 0 || beforeRunHooks.commands.length > 0 || beforeRunHooks.nodeFiles.length > 0) {
     logger.info(TAG, `➡️ Start ${magenta('beforeRun')} hooks ⬅️\n`)
-    // run beforeRunHooks.functions first and get results
+
+    // run beforeRunHooks.functions
     for (const fnHook of beforeRunHooks.functions) {
       if (typeof fnHook.fn !== 'function') {
         logger.warn(TAG, `beforeRun function type hook of command "${yellow(fnHook.rIndex)}" is not a function, skipped`)
@@ -164,6 +168,80 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
         hasError = true
       }
 
+      if (closeEvent.some(c => c.exitCode !== 0) || hasError) {
+        if (item.killOthers) {
+          logger.info(TAG, `Command "${yellow(item.rId)}"(${red('killOthersWhenExit')}) beforeRun hook failed, next commands will not be executed`)
+          logger.info(TAG, `➡️ End ${magenta('beforeRun')} hooks ⬅️\n`)
+          return
+        }
+        else {
+          logger.warn(TAG, `Command "${yellow(item.rId)}" beforeRun hook failed, next commands will still be executed`)
+        }
+      }
+    }
+
+    // run beforeRunHooks.nodeFiles
+    for (const nodeFileHook of beforeRunHooks.nodeFiles) {
+      if (nodeFileHook.type !== 'node-file' || typeof nodeFileHook.hook !== 'string') {
+        logger.warn(TAG, `beforeRun hook of node-file "${yellow(nodeFileHook.rIndex)}" is not a 'node-file' type, skipped`)
+        continue
+      }
+
+      const item = commandsList.find(c => c.rIndex === nodeFileHook.rIndex)
+      if (!item)
+        continue
+
+      // check file extension is .js .cjs .mjs or .ts
+      const ext = path.extname(nodeFileHook.hook)
+      if (!['.js', '.cjs', '.mjs', '.ts'].includes(ext)) {
+        logger.warn(TAG, `beforeRun hook of node-file "${yellow(nodeFileHook.rIndex)}" is not a valid file, skipped`)
+        continue
+      }
+
+      // check file exists, if nodeFleHook.hook is absolute path, use it directly
+      const hookCwd = nodeFileHook.cwd || item.cwd || process.cwd()
+      const filePath = path.isAbsolute(nodeFileHook.hook)
+        ? nodeFileHook.hook
+        : path.resolve(hookCwd, nodeFileHook.hook)
+      if (!fs.existsSync(filePath)) {
+        logger.warn(TAG, `beforeRun hook of node-file "${yellow(nodeFileHook.rIndex)}" is not exists, skipped`)
+        continue
+      }
+
+      // use esbuild to compile file to commonjs format file
+      const tempFile = path.join(cachePath, `temp-${nodeFileHook.rIndex}-${Date.now()}-${path.basename(filePath)}.js`)
+      const esbuildResult = await esbuildBuild({
+        entryPoints: [filePath],
+        outfile: tempFile,
+        format: 'cjs',
+        platform: 'node',
+        bundle: false,
+      })
+      if (esbuildResult.errors.length > 0) {
+        logger.error(TAG, `beforeRun hook of node-file "${yellow(nodeFileHook.rIndex)}" compile failed, skipped`)
+        continue
+      }
+
+      // run node file
+      const { result } = concurrently([`node ${tempFile}`], {
+        cwd: hookCwd,
+      })
+
+      // check result
+      let hasError = false
+      let closeEvent: ConcurrentlyCloseEvent[] = []
+      try {
+        closeEvent = await result
+      }
+      catch (error) {
+        logger.error(TAG, error)
+        hasError = true
+      }
+
+      // remove temp file first
+      fs.unlinkSync(tempFile)
+
+      // check killOthers
       if (closeEvent.some(c => c.exitCode !== 0) || hasError) {
         if (item.killOthers) {
           logger.info(TAG, `Command "${yellow(item.rId)}"(${red('killOthersWhenExit')}) beforeRun hook failed, next commands will not be executed`)
