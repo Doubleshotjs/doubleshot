@@ -31,6 +31,19 @@ function writeConfigFile(config: DoubleShotRunnerConfigExport) {
   fs.writeFileSync(configFile, configContent)
 }
 
+function getBeforeRunNodeFile(ext: 'js' | 'cjs' | 'mjs' | 'ts') {
+  const file = `beforeRun.${ext}`
+  return path.resolve(mockDir, file)
+}
+
+function removeBeforeRunNodeFile() {
+  const exts = ['js', 'cjs', 'mjs', 'ts']
+  exts.forEach((ext) => {
+    const file = getBeforeRunNodeFile(ext as any)
+    fs.existsSync(file) && fs.removeSync(file)
+  })
+}
+
 async function installDeps(cwd: string) {
   const { stdout, stderr } = await execa(
     'npm',
@@ -46,6 +59,7 @@ async function installDeps(cwd: string) {
 
 function remove() {
   fs.removeSync(configFile)
+  removeBeforeRunNodeFile()
   fs.removeSync(path.resolve(mockDir, 'dist'))
 }
 
@@ -360,7 +374,7 @@ describe('doubleshot Runner', () => {
             build: {
               command: 'npm run build',
               beforeRun: {
-                cwd: path.resolve(__dirname, './mock'),
+                cwd: mockDir,
                 type: 'command',
                 hook: `
                   echo "this is a beforeRun command type hook" && \
@@ -397,9 +411,90 @@ describe('doubleshot Runner', () => {
               command: 'npm run build',
               killOthersWhenExit: true,
               beforeRun: {
-                cwd: path.resolve(__dirname, './mock'),
+                cwd: mockDir,
                 type: 'command',
                 hook: 'npm run not-exist',
+              },
+            },
+          },
+        },
+      ],
+    })
+
+    const logs = await run('build')
+
+    expect(logs).toContain('beforeRun hook failed, next commands will not be executed')
+  })
+
+  it('should run "beforeRun" node-file hook before command', async () => {
+    const beforeRunNodeFile = getBeforeRunNodeFile('ts')
+    fs.writeFileSync(beforeRunNodeFile, `
+      import path from 'node:path'
+      const hookPath = path.resolve(process.cwd(), 'beforeRun.ts')
+      console.log(\`this is a beforeRun node-file type hook, hookPath: \${hookPath}\`)
+    `)
+
+    writeConfigFile({
+      run: [
+        {
+          name: 'frontend',
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+        {
+          name: 'backend',
+          cwd: 'backend',
+          commands: {
+            build: {
+              command: 'npm run build',
+              beforeRun: {
+                cwd: mockDir,
+                type: 'node-file',
+                hook: beforeRunNodeFile,
+              },
+            },
+          },
+        },
+      ],
+    })
+
+    const logs = await run('build')
+
+    const hookPath = path.resolve(mockDir, 'beforeRun.ts')
+    expect(logs).toContain(`this is a beforeRun node-file type hook, hookPath: ${hookPath}`)
+  })
+
+  it('should break running if "beforeRun" node-file hook failed and this command set killOthersWhenExit=true', async () => {
+    const beforeRunNodeFile = getBeforeRunNodeFile('ts')
+    fs.writeFileSync(beforeRunNodeFile, `
+      import path from 'node:path'
+      const hookPath = path.resolve(process.cwd(), 'beforeRun.ts')
+      console.log(\`this is a beforeRun node-file type hook, hookPath: \${hookPath}\`)
+      throw new Error('beforeRun node-file hook failed')
+    `)
+
+    writeConfigFile({
+      run: [
+        {
+          name: 'frontend',
+          cwd: 'frontend',
+          commands: {
+            build: 'npm run build',
+          },
+        },
+        {
+          name: 'backend',
+          cwd: 'backend',
+          commands: {
+            build: {
+              command: 'npm run build',
+              killOthersWhenExit: true,
+              beforeRun: {
+                cwd: mockDir,
+                type: 'node-file',
+                hook: beforeRunNodeFile,
               },
             },
           },
