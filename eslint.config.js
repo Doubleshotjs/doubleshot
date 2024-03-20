@@ -41,4 +41,12 @@ module.exports = lightwing(
       'yaml/no-empty-mapping-value': 'off',
     },
   },
+  {
+    files: [
+      'packages/**/test/**/*.ts',
+    ],
+    rules: {
+      'antfu/no-import-dist': 'off',
+    },
+  },
 )
