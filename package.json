@@ -32,7 +32,7 @@
     "lint-staged": "15.2.2",
     "mono-release": "2.9.0",
     "rimraf": "5.0.5",
-    "simple-git-hooks": "2.11.0",
+    "simple-git-hooks": "2.11.1",
     "tsup": "8.0.2",
     "typescript": "5.4.3",
     "vitest": "1.4.0"
