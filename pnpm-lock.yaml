@@ -39,8 +39,8 @@ importers:
         specifier: 15.2.2
         version: 15.2.2
       mono-release:
-        specifier: 2.9.1
-        version: 2.9.1(conventional-changelog-cli@4.1.0)
+        specifier: 2.9.2
+        version: 2.9.2(conventional-changelog-cli@4.1.0)
       rimraf:
         specifier: 5.0.5
         version: 5.0.5
@@ -4915,7 +4915,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: true
 
   /jsonparse@1.3.1:
@@ -5282,8 +5282,8 @@ packages:
       ufo: 1.3.1
     dev: true
 
-  /mono-release@2.9.1(conventional-changelog-cli@4.1.0):
-    resolution: {integrity: sha512-4Bo7pmnxnv33KxVmzNM4VSYbj25yKlQTYKimOblV/xfTk86RFN80ZXoi0718o6BbDj2JR5KUp7bz2CvBABIfqw==}
+  /mono-release@2.9.2(conventional-changelog-cli@4.1.0):
+    resolution: {integrity: sha512-u0fYMZCbK5JU/DO11qdtKglEoVdDEpLdBVZGJscfZZe1AkAseFdOZPk5XkRIMIeMDcsuE0IkE5BZN4Zpuevvsw==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
