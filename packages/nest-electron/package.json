@@ -40,6 +40,6 @@
     "@nestjs/platform-express": "^10.3.4",
     "axios": "^1.6.8",
     "electron": "29.1.6",
-    "reflect-metadata": "0.2.1"
+    "reflect-metadata": "0.2.2"
   }
 }
