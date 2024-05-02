@@ -39,8 +39,8 @@ importers:
         specifier: 15.2.2
         version: 15.2.2
       mono-release:
-        specifier: 2.9.3
-        version: 2.9.3(conventional-changelog-cli@4.1.0)
+        specifier: 2.9.4
+        version: 2.9.4(conventional-changelog-cli@4.1.0)
       rimraf:
         specifier: 5.0.5
         version: 5.0.5
@@ -2931,8 +2931,8 @@ packages:
   mlly@1.6.1:
     resolution: {integrity: sha512-vLgaHvaeunuOXHSmEbZ9izxPx3USsk8KCQ8iC+aTlp5sKRSoZvwhHh5L9VbKSaVC6sJDqbyohIS76E2VmHIPAA==}
 
-  mono-release@2.9.3:
-    resolution: {integrity: sha512-0AzH6gxa8bz4k8KOktIisUy/0p2udLoNdMkxv/39nK9Oy1ga1L9j/vsuh/3fLmkpSPhkOfFtyvsdfUE2KdCrTg==}
+  mono-release@2.9.4:
+    resolution: {integrity: sha512-qrkUmTekAptyNDt6wIscunz1SIcssQuKohi7j+vhS8uZlJ3N6T0NW1iyHLGWWfKJlEkz3i9ylV3Pik+mp9MbTw==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -6973,7 +6973,7 @@ snapshots:
       pkg-types: 1.0.3
       ufo: 1.5.3
 
-  mono-release@2.9.3(conventional-changelog-cli@4.1.0):
+  mono-release@2.9.4(conventional-changelog-cli@4.1.0):
     dependencies:
       '@esm2cjs/execa': 6.1.1-cjs.1
       bundle-require: 4.1.0(esbuild@0.20.2)
