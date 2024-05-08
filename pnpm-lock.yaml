@@ -39,8 +39,8 @@ importers:
         specifier: 15.2.2
         version: 15.2.2
       mono-release:
-        specifier: 2.9.5
-        version: 2.9.5(conventional-changelog-cli@5.0.0(conventional-commits-filter@4.0.0))
+        specifier: 2.9.7
+        version: 2.9.7(conventional-changelog-cli@5.0.0(conventional-commits-filter@4.0.0))
       rimraf:
         specifier: 5.0.5
         version: 5.0.5
@@ -3077,8 +3077,8 @@ packages:
   mlly@1.6.1:
     resolution: {integrity: sha512-vLgaHvaeunuOXHSmEbZ9izxPx3USsk8KCQ8iC+aTlp5sKRSoZvwhHh5L9VbKSaVC6sJDqbyohIS76E2VmHIPAA==}
 
-  mono-release@2.9.5:
-    resolution: {integrity: sha512-KKfRwdRPjQNDb/7sGjnQqiFIiHdUaGij+sllsfRdpFrkzbhlhPqL487mF61OKvdvalP/kTgIxDM9wCC1A87vgg==}
+  mono-release@2.9.7:
+    resolution: {integrity: sha512-apoDOzsxmwdHJC92WvLQh1nUW0yZCdxaDlz6mb87Z0YkF7okOwhtQt1pRnmh31T1eXQP2OBL5Q7Z/XYm+zba8w==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
@@ -7218,7 +7218,7 @@ snapshots:
       pkg-types: 1.0.3
       ufo: 1.5.3
 
-  mono-release@2.9.5(conventional-changelog-cli@5.0.0(conventional-commits-filter@4.0.0)):
+  mono-release@2.9.7(conventional-changelog-cli@5.0.0(conventional-commits-filter@4.0.0)):
     dependencies:
       '@esm2cjs/execa': 6.1.1-cjs.1
       bundle-require: 4.1.0(esbuild@0.21.1)
