@@ -14,7 +14,7 @@ function changeConfigToString(config: DoubleShotRunnerConfigExport) {
       return `[FUNCTION]${value}`
 
     return value
-  }).replace(/"(\[FUNCTION])?((?:\\.|[^\\"])*)"(:)?/g, (match, group1, group2, group3) => {
+  }).replace(/"(\[FUNCTION\])?((?:\\.|[^\\"])*)"(:)?/g, (match, group1, group2, group3) => {
     if (group1)
       return JSON.parse(`"${group2}"`)
     if (group3 && /^\w+$/.test(group2))
@@ -46,8 +46,8 @@ function removeBeforeRunNodeFile() {
 
 async function installDeps(cwd: string) {
   const { stdout, stderr } = await execa(
-    'npm',
-    ['install', '--force', '--package-lock=false'],
+    'yarn',
+    ['install', '--pure-lockfile'],
     {
       cwd,
     },

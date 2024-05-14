@@ -48,7 +48,7 @@
     }
   },
   "dependencies": {
-    "@swc/core": "^1.5.5",
+    "@swc/core": "^1.5.6",
     "bundle-require": "^4.1.0",
     "cac": "^6.7.14",
     "check-package-exists": "^1.1.4",
@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@types/wait-on": "5.3.4",
-    "electron": "30.0.3",
+    "electron": "30.0.4",
     "electron-builder": "24.13.3"
   }
 }

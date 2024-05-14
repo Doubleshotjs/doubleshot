@@ -59,8 +59,8 @@ export function checkOrCreateHtmlFile(fileName = 'index.html') {
 
 export async function installDeps(cwd: string) {
   const { stdout, stderr } = await execa(
-    'npm',
-    ['install', '--force', '--package-lock=false'],
+    'yarn',
+    ['install', '--pure-lockfile'],
     {
       cwd,
     },
