@@ -1,3 +1,12 @@
+## [0.0.14](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.13...plugin-vite@0.0.14) (2024-05-14)
+
+
+### Bug Fixes
+
+* **plugin-vite:** get vite dev url ([6916b28](https://github.com/archergu/doubleshot/commit/6916b2822c9516000470061615d79baef187c17a))
+
+
+
 ## [0.0.13](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.12...plugin-vite@0.0.13) (2023-11-09)
 
 
