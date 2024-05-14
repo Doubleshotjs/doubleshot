@@ -47,7 +47,7 @@ function removeBeforeRunNodeFile() {
 async function installDeps(cwd: string) {
   const { stdout, stderr } = await execa(
     'npm',
-    ['install', '--package-lock=false'],
+    ['install', '--force', '--package-lock=false'],
     {
       cwd,
     },

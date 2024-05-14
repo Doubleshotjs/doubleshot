@@ -8,7 +8,7 @@ const mockDir = path.resolve(__dirname, './mock')
 async function installDeps(cwd: string) {
   const { stdout, stderr } = await execa(
     'npm',
-    ['install', '--package-lock=false'],
+    ['install', '--force', '--package-lock=false'],
     {
       cwd,
     },
