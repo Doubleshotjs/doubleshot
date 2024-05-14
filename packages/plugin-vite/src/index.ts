@@ -1,4 +1,3 @@
-import type { AddressInfo } from 'node:net'
 import type { PluginOption, ResolvedConfig } from 'vite'
 import type { ElectronConfig, InlineConfig } from '@doubleshot/builder'
 import { build, dev } from '@doubleshot/builder'
@@ -46,16 +45,15 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
         await configureForMode(resolvedConfig)
       },
       configureServer(server) {
+        const printUrls = server.printUrls.bind(server)
+        // override printUrls to get rendererUrl
+        server.printUrls = () => {
+          printUrls()
+          if (!userConfig.rendererUrl)
+            userConfig.rendererUrl = server.resolvedUrls!.local[0]
+        }
+
         server?.httpServer?.on('listening', async () => {
-          if (server.httpServer && !userConfig.rendererUrl) {
-            const { address, port, family } = server.httpServer.address() as AddressInfo
-            if (family === 'IPv6')
-              userConfig.rendererUrl = `http://[${address}]:${port}`
-
-            else
-              userConfig.rendererUrl = `http://${address}:${port}`
-          }
-
           await dev(userConfig)
         })
       },
