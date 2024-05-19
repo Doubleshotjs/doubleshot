@@ -120,7 +120,7 @@ importers:
         version: 10.3.8(@nestjs/common@10.3.8(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.3.8)
       axios:
         specifier: ^1.6.8
-        version: 1.6.8
+        version: 1.7.0
       electron:
         specifier: 30.0.6
         version: 30.0.6
@@ -1549,8 +1549,8 @@ packages:
   axios@1.6.5:
     resolution: {integrity: sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==}
 
-  axios@1.6.8:
-    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
+  axios@1.7.0:
+    resolution: {integrity: sha512-IiB0wQeKyPRdsFVhBgIo31FbzOyf2M6wYl7/NVutFwFBRMiAbjNiydJIHKeLmPugF4kJLfA1uWZ82Is2QzqqFA==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -5612,7 +5612,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  axios@1.6.8:
+  axios@1.7.0:
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.0
