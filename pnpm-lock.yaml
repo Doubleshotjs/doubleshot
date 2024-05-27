@@ -94,8 +94,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4
       electron:
-        specifier: 30.0.6
-        version: 30.0.6
+        specifier: 30.0.8
+        version: 30.0.8
       electron-builder:
         specifier: 24.13.3
         version: 24.13.3(electron-builder-squirrel-windows@24.13.3(dmg-builder@24.13.3))
@@ -122,8 +122,8 @@ importers:
         specifier: ^1.6.8
         version: 1.7.2
       electron:
-        specifier: 30.0.6
-        version: 30.0.6
+        specifier: 30.0.8
+        version: 30.0.8
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2
@@ -1268,9 +1268,6 @@ packages:
   '@types/ms@0.7.31':
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
 
-  '@types/node@20.12.11':
-    resolution: {integrity: sha512-vDg9PZ/zi+Nqp6boSOT7plNuthRugEKixDv5sFTIpkE89MmNtEArAShI4mxuX2+UrLEe9pxC1vm2cjm9YlWbJw==}
-
   '@types/node@20.12.12':
     resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
 
@@ -2086,8 +2083,8 @@ packages:
   electron-to-chromium@1.4.774:
     resolution: {integrity: sha512-132O1XCd7zcTkzS3FgkAzKmnBuNJjK8WjcTtNuoylj7MYbqw5eXehjQ5OK91g0zm7OTKIPeaAG4CPoRfD9M1Mg==}
 
-  electron@30.0.6:
-    resolution: {integrity: sha512-PkhEPFdpYcTzjAO3gMHZ+map7g2+xCrMDedo/L1i0ir2BRXvAB93IkTJX497U6Srb/09r2cFt+k20VPNVCdw3Q==}
+  electron@30.0.8:
+    resolution: {integrity: sha512-ivzXJJ/9gdb4oOw+5SDuaZpSInz8C+Z021dKZfFLMltKbDa4sSqt5cRBiUg7J36Z2kdus+Jai0bdHWutYE9wAA==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -5263,10 +5260,6 @@ snapshots:
 
   '@types/ms@0.7.31': {}
 
-  '@types/node@20.12.11':
-    dependencies:
-      undici-types: 5.26.5
-
   '@types/node@20.12.12':
     dependencies:
       undici-types: 5.26.5
@@ -6056,7 +6049,7 @@ snapshots:
       conventional-commits-filter: 5.0.0
       handlebars: 4.7.7
       meow: 13.2.0
-      semver: 7.6.0
+      semver: 7.6.2
 
   conventional-changelog@6.0.0(conventional-commits-filter@4.0.0):
     dependencies:
@@ -6273,10 +6266,10 @@ snapshots:
 
   electron-to-chromium@1.4.774: {}
 
-  electron@30.0.6:
+  electron@30.0.8:
     dependencies:
       '@electron/get': 2.0.2
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -7105,7 +7098,7 @@ snapshots:
       es6-error: 4.1.1
       matcher: 3.0.0
       roarr: 2.15.4
-      semver: 7.6.0
+      semver: 7.6.2
       serialize-error: 7.0.1
     optional: true
 
@@ -7677,7 +7670,7 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.0
       is-core-module: 2.13.1
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
