@@ -42,7 +42,7 @@
     }
   },
   "dependencies": {
-    "bundle-require": "^4.1.0",
+    "bundle-require": "^5.0.0",
     "cac": "^6.7.14",
     "check-package-exists": "^1.1.4",
     "colorette": "^2.0.20",
