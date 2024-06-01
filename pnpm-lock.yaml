@@ -64,7 +64,7 @@ importers:
         version: 1.5.24
       bundle-require:
         specifier: ^4.1.0
-        version: 4.1.0(esbuild@0.21.4)
+        version: 4.2.1(esbuild@0.21.4)
       cac:
         specifier: ^6.7.14
         version: 6.7.14
@@ -142,7 +142,7 @@ importers:
     dependencies:
       bundle-require:
         specifier: ^4.1.0
-        version: 4.1.0(esbuild@0.21.4)
+        version: 4.2.1(esbuild@0.21.4)
       cac:
         specifier: ^6.7.14
         version: 6.7.14
@@ -1647,8 +1647,8 @@ packages:
     resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
     engines: {node: '>=6'}
 
-  bundle-require@4.1.0:
-    resolution: {integrity: sha512-FeArRFM+ziGkRViKRnSTbHZc35dgmR9yNog05Kn0+ItI59pOAISGvnnIwW1WgFZQW59IxD9QpJnUPkdIPfZuXg==}
+  bundle-require@4.2.1:
+    resolution: {integrity: sha512-7Q/6vkyYAwOmQNRw75x+4yRtZCZJXUDmHHlFdkiV0wgv/reNjtJwpu1jPJ0w2kbEpIM0uoKI3S4/f39dU7AjSA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     peerDependencies:
       esbuild: '>=0.17'
@@ -5799,12 +5799,12 @@ snapshots:
 
   builtin-modules@3.3.0: {}
 
-  bundle-require@4.1.0(esbuild@0.19.12):
+  bundle-require@4.2.1(esbuild@0.19.12):
     dependencies:
       esbuild: 0.19.12
       load-tsconfig: 0.2.5
 
-  bundle-require@4.1.0(esbuild@0.21.4):
+  bundle-require@4.2.1(esbuild@0.21.4):
     dependencies:
       esbuild: 0.21.4
       load-tsconfig: 0.2.5
@@ -7626,7 +7626,7 @@ snapshots:
   mono-release@2.9.11(conventional-changelog-cli@5.0.0(conventional-commits-filter@4.0.0)):
     dependencies:
       '@esm2cjs/execa': 6.1.1-cjs.1
-      bundle-require: 4.1.0(esbuild@0.21.4)
+      bundle-require: 4.2.1(esbuild@0.21.4)
       cac: 6.7.14
       check-package-exists: 1.1.4
       colorette: 2.0.20
@@ -8465,7 +8465,7 @@ snapshots:
 
   tsup@8.0.2(@swc/core@1.5.24)(postcss@8.4.38)(typescript@5.4.5):
     dependencies:
-      bundle-require: 4.1.0(esbuild@0.19.12)
+      bundle-require: 4.2.1(esbuild@0.19.12)
       cac: 6.7.14
       chokidar: 3.5.3
       debug: 4.3.4
