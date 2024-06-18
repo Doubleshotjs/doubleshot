@@ -25,7 +25,7 @@
     "@nestjs/testing": "10.3.9",
     "@swc/core": "1.6.1",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "20.14.4",
+    "@types/node": "20.14.5",
     "conventional-changelog-cli": "5.0.0",
     "eslint": "9.5.0",
     "fs-extra": "11.2.0",
