@@ -34,7 +34,7 @@
     "rimraf": "5.0.7",
     "simple-git-hooks": "2.11.1",
     "tsup": "8.0.2",
-    "typescript": "5.5.2",
+    "typescript": "5.5.3",
     "vitest": "1.6.0"
   },
   "simple-git-hooks": {
