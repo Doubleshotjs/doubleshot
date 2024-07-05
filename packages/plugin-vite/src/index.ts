@@ -46,14 +46,19 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
       },
       configureServer(server) {
         const printUrls = server.printUrls.bind(server)
+        let rendererUrlSet = false
         // override printUrls to get rendererUrl
         server.printUrls = () => {
           printUrls()
           if (!userConfig.rendererUrl)
             userConfig.rendererUrl = server.resolvedUrls!.local[0]
+          rendererUrlSet = true
         }
 
         server?.httpServer?.on('listening', async () => {
+          while (!rendererUrlSet) {
+            await new Promise(resolve => setTimeout(resolve, 10));
+          }
           await dev(userConfig)
         })
       },
