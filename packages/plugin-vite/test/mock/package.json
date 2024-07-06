@@ -8,8 +8,8 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "electron": "^30.0.4",
+    "electron": "^31.1.0",
     "electron-builder": "24.13.3",
-    "vite": "^5.2.11"
+    "vite": "^5.3.3"
   }
 }
