@@ -21,6 +21,32 @@ export interface VitePluginDoubleshotConfig extends Omit<InlineConfig, 'renderer
   configureForMode: (userConfig: InlineConfig, mode: string) => (void | InlineConfig) | Promise<(void | InlineConfig)>
 }
 
+function useUntil(timeout?: number) {
+  let untilResolve: () => void
+  let untilReject: (error: Error) => void
+
+  const untilPromise = new Promise<void>((resolve, reject) => {
+    untilResolve = resolve
+    untilReject = reject
+  })
+
+  let timer: NodeJS.Timeout
+  if (typeof timeout === 'number' && timeout > 0) {
+    timer = setTimeout(() => {
+      untilReject(new Error('Until timeout'))
+    }, timeout)
+  }
+
+  const done = () => {
+    timer && clearTimeout(timer)
+    untilResolve()
+  }
+
+  const until = () => untilPromise
+
+  return { until, done }
+}
+
 export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotConfig> = {}): PluginOption[] {
   const PLUGIN_NAME = 'vite-plugin-doubleshot'
 
@@ -45,20 +71,18 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
         await configureForMode(resolvedConfig)
       },
       configureServer(server) {
+        const { until, done } = useUntil(10 * 1000) // 10s timeout
         const printUrls = server.printUrls.bind(server)
-        let rendererUrlSet = false
         // override printUrls to get rendererUrl
         server.printUrls = () => {
           printUrls()
           if (!userConfig.rendererUrl)
             userConfig.rendererUrl = server.resolvedUrls!.local[0]
-          rendererUrlSet = true
+          done()
         }
 
         server?.httpServer?.on('listening', async () => {
-          while (!rendererUrlSet) {
-            await new Promise(resolve => setTimeout(resolve, 10));
-          }
+          await until()
           await dev(userConfig)
         })
       },

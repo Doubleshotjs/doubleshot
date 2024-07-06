@@ -16,3 +16,4 @@ bench/test/*/*/
 cypress/videos
 cypress/downloads
 cypress/screenshots
+local-data
