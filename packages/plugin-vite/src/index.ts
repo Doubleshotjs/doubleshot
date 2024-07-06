@@ -52,9 +52,14 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
 
   let pack: (() => Promise<void>) | undefined
 
+  // to save vite mode
+  let viteMode = 'development'
+
   const configureForMode = async (resolvedConfig: ResolvedConfig) => {
+    const { mode } = resolvedConfig
+    viteMode = mode
+
     if (typeof userConfig.configureForMode === 'function') {
-      const { mode } = resolvedConfig
       await userConfig.configureForMode(userConfig, mode)
     }
   }
@@ -71,6 +76,10 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
         await configureForMode(resolvedConfig)
       },
       configureServer(server) {
+        // only in development mode to set rendererUrl
+        if (viteMode !== 'development')
+          return
+
         const { until, done } = useUntil(10 * 1000) // 10s timeout
         const printUrls = server.printUrls.bind(server)
         // override printUrls to get rendererUrl
