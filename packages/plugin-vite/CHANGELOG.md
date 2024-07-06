@@ -1,3 +1,12 @@
+## [0.0.16](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.15...plugin-vite@0.0.16) (2024-07-06)
+
+
+### Bug Fixes
+
+* **plugin-vite:** only in vite development mode to set rendererUrl ([fa9a58f](https://github.com/archergu/doubleshot/commit/fa9a58f9338d2a45d9d104898700429e759466ef))
+
+
+
 ## [0.0.15](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.14...plugin-vite@0.0.15) (2024-07-06)
 
 
