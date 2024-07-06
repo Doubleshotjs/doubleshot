@@ -1,3 +1,17 @@
+## [0.0.15](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.14...plugin-vite@0.0.15) (2024-07-06)
+
+
+### Bug Fixes
+
+* **plugin-vite:** Ensure rendererUrl is set before calling dev(userConfig) ([#1055](https://github.com/archergu/doubleshot/issues/1055)) ([0a83096](https://github.com/archergu/doubleshot/commit/0a83096318c9231b9250793251e3d52cd64df261))
+
+
+### Features
+
+* **plugin-vite:** useUntil to wait rendererUrl set ([b0560eb](https://github.com/archergu/doubleshot/commit/b0560ebf23f5e5b6d28b688ec51cef8f8b786c64))
+
+
+
 ## [0.0.14](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.13...plugin-vite@0.0.14) (2024-05-14)
 
 
