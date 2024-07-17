@@ -33,7 +33,7 @@
     "mono-release": "2.9.16",
     "rimraf": "6.0.1",
     "simple-git-hooks": "2.11.1",
-    "tsup": "8.1.0",
+    "tsup": "8.1.1",
     "typescript": "5.5.3",
     "vitest": "2.0.3"
   },
