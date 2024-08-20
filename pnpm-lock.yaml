@@ -94,8 +94,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4
       electron:
-        specifier: 31.4.0
-        version: 31.4.0
+        specifier: 32.0.0
+        version: 32.0.0
       electron-builder:
         specifier: 24.13.3
         version: 24.13.3(electron-builder-squirrel-windows@24.13.3(dmg-builder@24.13.3))
@@ -122,8 +122,8 @@ importers:
         specifier: ^1.7.2
         version: 1.7.4
       electron:
-        specifier: 31.4.0
-        version: 31.4.0
+        specifier: 32.0.0
+        version: 32.0.0
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2
@@ -1187,9 +1187,6 @@ packages:
   '@types/ms@0.7.31':
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
 
-  '@types/node@20.14.15':
-    resolution: {integrity: sha512-Fz1xDMCF/B00/tYSVMlmK7hVeLh7jE5f3B7X1/hmV0MJBwE27KlS7EvD/Yp+z1lm8mVhwV5w+n8jOZG8AfTlKw==}
-
   '@types/node@20.16.1':
     resolution: {integrity: sha512-zJDo7wEadFtSyNz5QITDfRcrhqDvQI1xQNQ0VoizPjM/dVAODqqIUWbJPkvsxmTI0MYRGRikcdjMPhOssnPejQ==}
 
@@ -2033,8 +2030,8 @@ packages:
   electron-to-chromium@1.4.774:
     resolution: {integrity: sha512-132O1XCd7zcTkzS3FgkAzKmnBuNJjK8WjcTtNuoylj7MYbqw5eXehjQ5OK91g0zm7OTKIPeaAG4CPoRfD9M1Mg==}
 
-  electron@31.4.0:
-    resolution: {integrity: sha512-YTwKoAA+nrJMlI1TTHnIXLYWoQLKnhbkz0qxZcI7Hadcy0UaFMFs9xzwvH2MnrRpVJy7RKo49kVGuvSdRl8zMA==}
+  electron@32.0.0:
+    resolution: {integrity: sha512-rs+VkhztJd2LvRX7d3ikKH+EIHMW4vKM2l5qp7Dx/dLQAKKz3IFNKyYhYzczDnqO+/jUvx0ic0SQvqpv1/ZAsw==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -5281,10 +5278,6 @@ snapshots:
 
   '@types/ms@0.7.31': {}
 
-  '@types/node@20.14.15':
-    dependencies:
-      undici-types: 5.26.5
-
   '@types/node@20.16.1':
     dependencies:
       undici-types: 6.19.6
@@ -6297,10 +6290,10 @@ snapshots:
 
   electron-to-chromium@1.4.774: {}
 
-  electron@31.4.0:
+  electron@32.0.0:
     dependencies:
       '@electron/get': 2.0.2
-      '@types/node': 20.14.15
+      '@types/node': 20.16.1
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
