@@ -1,3 +1,12 @@
+## [0.0.17](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.16...plugin-vite@0.0.17) (2024-08-28)
+
+
+### Features
+
+* **builder:** extract path when the executable file is dynamically imported ([b916657](https://github.com/archergu/doubleshot/commit/b9166574b16933f3d8ceaf5c3d334d843bc555af))
+
+
+
 ## [0.0.16](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.15...plugin-vite@0.0.16) (2024-07-06)
 
 
