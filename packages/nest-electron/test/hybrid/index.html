@@ -1,45 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doubleshot Nest Electron Module Test</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doubleshot Nest Electron Module Test</title>
-</head>
+  <body>
+    <h1>Doubleshot Nest Electron Module Test</h1>
+    <script src="../../node_modules/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+      const { sendData, printLog, exit } = window.electron
 
-<body>
-  <h1>Doubleshot Nest Electron Module Test</h1>
-  <script src="../../node_modules/axios/dist/axios.min.js"></script>
-  <script type="text/javascript">
-    const {
-      sendData,
-      printLog,
-      exit
-    } = window.electron
+      const testIpc = async () => {
+        // test @IpcHandle base usage
+        let result = await sendData('send ipc data to backend')
+        // test @IpcOn base usage
+        await printLog(result)
+      }
 
-    const testIpc = async () => {
-      // test @IpcHandle base usage
-      let result = await sendData('send ipc data to backend')
-      // test @IpcOn base usage
-      await printLog(result)
-    }
+      const testHttp = async () => {
+        axios.defaults.baseURL = 'http://localhost:3000'
 
-    const testHttp = async () => {
-      axios.defaults.baseURL = 'http://localhost:3000'
+        const printLog = (log) => axios.get(`/print-log/${log}`)
 
-      const printLog = (log) => axios.get(`/print-log/${log}`)
+        const { data: res1 } = await axios.post('/data', { data: 'send http data to backend' })
+        await printLog(res1)
+      }
 
-      const { data: res1 } = await axios.post('/data', { data: 'send http data to backend' })
-      await printLog(res1)
-    }
-
-    (async () => {
-      await testIpc()
-      await testHttp()
-      exit()
-    })()
-  </script>
-</body>
-
+      ;(async () => {
+        await testIpc()
+        await testHttp()
+        exit()
+      })()
+    </script>
+  </body>
 </html>

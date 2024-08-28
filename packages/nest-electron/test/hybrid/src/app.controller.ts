@@ -45,7 +45,7 @@ export class AppController {
         const { app } = require('electron')
         app.quit()
       }
-      catch (error) {
+      catch {
         console.log('Node exiting...')
         process.exit(0)
       }

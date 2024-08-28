@@ -1,6 +1,7 @@
 # @doubleshot/builder
 
 ## Description
+
 Builder is a cli tool for quickly building node backend or electron main process. It's powered by [tsup](https://tsup.egoist.sh/), bundled through internal [esbuild](https://esbuild.github.io/), and decorators are supported by [swc](https://swc.rs/).
 
 > **Note:** Builder is only suitable for building node and electron code, that is, files converted to CommonJS standards.
@@ -27,7 +28,8 @@ pnpm add @doubleshot/builder -D
 
 ## Usage
 
-Use directly: 
+Use directly:
+
 ```shell
 # development mode
 npx dsb dev
@@ -36,6 +38,7 @@ npx dsb build
 ```
 
 Or through a script in `package.json`:
+
 ```json
 {
   "scripts": {
@@ -44,9 +47,11 @@ Or through a script in `package.json`:
   }
 }
 ```
+
 ## Configuration
 
 Configuration file like `dsb.config.ts` (`'.js' | '.cjs' | '.mjs'`) is also available:
+
 ```ts
 import { defineConfig } from '@doubleshot/builder'
 
@@ -64,6 +69,7 @@ export default defineConfig({
   }
 })
 ```
+
 You can find more configurations through the type definition file.
 
 ## CLI Options

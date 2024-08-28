@@ -286,8 +286,9 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
       config.electronBuild
       && config.electronBuild.disabled !== true
       && config.electronBuild.commandName === command
-    )
+    ) {
       await doElectronBuild(config.electronBuild)
+    }
 
     logger.success(TAG, 'All commands finished successfully')
     logger.info(TAG, 'Exiting...')

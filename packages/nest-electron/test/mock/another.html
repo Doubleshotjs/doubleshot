@@ -1,23 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doubleshot Nest Electron Module Test Another Window</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doubleshot Nest Electron Module Test Another Window</title>
-</head>
+  <body>
+    <h1>Doubleshot Nest Electron Module Test Another Window</h1>
+    <script type="text/javascript">
+      const { printLog } = window.electron
 
-<body>
-  <h1>Doubleshot Nest Electron Module Test Another Window</h1>
-  <script type="text/javascript">
-    const {
-      printLog,
-    } = window.electron
-
-    printLog('This is an another window')
-
-  </script>
-</body>
-
+      printLog('This is an another window')
+    </script>
+  </body>
 </html>

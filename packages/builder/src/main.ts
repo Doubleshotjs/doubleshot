@@ -213,8 +213,11 @@ export async function dev(inlineConfig: InlineConfig = {}) {
 
   // run process init
   let electron: any | undefined
-  if (isElectron && electronEnvCheck())
+  if (isElectron && electronEnvCheck()) {
     electron = await import('electron')
+    if (typeof electron === 'object' && electron.default)
+      electron = electron.default
+  }
   let child: ChildProcess
 
   // process once exit, kill child process

@@ -12,6 +12,9 @@ module.exports = lightwing(
       '**/*.d.ts',
       '**/*.md',
     ],
+    rules: {
+      'ts/no-unused-expressions': 'off',
+    },
   },
   {
     files: [

@@ -300,7 +300,7 @@ describe('doubleshot Builder, Inline Command: Dev Mode', () => {
           ...DEFAULT_INLINE_CONFIG,
           '--wait-for-renderer',
           '--renderer-url',
-`file://${path.resolve(mockDir, 'index.html')}`,
+          `file://${path.resolve(mockDir, 'index.html')}`,
         ])
       })(),
     ])
@@ -335,7 +335,7 @@ describe('doubleshot Builder, Inline Command: Dev Mode', () => {
           ...DEFAULT_INLINE_CONFIG,
           '--wait-for-renderer',
           '--renderer-url',
-`${url1},${url2}`,
+          `${url1},${url2}`,
         ])
       })(),
     ])
@@ -357,9 +357,9 @@ describe('doubleshot Builder, Inline Command: Dev Mode', () => {
         ...DEFAULT_INLINE_CONFIG,
         '--wait-for-renderer',
         '--renderer-url',
-`file://${path.resolve(mockDir, 'index.html')}`,
-'--wait-timeout',
-'2000',
+        `file://${path.resolve(mockDir, 'index.html')}`,
+        '--wait-timeout',
+        '2000',
       ])
     }
     catch (error) {

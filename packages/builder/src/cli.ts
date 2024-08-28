@@ -10,19 +10,19 @@ const cli = cac('doubleshot-build')
 // global options
 interface GlobalCLIOptions {
   '--'?: string[]
-  t?: AppType
-  type?: AppType
-  c?: string
-  config?: string
-  disableConfig?: true
-  e?: string
-  entry?: string
-  o?: string
-  out?: string
-  tsconfig?: string
-  external?: string // string,string,string...
-  tsupConfig?: string
-  preload?: string
+  't'?: AppType
+  'type'?: AppType
+  'c'?: string
+  'config'?: string
+  'disableConfig'?: true
+  'e'?: string
+  'entry'?: string
+  'o'?: string
+  'out'?: string
+  'tsconfig'?: string
+  'external'?: string // string,string,string...
+  'tsupConfig'?: string
+  'preload'?: string
 }
 
 interface DevOptions {

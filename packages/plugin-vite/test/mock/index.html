@@ -1,23 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doubleshot Vite Plugin Test</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doubleshot Vite Plugin Test</title>
-</head>
+  <body>
+    <h1>Doubleshot Vite Plugin Test</h1>
+    <script type="text/javascript">
+      const { sendMsg } = window.electronApi
 
-<body>
-  <h1>Doubleshot Vite Plugin Test</h1>
-  <script type="text/javascript">
-    const {
-      sendMsg
-    } = window.electronApi;
-
-    sendMsg('hello, this is a msg through preload file');
-
-  </script>
-</body>
-
+      sendMsg('hello, this is a msg through preload file')
+    </script>
+  </body>
 </html>

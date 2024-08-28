@@ -40,7 +40,7 @@ async function bootstrap() {
 
     await nestApp.listen()
   }
-  catch (error) {
+  catch {
     app.quit()
   }
 }
@@ -78,18 +78,19 @@ import { AppService } from './app.service'
 })
 export class AppModule { }
 ```
+
 Provides multi BrowserWindow(s):
 
 ```ts
 import { Module } from '@nestjs/common'
-import { ElectronModule,ELECTRON_WINDOW_DEFAULT_NAME } from '@doubleshot/nest-electron'
+import { ELECTRON_WINDOW_DEFAULT_NAME, ElectronModule } from '@doubleshot/nest-electron'
 import { BrowserWindow } from 'electron'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 
 @Module({
   imports: [ElectronModule.registerAsync({
-    name: [ELECTRON_WINDOW_DEFAULT_NAME, 'another-win']
+    name: [ELECTRON_WINDOW_DEFAULT_NAME, 'another-win'],
     useFactory: async () => {
       const mainWin = new BrowserWindow()
       mainWin.loadURL('http://localhost:3000')
@@ -99,7 +100,7 @@ import { AppService } from './app.service'
 
       // correspond to the above names
       return [mainWin, anotherWin]
-    },
+    }
   })],
   controllers: [AppController],
   providers: [AppService],
@@ -139,7 +140,7 @@ import { Ctx, Payload } from '@nestjs/microservices'
 @Controller()
 export class AppController {
   @IpcHandle('chat')
-  chat(@Payload() msg: string, @Ctx() { ipcEvt }: IpcContext) { // you can get ipc event object from @Ctx decorator
+  chat(@Payload() msg: string, @Ctx() { ipcEvt: _ }: IpcContext) { // you can get ipc event object from @Ctx decorator
     console.log(`Get message from frontend: ${msg}`)
     return 'This is a message to frontend'
   }
@@ -163,6 +164,7 @@ export class AppController {
 ```
 
 Export methods in preload/index.ts:
+
 ```ts
 import { contextBridge, ipcRenderer } from 'electron'
 
@@ -178,6 +180,7 @@ contextBridge.exposeInMainWorld(
 ```
 
 IPC channel name will be combined with the controller route:
+
 ```ts
 import { Controller } from '@nestjs/common'
 import { IpcHandle, IpcOn } from '@doubleshot/nest-electron'

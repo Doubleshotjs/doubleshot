@@ -1,67 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doubleshot Nest Electron Module Test</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doubleshot Nest Electron Module Test</title>
-</head>
+  <body>
+    <h1>Doubleshot Nest Electron Module Test</h1>
+    <script type="text/javascript">
+      const {
+        sendData,
+        printLog,
+        noLogMsg,
+        sendMultiParams,
+        throwError,
+        exit,
+        sendMsg,
+        printOtherLog,
+        invoke,
+        returnObservable,
+      } = window.electron
 
-<body>
-  <h1>Doubleshot Nest Electron Module Test</h1>
-  <script type="text/javascript">
-    const {
-      sendData,
-      printLog,
-      noLogMsg,
-      sendMultiParams,
-      throwError,
-      exit,
-      sendMsg,
-      printOtherLog,
-      invoke,
-      returnObservable
-    } = window.electron
+      const test = async () => {
+        // test @IpcHandle base usage
+        let result = await sendData('send data to backend')
+        // test @IpcOn base usage
+        await printLog(result)
 
-    const test = async () => {
-      // test @IpcHandle base usage
-      let result = await sendData('send data to backend')
-      // test @IpcOn base usage
-      await printLog(result)
+        // test no log opt
+        await noLogMsg('Go to the sea, if you would fish well')
 
-      // test no log opt
-      await noLogMsg('Go to the sea, if you would fish well')
+        // test send multi params
+        await sendMultiParams('The early bird catches the worm', 'I saw a saw saw a saw')
 
-      // test send multi params
-      await sendMultiParams('The early bird catches the worm', 'I saw a saw saw a saw')
+        // test error handling
+        try {
+          await throwError()
+        } catch (error) {
+          await printLog(error.message)
+        }
 
-      // test error handling
-      try {
-        await throwError()
-      } catch (error) {
-        await printLog(error.message)
+        // test ipc channel with Controller prefix
+        result = await sendMsg('send message to backend')
+        await printOtherLog(result)
+        // test ipc channel with Controller prefix and different slash placement
+        await invoke('/other/invoke')
+        await invoke('other/invoke')
+        await invoke('other/invoke/')
+        await invoke('/other/invoke/')
+
+        // test return observable
+        result = await returnObservable()
+        await printOtherLog(result)
+
+        exit()
       }
 
-      // test ipc channel with Controller prefix
-      result = await sendMsg('send message to backend')
-      await printOtherLog(result)
-      // test ipc channel with Controller prefix and different slash placement
-      await invoke('/other/invoke')
-      await invoke('other/invoke')
-      await invoke('other/invoke/')
-      await invoke('/other/invoke/')
-
-      // test return observable
-      result = await returnObservable()
-      await printOtherLog(result)
-
-      exit()
-    }
-
-    test()
-
-  </script>
-</body>
-
+      test()
+    </script>
+  </body>
 </html>
