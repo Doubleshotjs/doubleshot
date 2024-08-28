@@ -13,11 +13,7 @@ importers:
         version: 6.1.1-cjs.1
       '@lightwing/eslint-config':
         specifier: 1.0.75
-<<<<<<< HEAD
-        version: 1.0.75(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.4.21)(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@20.16.2))
-=======
         version: 1.0.75(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.4.21)(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))
->>>>>>> 691b689 (chore: update deps)
       '@nestjs/testing':
         specifier: 10.4.1
         version: 10.4.1(@nestjs/common@10.4.1(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1(@nestjs/common@10.4.1(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/microservices@10.4.1)(@nestjs/platform-express@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/microservices@10.4.1(@nestjs/common@10.4.1(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1)(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/platform-express@10.4.1(@nestjs/common@10.4.1(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.1))
@@ -28,13 +24,8 @@ importers:
         specifier: 11.0.4
         version: 11.0.4
       '@types/node':
-<<<<<<< HEAD
-        specifier: 20.16.2
-        version: 20.16.2
-=======
         specifier: 22.5.1
         version: 22.5.1
->>>>>>> 691b689 (chore: update deps)
       conventional-changelog-cli:
         specifier: 5.0.0
         version: 5.0.0(conventional-commits-filter@4.0.0)
@@ -64,11 +55,7 @@ importers:
         version: 5.5.4
       vitest:
         specifier: 2.0.5
-<<<<<<< HEAD
-        version: 2.0.5(@types/node@20.16.2)
-=======
         version: 2.0.5(@types/node@22.5.1)
->>>>>>> 691b689 (chore: update deps)
 
   packages/builder:
     dependencies:
@@ -149,11 +136,7 @@ importers:
     devDependencies:
       vite:
         specifier: 5.4.2
-<<<<<<< HEAD
-        version: 5.4.2(@types/node@20.16.2)
-=======
         version: 5.4.2(@types/node@22.5.1)
->>>>>>> 691b689 (chore: update deps)
 
   packages/runner:
     dependencies:
@@ -1239,9 +1222,6 @@ packages:
 
   '@types/node@20.16.1':
     resolution: {integrity: sha512-zJDo7wEadFtSyNz5QITDfRcrhqDvQI1xQNQ0VoizPjM/dVAODqqIUWbJPkvsxmTI0MYRGRikcdjMPhOssnPejQ==}
-
-  '@types/node@20.16.2':
-    resolution: {integrity: sha512-91s/n4qUPV/wg8eE9KHYW1kouTfDk2FPGjXbBMfRWP/2vg1rCXNQL1OCabwGs0XSdukuK+MwCDXE30QpSeMUhQ==}
 
   '@types/node@20.8.10':
     resolution: {integrity: sha512-TlgT8JntpcbmKUFzjhsyhGfP2fsiz1Mv56im6enJ905xG1DAYesxJaeSbGqQmAw8OWPdhyJGhGSQGKRNJ45u9w==}
@@ -2660,7 +2640,6 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
 
   global-agent@3.0.0:
     resolution: {integrity: sha512-PT6XReJ+D07JvGoxQMkT6qji/jVNfX/h364XHZOWeRzy64sSFr+xJ5OX7LI3b4MPQzdL4H8Y8M0xzPpsVMwA8Q==}
@@ -2669,7 +2648,6 @@ packages:
   global-dirs@4.0.0:
     resolution: {integrity: sha512-PJ0OjGf/kVuu9gh5IPgAyssfJne5PsU9+ICxfWiRYDUnYq8ob+Y2nSWAEUNEHRj+gowyzI+wg5/nWkvcjcyLwg==}
     engines: {node: '>=10'}
-    deprecated: Renamed to global-directory
 
   globals@13.24.0:
     resolution: {integrity: sha512-AhO5QUcj8llrbG09iWhPU2B204J1xnPeL8kQmVorSsy+Sjj1sk8gIyh6cUocGmH4L0UuhAJy+hJMRA4mgA4mFQ==}
@@ -2814,7 +2792,6 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
-    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -3679,7 +3656,6 @@ packages:
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
-    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@6.0.1:
@@ -4387,11 +4363,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-<<<<<<< HEAD
-  '@antfu/eslint-config@2.27.3(@eslint-react/eslint-plugin@1.12.1(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@unocss/eslint-plugin@0.62.3(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.2(eslint@9.9.1(jiti@1.21.6)))(eslint-plugin-react-hooks@4.6.2(eslint@9.9.1(jiti@1.21.6)))(eslint-plugin-react-refresh@0.4.11(eslint@9.9.1(jiti@1.21.6)))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@20.16.2))':
-=======
   '@antfu/eslint-config@2.27.3(@eslint-react/eslint-plugin@1.12.1(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@unocss/eslint-plugin@0.62.3(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.2(eslint@9.9.1(jiti@1.21.6)))(eslint-plugin-react-hooks@4.6.2(eslint@9.9.1(jiti@1.21.6)))(eslint-plugin-react-refresh@0.4.11(eslint@9.9.1(jiti@1.21.6)))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))':
->>>>>>> 691b689 (chore: update deps)
     dependencies:
       '@antfu/install-pkg': 0.4.1
       '@clack/prompts': 0.7.0
@@ -4399,11 +4371,7 @@ snapshots:
       '@stylistic/eslint-plugin': 2.6.4(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)
       '@typescript-eslint/eslint-plugin': 8.3.0(@typescript-eslint/parser@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)
       '@typescript-eslint/parser': 8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)
-<<<<<<< HEAD
-      '@vitest/eslint-plugin': 1.0.5(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@20.16.2))
-=======
       '@vitest/eslint-plugin': 1.0.5(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))
->>>>>>> 691b689 (chore: update deps)
       eslint: 9.9.1(jiti@1.21.6)
       eslint-config-flat-gitignore: 0.1.8
       eslint-flat-config-utils: 0.3.1
@@ -4938,15 +4906,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-<<<<<<< HEAD
-  '@lightwing/eslint-config@1.0.75(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.4.21)(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@20.16.2))':
-    dependencies:
-      '@antfu/eslint-config': 2.27.3(@eslint-react/eslint-plugin@1.12.1(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@unocss/eslint-plugin@0.62.3(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.2(eslint@9.9.1(jiti@1.21.6)))(eslint-plugin-react-hooks@4.6.2(eslint@9.9.1(jiti@1.21.6)))(eslint-plugin-react-refresh@0.4.11(eslint@9.9.1(jiti@1.21.6)))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@20.16.2))
-=======
   '@lightwing/eslint-config@1.0.75(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.4.21)(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))':
     dependencies:
       '@antfu/eslint-config': 2.27.3(@eslint-react/eslint-plugin@1.12.1(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@unocss/eslint-plugin@0.62.3(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.2(eslint@9.9.1(jiti@1.21.6)))(eslint-plugin-react-hooks@4.6.2(eslint@9.9.1(jiti@1.21.6)))(eslint-plugin-react-refresh@0.4.11(eslint@9.9.1(jiti@1.21.6)))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))
->>>>>>> 691b689 (chore: update deps)
       '@eslint-react/eslint-plugin': 1.12.1(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)
       '@unocss/eslint-plugin': 0.62.3(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)
       eslint: 9.9.1(jiti@1.21.6)
@@ -5277,11 +5239,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-<<<<<<< HEAD
-      '@types/node': 20.16.2
-=======
       '@types/node': 22.5.1
->>>>>>> 691b689 (chore: update deps)
       '@types/responselike': 1.0.0
 
   '@types/debug@4.1.7':
@@ -5303,19 +5261,11 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.1
-<<<<<<< HEAD
-      '@types/node': 20.16.2
-
-  '@types/fs-extra@9.0.13':
-    dependencies:
-      '@types/node': 20.16.2
-=======
       '@types/node': 22.5.1
 
   '@types/fs-extra@9.0.13':
     dependencies:
       '@types/node': 22.5.1
->>>>>>> 691b689 (chore: update deps)
 
   '@types/http-cache-semantics@4.0.1': {}
 
@@ -5323,19 +5273,11 @@ snapshots:
 
   '@types/jsonfile@6.1.1':
     dependencies:
-<<<<<<< HEAD
-      '@types/node': 20.16.2
-
-  '@types/keyv@3.1.4':
-    dependencies:
-      '@types/node': 20.16.2
-=======
       '@types/node': 22.5.1
 
   '@types/keyv@3.1.4':
     dependencies:
       '@types/node': 22.5.1
->>>>>>> 691b689 (chore: update deps)
 
   '@types/mdast@3.0.10':
     dependencies:
@@ -5344,10 +5286,6 @@ snapshots:
   '@types/ms@0.7.31': {}
 
   '@types/node@20.16.1':
-    dependencies:
-      undici-types: 6.19.6
-
-  '@types/node@20.16.2':
     dependencies:
       undici-types: 6.19.6
 
@@ -5363,21 +5301,13 @@ snapshots:
 
   '@types/plist@3.0.5':
     dependencies:
-<<<<<<< HEAD
-      '@types/node': 20.16.2
-=======
       '@types/node': 22.5.1
->>>>>>> 691b689 (chore: update deps)
       xmlbuilder: 15.1.1
     optional: true
 
   '@types/responselike@1.0.0':
     dependencies:
-<<<<<<< HEAD
-      '@types/node': 20.16.2
-=======
       '@types/node': 22.5.1
->>>>>>> 691b689 (chore: update deps)
 
   '@types/semver@7.5.8': {}
 
@@ -5392,11 +5322,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-<<<<<<< HEAD
-      '@types/node': 20.16.2
-=======
       '@types/node': 22.5.1
->>>>>>> 691b689 (chore: update deps)
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.3.0(@typescript-eslint/parser@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)':
@@ -5553,21 +5479,13 @@ snapshots:
       - supports-color
       - typescript
 
-<<<<<<< HEAD
-  '@vitest/eslint-plugin@1.0.5(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@20.16.2))':
-=======
   '@vitest/eslint-plugin@1.0.5(@typescript-eslint/utils@8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4))(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)(vitest@2.0.5(@types/node@22.5.1))':
->>>>>>> 691b689 (chore: update deps)
     dependencies:
       eslint: 9.9.1(jiti@1.21.6)
     optionalDependencies:
       '@typescript-eslint/utils': 8.3.0(eslint@9.9.1(jiti@1.21.6))(typescript@5.5.4)
       typescript: 5.5.4
-<<<<<<< HEAD
-      vitest: 2.0.5(@types/node@20.16.2)
-=======
       vitest: 2.0.5(@types/node@22.5.1)
->>>>>>> 691b689 (chore: update deps)
 
   '@vitest/expect@2.0.5':
     dependencies:
@@ -8748,21 +8666,13 @@ snapshots:
       extsprintf: 1.4.1
     optional: true
 
-<<<<<<< HEAD
-  vite-node@2.0.5(@types/node@20.16.2):
-=======
   vite-node@2.0.5(@types/node@22.5.1):
->>>>>>> 691b689 (chore: update deps)
     dependencies:
       cac: 6.7.14
       debug: 4.3.6
       pathe: 1.1.2
       tinyrainbow: 1.2.0
-<<<<<<< HEAD
-      vite: 5.4.2(@types/node@20.16.2)
-=======
       vite: 5.4.2(@types/node@22.5.1)
->>>>>>> 691b689 (chore: update deps)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -8774,27 +8684,16 @@ snapshots:
       - supports-color
       - terser
 
-<<<<<<< HEAD
-  vite@5.4.2(@types/node@20.16.2):
-=======
   vite@5.4.2(@types/node@22.5.1):
->>>>>>> 691b689 (chore: update deps)
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.41
       rollup: 4.21.0
     optionalDependencies:
-<<<<<<< HEAD
-      '@types/node': 20.16.2
-      fsevents: 2.3.3
-
-  vitest@2.0.5(@types/node@20.16.2):
-=======
       '@types/node': 22.5.1
       fsevents: 2.3.3
 
   vitest@2.0.5(@types/node@22.5.1):
->>>>>>> 691b689 (chore: update deps)
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@vitest/expect': 2.0.5
@@ -8812,19 +8711,11 @@ snapshots:
       tinybench: 2.8.0
       tinypool: 1.0.0
       tinyrainbow: 1.2.0
-<<<<<<< HEAD
-      vite: 5.4.2(@types/node@20.16.2)
-      vite-node: 2.0.5(@types/node@20.16.2)
-      why-is-node-running: 2.3.0
-    optionalDependencies:
-      '@types/node': 20.16.2
-=======
       vite: 5.4.2(@types/node@22.5.1)
       vite-node: 2.0.5(@types/node@22.5.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.5.1
->>>>>>> 691b689 (chore: update deps)
     transitivePeerDependencies:
       - less
       - lightningcss
