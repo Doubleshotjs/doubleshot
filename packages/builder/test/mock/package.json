@@ -4,6 +4,6 @@
   "private": true,
   "main": "dist/main.js",
   "devDependencies": {
-    "electron": "^31.1.0"
+    "electron": "^32.0.1"
   }
 }

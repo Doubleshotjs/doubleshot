@@ -7,6 +7,6 @@
     "build": "echo 'build backend'"
   },
   "devDependencies": {
-    "electron": "^31.1.0"
+    "electron": "^32.0.1"
   }
 }
