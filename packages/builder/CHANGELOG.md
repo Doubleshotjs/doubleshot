@@ -1,3 +1,24 @@
+## [0.0.12](https://github.com/archergu/doubleshot/compare/builder@0.0.11...builder@0.0.12) (2024-08-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency bundle-require to v5 ([7046c86](https://github.com/archergu/doubleshot/commit/7046c863d8a96c0beb483354a713d0176b1af94f))
+* **deps:** update dependency esbuild to ^0.19.0 ([38f9d0e](https://github.com/archergu/doubleshot/commit/38f9d0e2d52206948efca1b21b138c52a986e4a3))
+* **deps:** update dependency esbuild to ^0.20.0 ([68f66df](https://github.com/archergu/doubleshot/commit/68f66dfdfd7ce014d43c3fbd5db9f953a5ce42a1))
+* **deps:** update dependency esbuild to ^0.21.0 ([c1c729a](https://github.com/archergu/doubleshot/commit/c1c729a6581de914ca10eebdfe7a29975aecee4f))
+* **deps:** update dependency esbuild to ^0.22.0 ([b3de0d6](https://github.com/archergu/doubleshot/commit/b3de0d6457b00272b67dbd8203043673292def3c))
+* **deps:** update dependency esbuild to ^0.23.0 ([48a4520](https://github.com/archergu/doubleshot/commit/48a452044b4eab29e491e030207bead6ea10f60e))
+* **deps:** update dependency tsup to v8 ([59615b6](https://github.com/archergu/doubleshot/commit/59615b6a3f073c5345ef5b12a75145672452504a))
+* **deps:** update dependency wait-on to v8 ([0ec6dc1](https://github.com/archergu/doubleshot/commit/0ec6dc1fe578347cf7b02dfc416c3fe34c382fbc))
+
+
+### Features
+
+* **builder:** extract path when the executable file is dynamically imported ([b916657](https://github.com/archergu/doubleshot/commit/b9166574b16933f3d8ceaf5c3d334d843bc555af))
+
+
+
 ## [0.0.11](https://github.com/archergu/doubleshot/compare/builder@0.0.10...builder@0.0.11) (2023-06-16)
 
 
