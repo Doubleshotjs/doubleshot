@@ -62,6 +62,6 @@
   "devDependencies": {
     "@types/wait-on": "5.3.4",
     "electron": "32.0.1",
-    "electron-builder": "24.13.3"
+    "electron-builder": "25.0.5"
   }
 }
