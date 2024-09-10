@@ -88,7 +88,7 @@ importers:
         version: 8.2.4(@swc/core@1.7.24)(jiti@1.21.6)(postcss@8.4.45)(tsx@4.16.3)(typescript@5.6.2)(yaml@2.5.0)
       wait-on:
         specifier: ^8.0.0
-        version: 8.0.0
+        version: 8.0.1
     devDependencies:
       '@types/wait-on':
         specifier: 5.3.4
@@ -294,6 +294,11 @@ packages:
 
   '@electron/asar@3.2.10':
     resolution: {integrity: sha512-mvBSwIBUeiRscrCeJE1LwctAriBj65eUDm0Pc11iE5gRwzkmsdbS7FnZ1XUWjpSeQWL1L5g12Fc/SchPM9DUOw==}
+    engines: {node: '>=10.12.0'}
+    hasBin: true
+
+  '@electron/asar@3.2.11':
+    resolution: {integrity: sha512-L373+owaTGjko13wS/KlbxC4cyqwTmWg740nb3pwQSmV0kcoS1oP/JE5WfyRkNbhw3GFzJXk0y3pBawgXNc5oA==}
     engines: {node: '>=10.12.0'}
     hasBin: true
 
@@ -1194,6 +1199,9 @@ packages:
   '@types/fs-extra@9.0.13':
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
 
+  '@types/glob@7.2.0':
+    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
+
   '@types/http-cache-semantics@4.0.1':
     resolution: {integrity: sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==}
 
@@ -1205,6 +1213,9 @@ packages:
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
+
+  '@types/minimatch@5.1.2':
+    resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
 
   '@types/ms@0.7.31':
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
@@ -1548,9 +1559,6 @@ packages:
   at-least-node@1.0.0:
     resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
     engines: {node: '>= 4.0.0'}
-
-  axios@1.7.4:
-    resolution: {integrity: sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==}
 
   axios@1.7.7:
     resolution: {integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==}
@@ -4137,6 +4145,10 @@ packages:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
     engines: {node: '>=0.10.0'}
 
+  source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
+    engines: {node: '>=0.10.0'}
+
   source-map-support@0.5.21:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
 
@@ -4385,11 +4397,11 @@ packages:
   ts-pattern@5.3.1:
     resolution: {integrity: sha512-1RUMKa8jYQdNfmnK4jyzBK3/PS/tnjcZ1CW0v1vWDeYe5RBklc/nquw03MEoB66hVBm4BnlCfmOqDVxHyT1DpA==}
 
-  tslib@2.6.2:
-    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
+
+  tslib@2.7.0:
+    resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
   tsup@8.2.4:
     resolution: {integrity: sha512-akpCPePnBnC/CXgRrcy72ZSntgIEUa1jN0oJbbvpALWKNOz1B7aM+UVDWGRGIO/T/PZugAESWDJUAb5FD48o8Q==}
@@ -4605,8 +4617,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  wait-on@8.0.0:
-    resolution: {integrity: sha512-fNE5SXinLr2Bt7cJvjvLg2PcXfqznlqRvtE3f8AqYdRZ9BhE+XpsCp1mwQbRoO7s1q7uhAuCw0Ro3mG/KdZjEw==}
+  wait-on@8.0.1:
+    resolution: {integrity: sha512-1wWQOyR2LVVtaqrcIL2+OM+x7bkpmzVROa0Nf6FryXkS+er5Sa1kzFGjzZRqLnHa3n1rACFLeTwUqE1ETL9Mig==}
     engines: {node: '>=12.0.0'}
     hasBin: true
 
@@ -4838,6 +4850,13 @@ snapshots:
       glob: 7.2.3
       minimatch: 3.1.2
 
+  '@electron/asar@3.2.11':
+    dependencies:
+      '@types/glob': 7.2.0
+      commander: 5.1.0
+      glob: 7.2.3
+      minimatch: 3.1.2
+
   '@electron/get@2.0.2':
     dependencies:
       debug: 4.3.6
@@ -4912,7 +4931,7 @@ snapshots:
 
   '@electron/universal@1.5.1':
     dependencies:
-      '@electron/asar': 3.2.10
+      '@electron/asar': 3.2.11
       '@malept/cross-spawn-promise': 1.1.1
       debug: 4.3.7
       dir-compare: 3.3.0
@@ -5650,6 +5669,11 @@ snapshots:
     dependencies:
       '@types/node': 22.5.4
 
+  '@types/glob@7.2.0':
+    dependencies:
+      '@types/minimatch': 5.1.2
+      '@types/node': 22.5.4
+
   '@types/http-cache-semantics@4.0.1': {}
 
   '@types/jsonfile@6.1.1':
@@ -5663,6 +5687,8 @@ snapshots:
   '@types/mdast@4.0.4':
     dependencies:
       '@types/unist': 3.0.3
+
+  '@types/minimatch@5.1.2': {}
 
   '@types/ms@0.7.31': {}
 
@@ -5895,7 +5921,7 @@ snapshots:
       '@vue/shared': 3.4.21
       entities: 4.5.0
       estree-walker: 2.0.2
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   '@vue/compiler-dom@3.4.21':
     dependencies:
@@ -5912,7 +5938,7 @@ snapshots:
       estree-walker: 2.0.2
       magic-string: 0.30.11
       postcss: 8.4.45
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.4.21':
     dependencies:
@@ -6134,14 +6160,6 @@ snapshots:
   asynckit@0.4.0: {}
 
   at-least-node@1.0.0: {}
-
-  axios@1.7.4:
-    dependencies:
-      follow-redirects: 1.15.6
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
 
   axios@1.7.7:
     dependencies:
@@ -7031,7 +7049,7 @@ snapshots:
       minimatch: 9.0.5
       semver: 7.6.3
       stable-hash: 0.0.4
-      tslib: 2.6.3
+      tslib: 2.7.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -8898,7 +8916,7 @@ snapshots:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.1.0
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
 
   prelude-ls@1.2.1: {}
 
@@ -9156,7 +9174,7 @@ snapshots:
 
   rxjs@7.8.1:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.7.0
 
   safe-buffer@5.1.2: {}
 
@@ -9301,6 +9319,8 @@ snapshots:
 
   source-map-js@1.2.0: {}
 
+  source-map-js@1.2.1: {}
+
   source-map-support@0.5.21:
     dependencies:
       buffer-from: 1.1.2
@@ -9431,12 +9451,12 @@ snapshots:
 
   synckit@0.6.2:
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   synckit@0.9.1:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.6.3
+      tslib: 2.7.0
 
   tapable@2.2.1: {}
 
@@ -9542,9 +9562,9 @@ snapshots:
 
   ts-pattern@5.3.1: {}
 
-  tslib@2.6.2: {}
-
   tslib@2.6.3: {}
+
+  tslib@2.7.0: {}
 
   tsup@8.2.4(@swc/core@1.7.24)(jiti@1.21.6)(postcss@8.4.45)(tsx@4.16.3)(typescript@5.6.2)(yaml@2.5.0):
     dependencies:
@@ -9764,9 +9784,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  wait-on@8.0.0:
+  wait-on@8.0.1:
     dependencies:
-      axios: 1.7.4
+      axios: 1.7.7
       joi: 17.13.3
       lodash: 4.17.21
       minimist: 1.2.8
