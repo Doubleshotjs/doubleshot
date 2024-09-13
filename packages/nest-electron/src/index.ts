@@ -1,6 +1,6 @@
-export * from './interfaces'
+export { ELECTRON_WINDOW_DEFAULT_NAME } from './electron.constants'
 export * from './electron.decorators'
 export * from './electron.module'
 export * from './electron.transport'
+export * from './interfaces'
 export { isElectron } from './utils'
-export { ELECTRON_WINDOW_DEFAULT_NAME } from './electron.constants'

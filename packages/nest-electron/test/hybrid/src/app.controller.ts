@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Param, Post, Request } from '@nestjs/common'
 import type { BrowserWindow as BrowserWindowType } from 'electron'
+import { Body, Controller, Get, Param, Post, Request } from '@nestjs/common'
 import { Payload } from '@nestjs/microservices'
-import { IpcHandle, IpcOn, Window, isElectron } from '../../../dist'
+import { IpcHandle, IpcOn, isElectron, Window } from '../../../dist'
 
 type DTO = { data: string } | string
 

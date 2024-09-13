@@ -1,8 +1,8 @@
+import type { Options as ExecaOptions } from '@esm2cjs/execa'
+import type { UserConfigExport } from '../src'
 import path from 'node:path'
 import { execa } from '@esm2cjs/execa'
 import fs from 'fs-extra'
-import type { Options as ExecaOptions } from '@esm2cjs/execa'
-import type { UserConfigExport } from '../src'
 
 export const bin = path.resolve(__dirname, '../dist/cli.js')
 export const mockDir = path.resolve(__dirname, './mock')

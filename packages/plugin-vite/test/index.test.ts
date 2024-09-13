@@ -1,7 +1,7 @@
 import path from 'node:path'
-import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { execa } from '@esm2cjs/execa'
 import fs from 'fs-extra'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 const mockDir = path.resolve(__dirname, './mock')
 

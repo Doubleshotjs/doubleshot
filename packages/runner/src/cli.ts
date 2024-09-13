@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { cac } from 'cac'
 import { version } from '../package.json'
-import { createLogger } from './log'
 import { TAG } from './constants'
+import { createLogger } from './log'
 
 const cli = cac('doubleshot-run')
 

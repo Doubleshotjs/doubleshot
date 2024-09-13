@@ -1,6 +1,6 @@
 import path from 'node:path'
-import { describe, expect, it } from 'vitest'
 import { execa } from '@esm2cjs/execa'
+import { describe, expect, it } from 'vitest'
 
 const mockDir = path.resolve(__dirname, './hybrid')
 const mockDist = path.resolve(mockDir, 'dist')

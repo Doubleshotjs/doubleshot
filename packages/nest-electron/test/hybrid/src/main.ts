@@ -1,8 +1,8 @@
-import { NestFactory } from '@nestjs/core'
 import type { MicroserviceOptions } from '@nestjs/microservices'
+import { NestFactory } from '@nestjs/core'
 import { ElectronIpcTransport, isElectron } from '../../../dist'
-import { AppModule } from './app.module'
 import { testHttp } from './api'
+import { AppModule } from './app.module'
 
 async function startElectron() {
   if (isElectron) {

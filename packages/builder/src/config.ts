@@ -1,13 +1,13 @@
-import path from 'node:path'
-import fs from 'node:fs'
-import JoyCon from 'joycon'
-import { bundleRequire } from 'bundle-require'
 import type { CliOptions as ElectronBuilderCliOptions, Configuration as ElectronBuilderConfiguration } from 'electron-builder'
-import { greenBright } from 'colorette'
 import type { Options as _TsupOptions } from 'tsup'
-import { merge, normalizePath, resolvePath } from './utils'
-import { createLogger } from './log'
+import fs from 'node:fs'
+import path from 'node:path'
+import { bundleRequire } from 'bundle-require'
+import { greenBright } from 'colorette'
+import JoyCon from 'joycon'
 import { CONFIG_FILE, TAG } from './constants'
+import { createLogger } from './log'
+import { merge, normalizePath, resolvePath } from './utils'
 
 const logger = createLogger()
 const joycon = new JoyCon()

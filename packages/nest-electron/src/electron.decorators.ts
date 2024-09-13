@@ -1,7 +1,7 @@
-import { Inject, applyDecorators } from '@nestjs/common'
+import type { IpcOptions } from './interfaces'
+import { applyDecorators, Inject } from '@nestjs/common'
 import { EventPattern, MessagePattern } from '@nestjs/microservices'
 import { ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME, IPC_HANDLE, IPC_ON } from './electron.constants'
-import type { IpcOptions } from './interfaces'
 import { ChannelMaps } from './transport'
 import { generateRandomString, isElectron } from './utils'
 

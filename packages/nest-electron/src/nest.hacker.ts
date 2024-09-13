@@ -1,10 +1,10 @@
-import type { AbstractHttpAdapter, ApplicationConfig } from '@nestjs/core'
-import { NestFactory } from '@nestjs/core'
-import type { NestMicroserviceOptions } from '@nestjs/common/interfaces/microservices/nest-microservice-options.interface'
 import type { INestApplication, INestMicroservice, NestApplicationOptions, NestHybridApplicationOptions } from '@nestjs/common'
+import type { NestMicroserviceOptions } from '@nestjs/common/interfaces/microservices/nest-microservice-options.interface'
+import type { AbstractHttpAdapter, ApplicationConfig } from '@nestjs/core'
 import type { CustomTransportStrategy, Server } from '@nestjs/microservices'
-import { IpcExceptionsFilter } from './transport'
+import { NestFactory } from '@nestjs/core'
 import { ElectronIpcTransport } from './electron.transport'
+import { IpcExceptionsFilter } from './transport'
 import { isElectron } from './utils'
 
 if (isElectron) {

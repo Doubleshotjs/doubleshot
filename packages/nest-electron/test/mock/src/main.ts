@@ -1,6 +1,6 @@
-import { app } from 'electron'
-import { NestFactory } from '@nestjs/core'
 import type { MicroserviceOptions } from '@nestjs/microservices'
+import { NestFactory } from '@nestjs/core'
+import { app } from 'electron'
 import { ElectronIpcTransport } from '../../../dist'
 import { AppModule } from './app.module'
 

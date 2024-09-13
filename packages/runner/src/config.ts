@@ -1,12 +1,12 @@
-import path from 'node:path'
-import JoyCon from 'joycon'
-import { bundleRequire } from 'bundle-require'
-import type { Configuration as ElectronBuilderConfiguration } from 'electron-builder'
 import type { ConcurrentlyCommandInput } from 'concurrently'
+import type { Configuration as ElectronBuilderConfiguration } from 'electron-builder'
+import path from 'node:path'
+import { bundleRequire } from 'bundle-require'
 import { greenBright } from 'colorette'
-import { normalizePath } from './utils'
-import { createLogger } from './log'
+import JoyCon from 'joycon'
 import { CONFIG_FILE, TAG } from './constants'
+import { createLogger } from './log'
+import { normalizePath } from './utils'
 
 export type DoubleShotRunnerConfigExport = DoubleShotRunnerConfig | Promise<DoubleShotRunnerConfig>
 

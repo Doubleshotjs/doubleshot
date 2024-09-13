@@ -1,7 +1,7 @@
 import path from 'node:path'
-import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import fs from 'fs-extra'
-import { DEFAULT_CONFIG, DEFAULT_INLINE_CONFIG, checkOrCreateHtmlFile, installDeps, mockDir, remove, run, sleep, writeConfigFile } from './utils'
+import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
+import { checkOrCreateHtmlFile, DEFAULT_CONFIG, DEFAULT_INLINE_CONFIG, installDeps, mockDir, remove, run, sleep, writeConfigFile } from './utils'
 
 beforeAll(async () => {
   remove()

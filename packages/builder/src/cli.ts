@@ -1,7 +1,7 @@
 #!/usr/bin/env node
+import type { AppType } from './config'
 import { cac } from 'cac'
 import { version } from '../package.json'
-import type { AppType } from './config'
 import { TAG } from './constants'
 import { createLogger } from './log'
 

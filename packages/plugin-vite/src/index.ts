@@ -1,5 +1,5 @@
-import type { PluginOption, ResolvedConfig } from 'vite'
 import type { ElectronConfig, InlineConfig } from '@doubleshot/builder'
+import type { PluginOption, ResolvedConfig } from 'vite'
 import { build, dev } from '@doubleshot/builder'
 
 export { defineConfig } from '@doubleshot/builder'

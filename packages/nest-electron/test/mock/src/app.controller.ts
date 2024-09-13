@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common'
-import { BrowserWindow, app } from 'electron'
 import { Ctx, Payload } from '@nestjs/microservices'
+import { app, BrowserWindow } from 'electron'
 import { type IpcContext, IpcHandle, IpcOn, Window } from '../../../dist'
 
 @Controller()

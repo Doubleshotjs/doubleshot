@@ -1,5 +1,5 @@
-import { TAG } from './constants'
 import type { LogType } from './log'
+import { TAG } from './constants'
 import { createLogger } from './log'
 
 export * from './config'

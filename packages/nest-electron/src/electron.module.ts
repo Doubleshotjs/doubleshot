@@ -1,6 +1,6 @@
 import type { DynamicModule } from '@nestjs/common'
-import { Logger, Module } from '@nestjs/common'
 import type { ElectronModuleAsyncOptions, ElectronModuleOptions, ElectronModuleProviderValue } from './interfaces/electron-module-options.interface'
+import { Logger, Module } from '@nestjs/common'
 import { ELECTRON_MODULE_PROVIDER_VALUE, ELECTRON_WINDOW, ELECTRON_WINDOW_DEFAULT_NAME } from './electron.constants'
 import { isElectron } from './utils'
 

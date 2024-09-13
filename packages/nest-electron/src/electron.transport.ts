@@ -1,11 +1,11 @@
 import type { CustomTransportStrategy, MessageHandler } from '@nestjs/microservices'
+import type { IpcContext, IpcOptions } from './interfaces'
+import { Logger } from '@nestjs/common'
 import { Server } from '@nestjs/microservices'
 import { isObservable, lastValueFrom } from 'rxjs'
-import './nest.hacker'
-import { Logger } from '@nestjs/common'
 import { ChannelMaps } from './transport'
 import { isElectron, linkPathAndChannel } from './utils'
-import type { IpcContext, IpcOptions } from './interfaces'
+import './nest.hacker'
 
 export class ElectronIpcTransport extends Server implements CustomTransportStrategy {
   protected readonly logger: Logger

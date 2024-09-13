@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { BrowserWindow, app } from 'electron'
+import { app, BrowserWindow } from 'electron'
 
 const EXIT_TIME = process.env.EXIT_TIME || 1000
 const isElectron = process.env.DS_APP_TYPE === 'electron'

@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { BrowserWindow, app, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 
 function createWindow() {
   const isDev = !app.isPackaged
