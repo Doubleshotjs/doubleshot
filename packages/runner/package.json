@@ -52,6 +52,6 @@
     "resolve-from": "^5.0.0"
   },
   "devDependencies": {
-    "electron-builder": "25.1.7"
+    "electron-builder": "25.1.8"
   }
 }
