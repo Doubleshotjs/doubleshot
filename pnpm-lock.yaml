@@ -94,8 +94,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4
       electron:
-        specifier: 33.0.2
-        version: 33.0.2
+        specifier: 33.2.1
+        version: 33.2.1
       electron-builder:
         specifier: 25.1.8
         version: 25.1.8(electron-builder-squirrel-windows@24.13.3)
@@ -122,8 +122,8 @@ importers:
         specifier: ^1.7.7
         version: 1.7.7
       electron:
-        specifier: 33.0.2
-        version: 33.0.2
+        specifier: 33.2.1
+        version: 33.2.1
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2
@@ -2295,8 +2295,8 @@ packages:
   electron-to-chromium@1.5.40:
     resolution: {integrity: sha512-LYm78o6if4zTasnYclgQzxEcgMoIcybWOhkATWepN95uwVVWV0/IW10v+2sIeHE+bIYWipLneTftVyQm45UY7g==}
 
-  electron@33.0.2:
-    resolution: {integrity: sha512-C2WksfP0COsMHbYXSJG68j6S3TjuGDrw/YT42B526yXalIlNQZ2GeAYKryg6AEMkIp3p8TUfDRD0+HyiyCt/nw==}
+  electron@33.2.1:
+    resolution: {integrity: sha512-SG/nmSsK9Qg1p6wAW+ZfqU+AV8cmXMTIklUL18NnOKfZLlum4ZsDoVdmmmlL39ZmeCaq27dr7CgslRPahfoVJg==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -4593,9 +4593,6 @@ packages:
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
-  undici-types@6.19.6:
-    resolution: {integrity: sha512-e/vggGopEfTKSvj4ihnOLTsqhrKRN3LeO6qSN/GxohhuRv8qH9bNQ4B8W7e/vFL+0XTnmHPB4/kegunZGA4Org==}
-
   undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
@@ -5892,7 +5889,7 @@ snapshots:
 
   '@types/node@20.16.1':
     dependencies:
-      undici-types: 6.19.6
+      undici-types: 6.19.8
 
   '@types/node@20.8.10':
     dependencies:
@@ -7042,7 +7039,7 @@ snapshots:
 
   electron-to-chromium@1.5.40: {}
 
-  electron@33.0.2:
+  electron@33.2.1:
     dependencies:
       '@electron/get': 2.0.2
       '@types/node': 20.16.1
@@ -9805,8 +9802,6 @@ snapshots:
       - supports-color
 
   undici-types@5.26.5: {}
-
-  undici-types@6.19.6: {}
 
   undici-types@6.19.8: {}
 
