@@ -10,6 +10,6 @@
   "devDependencies": {
     "electron": "^33.2.1",
     "electron-builder": "25.1.8",
-    "vite": "^6.0.2"
+    "vite": "^6.0.3"
   }
 }
