@@ -144,7 +144,7 @@ describe('doubleshot Builder: Dev Mode', () => {
       let logs = ''
       await Promise.all([
         (async () => {
-          await sleep(2000)
+          await sleep(5000)
           fs.writeFileSync(mainFile, `${mainFileContent}\nconsole.log("modify main.ts")`)
         })(),
         (async () => {
