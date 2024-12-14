@@ -70,7 +70,7 @@ importers:
         version: 6.7.14
       check-package-exists:
         specifier: ^1.1.4
-        version: 1.1.4
+        version: 1.1.5
       colorette:
         specifier: ^2.0.20
         version: 2.0.20
@@ -148,7 +148,7 @@ importers:
         version: 6.7.14
       check-package-exists:
         specifier: ^1.1.4
-        version: 1.1.4
+        version: 1.1.5
       colorette:
         specifier: ^2.0.20
         version: 2.0.20
@@ -1781,8 +1781,8 @@ packages:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
     engines: {node: '>= 16'}
 
-  check-package-exists@1.1.4:
-    resolution: {integrity: sha512-cIZHDWOfvBk/6DX54KSwe5bntqiUn62n28ycuvdp9nYbZZZi1xKNGwq/uGUfxftONra5AjEvgE3JcPXOkn7qMg==}
+  check-package-exists@1.1.5:
+    resolution: {integrity: sha512-V6GQqSGvTFmrk3vpF/SKfsK+8GJtcpHSewlp78/PSPvgq98jQJ32dQ25g8R3rrxYNu6g4iHQ/fFsdsVO0T6KKg==}
     engines: {node: '>=14'}
 
   chokidar@4.0.1:
@@ -3015,8 +3015,9 @@ packages:
     resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
     hasBin: true
 
-  is-core-module@2.13.1:
-    resolution: {integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==}
+  is-core-module@2.16.0:
+    resolution: {integrity: sha512-urTSINYfAYgcbLb0yDQ6egFm6h3Mo1DcF9EkyXSRjjzdHbsulg01qhwWuXdOoUBuTkbQ80KDboXa0vFJ+BDH+g==}
+    engines: {node: '>= 0.4'}
 
   is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
@@ -3288,6 +3289,9 @@ packages:
 
   magic-string@0.30.14:
     resolution: {integrity: sha512-5c99P1WKTed11ZC0HMJOj6CDIue6F8ySu+bJL+85q1zBEIY8IklrJ1eiKC2NDRh3Ct3FcvmJPyQHb9erXMTJNw==}
+
+  magic-string@0.30.15:
+    resolution: {integrity: sha512-zXeaYRgZ6ldS1RJJUrMrYgNJ4fdwnyI6tVqoiIhyCyv5IVTK9BU8Ic2l253GGETQHxI4HNUwhJ3fjDhKqEoaAw==}
 
   make-fetch-happen@10.2.1:
     resolution: {integrity: sha512-NgOPbRiaQM10DYXvN3/hhGVI2M5MtITFryzBGxHM5p4wnFxsVCbxkrBrDsk+EZ5OB4jEOT7AjDxtdF+KVEFT7w==}
@@ -4008,8 +4012,8 @@ packages:
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
 
-  resolve@1.22.8:
-    resolution: {integrity: sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==}
+  resolve@1.22.9:
+    resolution: {integrity: sha512-QxrmX1DzraFIi9PxdG5VkRfRwIgjwyud+z/iBwfRRrVmHc+P9Q7u2lSSpQ6bjr2gy5lrqIiU9vb6iAeGf2400A==}
     hasBin: true
 
   responselike@2.0.1:
@@ -6041,7 +6045,7 @@ snapshots:
       '@vue/compiler-ssr': 3.4.21
       '@vue/shared': 3.4.21
       estree-walker: 2.0.2
-      magic-string: 0.30.14
+      magic-string: 0.30.15
       postcss: 8.4.49
       source-map-js: 1.2.1
 
@@ -6509,11 +6513,11 @@ snapshots:
 
   check-error@2.1.1: {}
 
-  check-package-exists@1.1.4:
+  check-package-exists@1.1.5:
     dependencies:
       '@esm2cjs/execa': 6.1.1-cjs.1
       global-dirs: 4.0.0
-      resolve: 1.22.8
+      resolve: 1.22.9
 
   chokidar@4.0.1:
     dependencies:
@@ -7143,8 +7147,8 @@ snapshots:
   eslint-import-resolver-node@0.3.9:
     dependencies:
       debug: 3.2.7
-      is-core-module: 2.13.1
-      resolve: 1.22.8
+      is-core-module: 2.16.0
+      resolve: 1.22.9
     transitivePeerDependencies:
       - supports-color
 
@@ -8064,7 +8068,7 @@ snapshots:
     dependencies:
       ci-info: 3.8.0
 
-  is-core-module@2.13.1:
+  is-core-module@2.16.0:
     dependencies:
       hasown: 2.0.2
 
@@ -8309,6 +8313,10 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
 
   magic-string@0.30.14:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.0
+
+  magic-string@0.30.15:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
@@ -8745,7 +8753,7 @@ snapshots:
       '@esm2cjs/execa': 6.1.1-cjs.1
       bundle-require: 5.0.0(esbuild@0.24.0)
       cac: 6.7.14
-      check-package-exists: 1.1.4
+      check-package-exists: 1.1.5
       colorette: 2.0.20
       esbuild: 0.24.0
       fs-extra: 11.2.0
@@ -8831,14 +8839,14 @@ snapshots:
   normalize-package-data@2.5.0:
     dependencies:
       hosted-git-info: 2.8.9
-      resolve: 1.22.8
+      resolve: 1.22.9
       semver: 5.7.1
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.0:
     dependencies:
       hosted-git-info: 7.0.0
-      is-core-module: 2.13.1
+      is-core-module: 2.16.0
       semver: 7.6.3
       validate-npm-package-license: 3.0.4
 
@@ -9191,9 +9199,9 @@ snapshots:
 
   resolve-pkg-maps@1.0.0: {}
 
-  resolve@1.22.8:
+  resolve@1.22.9:
     dependencies:
-      is-core-module: 2.13.1
+      is-core-module: 2.16.0
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
