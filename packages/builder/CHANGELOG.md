@@ -1,3 +1,12 @@
+## [0.0.13](https://github.com/archergu/doubleshot/compare/builder@0.0.12...builder@0.0.13) (2024-12-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency esbuild to ^0.24.0 ([01b2b28](https://github.com/archergu/doubleshot/commit/01b2b288249a3a63ede013de357d96c7ce94fc0e))
+
+
+
 ## [0.0.12](https://github.com/archergu/doubleshot/compare/builder@0.0.11...builder@0.0.12) (2024-08-28)
 
 
