@@ -1,3 +1,24 @@
+## [0.0.12](https://github.com/archergu/doubleshot/compare/runner@0.0.11...runner@0.0.12) (2024-12-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency bundle-require to v5 ([7046c86](https://github.com/archergu/doubleshot/commit/7046c863d8a96c0beb483354a713d0176b1af94f))
+* **deps:** update dependency concurrently to v9 ([a16cf5a](https://github.com/archergu/doubleshot/commit/a16cf5ad817f87c362beff1aad2f64e2b34500b0))
+* **deps:** update dependency esbuild to ^0.20.0 ([68f66df](https://github.com/archergu/doubleshot/commit/68f66dfdfd7ce014d43c3fbd5db9f953a5ce42a1))
+* **deps:** update dependency esbuild to ^0.21.0 ([c1c729a](https://github.com/archergu/doubleshot/commit/c1c729a6581de914ca10eebdfe7a29975aecee4f))
+* **deps:** update dependency esbuild to ^0.22.0 ([b3de0d6](https://github.com/archergu/doubleshot/commit/b3de0d6457b00272b67dbd8203043673292def3c))
+* **deps:** update dependency esbuild to ^0.23.0 ([48a4520](https://github.com/archergu/doubleshot/commit/48a452044b4eab29e491e030207bead6ea10f60e))
+* **deps:** update dependency esbuild to ^0.24.0 ([01b2b28](https://github.com/archergu/doubleshot/commit/01b2b288249a3a63ede013de357d96c7ce94fc0e))
+
+
+### Features
+
+* **builder:** extract path when the executable file is dynamically imported ([b916657](https://github.com/archergu/doubleshot/commit/b9166574b16933f3d8ceaf5c3d334d843bc555af))
+* **runner:** kill others will use ps-tree to kill all child processes ([75c7ac9](https://github.com/archergu/doubleshot/commit/75c7ac96e7ea785d5a7204cbecbec7a94e76f48a))
+
+
+
 ## [0.0.11](https://github.com/archergu/doubleshot/compare/runner@0.0.10...runner@0.0.11) (2024-01-15)
 
 
