@@ -10,7 +10,7 @@ import { build as esbuildBuild } from 'esbuild'
 import { resolveConfig } from './config'
 import { TAG } from './constants'
 import { createLogger } from './log'
-import { generateCommandToOneLine, getCachePath } from './utils'
+import { generateCommandToOneLine, getCachePath, treeKill } from './utils'
 
 interface BeforeRunHooks {
   functions: ({ rIndex: number, fn: () => boolean | Promise<boolean>, result?: boolean })[]
@@ -271,8 +271,11 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
       cmd.close.subscribe(() => {
         logger.info(TAG, `Command "${yellow(item.rId)}" exited, killing others`)
         commands.forEach((c) => {
-          if (c.index !== item.rIndex)
-            c.kill('SIGKILL')
+          if (c.index !== item.rIndex) {
+            treeKill(c.pid!, 'SIGINT').catch((e) => {
+              logger.error(TAG, e)
+            })
+          }
         })
       })
     }
@@ -292,12 +295,12 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
 
     logger.success(TAG, 'All commands finished successfully')
     logger.info(TAG, 'Exiting...')
-    process.exit(0)
+    process.exit()
   }, (reason) => {
     const noError = reason.some((e: any) => e.exitCode === 0)
     logger.warn(TAG, 'Some commands exit')
     logger.info(TAG, 'Exiting...')
-    process.exit(noError ? 0 : 1)
+    process.exit(noError ? undefined : 1)
   }).catch((e) => {
     logger.error(TAG, e)
     logger.info(TAG, 'Exiting...')
