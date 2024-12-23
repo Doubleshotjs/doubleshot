@@ -16,7 +16,7 @@ const logger = createLogger()
 
 function exitMainProcess() {
   logger.warn(TAG, 'Main process exit')
-  process.exit(0)
+  process.exit()
 }
 
 function runMainProcess(mainFile: string, electron: any, args: DevArgs) {
