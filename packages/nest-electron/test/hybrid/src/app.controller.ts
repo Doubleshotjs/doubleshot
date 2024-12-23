@@ -47,7 +47,7 @@ export class AppController {
       }
       catch {
         console.log('Node exiting...')
-        process.exit(0)
+        process.exit()
       }
     }, 500)
   }
