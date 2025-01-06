@@ -94,8 +94,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4
       electron:
-        specifier: 33.2.1
-        version: 33.2.1
+        specifier: 33.3.1
+        version: 33.3.1
       electron-builder:
         specifier: 25.1.8
         version: 25.1.8(electron-builder-squirrel-windows@24.13.3)
@@ -122,8 +122,8 @@ importers:
         specifier: ^1.7.9
         version: 1.7.9
       electron:
-        specifier: 33.2.1
-        version: 33.2.1
+        specifier: 33.3.1
+        version: 33.3.1
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2
@@ -2228,8 +2228,8 @@ packages:
   electron-to-chromium@1.5.40:
     resolution: {integrity: sha512-LYm78o6if4zTasnYclgQzxEcgMoIcybWOhkATWepN95uwVVWV0/IW10v+2sIeHE+bIYWipLneTftVyQm45UY7g==}
 
-  electron@33.2.1:
-    resolution: {integrity: sha512-SG/nmSsK9Qg1p6wAW+ZfqU+AV8cmXMTIklUL18NnOKfZLlum4ZsDoVdmmmlL39ZmeCaq27dr7CgslRPahfoVJg==}
+  electron@33.3.1:
+    resolution: {integrity: sha512-Z7l2bVgpdKxHQMI4i0CirBX2n+iCYKOx5mbzNM3BpOyFELwlobEXKmzCmEnwP+3EcNeIhUQyIEBFQxN06QgdIw==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -4977,7 +4977,7 @@ snapshots:
 
   '@electron/get@2.0.2':
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
       env-paths: 2.2.1
       fs-extra: 8.1.0
       got: 11.8.5
@@ -7026,7 +7026,7 @@ snapshots:
 
   electron-to-chromium@1.5.40: {}
 
-  electron@33.2.1:
+  electron@33.3.1:
     dependencies:
       '@electron/get': 2.0.2
       '@types/node': 20.16.1
@@ -7686,7 +7686,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.3.7
+      debug: 4.4.0
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
