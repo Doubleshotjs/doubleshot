@@ -50,6 +50,6 @@ export class AppController {
     console.log('Electron exiting...')
     setTimeout(() => {
       app.quit()
-    }, 500)
+    }, 3000)
   }
 }
