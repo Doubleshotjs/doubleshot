@@ -23,8 +23,12 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        node-version: [18.x, 20.x]
+        os: [windows-latest, macos-14]
+        node-version: [22.x]
+        architecture: [x64, arm64]
+        exclude:
+          - os: windows-latest
+            architecture: arm64
 
     runs-on: ${{ matrix.os }}
 
@@ -64,6 +68,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Test
-        uses: coactions/setup-xvfb@v1
-        with:
-          run: pnpm test
+        run: pnpm test
