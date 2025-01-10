@@ -1,3 +1,13 @@
+## [0.0.13](https://github.com/archergu/doubleshot/compare/runner@0.0.12...runner@0.0.13) (2025-01-10)
+
+
+### Features
+
+* **runner:** add electron-builder publish policy config ([7ebe591](https://github.com/archergu/doubleshot/commit/7ebe591d1f8b6fb2c65b52c179874935ddd2668b))
+* **runner:** electronBuild.commandName support an array ([f18187c](https://github.com/archergu/doubleshot/commit/f18187c36703411d2b73b2a73a8503436ff2858f))
+
+
+
 ## [0.0.12](https://github.com/archergu/doubleshot/compare/runner@0.0.11...runner@0.0.12) (2024-12-23)
 
 
