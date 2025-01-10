@@ -68,7 +68,7 @@ export interface ElectronBuildConfig {
   /**
    * @default 'build'
    */
-  commandName?: string
+  commandName?: string | string[]
   /**
    * @default process.cwd()
    */

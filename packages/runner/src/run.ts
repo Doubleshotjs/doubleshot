@@ -288,7 +288,7 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
     if (
       config.electronBuild
       && config.electronBuild.disabled !== true
-      && config.electronBuild.commandName === command
+      && (Array.isArray(config.electronBuild.commandName) ? config.electronBuild.commandName.includes(command) : config.electronBuild.commandName === command)
     ) {
       await doElectronBuild(config.electronBuild)
     }

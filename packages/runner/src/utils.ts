@@ -47,7 +47,9 @@ export function psTreeSync(pid: number): Promise<readonly PS[]> {
 export async function treeKill(pid: number, signal?: string | number) {
   const children = (await psTreeSync(pid)).filter(child => child.PID !== `${pid}` && child.PPID === `${pid}`)
   for (const child of children) {
-    await treeKill(Number(child.PID), signal)
+    await treeKill(Number(child.PID), signal).catch(() => {
+      // ignore error
+    })
   }
   process.kill(pid, signal)
 }
