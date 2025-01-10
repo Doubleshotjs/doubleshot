@@ -321,6 +321,7 @@ async function doElectronBuild(buildConfig: ElectronBuildConfig | undefined) {
     await build({
       projectDir: buildConfig?.projectDir || process.cwd(),
       config: buildConfig?.config,
+      publish: buildConfig?.publishPolicy,
     })
 
     const endTime = performance.now() - startTime

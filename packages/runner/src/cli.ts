@@ -11,6 +11,7 @@ interface CliOptions {
   filter?: string // string,string,string...
   only?: string // string,string,string...
   disableElectronBuild?: boolean
+  electronBuildPublish?: string
 }
 
 // run
@@ -20,6 +21,7 @@ cli
   .option('--filter <names>', 'Filter running names')
   .option('--only <names>', 'Only run special names')
   .option('--disable-electron-build', 'Disable electron build')
+  .option('--electron-build-publish <policy>', 'Electron build publish policy, support onTag, onTagOrDraft, always, never')
   .action(async (command: string, options: CliOptions) => {
     const logger = createLogger()
     if (!command) {
@@ -37,6 +39,7 @@ cli
         filter: options.filter?.split(','),
         only: options.only?.split(','),
         disableElectronBuild: options.disableElectronBuild,
+        electronBuildPublish: options.electronBuildPublish as any,
       })
     }
     catch (e) {

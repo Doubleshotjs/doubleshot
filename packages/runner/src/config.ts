@@ -8,6 +8,8 @@ import { CONFIG_FILE, TAG } from './constants'
 import { createLogger } from './log'
 import { normalizePath } from './utils'
 
+export type ElectronPublishPolicy = 'onTag' | 'onTagOrDraft' | 'always' | 'never'
+
 export type DoubleShotRunnerConfigExport = DoubleShotRunnerConfig | Promise<DoubleShotRunnerConfig>
 
 export interface CommandHook {
@@ -77,6 +79,10 @@ export interface ElectronBuildConfig {
    * electron-builder config or electron-builder config file path
    */
   config?: string | ElectronBuilderConfiguration
+  /**
+   * Publish Policy
+   */
+  publishPolicy?: ElectronPublishPolicy
 }
 
 export interface DoubleShotRunnerConfig {
@@ -104,6 +110,10 @@ export interface InlineConfig extends Pick<DoubleShotRunnerConfig, 'root' | 'fil
    * @default false
    */
   disableElectronBuild?: boolean
+  /**
+   * Electron build publish policy
+   */
+  electronBuildPublish?: ElectronPublishPolicy
 }
 
 export type ResolvedConfig = Readonly<{
@@ -166,6 +176,7 @@ export async function resolveConfig(inlineConfig: InlineConfig): Promise<Resolve
       electronBuild: {
         ...resolvedElectronBuildConfig,
         disabled: inlineConfig.disableElectronBuild || resolvedElectronBuildConfig.disabled,
+        publishPolicy: inlineConfig.electronBuildPublish || resolvedElectronBuildConfig.publishPolicy,
       },
     }
   }
