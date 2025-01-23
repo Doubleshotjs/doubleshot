@@ -22,20 +22,20 @@
   "devDependencies": {
     "@esm2cjs/execa": "6.1.1-cjs.1",
     "@lightwing/eslint-config": "1.0.101",
-    "@nestjs/testing": "10.4.15",
+    "@nestjs/testing": "11.0.4",
     "@swc/core": "1.10.9",
     "@types/fs-extra": "11.0.4",
     "@types/node": "22.10.9",
     "conventional-changelog-cli": "5.0.0",
     "eslint": "9.18.0",
     "fs-extra": "11.3.0",
-    "lint-staged": "15.4.1",
+    "lint-staged": "15.4.2",
     "mono-release": "2.9.24",
     "rimraf": "6.0.1",
     "simple-git-hooks": "2.11.1",
     "tsup": "8.3.5",
     "typescript": "5.7.3",
-    "vitest": "3.0.3"
+    "vitest": "3.0.4"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

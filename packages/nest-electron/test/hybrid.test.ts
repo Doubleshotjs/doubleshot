@@ -107,4 +107,4 @@ describe('doubleshot Nest Electron Module: Hybrid Application', async () => {
       expect(logs).toContain('Node exiting...')
     })
   })
-}, { timeout: 60 * 1000 })
+}, 60 * 1000)

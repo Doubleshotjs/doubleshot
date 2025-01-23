@@ -69,5 +69,16 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
   }
 
   close(): any {
+    // do nothing, just for the abstract method
+  }
+
+  // eslint-disable-next-line ts/no-unsafe-function-type
+  on(_: string, __: Function): any {
+    // do nothing, just for the abstract method
+  }
+
+  unwrap<T>(): T {
+    // do nothing, just for the abstract method
+    return null
   }
 }
