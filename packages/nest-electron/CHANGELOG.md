@@ -1,3 +1,17 @@
+## [0.2.6](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.5...nest-electron@0.2.6) (2025-01-25)
+
+
+### Bug Fixes
+
+* **nest-electron:** test tsup build ([a4fe2ff](https://github.com/archergu/doubleshot/commit/a4fe2ff0cdf1d3a08f9a0953c718948b1a474552))
+
+
+### Features
+
+* **builder:** extract path when the executable file is dynamically imported ([b916657](https://github.com/archergu/doubleshot/commit/b9166574b16933f3d8ceaf5c3d334d843bc555af))
+
+
+
 ## [0.2.5](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.4...nest-electron@0.2.5) (2023-11-09)
 
 
