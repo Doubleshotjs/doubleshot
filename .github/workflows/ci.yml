@@ -51,11 +51,11 @@ jobs:
             ${{ github.workspace }}/packages/builder/test/mock/node_modules
             ${{ github.workspace }}/packages/plugin-vite/test/mock/node_modules
             ${{ github.workspace }}/packages/runner/test/mock/backend/node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-test-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-${{matrix.architecture}}-${{ matrix.node-version }}-test-${{ env.cache-name }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-test-${{ env.cache-name }}-
-            ${{ runner.os }}-${{ matrix.node-version }}-test-
-            ${{ runner.os }}-
+            ${{ runner.os }}-${{matrix.architecture}}-${{ matrix.node-version }}-test-${{ env.cache-name }}-
+            ${{ runner.os }}-${{matrix.architecture}}-${{ matrix.node-version }}-test-
+            ${{ runner.os }}-${{matrix.architecture}}-
 
       - name: Install pnpm
         run: npm i -g pnpm
