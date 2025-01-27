@@ -1,7 +1,8 @@
+import type { IpcContext } from '../../../dist'
 import { Controller } from '@nestjs/common'
 import { Ctx, Payload } from '@nestjs/microservices'
 import { app, BrowserWindow } from 'electron'
-import { type IpcContext, IpcHandle, IpcOn, Window } from '../../../dist'
+import { IpcHandle, IpcOn, Window } from '../../../dist'
 
 @Controller()
 export class AppController {
