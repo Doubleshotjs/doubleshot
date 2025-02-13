@@ -5,5 +5,10 @@
   "main": "dist/main.js",
   "devDependencies": {
     "electron": "^34.2.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron"
+    ]
   }
 }
