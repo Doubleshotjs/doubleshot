@@ -48,7 +48,7 @@
     }
   },
   "dependencies": {
-    "@swc/core": "^1.10.16",
+    "@swc/core": "^1.10.18",
     "bundle-require": "^5.1.0",
     "cac": "^6.7.14",
     "check-package-exists": "^1.1.6",
