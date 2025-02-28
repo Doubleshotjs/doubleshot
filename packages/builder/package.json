@@ -48,7 +48,7 @@
     }
   },
   "dependencies": {
-    "@swc/core": "^1.10.18",
+    "@swc/core": "^1.11.4",
     "bundle-require": "^5.1.0",
     "cac": "^6.7.14",
     "check-package-exists": "^1.1.6",
@@ -56,12 +56,12 @@
     "esbuild": "^0.25.0",
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0",
-    "tsup": "^8.3.6",
+    "tsup": "^8.4.0",
     "wait-on": "^8.0.2"
   },
   "devDependencies": {
     "@types/wait-on": "5.3.4",
-    "electron": "34.2.0",
+    "electron": "34.3.0",
     "electron-builder": "25.1.8"
   }
 }
