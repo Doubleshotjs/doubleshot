@@ -1,3 +1,12 @@
+## [0.0.14](https://github.com/archergu/doubleshot/compare/builder@0.0.13...builder@0.0.14) (2025-02-28)
+
+
+### Bug Fixes
+
+* pnpm approve builds in builder test ([7bc2927](https://github.com/archergu/doubleshot/commit/7bc29274e5fa2ff11b45f03113dc65447263b779))
+
+
+
 ## [0.0.13](https://github.com/archergu/doubleshot/compare/builder@0.0.12...builder@0.0.13) (2024-12-23)
 
 
