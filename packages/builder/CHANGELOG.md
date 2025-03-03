@@ -1,3 +1,7 @@
+## [0.0.14-fix](https://github.com/archergu/doubleshot/compare/builder@0.0.14...builder@0.0.14-fix) (2025-03-03)
+
+
+
 ## [0.0.14](https://github.com/archergu/doubleshot/compare/builder@0.0.13...builder@0.0.14) (2025-02-28)
 
 
