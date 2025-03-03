@@ -22,10 +22,10 @@
   "devDependencies": {
     "@esm2cjs/execa": "6.1.1-cjs.1",
     "@lightwing/eslint-config": "1.0.106",
-    "@nestjs/testing": "11.0.10",
-    "@swc/core": "1.11.4",
+    "@nestjs/testing": "11.0.11",
+    "@swc/core": "1.11.5",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "22.13.5",
+    "@types/node": "22.13.8",
     "conventional-changelog-cli": "5.0.0",
     "eslint": "9.21.0",
     "fs-extra": "11.3.0",
@@ -34,7 +34,7 @@
     "rimraf": "6.0.1",
     "simple-git-hooks": "2.11.1",
     "tsup": "8.4.0",
-    "typescript": "5.7.3",
+    "typescript": "5.8.2",
     "vitest": "3.0.7"
   },
   "pnpm": {
