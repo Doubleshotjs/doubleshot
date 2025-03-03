@@ -28,7 +28,7 @@ jobs:
           # https://stackoverflow.com/questions/9532654/expression-after-last-specific-character
           pkgName=${GITHUB_REF_NAME%@*}
 
-          echo "::set-output name=pkgName::$pkgName"
+          echo "pkgName=$pkgName" >> $GITHUB_OUTPUT
 
       - name: Create Release for Tag
         id: release_tag
