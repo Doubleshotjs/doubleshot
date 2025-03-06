@@ -44,7 +44,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
   private applyHandler(handler: MessageHandler, channel: string, opts: IpcOptions = {}) {
     return async (...args) => {
       try {
-        const { noLog, devOnly } = opts
+        const { noLog, devOnly, workWhenTrue } = opts
 
         // In electron, devOnly means the message is only available in development mode
         if (isElectron && devOnly) {
@@ -53,6 +53,11 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
           if (app.isPackaged) {
             throw new Error(`[IPC] Process message ${channel} is only available in development mode`)
           }
+        }
+
+        // workWhenTrue is a condition to control this channel is available or not
+        if (workWhenTrue === false) {
+          throw new Error(`[IPC] Process message ${channel} is not available`)
         }
 
         if (!noLog) {

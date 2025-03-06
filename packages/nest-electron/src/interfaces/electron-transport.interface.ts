@@ -13,4 +13,8 @@ export interface IpcOptions {
    * only can be called in development mode. Controlled by electron app.isPackaged (so it's only worked in electron)
    */
   devOnly?: boolean
+  /**
+   * Only work when the condition is true
+   */
+  workWhenTrue?: boolean
 }

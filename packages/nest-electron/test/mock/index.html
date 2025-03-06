@@ -21,6 +21,8 @@
         printOtherLog,
         invoke,
         returnObservable,
+        notAvailable,
+        available,
       } = window.electron
 
       const test = async () => {
@@ -41,6 +43,14 @@
         } catch (error) {
           await printLog(error.message)
         }
+
+        try {
+          await notAvailable("Can you see me?")
+        } catch (error) {
+          await printLog(error.message)
+        }
+
+        await available("Yes, I'm here")
 
         // test ipc channel with Controller prefix
         result = await sendMsg('send message to backend')

@@ -92,4 +92,13 @@ describe('doubleshot Nest Electron Module', () => {
     expect(logs).not.toContain('[IPC] Process event no-log-msg')
     expect(logs).toContain('Get no log msg: Go to the sea, if you would fish well')
   })
+
+  it('should not work if workWhenTrue is false', () => {
+    expect(logs).not.toContain('Can you see me?')
+    expect(logs).toContain('is not available')
+  })
+
+  it('should work if workWhenTrue is true', () => {
+    expect(logs).toContain('Yes, I\'m here')
+  })
 })

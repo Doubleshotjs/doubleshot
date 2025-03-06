@@ -40,6 +40,16 @@ export class AppController {
     console.log(`Get no log msg: ${data}`)
   }
 
+  @IpcOn('not-available', { workWhenTrue: false })
+  notAvailable(@Payload() data) {
+    console.log(`Get not available: ${data}`)
+  }
+
+  @IpcOn('available', { workWhenTrue: true })
+  available(@Payload() data) {
+    console.log(`Get available: ${data}`)
+  }
+
   @IpcOn('multi-params')
   sendMultiParams(@Payload() [param1, param2]) {
     console.log(`Get param1: ${param1}`)
