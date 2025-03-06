@@ -5,5 +5,12 @@ export interface IpcContext {
 }
 
 export interface IpcOptions {
+  /**
+   * not log the message
+   */
   noLog?: boolean
+  /**
+   * only can be called in development mode. Controlled by electron app.isPackaged (so it's only worked in electron)
+   */
+  devOnly?: boolean
 }
