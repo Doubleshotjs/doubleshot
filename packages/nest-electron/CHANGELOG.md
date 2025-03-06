@@ -1,3 +1,13 @@
+## [0.2.8](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.7...nest-electron@0.2.8) (2025-03-06)
+
+
+### Features
+
+* **nest-electron:** add devOnly option ([0c3f97e](https://github.com/archergu/doubleshot/commit/0c3f97e210ab9c62ba4bedc52a0aed075df16405))
+* **nest-electron:** add workWhenTrue option ([a3d59be](https://github.com/archergu/doubleshot/commit/a3d59befe12a5eb0d2034ac226d15f4dd08b1456))
+
+
+
 ## [0.2.7](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.6...nest-electron@0.2.7) (2025-02-28)
 
 
