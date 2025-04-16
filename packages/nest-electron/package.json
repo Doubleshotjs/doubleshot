@@ -34,8 +34,8 @@
     "rxjs": ">=7.0.0"
   },
   "devDependencies": {
-    "@nestjs/common": "11.0.19",
-    "@nestjs/core": "11.0.19",
+    "@nestjs/common": "11.0.20",
+    "@nestjs/core": "11.0.20",
     "@nestjs/microservices": "^11.0.11",
     "@nestjs/platform-express": "^11.0.11",
     "axios": "^1.8.2",
