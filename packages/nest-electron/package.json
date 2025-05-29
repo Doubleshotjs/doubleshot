@@ -39,7 +39,7 @@
     "@nestjs/microservices": "^11.0.11",
     "@nestjs/platform-express": "^11.0.11",
     "axios": "^1.8.2",
-    "electron": "36.3.1",
+    "electron": "36.3.2",
     "reflect-metadata": "0.2.2"
   }
 }
