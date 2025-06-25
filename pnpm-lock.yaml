@@ -61,7 +61,7 @@ importers:
     dependencies:
       bundle-require:
         specifier: ^5.1.0
-        version: 5.1.0(esbuild@0.25.5)
+        version: 5.1.0(esbuild@0.25.1)
       cac:
         specifier: ^6.7.14
         version: 6.7.14
@@ -88,8 +88,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4
       electron:
-        specifier: 36.5.0
-        version: 36.5.0
+        specifier: 37.0.0
+        version: 37.0.0
       electron-builder:
         specifier: 26.0.12
         version: 26.0.12(electron-builder-squirrel-windows@24.13.3)
@@ -116,8 +116,8 @@ importers:
         specifier: ^1.8.2
         version: 1.9.0
       electron:
-        specifier: 36.5.0
-        version: 36.5.0
+        specifier: 37.0.0
+        version: 37.0.0
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2
@@ -1387,9 +1387,6 @@ packages:
   '@types/node@22.15.23':
     resolution: {integrity: sha512-7Ec1zaFPF4RJ0eXu1YT/xgiebqwqoJz8rYPDi/O2BcZ++Wpt0Kq9cl0eg6NN6bYbPnR67ZLo7St5Q3UK0SnARw==}
 
-  '@types/node@22.15.32':
-    resolution: {integrity: sha512-3jigKqgSjsH6gYZv2nEsqdXfZqIFGAV36XYYjf9KGZ3PSG+IhLecqPnI310RvjutyMwifE2hhhNEklOUrvx/wA==}
-
   '@types/node@22.15.33':
     resolution: {integrity: sha512-wzoocdnnpSxZ+6CjW4ADCK1jVmd1S/J3ArNWfn8FDDQtRm8dkDg7TA+mvek2wNrfCgwuZxqEOiB9B1XCJ6+dbw==}
 
@@ -2263,8 +2260,8 @@ packages:
   electron-to-chromium@1.5.102:
     resolution: {integrity: sha512-eHhqaja8tE/FNpIiBrvBjFV/SSKpyWHLvxuR9dPTdo+3V9ppdLmFB7ZZQ98qNovcngPLYIz0oOBF9P0FfZef5Q==}
 
-  electron@36.5.0:
-    resolution: {integrity: sha512-ouVtHbHDFsRBHPGx9G6RDm4ccPaSCmrrR8tbUGZuqbJhqIClVBkVMz94Spjihag2Zo1eHtYD+KevALrc/94g1g==}
+  electron@37.0.0:
+    resolution: {integrity: sha512-QhdtwF7Hq1qfnUXigYp1+bTGuLYTmYTir5KnrMXxWJoWfNhURRU2EYuTktBHoWT5mtv/GmmRjGEiR3IS2p9SSA==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -2283,9 +2280,6 @@ packages:
 
   encoding@0.1.13:
     resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
-
-  end-of-stream@1.4.4:
-    resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
 
   end-of-stream@1.4.5:
     resolution: {integrity: sha512-ooEGc6HP26xXq/N+GCGOT0JKCLDGrq2bQUZrQ7gyrJiZANJ/8YDTxTpQBXGMn+WbIQXNVpyWymm7KYVICQnyOg==}
@@ -5882,10 +5876,6 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/node@22.15.32':
-    dependencies:
-      undici-types: 6.21.0
-
   '@types/node@22.15.33':
     dependencies:
       undici-types: 6.21.0
@@ -7015,10 +7005,10 @@ snapshots:
 
   electron-to-chromium@1.5.102: {}
 
-  electron@36.5.0:
+  electron@37.0.0:
     dependencies:
       '@electron/get': 2.0.2
-      '@types/node': 22.15.32
+      '@types/node': 22.15.33
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -7035,10 +7025,6 @@ snapshots:
     dependencies:
       iconv-lite: 0.6.3
     optional: true
-
-  end-of-stream@1.4.4:
-    dependencies:
-      once: 1.4.0
 
   end-of-stream@1.4.5:
     dependencies:
@@ -9090,7 +9076,7 @@ snapshots:
 
   pump@3.0.0:
     dependencies:
-      end-of-stream: 1.4.4
+      end-of-stream: 1.4.5
       once: 1.4.0
 
   punycode@2.3.1: {}
