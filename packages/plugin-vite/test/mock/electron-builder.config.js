@@ -9,15 +9,13 @@ const config = {
   publish: null,
   npmRebuild: false,
   buildDependenciesFromSource: true,
-  files: [
-    'dist/main/**/*',
-    'dist/renderer/**/*',
-  ],
+  files: ['dist/main/**/*', 'dist/renderer/**/*'],
   win: {
     target: 'dir',
   },
   mac: {
     target: 'dir',
+    identity: null,
   },
   linux: {
     target: 'dir',

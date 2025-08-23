@@ -11,16 +11,13 @@ const config = {
   directories: {
     output: resolve('dist/electron'),
   },
-  files: [
-    'dist/main.js',
-    'package.json',
-    'index.html',
-  ],
+  files: ['dist/main.js', 'package.json', 'index.html'],
   win: {
     target: 'dir',
   },
   mac: {
     target: 'dir',
+    identity: null,
   },
   linux: {
     target: 'dir',

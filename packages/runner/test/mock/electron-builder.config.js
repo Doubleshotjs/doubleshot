@@ -27,6 +27,7 @@ const config = {
   },
   mac: {
     target: 'dir',
+    identity: null,
   },
   linux: {
     target: 'dir',
