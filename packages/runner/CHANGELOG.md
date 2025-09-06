@@ -1,3 +1,12 @@
+## [0.0.15](https://github.com/archergu/doubleshot/compare/runner@0.0.14...runner@0.0.15) (2025-09-06)
+
+
+### Features
+
+* use killOthersOn ([b12278a](https://github.com/archergu/doubleshot/commit/b12278a5fbd0ddd93652304e5486682f7e85320b))
+
+
+
 ## [0.0.14](https://github.com/archergu/doubleshot/compare/runner@0.0.13...runner@0.0.14) (2025-02-28)
 
 
