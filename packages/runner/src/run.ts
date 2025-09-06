@@ -258,7 +258,7 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
   }
 
   const { result, commands } = concurrently(commandsList, {
-    killOthers: ['failure'],
+    killOthersOn: ['failure'],
   })
 
   const commandsWhoCanKillOthers = commandsList.filter(c => c.killOthers).map(c => ({
