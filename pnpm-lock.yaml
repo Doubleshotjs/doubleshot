@@ -81,8 +81,8 @@ importers:
         specifier: ^8.5.0
         version: 8.5.0(@swc/core@1.13.5)(jiti@2.5.1)(postcss@8.5.6)(tsx@4.19.2)(typescript@5.9.2)(yaml@2.8.1)
       wait-on:
-        specifier: ^8.0.4
-        version: 8.0.5
+        specifier: ^9.0.0
+        version: 9.0.0
     devDependencies:
       '@types/wait-on':
         specifier: 5.3.4
@@ -4748,9 +4748,9 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
 
-  wait-on@8.0.5:
-    resolution: {integrity: sha512-J3WlS0txVHkhLRb2FsmRg3dkMTCV1+M6Xra3Ho7HzZDHpE7DCOnoSoCJsZotrmW3uRMhvIJGSKUKrh/MeF4iag==}
-    engines: {node: '>=12.0.0'}
+  wait-on@9.0.0:
+    resolution: {integrity: sha512-bKOl7CJ4zGhKW4qvoasLM5t2NtLUcc1Ar2N6XeYCQpW0w+DMdLC0YH1JUH3bTWDCsHblapHMzhtFmmPc+ITNJw==}
+    engines: {node: '>=20.0.0'}
     hasBin: true
 
   wcwidth@1.0.1:
@@ -10015,7 +10015,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  wait-on@8.0.5:
+  wait-on@9.0.0:
     dependencies:
       axios: 1.12.2
       joi: 18.0.1
