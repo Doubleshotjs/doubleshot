@@ -30,7 +30,7 @@
     "eslint": "9.35.0",
     "fs-extra": "11.3.2",
     "lint-staged": "16.1.6",
-    "mono-release": "2.9.41",
+    "mono-release": "2.9.42",
     "rimraf": "6.0.1",
     "simple-git-hooks": "2.13.1",
     "tsup": "8.5.0",
