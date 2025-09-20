@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@esm2cjs/execa": "6.1.1-cjs.1",
-    "@lightwing/eslint-config": "1.0.129",
+    "@lightwing/eslint-config": "1.0.130",
     "@nestjs/testing": "11.1.6",
     "@swc/core": "1.13.5",
     "@types/fs-extra": "11.0.4",
