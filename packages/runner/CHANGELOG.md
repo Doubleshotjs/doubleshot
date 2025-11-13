@@ -1,3 +1,13 @@
+## [0.0.16](https://github.com/archergu/doubleshot/compare/runner@0.0.15...runner@0.0.16) (2025-11-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency esbuild to ^0.26.0 ([#1682](https://github.com/archergu/doubleshot/issues/1682)) ([a42ede1](https://github.com/archergu/doubleshot/commit/a42ede1b0eee9d8b27113c746282207586ea93b8))
+* **deps:** update dependency esbuild to ^0.27.0 ([#1683](https://github.com/archergu/doubleshot/issues/1683)) ([9da7c9e](https://github.com/archergu/doubleshot/commit/9da7c9e169094b286d18d28e80715810eba33dbe))
+
+
+
 ## [0.0.15](https://github.com/archergu/doubleshot/compare/runner@0.0.14...runner@0.0.15) (2025-09-06)
 
 
