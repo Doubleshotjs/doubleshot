@@ -1,7 +1,7 @@
 {
   "name": "doubleshot-monorepo",
   "private": true,
-  "packageManager": "pnpm@10.21.0",
+  "packageManager": "pnpm@10.22.0",
   "description": "A solution to save effort",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "keywords": [
@@ -35,7 +35,7 @@
     "simple-git-hooks": "2.13.1",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "vitest": "3.2.4"
+    "vitest": "4.0.8"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
