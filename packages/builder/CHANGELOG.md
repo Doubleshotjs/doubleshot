@@ -1,3 +1,12 @@
+## [0.0.16](https://github.com/archergu/doubleshot/compare/builder@0.0.15...builder@0.0.16) (2025-11-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency wait-on to v9 ([#1605](https://github.com/archergu/doubleshot/issues/1605)) ([7d0a510](https://github.com/archergu/doubleshot/commit/7d0a5104c7bb82d69bad72014bbf66d6737fed3f))
+
+
+
 ## [0.0.15](https://github.com/archergu/doubleshot/compare/builder@0.0.14-fix...builder@0.0.15) (2025-09-06)
 
 
