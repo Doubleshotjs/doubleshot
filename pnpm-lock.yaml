@@ -67,7 +67,7 @@ importers:
         version: 6.7.14
       check-package-exists:
         specifier: ^1.1.6
-        version: 1.1.6
+        version: 1.2.0
       colorette:
         specifier: ^2.0.20
         version: 2.0.20
@@ -2050,10 +2050,6 @@ packages:
   character-entities@2.0.2:
     resolution: {integrity: sha512-shx7oQ0Awen/BRIdkjkvz54PnEEI/EjwXDSIZp86/KKdbafHh1Df/RYGBhn4hbe2+uKC9FnT5UCEdyPz3ai9hQ==}
 
-  check-package-exists@1.1.6:
-    resolution: {integrity: sha512-81B3K0T5VEa8KvvvtvPgVs1VRwtjH2mY6qjqdc6gWKLcXkTTHdBoAXTx7ZD+44CVx0he/jZvdgEWN8OL7NEAkQ==}
-    engines: {node: '>=14'}
-
   check-package-exists@1.2.0:
     resolution: {integrity: sha512-htpmzxRkc2WY0MoGTx+dncL56NPG0HrmvagkvlnS4VlKvKRxkHcDW7M7AhxNuSizKl6VRXZGUwZaHDrdT6jRaA==}
     engines: {node: '>=14'}
@@ -2959,6 +2955,10 @@ packages:
     resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
     engines: {node: '>= 6'}
 
+  form-data@4.0.5:
+    resolution: {integrity: sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==}
+    engines: {node: '>= 6'}
+
   format@0.2.2:
     resolution: {integrity: sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww==}
     engines: {node: '>=0.4.x'}
@@ -3062,6 +3062,10 @@ packages:
 
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+    hasBin: true
+
+  glob@10.5.0:
+    resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
     hasBin: true
 
   glob@13.0.0:
@@ -3267,10 +3271,6 @@ packages:
   is-ci@3.0.1:
     resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
     hasBin: true
-
-  is-core-module@2.16.0:
-    resolution: {integrity: sha512-urTSINYfAYgcbLb0yDQ6egFm6h3Mo1DcF9EkyXSRjjzdHbsulg01qhwWuXdOoUBuTkbQ80KDboXa0vFJ+BDH+g==}
-    engines: {node: '>= 0.4'}
 
   is-core-module@2.16.1:
     resolution: {integrity: sha512-UfoeMA6fIJ8wTYFEUjelnaGI67v6+N7qXJEvQuIGa99l4xsCruSYOVSQ0uPANn4dAzm8lkYPaKLrrijLq7x23w==}
@@ -4223,11 +4223,6 @@ packages:
 
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
-
-  resolve@1.22.10:
-    resolution: {integrity: sha512-NPRy+/ncIMeDlTAsuqwKIiferiawhefFJtkNSW0qZJEqMEb+qBt/77B/jGeeek+F0uOeN05CDa6HXbbIgtVX4w==}
-    engines: {node: '>= 0.4'}
-    hasBin: true
 
   resolve@1.22.11:
     resolution: {integrity: sha512-RfqAvLnMl313r7c9oclB1HhUEAezcpLjz95wFH4LVuhk9JF/r22qmVP9AMmOU4vMX7Q8pN8jwNg/CSpdFnMjTQ==}
@@ -6575,7 +6570,7 @@ snapshots:
       ejs: 3.1.10
       electron-builder-squirrel-windows: 24.13.3(dmg-builder@26.0.12)
       electron-publish: 24.13.1
-      form-data: 4.0.4
+      form-data: 4.0.5
       fs-extra: 10.1.0
       hosted-git-info: 4.1.0
       is-ci: 3.0.1
@@ -6918,12 +6913,6 @@ snapshots:
 
   character-entities@2.0.2: {}
 
-  check-package-exists@1.1.6:
-    dependencies:
-      '@esm2cjs/execa': 6.1.1-cjs.1
-      global-dirs: 4.0.0
-      resolve: 1.22.10
-
   check-package-exists@1.2.0:
     dependencies:
       '@esm2cjs/execa': 6.1.1-cjs.1
@@ -7047,7 +7036,7 @@ snapshots:
 
   config-file-ts@0.2.6:
     dependencies:
-      glob: 10.4.5
+      glob: 10.5.0
       typescript: 5.9.3
 
   config-file-ts@0.2.8-rc1:
@@ -8108,6 +8097,14 @@ snapshots:
       hasown: 2.0.2
       mime-types: 2.1.35
 
+  form-data@4.0.5:
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      es-set-tostringtag: 2.1.0
+      hasown: 2.0.2
+      mime-types: 2.1.35
+
   format@0.2.2: {}
 
   forwarded@0.2.0: {}
@@ -8215,6 +8212,15 @@ snapshots:
       is-glob: 4.0.3
 
   glob@10.4.5:
+    dependencies:
+      foreground-child: 3.3.1
+      jackspeak: 3.4.3
+      minimatch: 9.0.5
+      minipass: 7.1.2
+      package-json-from-dist: 1.0.1
+      path-scurry: 1.11.1
+
+  glob@10.5.0:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 3.4.3
@@ -8440,10 +8446,6 @@ snapshots:
   is-ci@3.0.1:
     dependencies:
       ci-info: 3.8.0
-
-  is-core-module@2.16.0:
-    dependencies:
-      hasown: 2.0.2
 
   is-core-module@2.16.1:
     dependencies:
@@ -9197,7 +9199,7 @@ snapshots:
   normalize-package-data@6.0.0:
     dependencies:
       hosted-git-info: 7.0.0
-      is-core-module: 2.16.0
+      is-core-module: 2.16.1
       semver: 7.7.3
       validate-npm-package-license: 3.0.4
 
@@ -9525,12 +9527,6 @@ snapshots:
   resolve-from@5.0.0: {}
 
   resolve-pkg-maps@1.0.0: {}
-
-  resolve@1.22.10:
-    dependencies:
-      is-core-module: 2.16.0
-      path-parse: 1.0.7
-      supports-preserve-symlinks-flag: 1.0.0
 
   resolve@1.22.11:
     dependencies:
