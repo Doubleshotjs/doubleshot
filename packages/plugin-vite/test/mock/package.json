@@ -8,9 +8,9 @@
     "build": "vite build"
   },
   "devDependencies": {
-    "electron": "^39.1.2",
+    "electron": "^39.2.3",
     "electron-builder": "26.0.12",
-    "vite": "^7.2.2"
+    "vite": "^7.2.4"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

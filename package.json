@@ -41,8 +41,10 @@
     "onlyBuiltDependencies": [
       "@nestjs/core",
       "@swc/core",
+      "check-package-exists",
       "electron",
       "esbuild",
+      "mono-release",
       "simple-git-hooks"
     ]
   },
