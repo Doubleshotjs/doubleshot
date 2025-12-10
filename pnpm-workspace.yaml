@@ -1,3 +1,16 @@
+trustPolicy: off
+
+shellEmulator: true
+
+catalogMode: prefer
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@swc/core'
+  - check-package-exists
+  - electron
+  - esbuild
+  - mono-release
+  - simple-git-hooks
 packages:
   - 'packages/*'
   - '!**/test/**'

@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@esm2cjs/execa": "6.1.1-cjs.1",
-    "@lightwing/eslint-config": "1.0.135",
+    "@lightwing/eslint-config": "1.0.136",
     "@nestjs/testing": "11.1.9",
     "@swc/core": "1.15.3",
     "@types/fs-extra": "11.0.4",
@@ -36,17 +36,6 @@
     "tsup": "8.5.1",
     "typescript": "5.9.3",
     "vitest": "4.0.15"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@nestjs/core",
-      "@swc/core",
-      "check-package-exists",
-      "electron",
-      "esbuild",
-      "mono-release",
-      "simple-git-hooks"
-    ]
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

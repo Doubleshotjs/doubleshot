@@ -26,9 +26,7 @@ export default lightwing(
     },
   },
   {
-    files: [
-      'packages/nest-electron/**/*.{ts,js}',
-    ],
+    files: ['packages/nest-electron/**/*.{ts,js}'],
     rules: {
       'ts/no-var-requires': 'off',
       'no-prototype-builtins': 'off',
@@ -36,19 +34,29 @@ export default lightwing(
     },
   },
   {
-    files: [
-      '.github/workflows/**/*.{yml,yaml}',
-    ],
+    files: ['.github/workflows/**/*.{yml,yaml}'],
     rules: {
       'yaml/no-empty-mapping-value': 'off',
     },
   },
   {
-    files: [
-      'packages/**/test/**/*.ts',
-    ],
+    files: ['packages/**/test/**/*.ts'],
     rules: {
       'antfu/no-import-dist': 'off',
+    },
+  },
+  {
+    files: ['packages/**/test/**/mock/**/package.json'],
+    rules: {
+      'pnpm/json-enforce-catalog': 'off',
+      'pnpm/json-valid-catalog': 'off',
+      'pnpm/json-prefer-workspace-settings': 'off',
+    },
+  },
+  {
+    files: ['pnpm-workspace.yaml'],
+    rules: {
+      'pnpm/yaml-enforce-settings': 'off',
     },
   },
 )
