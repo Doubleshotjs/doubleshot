@@ -28,7 +28,7 @@
     "@types/node": "24.10.4",
     "conventional-changelog-cli": "5.0.0",
     "eslint": "9.39.2",
-    "fs-extra": "11.3.2",
+    "fs-extra": "11.3.3",
     "lint-staged": "16.2.7",
     "mono-release": "2.10.1",
     "rimraf": "6.1.2",
