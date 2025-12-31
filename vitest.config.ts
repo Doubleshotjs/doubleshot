@@ -1,11 +1,12 @@
-import type { TestUserConfig } from 'vitest/node'
+import { configDefaults, defineConfig } from 'vitest/config'
 
-const config: { test: TestUserConfig } = {
-  // 禁止并行测试
+export default defineConfig({
   test: {
-    testTimeout: 50000,
+    testTimeout: 50 * 1000,
     pool: 'threads',
+    exclude: [
+      ...configDefaults.exclude,
+      '.pnpm-store/**',
+    ],
   },
-}
-
-export default config
+})

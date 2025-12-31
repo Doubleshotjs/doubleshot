@@ -4,7 +4,7 @@
   "private": true,
   "main": "dist/main.js",
   "devDependencies": {
-    "electron": "^39.2.6"
+    "electron": "^39.2.7"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
