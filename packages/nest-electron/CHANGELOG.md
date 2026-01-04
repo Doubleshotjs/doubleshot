@@ -1,12 +1,3 @@
-## [0.2.11](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.10...nest-electron@0.2.11) (2026-01-04)
-
-
-### Features
-
-* **nest-electron:** add deps inject for registerAsync ([e1f9bd6](https://github.com/archergu/doubleshot/commit/e1f9bd67432e61911b362402697c7670dc61e404))
-
-
-
 ## [0.2.10](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.9...nest-electron@0.2.10) (2025-11-13)
 
 
