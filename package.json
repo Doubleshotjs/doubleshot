@@ -10,7 +10,7 @@
     "nestjs"
   ],
   "scripts": {
-    "build": "pnpm -r --filter=./packages/* run build",
+    "build": "pnpm -r --filter='./packages/*' run build",
     "test": "npm run build && npm run test-only",
     "test-only": "vitest run",
     "lint": "eslint .",
