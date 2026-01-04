@@ -101,4 +101,8 @@ describe('doubleshot Nest Electron Module', () => {
   it('should work if workWhenTrue is true', () => {
     expect(logs).toContain('Yes, I\'m here')
   })
+
+  it('should support dependency injection in useFactory', () => {
+    expect(logs).toContain('ConfigService injected successfully')
+  })
 })

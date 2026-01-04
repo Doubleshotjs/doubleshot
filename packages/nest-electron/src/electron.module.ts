@@ -112,6 +112,7 @@ export class ElectronModule {
 
     return {
       module: ElectronModule,
+      imports: options.imports || [],
       providers,
       exports: exportNames,
       global: options.isGlobal,
