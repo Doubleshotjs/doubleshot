@@ -54,6 +54,6 @@
   },
   "devDependencies": {
     "@types/ps-tree": "^1.1.6",
-    "electron-builder": "26.4.1"
+    "electron-builder": "26.7.0"
   }
 }
