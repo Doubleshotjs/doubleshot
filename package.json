@@ -1,7 +1,7 @@
 {
   "name": "doubleshot-monorepo",
   "private": true,
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.2",
   "description": "A solution to save effort",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "keywords": [
@@ -21,11 +21,11 @@
   },
   "devDependencies": {
     "@esm2cjs/execa": "6.1.1-cjs.1",
-    "@lightwing/eslint-config": "1.0.139",
-    "@nestjs/testing": "11.1.11",
-    "@swc/core": "1.15.8",
+    "@lightwing/eslint-config": "1.0.143",
+    "@nestjs/testing": "11.1.13",
+    "@swc/core": "1.15.11",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "25.0.3",
+    "@types/node": "25.2.0",
     "conventional-changelog-cli": "5.0.0",
     "eslint": "9.39.2",
     "fs-extra": "11.3.3",
@@ -35,7 +35,7 @@
     "simple-git-hooks": "2.13.1",
     "tsup": "8.5.1",
     "typescript": "5.9.3",
-    "vitest": "4.0.16"
+    "vitest": "4.0.18"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
