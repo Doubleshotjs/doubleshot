@@ -24,7 +24,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install pnpm
-        run: npm i -g pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Install deps
         run: pnpm i --no-frozen-lockfile

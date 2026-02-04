@@ -59,7 +59,7 @@ jobs:
             ${{ runner.os }}-${{matrix.architecture}}-
 
       - name: Install pnpm
-        run: npm i -g pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Set pnpm store path
         run: pnpm config set store-dir .pnpm-store
