@@ -4,12 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-catalogs:
-  default:
-    axios:
-      specifier: ^1.13.5
-      version: 1.13.5
-
 importers:
 
   .:
