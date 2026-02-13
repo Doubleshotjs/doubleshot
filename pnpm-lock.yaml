@@ -4,12 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-catalogs:
-  default:
-    wait-on:
-      specifier: ^9.0.4
-      version: 9.0.4
-
 importers:
 
   .:
@@ -94,8 +88,8 @@ importers:
         specifier: 5.3.4
         version: 5.3.4
       electron:
-        specifier: 40.4.0
-        version: 40.4.0
+        specifier: 40.4.1
+        version: 40.4.1
       electron-builder:
         specifier: 26.7.0
         version: 26.7.0(electron-builder-squirrel-windows@24.13.3)
@@ -122,8 +116,8 @@ importers:
         specifier: ^1.13.4
         version: 1.13.5
       electron:
-        specifier: 40.4.0
-        version: 40.4.0
+        specifier: 40.4.1
+        version: 40.4.1
       reflect-metadata:
         specifier: 0.2.2
         version: 0.2.2
@@ -2624,8 +2618,8 @@ packages:
   electron-to-chromium@1.5.244:
     resolution: {integrity: sha512-OszpBN7xZX4vWMPJwB9illkN/znA8M36GQqQxi6MNy9axWxhOfJyZZJtSLQCpEFLHP2xK33BiWx9aIuIEXVCcw==}
 
-  electron@40.4.0:
-    resolution: {integrity: sha512-31l4V7Ys4oUuXyaN/cCNnyBdDXN9RwOVOG+JhiHCf4zx5tZkHd43PKGY6KLEWpeYCxaphsuGSEjagJLfPqKj8g==}
+  electron@40.4.1:
+    resolution: {integrity: sha512-N1ZXybQZL8kYemO8vAeh9nrk4mSvqlAO8xs0QCHkXIvRnuB/7VGwEehjvQbsU5/f4bmTKpG+2GQERe/zmKpudQ==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -7506,7 +7500,7 @@ snapshots:
 
   electron-to-chromium@1.5.244: {}
 
-  electron@40.4.0:
+  electron@40.4.1:
     dependencies:
       '@electron/get': 2.0.2
       '@types/node': 24.10.4
