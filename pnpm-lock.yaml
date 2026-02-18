@@ -4,15 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-catalogs:
-  default:
-    '@nestjs/microservices':
-      specifier: ^11.1.14
-      version: 11.1.14
-    '@nestjs/platform-express':
-      specifier: ^11.1.14
-      version: 11.1.14
-
 importers:
 
   .:
