@@ -27,7 +27,7 @@
     "@types/fs-extra": "11.0.4",
     "@types/node": "25.3.5",
     "conventional-changelog-cli": "5.0.0",
-    "eslint": "10.0.2",
+    "eslint": "10.0.3",
     "fs-extra": "11.3.4",
     "lint-staged": "16.3.2",
     "mono-release": "2.10.2",
