@@ -1,5 +1,5 @@
 import type { ElectronConfig, InlineConfig } from '@doubleshot/builder'
-import type { PluginOption, ResolvedConfig } from 'vite'
+import type { PluginOption, ResolvedConfig, ViteDevServer } from 'vite'
 import { build, dev } from '@doubleshot/builder'
 
 export { defineConfig } from '@doubleshot/builder'
@@ -21,30 +21,20 @@ export interface VitePluginDoubleshotConfig extends Omit<InlineConfig, 'renderer
   configureForMode: (userConfig: InlineConfig, mode: string) => (void | InlineConfig) | Promise<(void | InlineConfig)>
 }
 
-function useUntil(timeout?: number) {
-  let untilResolve: () => void
-  let untilReject: (error: Error) => void
+function resolveRendererUrl(server: ViteDevServer): string | undefined {
+  const address = server.httpServer?.address()
+  if (!address || typeof address === 'string')
+    return server.resolvedUrls?.local[0] ?? server.resolvedUrls?.network[0]
 
-  const untilPromise = new Promise<void>((resolve, reject) => {
-    untilResolve = resolve
-    untilReject = reject
-  })
-
-  let timer: NodeJS.Timeout
-  if (typeof timeout === 'number' && timeout > 0) {
-    timer = setTimeout(() => {
-      untilReject(new Error('Until timeout'))
-    }, timeout)
-  }
-
-  const done = () => {
-    timer && clearTimeout(timer)
-    untilResolve()
-  }
-
-  const until = () => untilPromise
-
-  return { until, done }
+  const protocol = server.config.server.https ? 'https' : 'http'
+  const base = server.config.base.startsWith('/') ? server.config.base : `/${server.config.base}`
+  const hostOption = server.config.server.host
+  const host = hostOption && hostOption !== true ? String(hostOption) : address.address
+  const normalizedHost = host === '::' || host === '0.0.0.0' ? 'localhost' : host
+  const hostname = normalizedHost.includes(':') && !normalizedHost.startsWith('[')
+    ? `[${normalizedHost}]`
+    : normalizedHost
+  return `${protocol}://${hostname}:${address.port}${base}`
 }
 
 export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotConfig> = {}): PluginOption[] {
@@ -80,18 +70,12 @@ export function VitePluginDoubleshot(userConfig: Partial<VitePluginDoubleshotCon
         if (viteMode !== 'development')
           return
 
-        const { until, done } = useUntil(10 * 1000) // 10s timeout
-        const printUrls = server.printUrls.bind(server)
-        // override printUrls to get rendererUrl
-        server.printUrls = () => {
-          printUrls()
-          if (!userConfig.rendererUrl)
-            userConfig.rendererUrl = server.resolvedUrls!.local[0]
-          done()
-        }
-
-        server?.httpServer?.on('listening', async () => {
-          await until()
+        server?.httpServer?.once('listening', async () => {
+          if (!userConfig.rendererUrl) {
+            userConfig.rendererUrl = resolveRendererUrl(server)
+              ?? server.resolvedUrls?.local[0]
+              ?? server.resolvedUrls?.network[0]
+          }
           await dev(userConfig)
         })
       },
