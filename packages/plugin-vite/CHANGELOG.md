@@ -1,3 +1,12 @@
+## [0.0.21](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.20...plugin-vite@0.0.21) (2026-03-14)
+
+
+### Features
+
+* **plugin-vite:** update dev url resolving ([5826f8e](https://github.com/archergu/doubleshot/commit/5826f8e2f061b43939fd6d5f9cd8023369f8e2bc))
+
+
+
 ## [0.0.20](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.19...plugin-vite@0.0.20) (2025-11-13)
 
 
