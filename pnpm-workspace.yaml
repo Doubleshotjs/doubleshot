@@ -1,6 +1,6 @@
-trustPolicy: off
-
-shellEmulator: true
+packages:
+  - 'packages/*'
+  - '!**/test/**'
 
 catalogMode: prefer
 onlyBuiltDependencies:
@@ -8,9 +8,10 @@ onlyBuiltDependencies:
   - '@swc/core'
   - check-package-exists
   - electron
+  - electron-winstaller
   - esbuild
   - mono-release
   - simple-git-hooks
-packages:
-  - 'packages/*'
-  - '!**/test/**'
+
+shellEmulator: true
+trustPolicy: off
