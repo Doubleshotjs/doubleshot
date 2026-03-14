@@ -1,3 +1,12 @@
+## [0.0.17](https://github.com/archergu/doubleshot/compare/builder@0.0.16...builder@0.0.17) (2026-03-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency cac to v7 ([#1787](https://github.com/archergu/doubleshot/issues/1787)) ([30a2268](https://github.com/archergu/doubleshot/commit/30a22681e868136cc258edfb39eeeba8e9cc5c20))
+
+
+
 ## [0.0.16](https://github.com/archergu/doubleshot/compare/builder@0.0.15...builder@0.0.16) (2025-11-13)
 
 
