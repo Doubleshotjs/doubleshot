@@ -17,7 +17,7 @@
     "builder",
     "electron",
     "nestjs",
-    "esbuild"
+    "rolldown"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

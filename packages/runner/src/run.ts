@@ -6,7 +6,7 @@ import { performance } from 'node:perf_hooks'
 import { checkPackageExists } from 'check-package-exists'
 import { magenta, red, yellow } from 'colorette'
 import concurrently from 'concurrently'
-import { build as esbuildBuild } from 'esbuild'
+import { build as tsdownBuild } from 'tsdown'
 import { resolveConfig } from './config'
 import { TAG } from './constants'
 import { createLogger } from './log'
@@ -19,6 +19,33 @@ interface BeforeRunHooks {
 }
 
 type CommandInfo = Exclude<ConcurrentlyCommandInput, string> & { rId: string, rIndex: number, killOthers?: boolean }
+
+async function compileNodeFileToTemp(filePath: string, cachePath: string, rIndex: number) {
+  const tempDir = path.join(cachePath, `temp-${rIndex}-${Date.now()}`)
+  const tempFile = path.join(tempDir, `${path.parse(filePath).name}.js`)
+
+  fs.mkdirSync(tempDir, { recursive: true })
+
+  await tsdownBuild({
+    entry: [filePath],
+    outDir: tempDir,
+    root: path.dirname(filePath),
+    format: 'cjs',
+    platform: 'node',
+    clean: false,
+    dts: false,
+    fixedExtension: false,
+    unbundle: true,
+  })
+
+  if (!fs.existsSync(tempFile))
+    throw new Error(`Compiled temp file not found: ${tempFile}`)
+
+  return {
+    tempDir,
+    tempFile,
+  }
+}
 
 export async function run(command: string, inlineConfig: InlineConfig = {}) {
   const logger = createLogger()
@@ -208,49 +235,51 @@ export async function run(command: string, inlineConfig: InlineConfig = {}) {
         continue
       }
 
-      // use esbuild to compile file to commonjs format file
-      const tempFile = path.join(cachePath, `temp-${nodeFileHook.rIndex}-${Date.now()}-${path.basename(filePath)}.js`)
-      const esbuildResult = await esbuildBuild({
-        entryPoints: [filePath],
-        outfile: tempFile,
-        format: 'cjs',
-        platform: 'node',
-        bundle: false,
-      })
-      if (esbuildResult.errors.length > 0) {
+      let tempDir: string | undefined
+      let tempFile: string | undefined
+      try {
+        // use tsdown in unbundle mode to transpile the hook into a temporary commonjs file
+        const result = await compileNodeFileToTemp(filePath, cachePath, nodeFileHook.rIndex)
+        tempDir = result.tempDir
+        tempFile = result.tempFile
+      }
+      catch (error) {
+        logger.error(TAG, error)
         logger.error(TAG, `beforeRun hook of node-file "${yellow(nodeFileHook.rIndex)}" compile failed, skipped`)
         continue
       }
 
       // run node file
-      const { result } = concurrently([`node ${tempFile}`], {
-        cwd: hookCwd,
-      })
-
-      // check result
-      let hasError = false
-      let closeEvent: ConcurrentlyCloseEvent[] = []
       try {
-        closeEvent = await result
-      }
-      catch (error) {
-        logger.error(TAG, error)
-        hasError = true
-      }
+        const { result } = concurrently([`node ${tempFile}`], {
+          cwd: hookCwd,
+        })
 
-      // remove temp file first
-      fs.unlinkSync(tempFile)
+        // check result
+        let hasError = false
+        let closeEvent: ConcurrentlyCloseEvent[] = []
+        try {
+          closeEvent = await result
+        }
+        catch (error) {
+          logger.error(TAG, error)
+          hasError = true
+        }
 
-      // check killOthers
-      if (closeEvent.some(c => c.exitCode !== 0) || hasError) {
-        if (item.killOthers) {
-          logger.info(TAG, `Command "${yellow(item.rId)}"(${red('killOthersWhenExit')}) beforeRun hook failed, next commands will not be executed`)
-          logger.info(TAG, `➡️ End ${magenta('beforeRun')} hooks ⬅️\n`)
-          return
+        // check killOthers
+        if (closeEvent.some(c => c.exitCode !== 0) || hasError) {
+          if (item.killOthers) {
+            logger.info(TAG, `Command "${yellow(item.rId)}"(${red('killOthersWhenExit')}) beforeRun hook failed, next commands will not be executed`)
+            logger.info(TAG, `➡️ End ${magenta('beforeRun')} hooks ⬅️\n`)
+            return
+          }
+          else {
+            logger.warn(TAG, `Command "${yellow(item.rId)}" beforeRun hook failed, next commands will still be executed`)
+          }
         }
-        else {
-          logger.warn(TAG, `Command "${yellow(item.rId)}" beforeRun hook failed, next commands will still be executed`)
-        }
+      }
+      finally {
+        tempDir && fs.rmSync(tempDir, { recursive: true, force: true })
       }
     }
 
