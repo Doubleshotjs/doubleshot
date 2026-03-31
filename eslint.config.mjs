@@ -14,6 +14,7 @@ export default lightwing(
     rules: {
       'ts/no-unused-expressions': 'off',
       'e18e/prefer-static-regex': 'off',
+      'e18e/prefer-object-has-own': 'off',
     },
   },
   {
