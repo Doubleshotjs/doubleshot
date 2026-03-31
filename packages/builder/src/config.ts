@@ -1,5 +1,5 @@
 import type { CliOptions as ElectronBuilderCliOptions, Configuration as ElectronBuilderConfiguration } from 'electron-builder'
-import type { Options as _TsupOptions } from 'tsup'
+import type { DepsConfig as _TsdownDepsConfig, UserConfig as _TsdownOptions } from 'tsdown'
 import fs from 'node:fs'
 import path from 'node:path'
 import { bundleRequire } from 'bundle-require'
@@ -35,39 +35,66 @@ export interface ElectronBuildConfig {
   afterBuild?: () => Promise<void>
 }
 
-export type TsupConfig = Omit<_TsupOptions, 'entry' | 'outDir' | 'tsconfig' | 'external' | 'onSuccess'> & {
+export type TsdownConfig = Omit<_TsdownOptions, 'entry' | 'outDir' | 'tsconfig' | 'external' | 'onSuccess'> & {
   onSuccess?: () => Promise<any>
 }
 
-export type UserTsupConfig = Pick<_TsupOptions, 'outDir' | 'tsconfig' | 'external'> & {
+type TsdownExternal = _TsdownDepsConfig['neverBundle']
+type TsdownNoExternal = _TsdownDepsConfig['alwaysBundle']
+
+export interface UserTsdownConfig {
+  outDir?: _TsdownOptions['outDir']
+  tsconfig?: _TsdownOptions['tsconfig']
+  /**
+   * External packages passed to doubleshot.
+   * Internally this is mapped to tsdown's `deps.neverBundle`.
+   */
+  external?: TsdownExternal
+  /**
+   * Packages that should always be bundled.
+   * Internally this is mapped to tsdown's `deps.alwaysBundle`.
+   */
+  noExternal?: TsdownNoExternal
   /**
    * entry file, only support single file
    */
   entry?: string
   /**
-   * tsup config file path, or tsup config object
+   * tsdown config file path, or tsdown config object
    * @note 'entry' will be ignored
    */
-  tsupConfig?: string | TsupConfig
+  tsdownConfig?: string | TsdownConfig
 }
 
-export type PreloadTsupConfig = Pick<_TsupOptions, 'outDir' | 'tsconfig' | 'external'> & {
+export interface PreloadTsdownConfig {
+  outDir?: _TsdownOptions['outDir']
+  tsconfig?: _TsdownOptions['tsconfig']
+  /**
+   * External packages passed to doubleshot.
+   * Internally this is mapped to tsdown's `deps.neverBundle`.
+   */
+  external?: TsdownExternal
+  /**
+   * Packages that should always be bundled.
+   * Internally this is mapped to tsdown's `deps.alwaysBundle`.
+   */
+  noExternal?: TsdownNoExternal
   /**
    *  preload file entry points, support multiple files
    */
   entry?: string | string[]
   /**
-   * tsup config file path, or tsup config object
+   * tsdown config file path, or tsdown config object
    * @note 'entry' will be ignored
    */
-  tsupConfig?: string | TsupConfig
+  tsdownConfig?: string | TsdownConfig
 }
 
 export interface ElectronConfig {
   /**
    * The build configuration of the preload file
    */
-  preload?: PreloadTsupConfig
+  preload?: PreloadTsdownConfig
   /**
    * electron-builder configuration
    */
@@ -99,7 +126,7 @@ export interface DebugConfig {
   buildOnly?: boolean
 }
 
-export interface UserConfig extends UserTsupConfig {
+export interface UserConfig extends UserTsdownConfig {
   /**
    * App type, 'node' or 'electron'
    * @default 'node'
@@ -129,7 +156,7 @@ export interface UserConfig extends UserTsupConfig {
    */
   electron?: ElectronConfig
   /**
-   * Will be executed when tsup build is complete
+   * Will be executed when tsdown build is complete
    */
   afterBuild?: () => Promise<void>
   /**
@@ -178,7 +205,7 @@ export type ResolvedConfig = Readonly<{
   buildOnly: boolean
   runOnly: boolean
   debugCfg: DebugConfig
-  tsupConfigs: _TsupOptions[]
+  tsdownConfigs: _TsdownOptions[]
   electron: Omit<ElectronConfig, 'preload'>
 } & Pick<UserConfig, 'afterBuild'>>
 
@@ -235,22 +262,32 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
   // resolve main file
   const mainFile = await getMainFileAndCheck(cwd, config.main)
 
-  // resolve entry file tsup config
+  // resolve entry file tsdown config
   if (!config.entry)
     throw new Error('entry file is required')
 
-  const tsupConfigArr: _TsupOptions[] = [(await mergeTsupConfig(config, cwd))]
+  const tsdownConfigArr: _TsdownOptions[] = [(await mergeTsdownConfig(config, cwd, {}, { singleFileOutput: true }))]
 
-  // resolve electron preload file tsup config, entry must be specified
+  // resolve electron preload file tsdown config, entry must be specified
   if (config.electron?.preload || inlineConfig.preload) {
     let preloadConfig = { ...(config.electron?.preload || {}) }
     if (inlineConfig.preload)
       preloadConfig = { ...preloadConfig, entry: inlineConfig.preload }
 
-    if (preloadConfig.entry)
-      tsupConfigArr.push(await mergeTsupConfig(preloadConfig, cwd, tsupConfigArr[0]))
-    else
+    if (preloadConfig.entry) {
+      const preloadEntries = Array.isArray(preloadConfig.entry) ? preloadConfig.entry : [preloadConfig.entry]
+      for (const entry of preloadEntries) {
+        tsdownConfigArr.push(await mergeTsdownConfig(
+          { ...preloadConfig, entry },
+          cwd,
+          tsdownConfigArr[0],
+          { singleFileOutput: true },
+        ))
+      }
+    }
+    else {
       logger.warn(TAG, 'Electron preload\'s entry is not specified, it will be ignored')
+    }
   }
 
   // resolve electron builder config
@@ -264,7 +301,7 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
   const debugCfg = config.debugCfg || {}
   debugCfg.enabled = !!(inlineConfig.debug || debugCfg.enabled)
   if (debugCfg.enabled) {
-    tsupConfigArr.forEach((c) => {
+    tsdownConfigArr.forEach((c) => {
       c.sourcemap = debugCfg.sourcemapType === 'file' ? true : 'inline'
     })
   }
@@ -283,7 +320,7 @@ export async function resolveConfig(inlineConfig: InlineConfig, cwd: string = pr
     debugCfg,
     buildOnly,
     runOnly,
-    tsupConfigs: tsupConfigArr,
+    tsdownConfigs: tsdownConfigArr,
     electron: {
       build: electronBuilderConfig,
       rendererUrl: inlineConfig.rendererUrl || config.electron?.rendererUrl,
@@ -321,51 +358,68 @@ async function getMainFileAndCheck(cwd: string, defaultMainFile?: string) {
   return mainFile
 }
 
-async function mergeTsupConfig(inputConfig: UserTsupConfig | PreloadTsupConfig, cwd: string, defaultConfig: _TsupOptions = {}): Promise<_TsupOptions> {
-  let extraCfg: _TsupOptions | undefined
-  if (inputConfig.tsupConfig) {
-    // load tsup config
-    if (typeof inputConfig.tsupConfig === 'string') {
-      const tsupConfigPath = await joycon.resolve({
-        files: [inputConfig.tsupConfig],
+async function mergeTsdownConfig(
+  inputConfig: UserTsdownConfig | PreloadTsdownConfig,
+  cwd: string,
+  defaultConfig: _TsdownOptions = {},
+  options: { singleFileOutput?: boolean } = {},
+): Promise<_TsdownOptions> {
+  let extraCfg: _TsdownOptions | undefined
+  if (inputConfig.tsdownConfig) {
+    // load tsdown config
+    if (typeof inputConfig.tsdownConfig === 'string') {
+      const tsdownConfigPath = await joycon.resolve({
+        files: [inputConfig.tsdownConfig],
         cwd,
         stopDir: path.parse(cwd).root,
       })
-      if (!tsupConfigPath) {
-        logger.warn(TAG, `tsup config file: ${inputConfig.tsupConfig} not found, ignored.\n`)
+      if (!tsdownConfigPath) {
+        logger.warn(TAG, `tsdown config file: ${inputConfig.tsdownConfig} not found, ignored.\n`)
       }
       else {
         const { mod } = await bundleRequire({
-          filepath: tsupConfigPath,
+          filepath: tsdownConfigPath,
         })
         extraCfg = mod.default || mod
       }
     }
-    // use tsup config directly
-    else if (typeof inputConfig.tsupConfig === 'object') {
-      extraCfg = inputConfig.tsupConfig
+    // use tsdown config directly
+    else if (typeof inputConfig.tsdownConfig === 'object') {
+      extraCfg = inputConfig.tsdownConfig
     }
   }
 
-  // extra tsup config entry field will be ignored
+  if (extraCfg)
+    extraCfg = normalizeTsdownExternal(extraCfg)
+
+  // extra tsdown config entry field will be ignored
   delete extraCfg?.entry
 
-  // merge tsup config
-  let tsupConfig: _TsupOptions = merge(defaultConfig, {
+  // merge tsdown config
+  let tsdownConfig: _TsdownOptions = merge(defaultConfig, {
     entry: inputConfig.entry ? (Array.isArray(inputConfig.entry) ? inputConfig.entry : [inputConfig.entry]) : undefined,
     outDir: inputConfig.outDir,
     tsconfig: inputConfig.tsconfig,
-    external: inputConfig.external,
-    config: false,
+    deps: {
+      alwaysBundle: inputConfig.noExternal,
+      neverBundle: inputConfig.external,
+    },
+    clean: false,
+    dts: false,
+    fixedExtension: false,
+    format: 'cjs',
+    platform: 'node',
   })
 
-  tsupConfig = extraCfg ? { ...tsupConfig, ...extraCfg } : tsupConfig
+  tsdownConfig = extraCfg ? merge(tsdownConfig, extraCfg) : tsdownConfig
+
+  const neverBundle = tsdownConfig.deps?.neverBundle
 
   // support specific package.json, "dependencies" in package.json will be external
-  if (Array.isArray(tsupConfig.external) && tsupConfig.external.some(e => typeof e === 'string' && e.includes('package.json'))) {
+  if (Array.isArray(neverBundle) && neverBundle.some(e => typeof e === 'string' && e.includes('package.json'))) {
     const external = []
 
-    for (const item of tsupConfig.external) {
+    for (const item of neverBundle) {
       if (typeof item !== 'string' || !item.includes('package.json')) {
         external.push(item)
         continue
@@ -377,10 +431,50 @@ async function mergeTsupConfig(inputConfig: UserTsupConfig | PreloadTsupConfig, 
         external.push(dep)
     }
 
-    tsupConfig.external = [...new Set(external)]
+    tsdownConfig.deps = {
+      ...(tsdownConfig.deps || {}),
+      neverBundle: [...new Set(external)],
+    }
   }
 
-  return tsupConfig
+  if (options.singleFileOutput)
+    tsdownConfig = applySingleFileOutput(tsdownConfig)
+
+  return tsdownConfig
+}
+
+function normalizeTsdownExternal(config: _TsdownOptions): _TsdownOptions {
+  if (!config.external && !config.noExternal)
+    return config
+
+  const normalizedConfig = { ...config }
+  normalizedConfig.deps = merge(normalizedConfig.deps || {}, {
+    alwaysBundle: normalizedConfig.noExternal,
+    neverBundle: normalizedConfig.external,
+  })
+  delete normalizedConfig.external
+  delete normalizedConfig.noExternal
+  return normalizedConfig
+}
+
+function applySingleFileOutput(config: _TsdownOptions): _TsdownOptions {
+  const normalizedConfig = { ...config }
+  const existingOutputOptions = normalizedConfig.outputOptions
+
+  if (!existingOutputOptions || typeof existingOutputOptions === 'object') {
+    normalizedConfig.outputOptions = merge(existingOutputOptions || {}, {
+      codeSplitting: false,
+    })
+    return normalizedConfig
+  }
+
+  normalizedConfig.outputOptions = async (outputOptions, format, context) => {
+    const resolvedOutputOptions = await existingOutputOptions(outputOptions, format, context)
+    return merge(resolvedOutputOptions || {}, {
+      codeSplitting: false,
+    })
+  }
+  return normalizedConfig
 }
 
 function resolveElectronBuilderConfig(buildConfig: ElectronBuildConfig | undefined, cwd: string): ElectronBuildConfig {

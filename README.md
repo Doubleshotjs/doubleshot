@@ -25,7 +25,7 @@ A software engineer's time is precious, and I hope that one set of code can be a
 - 🪟 An [electron module](https://github.com/Doubleshotjs/doubleshot/blob/main/packages/nest-electron/src/electron.module.ts) for [nestjs](https://nestjs.com/) to launch electron windows.
 - 😎 Very easy integration of electron and node.
 - ⚡ Quickly split and convert between C/S and B/S.
-- ⏩ Quick start and build, powered by [tsup](https://tsup.egoist.sh/) and [electron-builder](https://www.electron.build/)
+- ⏩ Quick start and build, powered by [tsdown](https://tsdown.dev/) and [electron-builder](https://www.electron.build/)
 
 > **Warning**: this project is in early stage, do not use in production environment
 

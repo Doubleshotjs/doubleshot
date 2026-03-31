@@ -21,7 +21,7 @@ interface GlobalCLIOptions {
   'out'?: string
   'tsconfig'?: string
   'external'?: string // string,string,string...
-  'tsupConfig'?: string
+  'tsdownConfig'?: string
   'preload'?: string
 }
 
@@ -48,7 +48,7 @@ cli
   .option('-o, --out <dir>', 'Output directory')
   .option('--tsconfig <file>', 'TS config file')
   .option('--external <names>', 'External packages')
-  .option('--tsup-config <file>', 'tsup config file')
+  .option('--tsdown-config <file>', 'tsdown config file')
   .option('--preload <file>', 'Electron preload file')
 
 // dev
@@ -75,7 +75,7 @@ cli
         outDir: options.out,
         tsconfig: options.tsconfig,
         external: options.external?.split(','),
-        tsupConfig: options.tsupConfig,
+        tsdownConfig: options.tsdownConfig,
         preload: options.preload,
         waitForRenderer: options.waitForRenderer,
         waitTimeout: options.waitTimeout,
@@ -108,7 +108,7 @@ cli
         outDir: options.out,
         tsconfig: options.tsconfig,
         external: options.external?.split(','),
-        tsupConfig: options.tsupConfig,
+        tsdownConfig: options.tsdownConfig,
         preload: options.preload,
       })
     }

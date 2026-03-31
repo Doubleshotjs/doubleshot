@@ -1,12 +1,12 @@
 import type { ChildProcess } from 'node:child_process'
-import type { Options as TsupOptions } from 'tsup'
+import type { UserConfig as TsdownOptions } from 'tsdown'
 import type { AppType, DevArgs, InlineConfig, ResolvedConfig } from './config'
 import { spawn } from 'node:child_process'
 import fs from 'node:fs'
 import { performance } from 'node:perf_hooks'
 import { checkPackageExists } from 'check-package-exists'
 import { bgCyan, bgCyanBright, bgGreen, bgMagentaBright, bgYellowBright, cyan, greenBright } from 'colorette'
-import { build as tsupBuild } from 'tsup'
+import { build as tsdownBuild } from 'tsdown'
 import waitOn from 'wait-on'
 import { resolveConfig } from './config'
 import { TAG } from './constants'
@@ -48,12 +48,12 @@ function createWaitOnOpts(url: string, timeout?: number) {
   }
 }
 
-function doTsupBuild(opts: TsupOptions, dsEnv: TsupOptions['env'] = {}) {
+function doTsdownBuild(opts: TsdownOptions, dsEnv: TsdownOptions['env'] = {}) {
   const { env: optsEnv, ...restOpts } = opts
   const env = { ...(optsEnv ?? {}), ...dsEnv }
 
-  return tsupBuild({
-    silent: true,
+  return tsdownBuild({
+    logLevel: 'silent',
     env,
     ...restOpts,
   })
@@ -66,8 +66,8 @@ function electronEnvCheck() {
   return true
 }
 
-function createDoubleShotEnv(type: AppType, config: ResolvedConfig, mode: 'production' | 'development'): TsupOptions['env'] {
-  const dsEnv: TsupOptions['env'] = {
+function createDoubleShotEnv(type: AppType, config: ResolvedConfig, mode: 'production' | 'development'): TsdownOptions['env'] {
+  const dsEnv: TsdownOptions['env'] = {
     DS_APP_TYPE: type,
     DS_MODE: mode,
   }
@@ -132,7 +132,7 @@ export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
   const config = await resolveConfig(inlineConfig)
   const {
     type: appType = 'node',
-    tsupConfigs = [],
+    tsdownConfigs = [],
     afterBuild,
     electron: electronConfig = {},
   } = config
@@ -148,10 +148,10 @@ export async function build(inlineConfig: InlineConfig = {}, autoPack = true) {
   // doubleshot env
   const dsEnv = createDoubleShotEnv(appType, config, 'production')
 
-  // tsup build
-  for (let i = 0; i < tsupConfigs.length; i++) {
-    const tsupConfig = tsupConfigs[i]
-    await doTsupBuild({ ...tsupConfig }, dsEnv)
+  // tsdown build
+  for (let i = 0; i < tsdownConfigs.length; i++) {
+    const tsdownConfig = tsdownConfigs[i]
+    await doTsdownBuild({ ...tsdownConfig }, dsEnv)
   }
   const prebuildTime = performance.now() - startTime
   logger.success(TAG, `✅ Prebuild succeeded! (${prebuildTime.toFixed(2)}ms)`)
@@ -194,7 +194,7 @@ export async function dev(inlineConfig: InlineConfig = {}) {
     buildOnly = false,
     runOnly = false,
     debugCfg = {},
-    tsupConfigs = [],
+    tsdownConfigs = [],
     electron: electronConfig = {},
   } = config
 
@@ -230,28 +230,35 @@ export async function dev(inlineConfig: InlineConfig = {}) {
 
   // prebuild files
   const prebuild = async () => {
-    // tsup build
-    for (let i = 0; i < tsupConfigs.length; i++) {
+    // tsdown build
+    for (let i = 0; i < tsdownConfigs.length; i++) {
       let isFirstBuild = true
-      const _tsupConfig = tsupConfigs[i]
-      const { onSuccess: _onSuccess, watch: _watch, ...tsupOptions } = _tsupConfig
+      const _tsdownConfig = tsdownConfigs[i]
+      const { onSuccess: _onSuccess, watch: _watch, ...tsdownOptions } = _tsdownConfig
       const watch = _watch !== false
+      let resolveFirstBuild: (() => void) | undefined
+      const firstBuild = watch
+        ? new Promise<void>((resolve) => {
+            resolveFirstBuild = resolve
+          })
+        : undefined
       if (!watch)
         logger.info(TAG, '⚠️  Watch mode is disabled')
 
       if (typeof _onSuccess === 'string')
         logger.warn(TAG, '⚠️  "onSuccess" only support a function, ignore it.')
 
-      const onSuccess: TsupOptions['onSuccess'] = async () => {
+      const onSuccess: TsdownOptions['onSuccess'] = async (resolvedConfig, signal) => {
         if (!watch)
           return
 
         if (typeof _onSuccess === 'function')
-          await _onSuccess()
+          await _onSuccess(resolvedConfig, signal)
 
         // first build will not trigger rebuild
         if (isFirstBuild) {
           isFirstBuild = false
+          resolveFirstBuild?.()
           return
         }
 
@@ -267,7 +274,8 @@ export async function dev(inlineConfig: InlineConfig = {}) {
         child = runMainProcess(mainFile!, electron, dsArgs)
       }
 
-      await doTsupBuild({ onSuccess, watch, ...tsupOptions }, dsEnv)
+      await doTsdownBuild({ onSuccess, watch, ...tsdownOptions }, dsEnv)
+      await firstBuild
     }
   }
 

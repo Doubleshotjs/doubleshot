@@ -17,14 +17,14 @@ export default defineConfig({
       configureForMode(userConfig, mode) {
         if (mode === 'production') {
           console.log('override config for production')
-          userConfig.tsupConfig = {
-            minifyWhitespace: true,
+          userConfig.tsdownConfig = {
+            minify: true,
           }
         }
         else {
           console.log('override config for development')
-          userConfig.tsupConfig = {
-            minifyWhitespace: false,
+          userConfig.tsdownConfig = {
+            minify: false,
           }
         }
       },

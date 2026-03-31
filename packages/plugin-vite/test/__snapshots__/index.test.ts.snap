@@ -1,39 +1,35 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`doubleshot Vite Plugin > plugin's config should be overridden by \`configureForMode\` > should match snapshot in development mode 1`] = `
-""use strict";
+"let node_path = require("node:path");
+let electron = require("electron");
 
-// src/index.ts
-var import_node_path = require("path");
-var import_electron = require("electron");
+//#region src/index.ts
 function createWindow() {
-  const isDev = !import_electron.app.isPackaged;
-  const win = new import_electron.BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      contextIsolation: true,
-      preload: (0, import_node_path.join)(__dirname, "./preload.js")
-    }
-  });
-  import_electron.ipcMain.handle("msg", (_, msg) => {
-    console.log(msg);
-    import_electron.app.quit();
-  });
-  const URL = isDev ? "http://127.0.0.1:12345/" : \`file://\${(0, import_node_path.join)(import_electron.app.getAppPath(), "dist/renderer/index.html")}\`;
-  win.loadURL(URL);
+	const isDev = !electron.app.isPackaged;
+	const win = new electron.BrowserWindow({
+		width: 800,
+		height: 600,
+		webPreferences: {
+			contextIsolation: true,
+			preload: (0, node_path.join)(__dirname, "./preload.js")
+		}
+	});
+	electron.ipcMain.handle("msg", (_, msg) => {
+		console.log(msg);
+		electron.app.quit();
+	});
+	const URL = isDev ? "http://127.0.0.1:12345/" : \`file://\${(0, node_path.join)(electron.app.getAppPath(), "dist/renderer/index.html")}\`;
+	win.loadURL(URL);
 }
-import_electron.app.whenReady().then(() => {
-  createWindow();
+electron.app.whenReady().then(() => {
+	createWindow();
 });
-import_electron.app.on("window-all-closed", () => {
-  if (process.platform !== "darwin")
-    import_electron.app.quit();
+electron.app.on("window-all-closed", () => {
+	if (process.platform !== "darwin") electron.app.quit();
 });
-"
+
+//#endregion"
 `;
 
-exports[`doubleshot Vite Plugin > plugin's config should be overridden by \`configureForMode\` > should match snapshot in production mode 1`] = `
-""use strict";var import_node_path=require("path");var import_electron=require("electron");function createWindow(){const isDev=!import_electron.app.isPackaged;const win=new import_electron.BrowserWindow({width:800,height:600,webPreferences:{contextIsolation:true,preload:(0,import_node_path.join)(__dirname,"./preload.js")}});import_electron.ipcMain.handle("msg",(_,msg)=>{console.log(msg);import_electron.app.quit()});const URL=isDev?process.env.DS_RENDERER_URL:\`file://\${(0,import_node_path.join)(import_electron.app.getAppPath(),"dist/renderer/index.html")}\`;win.loadURL(URL)}import_electron.app.whenReady().then(()=>{createWindow()});import_electron.app.on("window-all-closed",()=>{if(process.platform!=="darwin")import_electron.app.quit()});
-"
-`;
+exports[`doubleshot Vite Plugin > plugin's config should be overridden by \`configureForMode\` > should match snapshot in production mode 1`] = `"let e=require(\`node:path\`),t=require(\`electron\`);function n(){let n=!t.app.isPackaged,r=new t.BrowserWindow({width:800,height:600,webPreferences:{contextIsolation:!0,preload:(0,e.join)(__dirname,\`./preload.js\`)}});t.ipcMain.handle(\`msg\`,(e,n)=>{console.log(n),t.app.quit()});let i=n?process.env.DS_RENDERER_URL:\`file://\${(0,e.join)(t.app.getAppPath(),\`dist/renderer/index.html\`)}\`;r.loadURL(i)}t.app.whenReady().then(()=>{n()}),t.app.on(\`window-all-closed\`,()=>{process.platform!==\`darwin\`&&t.app.quit()});"`;

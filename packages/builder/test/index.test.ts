@@ -125,7 +125,7 @@ describe('doubleshot Builder: Dev Mode', () => {
   it('should rebuild when file changed', async () => {
     writeConfigFile({
       ...DEFAULT_CONFIG,
-      tsupConfig: {
+      tsdownConfig: {
         env: {
           EXIT_TIME: '5000',
         },
@@ -164,7 +164,7 @@ describe('doubleshot Builder: Dev Mode', () => {
     writeConfigFile({
       ...DEFAULT_CONFIG,
       buildOnly: true,
-      tsupConfig: {
+      tsdownConfig: {
         watch: false,
       },
     })
@@ -370,7 +370,7 @@ describe('doubleshot Builder, Inline Command: Dev Mode', () => {
   it('should prebuild files only if set "buildOnly" option', async () => {
     writeConfigFile({
       ...DEFAULT_CONFIG,
-      tsupConfig: {
+      tsdownConfig: {
         watch: false,
       },
     })

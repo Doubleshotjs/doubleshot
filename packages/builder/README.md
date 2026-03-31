@@ -2,7 +2,7 @@
 
 ## Description
 
-Builder is a cli tool for quickly building node backend or electron main process. It's powered by [tsup](https://tsup.egoist.sh/), bundled through internal [esbuild](https://esbuild.github.io/), and decorators are supported by [swc](https://swc.rs/).
+Builder is a cli tool for quickly building node backend or electron main process. It's powered by [tsdown](https://tsdown.dev/), bundled through [Rolldown](https://rolldown.rs/), and decorators are supported by [swc](https://swc.rs/).
 
 > **Note:** Builder is only suitable for building node and electron code, that is, files converted to CommonJS standards.
 
