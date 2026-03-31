@@ -4,10 +4,11 @@ import { beforeAll, describe, expect, it } from 'vitest'
 
 const mockDir = path.resolve(__dirname, './mock')
 const mockDist = path.resolve(mockDir, 'dist')
+const tsdownBin = path.resolve(__dirname, '../../../node_modules/.bin/tsdown')
 
 async function buildMock() {
   const { stdout, stderr } = await execa(
-    'tsup',
+    tsdownBin,
     {
       cwd: mockDir,
     },

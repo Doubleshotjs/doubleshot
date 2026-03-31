@@ -1,8 +1,6 @@
 packages:
   - 'packages/*'
   - '!**/test/**'
-
-catalogMode: prefer
 onlyBuiltDependencies:
   - '@nestjs/core'
   - '@swc/core'

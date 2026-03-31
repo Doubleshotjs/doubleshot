@@ -1,7 +1,7 @@
 'use strict'
 function __export(m) {
   for (const p in m) {
-    if (!exports.hasOwnProperty(p))
+    if (!Object.hasOwn(exports, p))
       exports[p] = m[p]
   }
 }

@@ -38,8 +38,8 @@
     "node": ">=14.0.0"
   },
   "scripts": {
-    "build": "tsup",
-    "test": "tsup && vitest run"
+    "build": "tsdown",
+    "test": "tsdown && vitest run"
   },
   "peerDependencies": {
     "vite": ">=2.0.0"

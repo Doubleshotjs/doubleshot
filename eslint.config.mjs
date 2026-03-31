@@ -13,6 +13,7 @@ export default lightwing(
     ],
     rules: {
       'ts/no-unused-expressions': 'off',
+      'e18e/prefer-static-regex': 'off',
     },
   },
   {
@@ -43,6 +44,12 @@ export default lightwing(
     files: ['packages/**/test/**/*.ts'],
     rules: {
       'antfu/no-import-dist': 'off',
+    },
+  },
+  {
+    files: ['**/package.json'],
+    rules: {
+      'pnpm/json-enforce-catalog': 'off',
     },
   },
   {

@@ -68,7 +68,7 @@ import { AppService } from './app.service'
     // name: 'main', // default window names "main", you can skip the name if only provide one window
     useFactory: async () => {
       const win = new BrowserWindow()
-      win.loadURL('http://localhost:3000')
+      win.loadURL('http://localhost:31123')
 
       return win
     },
@@ -93,10 +93,10 @@ import { AppService } from './app.service'
     name: [ELECTRON_WINDOW_DEFAULT_NAME, 'another-win'],
     useFactory: async () => {
       const mainWin = new BrowserWindow()
-      mainWin.loadURL('http://localhost:3000')
+      mainWin.loadURL('http://localhost:31123')
 
       const anotherWin = new BrowserWindow()
-      anotherWin.loadURL('http://localhost:3001')
+      anotherWin.loadURL('http://localhost:31124')
 
       // correspond to the above names
       return [mainWin, anotherWin]

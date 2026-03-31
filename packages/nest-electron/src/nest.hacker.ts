@@ -19,7 +19,8 @@ if (isElectron) {
   }
 
   // hack to set IpcExceptionsFilter to the global filters
-  const { create, createMicroservice } = NestFactory
+  const create = NestFactory.create as any
+  const createMicroservice = NestFactory.createMicroservice as any
 
   NestFactory.create = async function<T extends INestApplication = INestApplication>(
     module: any,

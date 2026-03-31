@@ -78,7 +78,7 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
           : res
       }
       catch (error) {
-        throw new Error(error.message ?? error)
+        throw new Error(error instanceof Error ? error.message : String(error))
       }
     }
   }
@@ -94,6 +94,6 @@ export class ElectronIpcTransport extends Server implements CustomTransportStrat
 
   unwrap<T>(): T {
     // do nothing, just for the abstract method
-    return null
+    return undefined as T
   }
 }

@@ -1,4 +1,4 @@
-export const isElectron = process.versions.hasOwnProperty('electron')
+export const isElectron = Object.hasOwn(process.versions, 'electron')
 
 export function linkPathAndChannel(channel: string, path = '') {
   const merged = [...path.split('/'), ...channel.split('/')].filter(s => !!s.length).join('/')

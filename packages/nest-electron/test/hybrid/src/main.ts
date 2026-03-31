@@ -30,7 +30,7 @@ async function bootstrap() {
 
   await nestApp.startAllMicroservices()
 
-  await nestApp.listen(3000)
+  await nestApp.listen(31123)
   if (isElectron) {
     console.log('Electron hybrid application is running')
   }

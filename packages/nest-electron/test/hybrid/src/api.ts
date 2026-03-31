@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export async function testHttp() {
-  axios.defaults.baseURL = 'http://localhost:3000'
+  axios.defaults.baseURL = 'http://localhost:31123'
 
   const printLog = (log: string) => axios.get(`/print-log/${log}`)
 

@@ -64,7 +64,7 @@ export default defineConfig({
     preload: {
       entry: './src/preload.ts'
     },
-    rendererUrl: 'http://localhost:3000',
+    rendererUrl: 'http://localhost:31123',
     waitTimeout: 5000,
   }
 })
