@@ -1,3 +1,12 @@
+## [0.0.22](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.21...plugin-vite@0.0.22) (2026-03-31)
+
+
+### Features
+
+* **builder:** change tsup to tsdown ([76822f1](https://github.com/archergu/doubleshot/commit/76822f124cddde6c005d9cac10b4ea1057cfb077))
+
+
+
 ## [0.0.21](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.20...plugin-vite@0.0.21) (2026-03-14)
 
 
