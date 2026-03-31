@@ -1,3 +1,12 @@
+## [0.2.13](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.12...nest-electron@0.2.13) (2026-03-31)
+
+
+### Bug Fixes
+
+* **nest-electron:** hasOwn not define issue ([e1d4cac](https://github.com/archergu/doubleshot/commit/e1d4cac876e669c887731d48a0b5db218278bfe8))
+
+
+
 ## [0.2.12](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.11...nest-electron@0.2.12) (2026-03-14)
 
 
