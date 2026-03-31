@@ -23,8 +23,8 @@
     "index.js"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.json",
-    "test": "npm run build && vitest run"
+    "build": "tsdown",
+    "test": "tsdown && vitest run"
   },
   "peerDependencies": {
     "@nestjs/common": ">=8.0.0",
