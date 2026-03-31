@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Set node version to 20.x
+      - name: Set node
         uses: actions/setup-node@v6
         with:
           node-version: 24.x
