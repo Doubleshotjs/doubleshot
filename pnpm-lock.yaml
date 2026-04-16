@@ -27,8 +27,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(conventional-commits-filter@4.0.0)
       electron:
-        specifier: 41.2.0
-        version: 41.2.0
+        specifier: 41.2.1
+        version: 41.2.1
       electron-builder:
         specifier: 26.8.1
         version: 26.8.1(electron-builder-squirrel-windows@26.8.1)
@@ -2220,8 +2220,8 @@ packages:
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
-  electron@41.2.0:
-    resolution: {integrity: sha512-0OKLiymqfV0WK68RBXqAm3Myad2TpI5wwxLCBEUcH5Nugo3YfSk7p1Js/AL9266qTz5xZioUnxt9hG8FFwax0g==}
+  electron@41.2.1:
+    resolution: {integrity: sha512-teeRThiYGTPKf/2yOW7zZA1bhb91KEQ4yLBPOg7GxpmnkLFLugKgQaAKOrCgdzwsXh/5mFIfmkm+4+wACJKwaA==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -5839,8 +5839,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.56.1(typescript@6.0.2)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.56.1(typescript@6.0.2)
-      '@typescript-eslint/types': 8.56.1
+      '@typescript-eslint/tsconfig-utils': 8.58.1(typescript@6.0.2)
+      '@typescript-eslint/types': 8.58.1
       debug: 4.4.3
       typescript: 6.0.2
     transitivePeerDependencies:
@@ -6773,7 +6773,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@41.2.0:
+  electron@41.2.1:
     dependencies:
       '@electron/get': 2.0.2
       '@types/node': 24.10.4
