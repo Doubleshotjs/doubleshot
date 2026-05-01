@@ -27,8 +27,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(conventional-commits-filter@4.0.0)
       electron:
-        specifier: 41.3.0
-        version: 41.3.0
+        specifier: 41.4.0
+        version: 41.4.0
       electron-builder:
         specifier: 26.8.1
         version: 26.8.1(electron-builder-squirrel-windows@26.8.1)
@@ -2231,8 +2231,8 @@ packages:
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
-  electron@41.3.0:
-    resolution: {integrity: sha512-2Q5aeocmFdeheZGDUTrAvSR3t+n0c3d104AJWWEnt7syJU0tE4VdibMYaPtQ47QuXSoUf0/xSsfUUvu/uSXIfg==}
+  electron@41.4.0:
+    resolution: {integrity: sha512-1afmxJGyrZ4bve+PDCs8YtNjjVu4cPwUtSjx36o6gyJWI0NvhebMKtIzzKNOScRyXntH2hX0i350Xgm3BKiEYQ==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -6800,7 +6800,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@41.3.0:
+  electron@41.4.0:
     dependencies:
       '@electron/get': 2.0.2
       '@types/node': 24.10.4
