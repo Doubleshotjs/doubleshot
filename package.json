@@ -29,7 +29,7 @@
     "electron": "42.0.0",
     "electron-builder": "26.8.1",
     "eslint": "10.3.0",
-    "fs-extra": "11.3.4",
+    "fs-extra": "11.3.5",
     "lint-staged": "17.0.2",
     "mono-release": "2.10.3",
     "rimraf": "6.1.3",
