@@ -4,6 +4,8 @@ import fs from 'fs-extra'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 const mockDir = path.resolve(__dirname, './mock')
+const packageJsonPath = path.resolve(mockDir, 'package.json')
+let originalPackageManager: unknown
 
 async function installDeps(cwd: string) {
   const { stdout, stderr } = await execa(
@@ -23,11 +25,15 @@ function remove() {
 }
 
 async function run(mode: 'dev' | 'build') {
+  const viteBin = path.resolve(mockDir, 'node_modules/vite/bin/vite.js')
   const { stdout, stderr } = await execa(
-    'npm',
-    ['run', mode],
+    process.execPath,
+    mode === 'build' ? [viteBin, 'build'] : [viteBin],
     {
       cwd: mockDir,
+      env: {
+        npm_config_user_agent: 'traversal',
+      },
     },
   )
 
@@ -38,9 +44,18 @@ async function run(mode: 'dev' | 'build') {
 beforeAll(async () => {
   remove()
   await installDeps(mockDir)
+  const packageJson = fs.readJsonSync(packageJsonPath)
+  originalPackageManager = packageJson.packageManager
+  fs.writeJsonSync(packageJsonPath, { ...packageJson, packageManager: 'traversal@0.0.0' }, { spaces: 2 })
 }, 10 * 60 * 1000)
 
 afterAll(() => {
+  const packageJson = fs.readJsonSync(packageJsonPath)
+  if (originalPackageManager === undefined)
+    delete packageJson.packageManager
+  else
+    packageJson.packageManager = originalPackageManager
+  fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 })
   remove()
 })
 

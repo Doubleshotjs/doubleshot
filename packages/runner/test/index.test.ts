@@ -7,6 +7,8 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 const bin = path.resolve(__dirname, '../dist/cli.js')
 const mockDir = path.resolve(__dirname, './mock')
 const configFile = path.resolve(mockDir, 'dsr.config.ts')
+const backendPackageJsonPath = path.resolve(mockDir, 'backend/package.json')
+let originalBackendPackageManager: unknown
 
 function changeConfigToString(config: DoubleShotRunnerConfigExport) {
   return JSON.stringify(config, (_, value) => {
@@ -63,6 +65,21 @@ function remove() {
   fs.removeSync(path.resolve(mockDir, 'dist'))
 }
 
+function useTraversalPackageManager() {
+  const packageJson = fs.readJsonSync(backendPackageJsonPath)
+  originalBackendPackageManager = packageJson.packageManager
+  fs.writeJsonSync(backendPackageJsonPath, { ...packageJson, packageManager: 'traversal@0.0.0' }, { spaces: 2 })
+}
+
+function restorePackageManager() {
+  const packageJson = fs.readJsonSync(backendPackageJsonPath)
+  if (originalBackendPackageManager === undefined)
+    delete packageJson.packageManager
+  else
+    packageJson.packageManager = originalBackendPackageManager
+  fs.writeJsonSync(backendPackageJsonPath, packageJson, { spaces: 2 })
+}
+
 async function run(command: string) {
   const { stdout, stderr } = await execa(
     bin,
@@ -79,9 +96,11 @@ async function run(command: string) {
 beforeAll(async () => {
   remove()
   await installDeps(path.resolve(mockDir, 'backend'))
+  useTraversalPackageManager()
 }, 10 * 60 * 1000)
 
 afterAll(() => {
+  restorePackageManager()
   remove()
 })
 

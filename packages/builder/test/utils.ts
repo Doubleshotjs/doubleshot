@@ -7,6 +7,8 @@ import fs from 'fs-extra'
 export const bin = path.resolve(__dirname, '../dist/cli.js')
 export const mockDir = path.resolve(__dirname, './mock')
 export const configFile = path.resolve(mockDir, 'dsb.config.ts')
+const packageJsonPath = path.resolve(mockDir, 'package.json')
+let originalPackageManager: unknown
 export const DEFAULT_CONFIG: UserConfigExport = {
   main: 'dist/main.js',
   entry: './src/main.ts',
@@ -68,6 +70,21 @@ export async function installDeps(cwd: string) {
 
   const logs = stdout + stderr
   return logs
+}
+
+export function useTraversalPackageManager() {
+  const packageJson = fs.readJsonSync(packageJsonPath)
+  originalPackageManager = packageJson.packageManager
+  fs.writeJsonSync(packageJsonPath, { ...packageJson, packageManager: 'traversal@0.0.0' }, { spaces: 2 })
+}
+
+export function restorePackageManager() {
+  const packageJson = fs.readJsonSync(packageJsonPath)
+  if (originalPackageManager === undefined)
+    delete packageJson.packageManager
+  else
+    packageJson.packageManager = originalPackageManager
+  fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 })
 }
 
 export function remove() {

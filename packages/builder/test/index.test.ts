@@ -1,11 +1,12 @@
 import path from 'node:path'
 import fs from 'fs-extra'
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest'
-import { checkOrCreateHtmlFile, DEFAULT_CONFIG, DEFAULT_INLINE_CONFIG, installDeps, mockDir, remove, run, sleep, writeConfigFile } from './utils'
+import { checkOrCreateHtmlFile, DEFAULT_CONFIG, DEFAULT_INLINE_CONFIG, installDeps, mockDir, remove, restorePackageManager, run, sleep, useTraversalPackageManager, writeConfigFile } from './utils'
 
 beforeAll(async () => {
   remove()
   await installDeps(mockDir)
+  useTraversalPackageManager()
 }, 10 * 60 * 1000)
 
 beforeEach(() => {
@@ -13,6 +14,7 @@ beforeEach(() => {
 })
 
 afterAll(() => {
+  restorePackageManager()
   remove()
 })
 

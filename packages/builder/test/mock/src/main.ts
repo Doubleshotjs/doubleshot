@@ -1,5 +1,4 @@
 import { join } from 'node:path'
-import { app, BrowserWindow } from 'electron'
 
 const EXIT_TIME = process.env.EXIT_TIME || 1000
 const isElectron = process.env.DS_APP_TYPE === 'electron'
@@ -11,7 +10,9 @@ function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-if (isElectron) {
+async function runElectronApp() {
+  const { app, BrowserWindow } = await import('electron')
+
   console.log('This is electron app')
 
   const createWindow = async () => {
@@ -35,6 +36,10 @@ if (isElectron) {
     if (process.platform !== 'darwin')
       app.quit()
   })
+}
+
+if (isElectron) {
+  runElectronApp()
 }
 else {
   console.log('This is node app')
