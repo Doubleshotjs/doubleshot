@@ -4,14 +4,14 @@
   "description": "Doubleshot Builder for Vite",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "license": "MIT",
-  "homepage": "https://github.com/archergu/doubleshot/tree/main/packages/plugin-vite#readme",
+  "homepage": "https://github.com/Doubleshotjs/doubleshot/tree/main/packages/plugin-vite#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/archergu/doubleshot.git",
+    "url": "https://github.com/Doubleshotjs/doubleshot",
     "directory": "packages/plugin-vite"
   },
   "bugs": {
-    "url": "https://github.com/archergu/doubleshot/issues"
+    "url": "https://github.com/Doubleshotjs/doubleshot/issues"
   },
   "keywords": [
     "vite",

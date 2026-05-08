@@ -3,14 +3,14 @@
   "version": "0.0.21",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "license": "MIT",
-  "homepage": "https://github.com/archergu/doubleshot/tree/main/packages/builder#readme",
+  "homepage": "https://github.com/Doubleshotjs/doubleshot/tree/main/packages/builder#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/archergu/doubleshot.git",
+    "url": "https://github.com/Doubleshotjs/doubleshot",
     "directory": "packages/builder"
   },
   "bugs": {
-    "url": "https://github.com/archergu/doubleshot/issues"
+    "url": "https://github.com/Doubleshotjs/doubleshot/issues"
   },
   "keywords": [
     "bundle",
