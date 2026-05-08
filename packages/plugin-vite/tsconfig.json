@@ -7,9 +7,9 @@
     "noImplicitOverride": true,
     "noUnusedLocals": true,
     "declaration": true,
-    "outDir": "dist",
     "sourceMap": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": [
     "src"

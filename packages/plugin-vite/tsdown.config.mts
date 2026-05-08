@@ -2,8 +2,8 @@ import { defineConfig } from 'tsdown'
 
 const sharedConfig = {
   entry: ['src/index.ts'],
-  platform: 'node',
-  target: 'node14',
+  platform: 'node' as const,
+  target: 'node14' as const,
 }
 
 export default defineConfig([
