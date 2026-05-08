@@ -1,3 +1,13 @@
+## [0.0.19](https://github.com/archergu/doubleshot/compare/builder@0.0.18...builder@0.0.19) (2026-05-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tsdown to ^0.22.0 ([#1879](https://github.com/archergu/doubleshot/issues/1879)) ([2a858bb](https://github.com/archergu/doubleshot/commit/2a858bb224ff527b81bc2da35b69e7681e8dfca0))
+* test issues ([1b4fb27](https://github.com/archergu/doubleshot/commit/1b4fb27b21f0f5570eac64356951f1df71de1acc))
+
+
+
 ## [0.0.18](https://github.com/archergu/doubleshot/compare/builder@0.0.17...builder@0.0.18) (2026-03-31)
 
 
