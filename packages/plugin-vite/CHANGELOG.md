@@ -1,3 +1,13 @@
+## [0.0.23](https://github.com/Doubleshotjs/doubleshot/compare/plugin-vite@0.0.22...plugin-vite@0.0.23) (2026-05-08)
+
+
+### Bug Fixes
+
+* deps issue ([fc1ad69](https://github.com/Doubleshotjs/doubleshot/commit/fc1ad69731a34b9b571d8d8639a2d8385554b016))
+* test issues ([1b4fb27](https://github.com/Doubleshotjs/doubleshot/commit/1b4fb27b21f0f5570eac64356951f1df71de1acc))
+
+
+
 ## [0.0.22](https://github.com/archergu/doubleshot/compare/plugin-vite@0.0.21...plugin-vite@0.0.22) (2026-03-31)
 
 
