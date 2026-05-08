@@ -1,7 +1,7 @@
 {
   "name": "doubleshot-monorepo",
   "private": true,
-  "packageManager": "pnpm@10.33.4",
+  "packageManager": "pnpm@11.0.8",
   "description": "A solution to save effort",
   "author": "ArcherGu (https://github.com/ArcherGu/)",
   "keywords": [
@@ -24,7 +24,7 @@
     "@lightwing/eslint-config": "1.0.154",
     "@nestjs/testing": "11.1.19",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "25.6.0",
+    "@types/node": "25.6.2",
     "conventional-changelog-cli": "5.0.0",
     "electron": "42.0.0",
     "electron-builder": "26.8.1",

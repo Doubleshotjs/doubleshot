@@ -36,9 +36,9 @@
   "devDependencies": {
     "@nestjs/common": "11.1.19",
     "@nestjs/core": "11.1.19",
-    "@nestjs/microservices": "^11.1.17",
-    "@nestjs/platform-express": "^11.1.17",
-    "axios": "^1.14.0",
+    "@nestjs/microservices": "^11.1.19",
+    "@nestjs/platform-express": "^11.1.19",
+    "axios": "^1.16.0",
     "reflect-metadata": "0.2.2"
   }
 }

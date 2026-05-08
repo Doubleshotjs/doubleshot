@@ -1,6 +1,12 @@
 packages:
   - 'packages/*'
   - '!**/test/**'
+allowBuilds:
+  '@nestjs/core': true
+  electron: true
+  electron-winstaller: true
+  esbuild: true
+  simple-git-hooks: true
 onlyBuiltDependencies:
   - '@nestjs/core'
   - check-package-exists
