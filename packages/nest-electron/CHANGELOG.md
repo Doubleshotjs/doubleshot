@@ -1,3 +1,7 @@
+## [0.2.14](https://github.com/Doubleshotjs/doubleshot/compare/nest-electron@0.2.13...nest-electron@0.2.14) (2026-05-08)
+
+
+
 ## [0.2.13](https://github.com/archergu/doubleshot/compare/nest-electron@0.2.12...nest-electron@0.2.13) (2026-03-31)
 
 
