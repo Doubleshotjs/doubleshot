@@ -43,6 +43,9 @@ jobs:
   publish:
     if: ${{ (contains(github.event.head_commit.message, 'skip-ci') && needs.release.result == 'success' && always()) || success() }}
     needs: release
+    permissions:
+      contents: read
+      id-token: write
     uses: ./.github/workflows/publish.yml
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
