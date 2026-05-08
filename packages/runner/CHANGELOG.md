@@ -1,3 +1,14 @@
+## [0.0.20](https://github.com/Doubleshotjs/doubleshot/compare/runner@0.0.19...runner@0.0.20) (2026-05-08)
+
+
+### Bug Fixes
+
+* deps issue ([fc1ad69](https://github.com/Doubleshotjs/doubleshot/commit/fc1ad69731a34b9b571d8d8639a2d8385554b016))
+* **deps:** update dependency tsdown to ^0.22.0 ([#1879](https://github.com/Doubleshotjs/doubleshot/issues/1879)) ([2a858bb](https://github.com/Doubleshotjs/doubleshot/commit/2a858bb224ff527b81bc2da35b69e7681e8dfca0))
+* test issues ([1b4fb27](https://github.com/Doubleshotjs/doubleshot/commit/1b4fb27b21f0f5570eac64356951f1df71de1acc))
+
+
+
 ## [0.0.19](https://github.com/archergu/doubleshot/compare/runner@0.0.18...runner@0.0.19) (2026-03-31)
 
 
