@@ -2,10 +2,10 @@ name: Publish Package
 
 on:
   workflow_call:
-    secrets:
-      NPM_TOKEN:
-        required: true
-        description: The NPM token to use for publishing the package
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   publish:
@@ -13,9 +13,6 @@ jobs:
     if: github.repository == 'Doubleshotjs/doubleshot'
     runs-on: ubuntu-latest
     environment: Release
-    permissions:
-      contents: read
-      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -37,5 +34,3 @@ jobs:
 
       - name: Publish package
         run: pnpm run ci-publish ${{ github.ref_name }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
