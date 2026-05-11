@@ -91,7 +91,7 @@ importers:
         version: 0.22.0(typescript@6.0.3)
       wait-on:
         specifier: ^9.0.5
-        version: 9.0.5
+        version: 9.0.10
     devDependencies:
       '@types/wait-on':
         specifier: 5.3.4
@@ -4416,8 +4416,8 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
 
-  wait-on@9.0.5:
-    resolution: {integrity: sha512-qgnbHDfDTRIp73ANEJNRW/7kn8CrDUcvZz18xotJQku/P4saTGkbIzvnMZebPmVvVNUiRq1qWAPyqCH+W4H8KA==}
+  wait-on@9.0.10:
+    resolution: {integrity: sha512-rCoJEhvMr0X6alHmwc9abbrA5ZrLZFKpFQVKPNFwl2h7DapXOGdmimIHDtLOWhT4PjhZhxFEtZoQgEXbkDWdZw==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -5634,8 +5634,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.56.1(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.58.1(typescript@6.0.3)
-      '@typescript-eslint/types': 8.58.1
+      '@typescript-eslint/tsconfig-utils': 8.56.1(typescript@6.0.3)
+      '@typescript-eslint/types': 8.56.1
       debug: 4.4.3
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -9272,7 +9272,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  wait-on@9.0.5:
+  wait-on@9.0.10:
     dependencies:
       axios: 1.16.0
       joi: 18.2.1
