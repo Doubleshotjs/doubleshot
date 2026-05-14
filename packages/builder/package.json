@@ -55,7 +55,7 @@
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0",
     "tsdown": "^0.22.0",
-    "wait-on": "^9.0.5"
+    "wait-on": "^9.0.10"
   },
   "devDependencies": {
     "@types/wait-on": "5.3.4"
