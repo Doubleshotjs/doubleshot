@@ -27,8 +27,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0
       electron:
-        specifier: 42.0.1
-        version: 42.0.1
+        specifier: 42.1.0
+        version: 42.1.0
       electron-builder:
         specifier: 26.8.1
         version: 26.8.1(electron-builder-squirrel-windows@26.8.1)
@@ -2274,8 +2274,8 @@ packages:
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
-  electron@42.0.1:
-    resolution: {integrity: sha512-d8HnycE970DGESe91Nj30eonFBUcAI9EZ1TwUGJVzSAnJZdh0BkFEinAXjdklvDYst+bVDc8HsksCuqVLrnqdg==}
+  electron@42.1.0:
+    resolution: {integrity: sha512-0szNwC/0dWtkvNce5j3ThiuL0TxBNrZN/BZhdOiGwbLreiD/+u3MGpkct4hA5Ycagb8MXjpEr5/oosi+FwuKRQ==}
     engines: {node: '>= 22.12.0'}
     hasBin: true
 
@@ -4944,7 +4944,7 @@ snapshots:
   '@conventional-changelog/git-client@1.0.0(conventional-commits-parser@6.0.0)':
     dependencies:
       '@types/semver': 7.5.8
-      semver: 7.7.4
+      semver: 7.8.0
     optionalDependencies:
       conventional-commits-parser: 6.0.0
 
@@ -5013,7 +5013,7 @@ snapshots:
       env-paths: 3.0.0
       graceful-fs: 4.2.11
       progress: 2.0.3
-      semver: 7.7.4
+      semver: 7.8.0
       sumchecker: 3.0.1
     optionalDependencies:
       undici: 7.25.0
@@ -5562,7 +5562,7 @@ snapshots:
 
   '@npmcli/fs@4.0.0':
     dependencies:
-      semver: 7.7.4
+      semver: 7.8.0
 
   '@nuxt/opencollective@0.4.1':
     dependencies:
@@ -6747,7 +6747,7 @@ snapshots:
       conventional-commits-filter: 5.0.0
       handlebars: 4.7.7
       meow: 13.2.0
-      semver: 7.7.4
+      semver: 7.8.0
 
   conventional-changelog@6.0.0:
     dependencies:
@@ -6982,7 +6982,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@42.0.1:
+  electron@42.1.0:
     dependencies:
       '@electron/get': 5.0.0
       '@types/node': 24.10.4
@@ -7786,7 +7786,7 @@ snapshots:
       es6-error: 4.1.1
       matcher: 3.0.0
       roarr: 2.15.4
-      semver: 7.7.4
+      semver: 7.8.0
       serialize-error: 7.0.1
     optional: true
 
@@ -8684,14 +8684,14 @@ snapshots:
 
   node-abi@4.26.0:
     dependencies:
-      semver: 7.7.4
+      semver: 7.8.0
 
   node-addon-api@1.7.2:
     optional: true
 
   node-api-version@0.2.1:
     dependencies:
-      semver: 7.7.4
+      semver: 7.8.0
 
   node-gyp@11.5.0:
     dependencies:
@@ -8701,7 +8701,7 @@ snapshots:
       make-fetch-happen: 14.0.3
       nopt: 8.1.0
       proc-log: 5.0.0
-      semver: 7.7.4
+      semver: 7.8.0
       tar: 7.5.7
       tinyglobby: 0.2.16
       which: 5.0.0
@@ -8718,7 +8718,7 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.0
       is-core-module: 2.16.1
-      semver: 7.7.4
+      semver: 7.8.0
       validate-npm-package-license: 3.0.4
 
   normalize-url@6.1.0: {}
