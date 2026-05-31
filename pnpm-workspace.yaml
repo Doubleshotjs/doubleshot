@@ -18,3 +18,6 @@ onlyBuiltDependencies:
 
 shellEmulator: true
 trustPolicy: off
+
+minimumReleaseAgeExclude:
+  - lint-staged@17.0.6
