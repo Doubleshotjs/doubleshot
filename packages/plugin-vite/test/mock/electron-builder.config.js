@@ -16,6 +16,10 @@ const config = {
   mac: {
     target: 'dir',
     identity: null,
+    notarize: false,
+  },
+  dmg: {
+    sign: false,
   },
   linux: {
     target: 'dir',
