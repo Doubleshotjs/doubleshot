@@ -27,8 +27,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0
       electron:
-        specifier: 42.3.2
-        version: 42.3.2
+        specifier: 42.3.3
+        version: 42.3.3
       electron-builder:
         specifier: 26.8.1
         version: 26.8.1(electron-builder-squirrel-windows@26.8.1)
@@ -2321,10 +2321,9 @@ packages:
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
-  electron@42.3.2:
-    resolution: {integrity: sha512-R8qL6TMQ+u5r/l1mL6zWqqK3eQo6Bqi4ScmysgODcy+SNR76HQhvbZUEL/9GqNuF0fNFJxphz/bh/TC4jW8NbA==}
+  electron@42.3.3:
+    resolution: {integrity: sha512-0MwYp9wTb7TrtTalOYqeW+suqd9T/Znstr/nDLKqFGIjHdBZX339guo3mQqTPURRZ/UQmYM4uMpzKpI5wLptfQ==}
     engines: {node: '>= 22.12.0'}
-    deprecated: This version of Electron has a critical bug in Buffer handling, please upgrade to 42.3.3
     hasBin: true
 
   emoji-regex@10.6.0:
@@ -6024,8 +6023,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.56.1(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.56.1(typescript@6.0.3)
-      '@typescript-eslint/types': 8.56.1
+      '@typescript-eslint/tsconfig-utils': 8.59.3(typescript@6.0.3)
+      '@typescript-eslint/types': 8.59.3
       debug: 4.4.3
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -7095,7 +7094,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@42.3.2:
+  electron@42.3.3:
     dependencies:
       '@electron/get': 5.0.0
       '@types/node': 24.10.4
