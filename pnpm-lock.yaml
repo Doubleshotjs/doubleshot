@@ -27,8 +27,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0
       electron:
-        specifier: 42.3.3
-        version: 42.3.3
+        specifier: 42.4.0
+        version: 42.4.0
       electron-builder:
         specifier: 26.15.2
         version: 26.15.2(electron-builder-squirrel-windows@26.15.2)
@@ -409,6 +409,10 @@ packages:
         optional: true
       oxlint:
         optional: true
+
+  '@electron-internal/extract-zip@1.0.2':
+    resolution: {integrity: sha512-VJuNETNPEhrmQEZezeTZO5TZMV+dobBRyJ7zHjGJWIhMS7m7W1UeClt69u4hkUxv9ZZVxuli/E9Yvc4gDNHGsg==}
+    engines: {node: '>=22.12.0'}
 
   '@electron/asar@3.4.1':
     resolution: {integrity: sha512-i4/rNPRS84t0vSRa2HorerGRXWyF4vThfHesw0dmcWHp+cspK743UanA0suA5Q5y8kzY2y6YKrvbIUn69BCAiA==}
@@ -2396,8 +2400,8 @@ packages:
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
-  electron@42.3.3:
-    resolution: {integrity: sha512-0MwYp9wTb7TrtTalOYqeW+suqd9T/Znstr/nDLKqFGIjHdBZX339guo3mQqTPURRZ/UQmYM4uMpzKpI5wLptfQ==}
+  electron@42.4.0:
+    resolution: {integrity: sha512-OXXqh9LD9KxXPv2Fe25EfU9N9AvWTuV6V81sfhQaNvTAXCd9ONA+Q4OWvMe+CmYD6xIwjFxGGtG/ZphDYYC5OQ==}
     engines: {node: '>= 22.12.0'}
     hasBin: true
 
@@ -5196,7 +5200,7 @@ snapshots:
   '@conventional-changelog/git-client@1.0.0(conventional-commits-parser@6.0.0)':
     dependencies:
       '@types/semver': 7.5.8
-      semver: 7.8.1
+      semver: 7.8.2
     optionalDependencies:
       conventional-commits-parser: 6.0.0
 
@@ -5215,9 +5219,11 @@ snapshots:
     dependencies:
       empathic: 2.0.0
       module-replacements: 3.0.0-beta.7
-      semver: 7.8.1
+      semver: 7.8.2
     optionalDependencies:
       eslint: 10.4.1(jiti@2.6.1)
+
+  '@electron-internal/extract-zip@1.0.2': {}
 
   '@electron/asar@3.4.1':
     dependencies:
@@ -5265,7 +5271,7 @@ snapshots:
       env-paths: 3.0.0
       graceful-fs: 4.2.11
       progress: 2.0.3
-      semver: 7.8.1
+      semver: 7.8.2
       sumchecker: 3.0.1
     optionalDependencies:
       undici: 7.25.0
@@ -5837,7 +5843,7 @@ snapshots:
 
   '@npmcli/fs@4.0.0':
     dependencies:
-      semver: 7.8.1
+      semver: 7.8.2
 
   '@ota-meshi/ast-token-store@0.3.0': {}
 
@@ -6162,7 +6168,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 25.9.1
+      '@types/node': 25.9.2
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.59.2(@typescript-eslint/parser@8.59.2(eslint@10.4.1(jiti@2.6.1))(typescript@6.0.3))(eslint@10.4.1(jiti@2.6.1))(typescript@6.0.3)':
@@ -6207,8 +6213,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.56.1(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.56.1(typescript@6.0.3)
-      '@typescript-eslint/types': 8.56.1
+      '@typescript-eslint/tsconfig-utils': 8.59.3(typescript@6.0.3)
+      '@typescript-eslint/types': 8.59.3
       debug: 4.4.3
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -6346,7 +6352,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.58.1
       debug: 4.4.3
       minimatch: 10.2.5
-      semver: 7.8.1
+      semver: 7.8.2
       tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
@@ -6361,7 +6367,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.59.2
       debug: 4.4.3
       minimatch: 10.2.5
-      semver: 7.8.1
+      semver: 7.8.2
       tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
@@ -6376,7 +6382,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.59.3
       debug: 4.4.3
       minimatch: 10.2.5
-      semver: 7.8.1
+      semver: 7.8.2
       tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
@@ -7138,7 +7144,7 @@ snapshots:
       conventional-commits-filter: 5.0.0
       handlebars: 4.7.7
       meow: 13.2.0
-      semver: 7.8.1
+      semver: 7.8.2
 
   conventional-changelog@6.0.0:
     dependencies:
@@ -7425,11 +7431,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@42.3.3:
+  electron@42.4.0:
     dependencies:
+      '@electron-internal/extract-zip': 1.0.2
       '@electron/get': 5.0.0
       '@types/node': 24.10.4
-      extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
 
@@ -7531,7 +7537,7 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@10.4.1(jiti@2.6.1)):
     dependencies:
       eslint: 10.4.1(jiti@2.6.1)
-      semver: 7.8.1
+      semver: 7.8.2
 
   eslint-config-flat-gitignore@2.3.0(eslint@10.4.1(jiti@2.6.1)):
     dependencies:
@@ -7610,7 +7616,7 @@ snapshots:
       html-entities: 2.6.0
       object-deep-merge: 2.0.0
       parse-imports-exports: 0.2.4
-      semver: 7.8.1
+      semver: 7.8.2
       spdx-expression-parse: 4.0.0
       to-valid-identifier: 1.0.0
     transitivePeerDependencies:
@@ -7641,7 +7647,7 @@ snapshots:
       globals: 15.15.0
       globrex: 0.1.2
       ignore: 5.3.2
-      semver: 7.8.1
+      semver: 7.8.2
     optionalDependencies:
       typescript: 6.0.3
 
@@ -7815,7 +7821,7 @@ snapshots:
       pluralize: 8.0.0
       regexp-tree: 0.1.27
       regjsparser: 0.13.0
-      semver: 7.8.1
+      semver: 7.8.2
       strip-indent: 4.1.1
 
   eslint-plugin-unused-imports@4.4.1(@typescript-eslint/eslint-plugin@8.59.2(@typescript-eslint/parser@8.59.2(eslint@10.4.1(jiti@2.6.1))(typescript@6.0.3))(eslint@10.4.1(jiti@2.6.1))(typescript@6.0.3))(eslint@10.4.1(jiti@2.6.1)):
@@ -7831,7 +7837,7 @@ snapshots:
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 7.1.1
-      semver: 7.8.1
+      semver: 7.8.2
       vue-eslint-parser: 10.4.0(eslint@10.4.1(jiti@2.6.1))
       xml-name-validator: 4.0.0
     optionalDependencies:
@@ -8504,7 +8510,7 @@ snapshots:
     dependencies:
       acorn: 8.16.0
       eslint-visitor-keys: 5.0.1
-      semver: 7.8.1
+      semver: 7.8.2
 
   jsonfile@4.0.0:
     optionalDependencies:
@@ -9143,14 +9149,14 @@ snapshots:
 
   node-abi@4.26.0:
     dependencies:
-      semver: 7.8.1
+      semver: 7.8.2
 
   node-addon-api@1.7.2:
     optional: true
 
   node-api-version@0.2.1:
     dependencies:
-      semver: 7.8.1
+      semver: 7.8.2
 
   node-gyp@11.5.0:
     dependencies:
@@ -9160,7 +9166,7 @@ snapshots:
       make-fetch-happen: 14.0.3
       nopt: 8.1.0
       proc-log: 5.0.0
-      semver: 7.8.1
+      semver: 7.8.2
       tar: 7.5.7
       tinyglobby: 0.2.17
       which: 5.0.0
@@ -9174,7 +9180,7 @@ snapshots:
       graceful-fs: 4.2.11
       nopt: 9.0.0
       proc-log: 6.1.0
-      semver: 7.8.1
+      semver: 7.8.2
       tar: 7.5.7
       tinyglobby: 0.2.17
       undici: 6.26.0
@@ -9196,7 +9202,7 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.0
       is-core-module: 2.16.1
-      semver: 7.8.1
+      semver: 7.8.2
       validate-npm-package-license: 3.0.4
 
   normalize-url@6.1.0: {}
@@ -10238,7 +10244,7 @@ snapshots:
       eslint-visitor-keys: 5.0.1
       espree: 11.2.0
       esquery: 1.7.0
-      semver: 7.8.1
+      semver: 7.8.2
     transitivePeerDependencies:
       - supports-color
 
