@@ -1,3 +1,7 @@
+## [0.0.23](https://github.com/Doubleshotjs/doubleshot/compare/builder@0.0.22...builder@0.0.23) (2026-06-13)
+
+
+
 ## [0.0.22](https://github.com/Doubleshotjs/doubleshot/compare/builder@0.0.21...builder@0.0.22) (2026-05-08)
 
 
