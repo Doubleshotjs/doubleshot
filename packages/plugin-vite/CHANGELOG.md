@@ -1,3 +1,7 @@
+## [0.0.24](https://github.com/Doubleshotjs/doubleshot/compare/plugin-vite@0.0.23...plugin-vite@0.0.24) (2026-06-13)
+
+
+
 ## [0.0.23](https://github.com/Doubleshotjs/doubleshot/compare/plugin-vite@0.0.22...plugin-vite@0.0.23) (2026-05-08)
 
 
