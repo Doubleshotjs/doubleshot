@@ -24,7 +24,7 @@
     "@lightwing/eslint-config": "1.0.155",
     "@nestjs/testing": "11.1.27",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "25.9.3",
+    "@types/node": "25.9.4",
     "conventional-changelog-cli": "5.0.0",
     "electron": "42.4.1",
     "electron-builder": "26.15.3",
