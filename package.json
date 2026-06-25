@@ -26,7 +26,7 @@
     "@types/fs-extra": "11.0.4",
     "@types/node": "25.9.4",
     "conventional-changelog-cli": "5.0.0",
-    "electron": "42.4.1",
+    "electron": "42.5.0",
     "electron-builder": "26.15.3",
     "eslint": "10.5.0",
     "fs-extra": "11.3.5",
