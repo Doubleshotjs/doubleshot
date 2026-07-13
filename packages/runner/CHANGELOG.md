@@ -1,3 +1,9 @@
+## [0.0.21](https://github.com/Doubleshotjs/doubleshot/compare/runner@0.0.20...runner@0.0.21) (2026-07-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency concurrently to v10 ([#1914](https://github.com/Doubleshotjs/doubleshot/issues/1914)) ([fe5f64e](https://github.com/Doubleshotjs/doubleshot/commit/fe5f64e6ac6d13e1739224310ab29ae677cb5b77))
 ## [0.0.20](https://github.com/Doubleshotjs/doubleshot/compare/runner@0.0.19...runner@0.0.20) (2026-05-08)
 
 
