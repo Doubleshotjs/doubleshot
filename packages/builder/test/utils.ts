@@ -60,15 +60,25 @@ export function checkOrCreateHtmlFile(fileName = 'index.html') {
 }
 
 export async function installDeps(cwd: string) {
-  const { stdout, stderr } = await execa(
+  const installResult = await execa(
     'pnpm',
     ['install', '--no-lockfile', '--ignore-workspace'],
     {
       cwd,
     },
   )
+  const electronInstallResult = await execa(
+    'pnpm',
+    ['exec', 'install-electron'],
+    {
+      cwd,
+    },
+  )
 
-  const logs = stdout + stderr
+  const logs = installResult.stdout
+    + installResult.stderr
+    + electronInstallResult.stdout
+    + electronInstallResult.stderr
   return logs
 }
 
