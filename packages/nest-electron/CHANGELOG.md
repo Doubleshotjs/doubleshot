@@ -1,3 +1,4 @@
+## [0.2.15](https://github.com/Doubleshotjs/doubleshot/compare/nest-electron@0.2.14...nest-electron@0.2.15) (2026-07-13)
 ## [0.2.14](https://github.com/Doubleshotjs/doubleshot/compare/nest-electron@0.2.13...nest-electron@0.2.14) (2026-05-08)
 
 
