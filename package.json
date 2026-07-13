@@ -12,7 +12,7 @@
   "scripts": {
     "build": "pnpm -r run build",
     "test": "npm run build && npm run test-only",
-    "test-only": "vitest run",
+    "test-only": "pnpm exec install-electron && vitest run",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "release": "mor",
