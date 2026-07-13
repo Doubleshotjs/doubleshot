@@ -54,7 +54,7 @@
     "colorette": "^2.0.20",
     "joycon": "^3.1.1",
     "resolve-from": "^5.0.0",
-    "tsdown": "^0.22.2",
+    "tsdown": "0.22.5",
     "wait-on": "^9.0.10"
   },
   "devDependencies": {
