@@ -27,7 +27,7 @@
     "@types/node": "26.1.1",
     "@typescript/native": "npm:typescript@7.0.2",
     "conventional-changelog-cli": "5.0.0",
-    "electron": "43.1.0",
+    "electron": "43.1.1",
     "electron-builder": "26.15.3",
     "eslint": "10.7.0",
     "fs-extra": "11.3.6",
