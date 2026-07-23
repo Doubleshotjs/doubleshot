@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  electron: 43.1.1
+  electron: 43.2.0
 
 importers:
 
@@ -33,8 +33,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(conventional-commits-filter@5.0.0)
       electron:
-        specifier: 43.1.1
-        version: 43.1.1(supports-color@10.2.2)
+        specifier: 43.2.0
+        version: 43.2.0(supports-color@10.2.2)
       electron-builder:
         specifier: 26.15.3
         version: 26.15.3(electron-builder-squirrel-windows@26.15.3)(supports-color@10.2.2)
@@ -81,8 +81,8 @@ importers:
         specifier: ^2.0.20
         version: 2.0.20
       electron:
-        specifier: 43.1.1
-        version: 43.1.1(supports-color@10.2.2)
+        specifier: 43.2.0
+        version: 43.2.0(supports-color@10.2.2)
       electron-builder:
         specifier: '>=20.0.0'
         version: 26.15.3(electron-builder-squirrel-windows@26.15.3)(supports-color@10.2.2)
@@ -106,8 +106,8 @@ importers:
   packages/nest-electron:
     dependencies:
       electron:
-        specifier: 43.1.1
-        version: 43.1.1(supports-color@10.2.2)
+        specifier: 43.2.0
+        version: 43.2.0(supports-color@10.2.2)
       rxjs:
         specifier: '>=7.0.0'
         version: 7.8.2
@@ -2313,8 +2313,8 @@ packages:
     resolution: {integrity: sha512-bO3y10YikuUwUuDUQRM4KfwNkKhnpVO7IPdbsrejwN9/AABJzzTQ4GeHwyzNSrVO+tEH3/Np255a3sVZpZDjvg==}
     engines: {node: '>=8.0.0'}
 
-  electron@43.1.1:
-    resolution: {integrity: sha512-I5c5vfuVvaXpWx3IZdwvXgxQW44+e7OP1wXGVQkogLeSFSkUZ6sLCcWV05AdEcs65AO5tAIJJwbp7ixw+LdarA==}
+  electron@43.2.0:
+    resolution: {integrity: sha512-80zvrgG7ZRXD+tD0IyLvrnN9n+veSxadMRsMaC9wKKP3iUbtC7rGM8+dVuCmOb0Rrwwv8ESW4awnUZh9Hbp1fA==}
     engines: {node: '>= 22.12.0'}
     hasBin: true
 
@@ -6681,7 +6681,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@43.1.1(supports-color@10.2.2):
+  electron@43.2.0(supports-color@10.2.2):
     dependencies:
       '@electron-internal/extract-zip': 1.0.4
       '@electron/get': 5.0.0(supports-color@10.2.2)
