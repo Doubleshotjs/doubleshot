@@ -2,7 +2,7 @@ packages:
   - 'packages/*'
   - '!**/test/**'
 overrides:
-  electron: 43.3.0
+  electron: 43.4.0
 allowBuilds:
   '@nestjs/core': true
   electron: true

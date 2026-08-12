@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  electron: 43.3.0
+  electron: 43.4.0
 
 importers:
 
@@ -33,8 +33,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(conventional-commits-filter@5.0.0)
       electron:
-        specifier: 43.3.0
-        version: 43.3.0(supports-color@10.2.2)
+        specifier: 43.4.0
+        version: 43.4.0(supports-color@10.2.2)
       electron-builder:
         specifier: 26.15.3
         version: 26.15.3(electron-builder-squirrel-windows@26.15.3)(supports-color@10.2.2)
@@ -81,8 +81,8 @@ importers:
         specifier: ^2.0.20
         version: 2.0.20
       electron:
-        specifier: 43.3.0
-        version: 43.3.0(supports-color@10.2.2)
+        specifier: 43.4.0
+        version: 43.4.0(supports-color@10.2.2)
       electron-builder:
         specifier: '>=20.0.0'
         version: 26.15.3(electron-builder-squirrel-windows@26.15.3)(supports-color@10.2.2)
@@ -106,8 +106,8 @@ importers:
   packages/nest-electron:
     dependencies:
       electron:
-        specifier: 43.3.0
-        version: 43.3.0(supports-color@10.2.2)
+        specifier: 43.4.0
+        version: 43.4.0(supports-color@10.2.2)
       rxjs:
         specifier: '>=7.0.0'
         version: 7.8.2
@@ -1642,6 +1642,7 @@ packages:
   '@xmldom/xmldom@0.8.13':
     resolution: {integrity: sha512-KRYzxepc14G/CEpEGc3Yn+JKaAeT63smlDr+vjB8jRfgTBBI9wRj/nkQEO+ucV8p8I9bfKLWp37uHgFrbntPvw==}
     engines: {node: '>=10.0.0'}
+    deprecated: this version has critical issues, please update to the latest version
 
   '@yuku-codegen/binding-darwin-arm64@0.7.3':
     resolution: {integrity: sha512-hbssEr7iLNCWWdUbEt8cuOjUQ9loI+U/BVmdhNQ4CV1wAFGvWDO3niK9JD2WwTC9iib7E498qgZ3L/xJnoSb3A==}
@@ -2342,8 +2343,8 @@ packages:
     resolution: {integrity: sha512-bO3y10YikuUwUuDUQRM4KfwNkKhnpVO7IPdbsrejwN9/AABJzzTQ4GeHwyzNSrVO+tEH3/Np255a3sVZpZDjvg==}
     engines: {node: '>=8.0.0'}
 
-  electron@43.3.0:
-    resolution: {integrity: sha512-nLlvu0WFjftWsSaTkV2B/c4NDuJBspTyXu8vKSQ6vLvFt8uG3NgN49LLKcXddwX0GqVvAQDhciWp+4xOdTdhew==}
+  electron@43.4.0:
+    resolution: {integrity: sha512-3qxGF0CeQbiox5oWV1JlbWGQ1VerbmDhTFqW4sJ8h7uqTHniFYPObXJcDna0DMh32et0fFyKzz0YY8lJv3t5jg==}
     engines: {node: '>= 22.12.0'}
     hasBin: true
 
@@ -6786,7 +6787,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@43.3.0(supports-color@10.2.2):
+  electron@43.4.0(supports-color@10.2.2):
     dependencies:
       '@electron-internal/extract-zip': 1.0.4
       '@electron/get': 5.0.0(supports-color@10.2.2)
