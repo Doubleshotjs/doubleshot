@@ -37,7 +37,7 @@
     "simple-git-hooks": "2.13.1",
     "tsdown": "0.22.14",
     "typescript": "npm:@typescript/typescript6@6.0.2",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
