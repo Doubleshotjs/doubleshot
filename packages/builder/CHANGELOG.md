@@ -1,3 +1,15 @@
+## [0.0.25](https://github.com/Doubleshotjs/doubleshot/compare/builder@0.0.24...builder@0.0.25) (2026-08-31)
+
+
+### Bug Fixes
+
+* **deps:** resolve audited vulnerabilities ([e8b1b0b](https://github.com/Doubleshotjs/doubleshot/commit/e8b1b0bdcf4155db620b3bec5f54a99b39ab6d55))
+* **deps:** update dependency tsdown to v0.22.12 ([#1984](https://github.com/Doubleshotjs/doubleshot/issues/1984)) ([fed315f](https://github.com/Doubleshotjs/doubleshot/commit/fed315fe683b156354163e9bddbc8295b1089d01))
+* **deps:** update dependency tsdown to v0.22.13 ([#1986](https://github.com/Doubleshotjs/doubleshot/issues/1986)) ([265f337](https://github.com/Doubleshotjs/doubleshot/commit/265f3375f2c50e6634554af6ffb071c6e09f4c03))
+* **deps:** update dependency tsdown to v0.22.14 ([#1993](https://github.com/Doubleshotjs/doubleshot/issues/1993)) ([8c7d71c](https://github.com/Doubleshotjs/doubleshot/commit/8c7d71cfe6f05ff37ff60cbda404fa8c6beaee0c))
+* **deps:** update dependency tsdown to v0.22.7 ([#1974](https://github.com/Doubleshotjs/doubleshot/issues/1974)) ([21a7303](https://github.com/Doubleshotjs/doubleshot/commit/21a7303a3c99034838957323141a2c8cd93bff85))
+* **deps:** update dependency tsdown to v0.22.8 ([#1977](https://github.com/Doubleshotjs/doubleshot/issues/1977)) ([51e0c05](https://github.com/Doubleshotjs/doubleshot/commit/51e0c054275391503121452e7d5d94791806c4c5))
+* **deps:** update dependency tsdown to v0.22.9 ([#1980](https://github.com/Doubleshotjs/doubleshot/issues/1980)) ([4842b4a](https://github.com/Doubleshotjs/doubleshot/commit/4842b4a9bbaf2a66ea598c3b5ab49ba98452cda2))
 ## [0.0.24](https://github.com/Doubleshotjs/doubleshot/compare/builder@0.0.23...builder@0.0.24) (2026-07-13)
 ## [0.0.23](https://github.com/Doubleshotjs/doubleshot/compare/builder@0.0.22...builder@0.0.23) (2026-06-13)
 
