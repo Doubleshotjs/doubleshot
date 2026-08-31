@@ -1,3 +1,9 @@
+## [0.2.16](https://github.com/Doubleshotjs/doubleshot/compare/nest-electron@0.2.15...nest-electron@0.2.16) (2026-08-31)
+
+
+### Bug Fixes
+
+* **deps:** resolve audited vulnerabilities ([e8b1b0b](https://github.com/Doubleshotjs/doubleshot/commit/e8b1b0bdcf4155db620b3bec5f54a99b39ab6d55))
 ## [0.2.15](https://github.com/Doubleshotjs/doubleshot/compare/nest-electron@0.2.14...nest-electron@0.2.15) (2026-07-13)
 ## [0.2.14](https://github.com/Doubleshotjs/doubleshot/compare/nest-electron@0.2.13...nest-electron@0.2.14) (2026-05-08)
 
