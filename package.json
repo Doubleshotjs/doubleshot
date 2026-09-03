@@ -24,7 +24,7 @@
     "@lightwing/eslint-config": "1.0.158",
     "@nestjs/testing": "12.0.1",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "26.4.0",
+    "@types/node": "26.4.1",
     "@typescript/native": "npm:typescript@7.0.2",
     "conventional-changelog-cli": "5.0.0",
     "electron": "44.1.1",
