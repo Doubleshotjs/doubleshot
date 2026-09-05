@@ -29,7 +29,7 @@
     "conventional-changelog-cli": "5.0.0",
     "electron": "44.2.0",
     "electron-builder": "26.15.3",
-    "eslint": "10.9.1",
+    "eslint": "10.10.0",
     "fs-extra": "11.4.0",
     "lint-staged": "17.4.1",
     "mono-release": "2.10.4",
