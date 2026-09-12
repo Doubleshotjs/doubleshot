@@ -4,11 +4,6 @@
   "private": true,
   "main": "dist/main.js",
   "devDependencies": {
-    "electron": "^44.0.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "electron"
-    ]
+    "electron": "44.3.0"
   }
 }

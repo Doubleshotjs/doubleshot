@@ -31,6 +31,7 @@ export default defineConfig({
       electron: {
         build: {
           config: './electron-builder.config.js',
+          disabled: process.env.DS_TEST_ELECTRON_BUILD !== 'true',
         },
         preload: {
           entry: 'src/preload.ts',

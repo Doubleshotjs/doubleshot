@@ -24,15 +24,17 @@ function remove() {
   fs.removeSync(path.resolve(mockDir, 'dist'))
 }
 
-async function run(mode: 'dev' | 'build') {
+async function run(mode: 'dev' | 'build', buildElectron = false) {
   const viteBin = path.resolve(mockDir, 'node_modules/vite/bin/vite.js')
   const { stdout, stderr } = await execa(
     process.execPath,
     mode === 'build' ? [viteBin, 'build'] : [viteBin],
     {
       cwd: mockDir,
+      timeout: buildElectron ? 9 * 60 * 1000 : 45 * 1000,
       env: {
         npm_config_user_agent: 'traversal',
+        DS_TEST_ELECTRON_BUILD: String(buildElectron),
       },
     },
   )
@@ -78,6 +80,7 @@ describe('doubleshot Vite Plugin', () => {
       const prodLogs = await run('build')
       const prodResult = fs.readFileSync(path.resolve(mockDir, 'dist/main/index.js'), 'utf8')
       expect(prodLogs).toContain('override config for production')
+      expect(prodLogs).not.toContain('Start electron build')
       expect(prodResult).toMatchSnapshot()
     })
   })
@@ -89,7 +92,7 @@ describe('doubleshot Vite Plugin', () => {
   })
 
   it('should build electron app if "electron.build" is set', async () => {
-    const logs = await run('build')
+    const logs = await run('build', true)
 
     expect(logs).toContain('Start electron build')
     expect(logs).toContain('Build succeeded')
