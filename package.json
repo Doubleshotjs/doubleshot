@@ -22,7 +22,7 @@
   "devDependencies": {
     "@esm2cjs/execa": "6.1.1-cjs.1",
     "@lightwing/eslint-config": "1.0.160",
-    "@nestjs/testing": "12.0.2",
+    "@nestjs/testing": "12.0.3",
     "@types/fs-extra": "11.0.4",
     "@types/node": "26.5.1",
     "@typescript/native": "npm:typescript@7.0.2",
