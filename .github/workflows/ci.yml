@@ -23,11 +23,15 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest, macos-14]
-        node-version: [22.x]
-        architecture: [x64, arm64]
-        exclude:
+        include:
           - os: windows-latest
+            node-version: 22.x
+            architecture: x64
+          - os: macos-15-intel
+            node-version: 22.x
+            architecture: x64
+          - os: macos-15
+            node-version: 22.x
             architecture: arm64
 
     runs-on: ${{ matrix.os }}
@@ -40,6 +44,7 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
+          architecture: ${{ matrix.architecture }}
 
       - if: ${{ matrix.os != 'windows-latest' }}
         name: Cache dependencies
